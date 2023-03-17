@@ -1,0 +1,367 @@
+---
+title: "View The Results"
+output: html_document
+---
+
+```{r}
+source('functions.R')
+```
+
+# Scenario 1: 
+
+Balanced, 8 predictors, half N, 
+```{r}
+# LOAD DATA 
+
+# predictions
+pred_sc1_p1  <- readRDS("sim_results/predictions/sc1_p1_1_2000.rds")
+pred_sc1_p7  <- readRDS("sim_results/predictions/sc1_p7_1_2000.rds")
+pred_sc1_p13 <- readRDS("sim_results/predictions/sc1_p13_1_2000.rds")
+
+# raw performance metrics
+r_pm_sc1_p1  <- readRDS("sim_results/raw_performance_metrics/sc1_p1_1_2000.rds")
+r_pm_sc1_p7  <- readRDS("sim_results/raw_performance_metrics/sc1_p7_1_2000.rds")
+r_pm_sc1_p13  <- readRDS("sim_results/raw_performance_metrics/sc1_p13_1_2000.rds")
+```
+
+```{r}
+pred_sc1_p1
+```
+```{r}
+r_pm_sc1_p1
+```
+
+```{r}
+# PRODUCE SUMMARY STATS 
+
+# aggregate results 
+s_pm_sc1_p1  <- get_summary(r_pm_sc1_p1,  1, pairs[1,])
+s_pm_sc1_p7  <- get_summary(r_pm_sc1_p7,  1, pairs[7,])
+s_pm_sc1_p13 <- get_summary(r_pm_sc1_p13, 1, pairs[13,])
+
+
+rbind(s_pm_sc1_p1, s_pm_sc1_p7, s_pm_sc1_p13)
+```
+
+```{r}
+# plots 
+
+p1 <- 
+  pred_sc1_p1 %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() + 
+    xlab(" ") + 
+    ylab(" ") + 
+    ggtitle(paste0("lr + control"))
+  
+p2 <- 
+  pred_sc1_p7 %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() +
+    xlab(" ") + 
+    ylab(" ") +
+    ggtitle(paste0("lr + rus"))
+
+p3 <- 
+  pred_sc1_p13 %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() +
+    xlab(" ") + 
+    ylab(" ") +
+    ggtitle(paste0("lr + ros"))
+
+
+p <- patchworkGrob(p1 + p2 + p3)
+
+grid.arrange(p, left = "Observed Proportion", bottom = "Estimated Probability")
+```
+
+
+# Scenario 3:
+
+Severe imbalance, 8 predictors, half N 
+```{r}
+# LOAD DATA
+
+# predictions
+pred_sc3_p1  <- readRDS("sim_results/predictions/sc3_p1_1_2000.rds")
+pred_sc3_p7  <- readRDS("sim_results/predictions/sc3_p7_1_2000.rds")
+pred_sc3_p13  <- readRDS("sim_results/predictions/sc3_p13_1_2000.rds")
+
+# raw performance metrics
+r_pm_sc3_p1  <- readRDS("sim_results/raw_performance_metrics/sc3_p1_1_2000.rds")
+r_pm_sc3_p7  <- readRDS("sim_results/raw_performance_metrics/sc3_p7_1_2000.rds")
+r_pm_sc3_p13  <- readRDS("sim_results/raw_performance_metrics/sc3_p13_1_2000.rds")
+```
+
+```{r}
+sum(r_pm_sc3_p7$cvg)
+```
+```{r}
+pred_sc3_p7
+```
+
+```{r}
+# aggregate results 
+s_pm_sc3_p1  <- get_summary(r_pm_sc3_p1,  3, pairs[1,])
+s_pm_sc3_p7  <- get_summary(r_pm_sc3_p7,  3, pairs[7,])
+s_pm_sc3_p13 <- get_summary(r_pm_sc3_p13, 3, pairs[13,])
+
+
+rbind(s_pm_sc3_p1, s_pm_sc3_p7, s_pm_sc3_p13)
+```
+
+```{r}
+# plots 
+
+pred_sc3_p1 %>% 
+  filter(convergence != 1) %>%
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() + 
+    xlab(" ") + 
+    ylab(" ") +
+    ggtitle(paste0("lr + control"))
+```
+
+```{r}
+pred_sc3_p7 %>% 
+  filter(convergence != 1) %>%
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() +
+    xlab(" ") + 
+    ylab(" ") +
+    xlim(0,1) + 
+    ylim(0,1) +
+    ggtitle(paste0("lr + rus"))
+```
+
+```{r}
+pred_sc3_p13 %>% 
+  filter(convergence != 1) %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() +
+    xlab(" ") + 
+    ylab(" ") +
+    xlim(0,1) + 
+    ylim(0,1) + 
+    ggtitle(paste0("lr + ros"))
+```
+
+
+------- make plotting function -------------------------------------------------
+
+
+```{r}
+# probably not a good idea -- think of something else
+
+make_plots <- function(list){
+  n   <- length(list)
+  out <- list()
+  
+  for(i in 1:n){
+    p <- 
+      list[[i]] %>% 
+      ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+      geom_line(stat = "smooth",
+                method = stats::loess, 
+                formula = y ~ x,
+                se = F, 
+                linewidth = 0.05, 
+                alpha = 0.1,
+                color = "#0d0887") +
+      geom_abline(slope = 1, intercept = 0, size = 1) +
+      theme_minimal() + 
+      xlab(" ") + 
+      ylab(" ") 
+    
+    out[[i]] <- p
+  }
+}
+```
+
+------------- small test -------------------------------------------------------
+
+```{r}
+pred_sc3_p1  <- readRDS("sim_results/predictions/sc3_p1_1_10.rds")
+pred_sc3_p7  <- readRDS("sim_results/predictions/sc3_p7_1_20.rds")
+pred_sc1_p7  <- readRDS("sim_results/predictions/sc1_p7_1_20.rds")
+
+# svm 
+
+pred_sc1_p2  <- readRDS("sim_results/predictions/sc1_p2_1_2000.rds")
+r_pm_sc1_p2  <- readRDS("sim_results/raw_performance_metrics/sc1_p2_1_2000.rds")
+
+pred_sc1_p8  <- readRDS("sim_results/predictions/sc1_p8_1_2000.rds")
+r_pm_sc1_p8  <- readRDS("sim_results/raw_performance_metrics/sc1_p8_1_2000.rds")
+
+pred_sc3_p2  <- readRDS("sim_results/predictions/sc3_p2_1_2000.rds")
+r_pm_sc3_p2  <- readRDS("sim_results/raw_performance_metrics/sc3_p2_1_2000.rds")
+
+pred_sc3_p8  <- readRDS("sim_results/predictions/sc3_p8_1_2000.rds")
+r_pm_sc3_p8  <- readRDS("sim_results/raw_performance_metrics/sc3_p8_1_2000.rds")
+```
+
+
+```{r}
+pred_sc1_p2%>% 
+  filter(convergence != 1) %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() +
+    xlab(" ") + 
+    ylab(" ") +
+    xlim(0,1) + 
+    ylim(0,1)
+```
+```{r}
+pred_sc1_p8%>% 
+  filter(convergence != 1) %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() +
+    xlab(" ") + 
+    ylab(" ") +
+    xlim(0,1) + 
+    ylim(0,1)  
+```
+
+```{r}
+pred_sc3_p2%>% 
+  filter(convergence != 1) %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() +
+    xlab(" ") + 
+    ylab(" ") +
+    xlim(0,1) + 
+    ylim(0,1)  
+```
+```{r}
+pred_sc3_p8%>% 
+  filter(convergence != 1) %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.05, 
+              alpha = 0.1,
+              color = "#0d0887") +
+    geom_abline(slope = 1, intercept = 0, size = 1) +
+    theme_minimal() +
+    xlab(" ") + 
+    ylab(" ") +
+    xlim(0,1) + 
+    ylim(0,1)  
+```
+
+
+```{r}
+s_pm_sc1_p2 <- get_summary(r_pm_sc1_p2, 1, pairs[2,])
+s_pm_sc1_p8 <- get_summary(r_pm_sc1_p8, 1, pairs[8,])
+s_pm_sc3_p2 <- get_summary(r_pm_sc3_p2, 3, pairs[2,])
+s_pm_sc3_p8 <- get_summary(r_pm_sc3_p8, 3, pairs[8,])
+
+rbind(s_pm_sc1_p2, s_pm_sc1_p8, s_pm_sc3_p2, s_pm_sc3_p8)
+```
+```{r}
+calibration_plot <- function(sc, pair_id, start = 1, stop = 2000){
+  
+  dataframe <- readRDS(paste0("sim_results/predictions/sc", sc, "_p", pair_id, "_", start, "_", stop,".rds"))
+  
+  dataframe %>%
+  filter(convergence != 1) %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+      geom_line(stat = "smooth",
+                method = stats::loess, 
+                formula = y ~ x,
+                se = F, 
+                linewidth = 0.05, 
+                alpha = 0.1,
+                color = "#0d0887") +
+      geom_abline(slope = 1, intercept = 0, size = 1) +
+      theme_minimal() +
+      xlab(" ") + 
+      ylab(" ") +
+      xlim(0,1) + 
+      ylim(0,1)  
+}
+
+# use ragg to save packages
+```
+
+```{r}
+# try out the function
+
+calibration_plot(sc = 1, pair_id = 1)
+```
+
