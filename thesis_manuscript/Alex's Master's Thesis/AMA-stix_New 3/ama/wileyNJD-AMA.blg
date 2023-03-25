@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: wileyNJD-AMA.aux
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+The style file: WileyNJD-AMA.bst
+Reallocating 'name_of_file' (item size: 1) to 13 items.
+Database file #1: wileyNJD-AMA.bib
+You've used 28 entries,
+            2067 wiz_defined-function locations,
+            730 strings with 9397 characters,
+and the built_in function-call counts, 5253 in all, are:
+= -- 480
+> -- 232
+< -- 3
++ -- 99
+- -- 71
+* -- 542
+:= -- 942
+add.period$ -- 53
+call.type$ -- 28
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 28
+duplicate$ -- 274
+empty$ -- 536
+format.name$ -- 71
+if$ -- 1206
+int.to.chr$ -- 0
+int.to.str$ -- 28
+missing$ -- 25
+newline$ -- 98
+num.names$ -- 32
+pop$ -- 66
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 33
+stack$ -- 0
+substring$ -- 0
+swap$ -- 25
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 30
+width$ -- 30
+write$ -- 317

@@ -1,0 +1,30 @@
+%Filename: ly1sti.fd
+%Created by: SPi Global 
+%Created Using: OTF to TFM Font Setup Wizard
+%Date: 8/22/2013
+
+%THIS FILE SHOULD BE PUT IN A TEX INPUTS DIRECTORY
+
+\ProvidesFile{ly1sti.fd}
+   [1998/07/06 Fontinst v1.800 font definitions for LY1/sti.]
+
+\DeclareFontFamily{LY1}{sti}{}
+\DeclareFontShape{LY1}{sti}{m}{n}{<-> StixReg}{}
+\DeclareFontShape{LY1}{sti}{m}{sl}{<-> StixIt}{}
+\DeclareFontShape{LY1}{sti}{m}{it}{<-> StixIt}{}
+\DeclareFontShape{LY1}{sti}{b}{n}{<-> StixBd}{}
+\DeclareFontShape{LY1}{sti}{b}{sl}{<-> StixBdIt}{}
+\DeclareFontShape{LY1}{sti}{b}{it}{<-> StixBdIt}{}
+
+\DeclareFontShape{LY1}{sti}{bx}{n}{<->ssub * sti/b/n}{}
+\DeclareFontShape{LY1}{sti}{bx}{sc}{<->ssub * sti/b/sc}{}
+\DeclareFontShape{LY1}{sti}{bx}{sl}{<->ssub * sti/b/sl}{}
+\DeclareFontShape{LY1}{sti}{bx}{it}{<->ssub * sti/b/it}{}
+
+\DeclareFontShape{LY1}{sti}{m}{ui}{<->ssub * sti/m/it}{}
+\DeclareFontShape{LY1}{sti}{b}{ui}{<->ssub * sti/b/it}{}
+\DeclareFontShape{LY1}{sti}{l}{sc}{<->ssub * sti/m/sc}{}
+
+\endinput
+
+

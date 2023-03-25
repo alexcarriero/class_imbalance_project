@@ -1,0 +1,190 @@
+---
+title: "Master's Thesis"
+output: 
+  pdf_document:
+    citation_package: natbib
+
+cls: WileyNJD-v2.cls
+bibliography: "bibliography.bib"
+biblio-style: unsrt
+link-citations: true
+header-includes: 
+   \usepackage[labelfont=bf]{caption}
+   \usepackage[super, compress, comma]{natbib}
+---
+
+```{r, echo = F, warning = F, message = F}
+library(tidyverse)
+library(xtable)
+```
+
+
+# 1 | Introduction 
+
+
+
+# 2 | Methods 
+
+In this research, we aimed to determine the best practices for handling class imbalance when developing clinical prediction models for dichotomous risk prediction.  We implemented a simulation study to illustrate the performance of prediction models in different class imbalance scenarios. We adhere to the ADEMP guidelines for the design and reporting of our simulation study [@tim_morris].\
+
+## 2.1 | Aims
+We aimed to assess the out-of-sample predictive performance of prediction models trained with six common classification algorithms, for three class imbalance scenarios. To illustrate the baseline performance of the prediction models for the various class imbalance scenarios, no imbalance corrections were applied to the data before training prediction models.\
+
+## 2.2 | Data Generating Mechanism 
+
+We generated data for each class independently using two distinct multivariate normal ($mvn$) distributions:\
+\
+      Class 0: $\mathbf{X} \sim mvn( \pmb{\mu_0}, \pmb{\Sigma_0})$ = $mvn(\pmb{0}, \pmb{\Sigma_0})$\
+\
+      Class 1: $\mathbf{X} \sim mvn( \pmb{\mu_1}, \pmb{\Sigma_1})$ = $mvn(\pmb{\Delta_\mu}, \pmb{\Sigma_0} - \pmb{\Delta_\Sigma})$\
+
+Here, class 0 refers to the negative class (non-events) and class 1 refers to the positive class (events). The differences in parameter values between the two classes are represented in the formulae above by $\pmb{\Delta_\mu}$ and $\pmb{\Delta_\Sigma}$; a vector and matrix comprised of the differences in predictor means, and variances/ covariances, between the classes, respectively.  We specified no variation in means among predictors within a class, making all elements in the vector $\pmb{\Delta_\mu}$ equivalent; denoted by $\delta_\mu$. Similarly, we specified no variation in predictor variances within a class, making all diagonal elements in the matrix $\pmb{\Delta_\Sigma}$ equivalent; diagonal elements are denoted by $\delta_\Sigma$.\
+\
+For class 0, we fixed all predictor means to zero and variances to 1. For class 1, all means were non-zero and are represented by the vector $\pmb{\Delta_\mu}$. Finally, we allowed $80$% of the predictors to covary. All non-zero correlations among predictors in each class were set to $0.2$.  To ensure the correlation among predictors was not stronger in one class, we fixed the correlation matrices of the two classes to be equal.  This was accomplished by computing the off-diagonal elements of $\pmb{\Delta_\Sigma}$ such that the correlation matrices of the two classes were equivalent. Note, the covariance matrices were *not* equivalent between the classes.\
+
+\newpage
+
+For instance, with 8 predictors:\
+\
+the mean and covariance structure for class 0 is, \begin{equation*}
+\pmb{\mu_0} = \begin{bmatrix}
+ \\ 0 \\ 0 \\ 0\\ 0 \\ 0 \\ 0 \\ 0 \\ 0
+\end{bmatrix}, \pmb{\Sigma_0} = \begin{bmatrix}
+1   & 0.2 & 0.2 & 0.2 & 0.2 & 0.2 & 0 & 0\\
+0.2 & 1   & 0.2 & 0.2 & 0.2 & 0.2 & 0 & 0\\
+0.2 & 0.2 & 1   & 0.2 & 0.2 & 0.2 & 0 & 0\\
+0.2 & 0.2 & 0.2   & 1 & 0.2 & 0.2 & 0 & 0\\
+0.2 & 0.2 & 0.2   & 0.2 & 1 & 0.2 & 0 & 0\\
+0.2 & 0.2 & 0.2   & 0.2 & 0.2 & 1 & 0 & 0\\
+0   & 0   & 0     &  0 & 0    & 0 & 1 & 0\\
+0   & 0   & 0     &  0 & 0    & 0 & 0 & 1\\
+\end{bmatrix}
+\end{equation*}
+
+and mean and covariance structure for class 1 is, \begin{equation*}
+\pmb{\mu_1} = \begin{bmatrix}
+ \\ \delta_\mu \\ \delta_\mu \\ \delta_\mu \\ \delta_\mu \\ \delta_\mu \\ \delta_\mu \\ \delta_\mu \\ \delta_\mu
+\end{bmatrix}, \pmb{\Sigma_1} = \begin{bmatrix}
+1 - \delta_\Sigma   & z & z & z & z & z & 0 & 0\\
+z & 1 - \delta_\Sigma   & z & z & z & z & 0 & 0\\
+z & z & 1 - \delta_\Sigma   & z & z & z & 0 & 0\\
+z & z & z   & 1 - \delta_\Sigma & z & z & 0 & 0\\
+z & z & z   & z & 1 - \delta_\Sigma & z & 0 & 0\\
+z & z & z   & z & z & 1 - \delta_\Sigma & 0 & 0\\
+0   & 0   & 0     &  0 & 0    & 0 & 1 - \delta_\Sigma & 0\\
+0   & 0   & 0     &  0 & 0    & 0 & 0 & 1 - \delta_\Sigma\\
+\end{bmatrix}.
+\end{equation*}\
+\
+Here, $z = (1-\delta_\Sigma)*0.2$, to ensure equivalent correlation matrices between the two classes.\
+
+## 2.3 | Scenarios
+
+We simulated data to reflect three unique class imbalance scenarios (Table 1).  This was accomplished by varying the event fraction (proportion of patients with the event of interest) through the set {0.5, 0.2, 0.02}. For all scenarios, 8 predictors were generated and sample size ($N$) was determined as the minimum sample size required for the prediction model (given the number of predictors, event fraction and expected concordance statistic, using the R package `pmsampsize` [@pmsampsize].\
+\
+For every scenario, parameter values for the data generating distributions ($\delta_\mu$ and $\delta_\Sigma$) were selected to generate a concordance statistic ($C$) of $0.85$. Under the assumption of normality for all predictors (in each class), the concordance statistic of the data can be expressed as a function of $\pmb{\Delta_\mu}$, $\pmb{\Sigma_0}$ and $\pmb{\Sigma_1}$ [@mvauc]. Optimal values of $\delta_\mu$ and $\delta_\Sigma$ values were computed analytically, based on the following formula [@mvauc]:
+
+\begin{equation}
+C = \Phi \left( \sqrt{\pmb{\Delta_\mu}{'}\  (\pmb{\Sigma_0} + \pmb{\Sigma_1})^{-1} \ \pmb{\Delta_{\mu}}} \right).
+\end{equation}
+\
+\
+In equation (1), $\Phi$ represents the cumulative density function of the standard normal distribution; $\pmb{\Delta_\mu}$, $\pmb{\Sigma_0}$ and $\pmb{\Sigma_1}$ maintain their previous definitions. To ensure a unique solution, $\delta_\Sigma$ was fixed at 0.3 for each scenario, while equation (1) was solved to yield the appropriate value of $\delta_\mu$ in each scenario.\
+\
+Finally, given that data for each class were generated independently, we had direct control over how many observations were generated under each class. The number of observations from the positive class ($n_1$) was sampled from the binomial distribution with probability equal to the specified event fraction. The number of observations in the negative class ($n_0$) was then computed as $N - n_1$, where $N$ is the minimum sample size specified for the prediction model.\
+\
+Parameter values for the data generating distributions of the simulation scenarios are presented in Table 1.\
+
+
+## 2.4 | Simulation Methods 
+
+Under each simulation scenario, $200$ data sets were generated. Each data set was comprised of training and validation data. The training and validation data were generated independently using identical data generating mechanisms. Validation data sets were generated to be ten times larger than the training data sets.\
+\
+For each generated data set,  six prediction models were developed, each using a different classification algorithm. All prediction models were trained using the training data. Out-of-sample performance was then assessed using the validation data.\
+\
+Classification algorithms were selected based on a systematic review identifying common algorithms used to develop prediction models in a medical context [@constanza]. These algorithms include: logistic regression, support vector machine, random forest and XGBoost.  Additionally, based on literature summarizing common strategies to handle class imbalance [@yu; @summary_m; @lp; @kaur], we included two ensemble learning algorithms designed specifically to handle class imbalance: RUSBoost and EasyEnsemble. Classification algorithms were implemented with their default hyper-parameters; no hyper-parameter tuning was conducted. All classification algorithms and the R packages used for their implementation are summarized in Table 2.\
+
+
+```{r, echo = F, results = "asis", warning = F, message = F}
+
+Summary <- c("\\bf{Imbalance Corrections}",
+             " ", " ", " ", " ",
+             "\\bf{Classification Algorithms}",
+             " ", " ", " ", " ", " ", " ")
+
+Name <- c(
+  " ",
+  "Random Undesampling", 
+  "Random Oversampling",
+  "Synthetic Majority Over Sampling",
+  "SMOTE - Edited Nearest Neighbours",
+  " ",
+  "Logistic Regression",
+  "Support Vector Machine",
+  "Random Forest",
+  "XGBoost",
+  "RUSBoost",
+  "EasyEnsemmble")
+
+Abbreviation <- c(" ", "RUS","ROS", "SMOTE", "SENN"," ", "LR", "SVM", "RF", "XG", "RB", "EE")
+
+Implementation <- c( 
+  " ",
+  "ROSE \\cite{rose}", 
+  "ROSE \\cite{rose}", 
+  "IRIC \\cite{iric}", 
+  "IRIC \\cite{iric}",
+  " ",
+  "base R \\cite{r}", 
+  "caret \\cite{caret}", 
+  "caret \\cite{caret}", 
+  "caret \\cite{caret}",
+  "ebmc \\cite{ebmc}",
+  "iric \\cite{iric}")
+
+cbind(Summary, Name, Abbreviation, Implementation)%>%
+  as.data.frame()%>%
+  rename("R Package" = "Implementation", 
+         " " = "Summary")%>% 
+  xtable(caption = "Summary of imbalance corrections and classification algorithms implemented.", label = "tab:table", escape = F)%>% 
+  print(comment = F,
+        sanitize.text.function = function(x) {x},
+        include.rownames=FALSE)
+
+  # kable(booktabs = T, escape = F,
+  #       linesep = "\\addlinespace",
+  #       caption = "Summary of classification algorithms used in simulation study.") %>%
+  # kable_styling(full_width = F, latex_options ="hold_position", font_size = 10) %>% 
+  # column_spec(1, width = "20em") %>%
+  # column_spec(2, width = "7em") %>%
+  # add_indent(c(1:10), level_of_indent = 2) %>%
+  # pack_rows("Imbalance Corrections", 1, 4) %>%
+  # pack_rows("Classification Algorithms", 5, 10)
+```
+
+## 2.5 | Performance Metrics 
+
+
+Out-of-sample model performance was assessed using measures of calibration, discrimination and overall performance. All performance metrics were computed using validation data.\
+\
+Calibration was measured using visual and empirical metrics.  For each simulation iteration, we fitted a flexible calibration curve for each model; this was done with loess regression using `ggplot2` [@gg]. In a flexible calibration curve, when estimated probabilities (x-axis) correspond well with the observed proportions in the data (y-axis), the curve follows a diagonal line ($y = x$) [@achilles]. In addition to the calibration plots, calibration intercept and slope were calculated.  With respect to calibration intercept and slope, ideal calibration is represented by values of 0 and 1, respectively [@epi].\
+\
+Discrimination refers to a model's ability to distinguish between the classes [@nature].  The concordance statistic was used to measure model discrimination; computed using the R package `pROC` [@pROC]. For dichotomous risk prediction, it is equivalent to the area under the Receiver Operator Characteristic curve [@nature; @epi]. A model which perfectly discriminates between the classes will have a concordance statistic of 1; the minimum value for this statistic is 0.5 [@epi].\
+\
+Overall performance was measured by the Brier score. This metric reflects both model discrimination and calibration and is calculated according to the following formula [@epi]: 
+
+\begin{equation}
+\mathrm{Brier \ Score} = \frac{1}{N} \sum^{N}_{i = 1} (p_i - o_i)^2,
+\end{equation}
+
+where $N$ is the sample size, $p_i$ represents the estimated probability for the $i$th individual and $o_i$ represents
+the observed outcome (0 or 1) for the $i$th individual. In an ideal model, estimated probabilities approximate the observed outcome well for all individuals; ideal models produce a Brier score near to zero.\
+\
+For empirical measures of model performance (concordance statistic, Brier score, calibration intercept and calibration slope), the mean over all iterations and corresponding Monte Carlo error were reported.
+
+# 3 | Results 
+
+# 4 | Disucssion
+
+\newpage
+\footnotesize

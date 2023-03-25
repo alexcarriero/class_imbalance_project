@@ -1,0 +1,430 @@
+\documentclass[AMA,STIX1COL]{WileyNJD-v2}
+\usepackage{moreverb}
+
+
+\newcommand\BibTeX{{\rmfamily B\kern-.05em \textsc{i\kern-.025em b}\kern-.08em
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\articletype{Article Type}%
+
+\received{<day> <Month>, <year>}
+\revised{<day> <Month>, <year>}
+\accepted{<day> <Month>, <year>}
+
+%\raggedbottom
+
+\begin{document}
+
+\title{A demonstration of the \LaTeX\ class file for Wiley NJD Journals\protect\thanks{This is an example for title footnote.}}
+
+\author[1]{Author One*}
+
+\author[2,3]{Author Two}
+
+\author[3]{Author Three}
+
+\authormark{AUTHOR ONE \textsc{et al}}
+
+
+\address[1]{\orgdiv{Org Division}, \orgname{Org name}, \orgaddress{\state{State name}, \country{Country name}}}
+
+\address[2]{\orgdiv{Org Division}, \orgname{Org name}, \orgaddress{\state{State name}, \country{Country name}}}
+
+\address[3]{\orgdiv{Org Division}, \orgname{Org name}, \orgaddress{\state{State name}, \country{Country name}}}
+
+\corres{*Corresponding author name, Corresponding address. \email{authorone@Email.com}}
+
+\presentaddress{Present address}
+
+\abstract[Abstract]{This paper describes the use of the \LaTeXe\ \textsf{WileyNJD-v2.cls}
+class file for setting papers for \emph{Mathematical Methods in the Applied Sciences}.}
+
+\keywords{Class file; \LaTeXe; \emph{Wiley NJD}}
+
+\jnlcitation{\cname{%
+\author{Williams K.}, 
+\author{B. Hoskins}, 
+\author{R. Lee}, 
+\author{G. Masato}, and 
+\author{T. Woollings}} (\cyear{2016}), 
+\ctitle{A regime analysis of Atlantic winter jet variability applied to evaluate HadGEM3-GC2}, \cjournal{Q.J.R. Meteorol. Soc.}, \cvol{2017;00:1--6}.}
+
+\maketitle
+
+\footnotetext{\textbf{Abbreviations:} ANA, anti-nuclear antibodies; APC, antigen-presenting cells; IRF, interferon regulatory factor}
+
+
+\section{Introduction}\label{sec1}
+
+Many authors submitting \( \sin \cos \tan \inf_{x} \) to NJD journals use \LaTeXe\ to
+prepare their papers. This paper describes the
+\textsf{WileyNJD-v2.cls} class file which can be used to convert
+articles produced with other \LaTeXe\ class files into the correct
+form for publication in \emph{Wiley NJD Journals}.
+
+The \textsf{WileyNJD-v2.cls} class file preserves much of the standard
+\LaTeXe\ interface so that any document which was produced using
+the standard \LaTeXe\ \textsf{article} style can easily be
+converted to work with the \textsf{WileyNJD-v2} style. However, the
+width of text and typesize will vary from that of
+\textsf{article.cls}; therefore, \emph{line breaks will change}
+and it is likely that displayed mathematics and tabular material
+will need re-setting.
+
+In the following sections we describe how to lay out your code to
+use \textsf{WileyNJD-v2.cls} to reproduce the typographical look of
+\emph{Wiley NJD Journals}.
+
+\subsection{Procedure to install fonts}
+ 
+\begin{enumerate}
+\item All font files are available under the Stix-fonts folder 
+\item Font installer is available under the same folder Windows-Stix-fontinstaller.exe
+\item Execute (double click the EXE file) the EXE file that will install all fonts/map files to your local drive.
+\end{enumerate}
+
+\subsection{The Three Golden Rules} 
+
+Before we proceed, we would like to
+stress \emph{three golden rules} that need to be followed to
+enable the most efficient use of your code at the typesetting
+stage:
+\begin{enumerate}
+\item[(i)] keep your own macros to an absolute minimum;
+
+\item[(ii)] as \TeX\ is designed to make sensible spacing
+decisions by itself, do \emph{not} use explicit horizontal or
+vertical spacing commands, except in a few accepted (mostly
+mathematical) situations, such as \verb"\," before a
+differential~d, or \verb"\quad" to separate an equation from its
+qualifier;
+
+\item[(iii)] follow the \emph{NJD} reference style.
+\begin{enumerate}[a.]
+\item Chemistry --- Use the ``AMA'' option as \verb"\documentclass[AMA]{WileyNJD-v2.cls}"
+
+\end{enumerate}
+\end{enumerate}
+
+
+\section{Getting Started} The \textsf{WileyNJD-v2.cls} class file should run
+on any standard \LaTeXe\ installation. If any of the fonts, class
+files or packages it requires are missing from your installation,
+they can be found on the \emph{\TeX\ Live} CD-ROMs or from CTAN.
+
+LaTeX document class options
+
+\begin{flushleft}
+\begin{enumerate}[a.]
+\item STIX1COL--- For STIX font large one column layout use the ``STIX1COL'' option as \verb"\documentclass[AMA,STIX1COL]{WileyNJD-v2}"
+\item STIX2COL--- For STIX font large two column layout use the ``STIX2COL'' option as \verb"\documentclass[AMA,STIX2COL]{WileyNJD-v2}"
+\item STIXSMALL--- For STIX font small layout use the ``STIXSMALL'' option as \verb"\documentclass[AMA,STIXSMALL]{WileyNJD-v2}"
+\end{enumerate}
+\end{flushleft}
+
+
+
+\section{The Article Header Information}
+The heading for any file using \textsf{WileyNJD-v2.cls} is shown in
+Figure~\ref{F1}.
+
+\subsection{Remarks}
+
+\begin{enumerate}[(I).]
+
+\item Use \verb"\title{<title> \protect\thanks{<title footnotes}}" for article title and title footnote.
+\item Use \verb"\authormark{}" for running heads.
+
+\item Note the use of \verb"\author[<link>]{<name>}" and \verb"\address[<link>]{<name>}" to
+link names and addresses. The author for correspondence is marked
+by ``*'' and \verb"\corres{}" is used to give that
+author's address, which will be printed besides abstract, prefaced by
+`Correspondence to:'.
+
+\item For submitting a double-spaced manuscript, add
+\verb"doublespace" as an option to the documentclass line. \verb"\documentclass[doublespace]{WileyNJD-v2}"
+
+\item Use \verb"\presentaddress{}" for present address.
+
+\item In abstract \verb"\abstract[<title>]{abstract paragraph}" use optional parameter for title followed by abstract paragraph.
+
+\item For Key words use \verb"\keywords{}".
+
+\item For how to site use \verb"\jnlcitation{\cname{\author{<author name>},"
+
+\verb"\ctitle{<title>}, \cjournal{<Journal name>}, \cvol{<vol>}.}}".
+
+\item For title page abbreviations use \verb"\footnotetext{<\textbf{Abbreviation title:} Abreviations>}"
+
+\item Use \verb"\articletype{<article category}" for article header information
+
+\item Use \verb"\received{<received date>} \revised{<revised date>} \accepted{<accepted date>}" for history dates.
+
+\end{enumerate}
+
+
+
+\begin{figure}[p]
+\setlength{\fboxsep}{0pt}%
+\setlength{\fboxrule}{0pt}%
+\begin{center}
+\begin{boxedverbatim}
+
+\documentclass[AMA,STIX1COL]{WileyNJD-v2}
+
+\articletype{Article Type}%
+
+\received{26 April 2016}
+\revised{6 June 2016}
+\accepted{6 June 2016}
+
+\begin{document}
+
+\title{<Initial cap, lower case>\protect\thanks{<title footnote.>}}
+
+\author[<address link>]{<Author name><corresponding author*>}
+
+\author[<address link>,<address link>]{Author Name}
+
+\authormark{AUTHOR ONE \textsc{et al}}
+
+\address[<address link>]{\orgdiv{<Org Division>}, \orgname{<Org name>}, 
+\orgaddress{\state{<State name>}, \country{<Country name>}}}
+\address[<address link>]{\orgdiv{<Org Division>}, \orgname{<Org name>},
+ \orgaddress{\state{<State name>}, \country{<Country name>}}}
+
+\corres{<corresponding author link*> <author name, address.
+ \email{<authorone@email.com>}}
+
+\presentaddress{<Present address>}
+
+\abstract[<Abstract heading>]{<Abstract paragraph>}
+
+\keywords{<keyword1>, <keyword2>,...}
+
+\jnlcitation{\cname{%
+\author{<aurhor name>}, 
+\author{<aurhor name>}, 
+\author{<aurhor name>}, 
+\author{<aurhor name>},  and 
+\author{<aurhor name>}} (\cyear{<year>}), 
+\ctitle{<journal title>}, \cjournal{<journal name>} <year> <vol> Page <xxx>-<xxx>}
+
+\footnotetext{\textbf{<abbreviation head:>} <abbreviations> ..}
+
+\maketitle
+
+\section{Introduction}
+.
+.
+.
+\end{boxedverbatim}
+\end{center}
+\caption{Example for title page.\label{F1}}
+\end{figure}
+
+\section{The Body of the Article}
+
+\subsection{Section headings}
+
+\begin{enumerate}[(H1)]
+\item Section --- use \verb"\section{}"
+\item SubSection--- use \verb"\subsection{}"
+\item SubSubSectioin--- use \verb"\subsubsection{}"
+\item Paragraph--- use \verb"\paragraph{}"
+\item Subparagraph--- use \verb"\subparagraph{}"
+\end{enumerate}
+
+\subsection{Mathematics} \textsf{WileyNJD-v2.cls} makes the full
+functionality of \AmS\/\TeX\ available. We encourage the use of
+the \verb"align", \verb"gather" and \verb"multline" environments
+for displayed mathematics.
+
+\subsection{Figures and Tables}
+
+\textsf{WileyNJD-v2.cls} uses the
+\textsf{graphicx} package for handling figures.
+
+Figures are called in as follows:
+\begin{verbatim}
+\begin{figure}
+\centering
+\includegraphics{<figure name>}
+\caption{<Figure caption>}
+\end{figure}
+\end{verbatim}
+
+The standard coding for a table is shown in Figure~\ref{F2}.
+
+\begin{figure}[h]
+\setlength{\fboxsep}{0pt}%
+\setlength{\fboxrule}{0pt}%
+\begin{center}
+\begin{boxedverbatim}
+\begin{table}
+\caption{<Table caption>}
+\centering
+\begin{tabular}{<table alignment>}
+\toprule
+<column headings>\\
+\midrule
+<table entries
+(separated by & as usual)>\\
+<table entries>\\
+.
+.
+.\\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\item Source: xxx.
+\item[1] xxx.
+\item[2] xxx.
+\end{tablenotes}
+\end{table}
+\end{boxedverbatim}
+\end{center}
+\caption{Example for table layout.\label{F2}}
+\end{figure}
+
+\subsection{Cross-referencing}
+The use of the \LaTeX\ cross-reference system
+for figures, tables, equations, etc., is encouraged
+(using \verb"\ref{<name>}" and \verb"\label{<name>}").
+
+\subsection{Box text}
+
+\begin{verbatim}
+\begin{boxtext}
+\section*{<title>}%
+Paragraph
+\end{boxtext}
+\end{verbatim}
+
+\subsection{List items}
+
+\subsubsection{Enumerate list styles}
+\begin{verbatim}
+\begin{enumerate}[1]
+\item 
+\end{enumerate}
+
+\begin{enumerate}[1.]
+\item 
+\end{enumerate}
+
+\begin{enumerate}[(1)]
+\item 
+\end{enumerate}
+
+\begin{enumerate}[I]
+\item 
+\end{enumerate}
+
+\begin{enumerate}[i]
+\item 
+\end{enumerate}
+
+\begin{enumerate}[a]
+\item 
+\end{enumerate}
+
+\end{verbatim}
+
+\subsubsection{Bullet list styles}
+
+\begin{verbatim}
+\begin{itemize}
+\item 
+\end{itemize}
+\end{verbatim}
+
+\subsubsection{Description list}
+
+\begin{verbatim}
+\begin{description}
+\item[<entry>] description text.
+\end{description}
+\end{verbatim}
+
+\subsection{Enunciations}
+
+\begin{verbatim}
+\begin{theorem}[<Theorem subhead>]\label{thm1}
+<theorem text>. 
+\end{theorem}
+
+\begin{proposition}[<proposition subhead>]\label{pro1}
+<proposition text>. 
+\end{proposition}
+
+\begin{definition}[<definition subhead>]\label{dfn1}
+<definition text>. 
+\end{definition}
+
+\begin{proof}
+<proof text>. 
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm1}]
+<proof text>.
+\end{proof}
+
+\end{verbatim}
+
+\subsection{Program codes}
+
+Use \verb+\begin{verbatim}...\end{verbatim}+ for program codes without math. Use \verb+\begin{alltt}...\end{alltt}+ for program codes with math. Based on the text provided inside the optional argument of \verb+\begin{code}[Psecode|Listing|Box|Code|+\hfill\break \verb+Specification|Procedure|Sourcecode|Program]...+ \verb+\end{code}+ tag corresponding boxed like floats are generated. Also note that \verb+\begin{code}[Code|Listing]...+ \verb+\end{code}+ tag with either Code or Listing text as optional argument text are set with computer modern typewriter font.  All other code environments are set with normal text font. Refer below example:
+
+\begin{verbatim}
+\begin{lstlisting}[caption={Descriptive Caption Text},label=DescriptiveLabel]
+for i:=maxint to 0 do
+begin
+{ do nothing }
+end;
+Write('Case insensitive ');
+WritE('Pascal keywords.');
+\end{lstlisting}
+\end{verbatim}
+
+
+\subsection{Acknowledgements} An Acknowledgements section is started with \verb"\ack" or
+\verb"\acks" for \textit{Acknowledgement} or
+\textit{Acknowledgements}, respectively. It must be placed just
+before the References.
+
+\subsection{Bibliography}
+
+\begin{enumerate}[1]
+\item Use \verb"\bibliography{wileyNJD-AMA}" BST file for AMA reference style
+\item Use \verb"\bibliography{wileyNJD-APA}" BST file for APA reference style
+\item Use \verb"\bibliography{wileyNJD-AMS}" BST file for AMS reference style
+\item Use \verb"\bibliography{wileyNJD-VANCOUVER}" BST file for Vancouver reference style
+\item Use \verb"\bibliography{wileyNJD-ACS}" BST file for Chemistry reference style
+\end{enumerate}
+
+The normal commands for producing the reference list are:
+
+\begin{verbatim}
+\begin{thebibliography}{99}
+\bibitem{<x-ref label>}
+         <Reference details>
+.
+.
+.
+\end{thebibliography}
+\end{verbatim}
+
+\subsection{Appendix Section}
+
+\begin{verbatim}
+\appendix
+
+\section{Section title of first appendix\label{app1}}
+.
+.
+.
+
+\end{verbatim}
+
+\end{document}
