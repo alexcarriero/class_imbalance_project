@@ -1,0 +1,175 @@
+---
+title: "reproducible?"
+author: "alex carriero"
+output: html_document
+---
+
+```{r, warning = F, message = F}
+library(tidyverse)
+source("functions.R")
+```
+
+```{r functions}
+# functions
+
+
+check_if_same <- function(df1, df2, how = "pair"){
+  
+  if (how == "pair"){
+    pair_id = c(1:30)
+    check   = c()
+  
+    for (i in pair_id){
+      a <- df1 %>% filter(pair_id == i)
+      b <- df2 %>% filter(pair_id == i)
+    
+      check[i] <- identical(a,b)
+    }
+  }
+  
+  if (how == "iter"){
+    check = c()
+    iters = length(unique(df1$iter))
+    
+    for(i in 1:iters){
+      a <- df1 %>% filter(iter == i)
+      b <- df2 %>% filter(iter == i)
+      
+      check[i] <- identical(a,b)
+    }
+  }
+    
+  return(which(check))
+}
+
+check_same_within <- function(df, ref = 1){
+  pair_id = c(1:30)
+  check   = c()
+  
+  for(i in pair_id){
+    a <- df %>% filter(pair_id == ref) %>% dplyr::select(-pair_id)
+    b <- df %>% filter(pair_id == i)   %>% dplyr::select(-pair_id)
+    
+    check[i] <- identical(a,b)
+  }
+  return(which(check))
+}
+
+import_from_folder <- function(foldername, A){
+    df <-
+      list.files(path = paste0("./sim_results/", foldername, "/", A, "/"), pattern = ".rds") %>%
+      paste0("./sim_results/", foldername, "/", A, "/", .) %>%
+      map(readRDS) %>%
+      bind_rows()
+}
+
+# import_from_folder <- function(foldername){
+#     df <- 
+#       list.files(path = paste0("./sim_results/", foldername, "/"), pattern = ".rds") %>%
+#       paste0("./sim_results/", foldername, "/", .) %>%
+#       map(readRDS) %>% 
+#       bind_rows()
+# }
+```
+
+# Check that within a run, data frames are equivalent across the 30 analyses 
+
+This is important, because it is only fair to compare the analyses when they are preformed and tested using identical data sets / validation sets.
+
+## RUN A
+```{r}
+# data frames
+a <- import_from_folder("dataframes", "sc3")
+
+# data frames should be equivalent across the pairs
+check_same_within(a, ref = 1)
+```
+
+```{r}
+# test frames 
+a <- import_from_folder("testframes", "sc3")
+check_same_within(a, ref = 1)
+```
+
+```{r}
+# corrected data frames frames 
+a <- import_from_folder("c_dataframes", "sc2-hpc")
+
+check_same_within(a, ref = 1)  # control 
+check_same_within(a, ref = 7)  # rus
+check_same_within(a, ref = 13) # ros
+check_same_within(a, ref = 19) # smote
+check_same_within(a, ref = 25) # senn
+```
+
+```{r}
+a <- import_from_folder("iteration_info", "sc2-hpc") %>% 
+  dplyr::select(-problem, -warning, -err, -correction, - algorithm)
+
+# iteration information should be identical
+check_same_within(a, ref = 1)  # control 
+check_same_within(a, ref = 7)  # rus
+check_same_within(a, ref = 13) # ros
+check_same_within(a, ref = 19) # smote
+check_same_within(a, ref = 25) # senn
+
+a
+```
+
+```{r}
+# check predictions between runs
+a <- import_from_folder("predictions", "sc2-check")
+b <- import_from_folder("predictions", "sc2") %>% filter(iter < 4)
+
+check_if_same(a,b)
+
+a
+b
+```
+
+```{r}
+# check results between runs
+a <- import_from_folder("per_iter_results", "sc2-check")
+b <- import_from_folder("per_iter_results", "sc2")
+
+check_if_same(a,b)
+
+a
+b
+```
+```{r}
+a <- import_from_folder("predictions", "sc3") 
+
+a %>% 
+  mutate(
+    pred  = as.numeric(pred), 
+    class = as.numeric(class), 
+    problematic = as.numeric(problematic)) %>%
+    filter(problematic != 1) %>% 
+    drop_na() %>% 
+    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
+    geom_line(stat = "smooth",
+              method = stats::loess, 
+              formula = y ~ x,
+              se = F, 
+              linewidth = 0.1, 
+              alpha = 1, 
+              aes(color = as.factor(algorithms))) +
+    geom_abline(slope = 1, intercept = 0, linewidth = 1) +
+    theme_minimal() +
+    xlab(" ") + 
+    ylab(" ") +
+    xlim(0,1) + 
+    ylim(0,1) + 
+    facet_grid(algorithms ~ corrections) +
+    theme(legend.position = "none") 
+```
+
+
+```{r}
+a <- import_from_folder("per_iter_results", "sc2-check")
+b <- import_from_folder("per_iter_results", "sc2")
+
+check_if_same(a,b, how = "iter")
+```
+
