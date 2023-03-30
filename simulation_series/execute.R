@@ -29,7 +29,7 @@ source("packages/simsalapar-master/R/tryCatchWE.R")
 # Helpers ----------------------------------------------------------------------
 
 # functions
-source("functions.R")
+source("functions2.R")
 
 # seeds 
 seed.farm <- readRDS("seeds/seedfarm.RData")
@@ -42,7 +42,7 @@ set <- readRDS("data-generating-mechanism/set.RData")
 # slurm_id <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
 scenario <- 3
-start    <- 1 # which_iters[slurm_id,1]
-stop     <- 3 # which_iters[slurm_id,2]
+start    <- 1200 # which_iters[slurm_id,1]
+stop     <- 1200 # which_iters[slurm_id,2]
 
 sim_in_series(scenario, start, stop)

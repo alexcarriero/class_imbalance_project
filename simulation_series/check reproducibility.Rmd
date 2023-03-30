@@ -173,3 +173,78 @@ b <- import_from_folder("per_iter_results", "sc2")
 check_if_same(a,b, how = "iter")
 ```
 
+
+# error checking 
+
+```{r}
+readRDS("./sim_results/per_iter_results/sc3_1200.rds") %>% 
+  filter(correction == "smo")
+```
+
+```{r}
+sc <-  3
+input <- set[[sc]]
+
+df <- generate_data(input)
+
+ef <- mean(as.numeric(df$outcome)-1)
+
+      if (ef < 0.5){
+        percO <- (1/ef - 1/0.5)*100
+      } else{
+        temp_ef <- 1-ef
+        percO <- (1/temp_ef - 1/0.5)*100
+      }
+```
+
+```{r}
+do_smo <- function(df, percOver, k = 5){
+  
+  df.smote <- 
+    tryCatch(
+      
+      expr = {
+        df.smote <- SMOTE(x = df[-1], y = df[1], percOver, k)
+        return(df.smote)
+      },
+      
+      error = function(e){
+        return(df)
+      }
+    )
+  
+  df.smote <-
+    df.smote %>%
+    relocate("outcome")
+  return(df.smote)
+}
+
+```
+
+```{r}
+do_sen(df, percO)
+do_smo(df, percO)
+```
+
+```{r}
+  
+df.smote <- 
+    tryCatch(
+      expr = {
+        df.smote <- SMOTE(x = df[-1], y = df[1], percOver, k)
+        return(df.ros)
+      }
+      
+      # error = function(e){
+      #   return(df)
+      #}
+    )
+  
+df.smote <-
+    df.smote %>%
+    relocate("outcome")
+  
+  
+
+```
+
