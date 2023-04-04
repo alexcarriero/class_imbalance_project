@@ -41,8 +41,8 @@ set <- readRDS("data-generating-mechanism/set.RData")
 
 # slurm_id <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
-scenario <- 3
-start    <- 1200 # which_iters[slurm_id,1]
-stop     <- 1200 # which_iters[slurm_id,2]
+scenario <- 1
+start    <- 14 # which_iters[slurm_id,1]
+stop     <- 14 # which_iters[slurm_id,2]
 
 sim_in_series(scenario, start, stop)

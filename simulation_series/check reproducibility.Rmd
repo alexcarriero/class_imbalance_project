@@ -6,7 +6,35 @@ output: html_document
 
 ```{r, warning = F, message = F}
 library(tidyverse)
-source("functions.R")
+source("functions2.R")
+```
+
+```{r}
+# Manual Override Package Installation
+# ROSE 
+source("packages/ROSE-master/R/data_balancing_funcs.R")
+source("packages/ROSE-master/R/estimation_funcs.R")
+source("packages/ROSE-master/R/ROSE_eval.R")
+
+# IRIC 
+library(RANN)
+library(foreach)
+source("packages/IRIC-master/R/Ensemble-based level/EasyEnsemble.R")
+source("packages/IRIC-master/R/Data level/SmoteENN.R")
+source("packages/IRIC-master/R/Data level/SMOTE.R")
+
+# ebmc 
+source("packages/ebmc-master/R/ebmc.R")
+
+# simsalapar
+source("packages/simsalapar-master/R/tryCatchWE.R")
+
+
+# Helpers ----------------------------------------------------------------------
+
+# functions
+source("functions2.R")
+
 ```
 
 ```{r functions}
@@ -137,6 +165,7 @@ check_if_same(a,b)
 a
 b
 ```
+
 ```{r}
 a <- import_from_folder("predictions", "sc3") 
 
@@ -177,12 +206,14 @@ check_if_same(a,b, how = "iter")
 # error checking 
 
 ```{r}
-readRDS("./sim_results/per_iter_results/sc3_1200.rds") %>% 
+pull(seed.farm[1])[13]
+readRDS("./sim_results/per_iter_results/sc1_13.rds") %>%
   filter(correction == "smo")
 ```
 
 ```{r}
-sc <-  3
+set <- readRDS("data-generating-mechanism/set.RData")
+sc <-  1
 input <- set[[sc]]
 
 df <- generate_data(input)
@@ -198,27 +229,20 @@ ef <- mean(as.numeric(df$outcome)-1)
 ```
 
 ```{r}
-do_smo <- function(df, percOver, k = 5){
+a <- do_rus(df)
+b <- do_ros(df)
+c <- do_smo(df, percO)
+d <- do_sen(df, percO)
   
-  df.smote <- 
-    tryCatch(
-      
-      expr = {
-        df.smote <- SMOTE(x = df[-1], y = df[1], percOver, k)
-        return(df.smote)
-      },
-      
-      error = function(e){
-        return(df)
-      }
-    )
-  
-  df.smote <-
-    df.smote %>%
-    relocate("outcome")
-  return(df.smote)
-}
+a
+b
+c
+d
+```
 
+
+```{r}
+generate_data(input)
 ```
 
 ```{r}
@@ -226,25 +250,5 @@ do_sen(df, percO)
 do_smo(df, percO)
 ```
 
-```{r}
-  
-df.smote <- 
-    tryCatch(
-      expr = {
-        df.smote <- SMOTE(x = df[-1], y = df[1], percOver, k)
-        return(df.ros)
-      }
-      
-      # error = function(e){
-      #   return(df)
-      #}
-    )
-  
-df.smote <-
-    df.smote %>%
-    relocate("outcome")
-  
-  
 
-```
 
