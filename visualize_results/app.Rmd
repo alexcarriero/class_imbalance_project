@@ -1,0 +1,114 @@
+---
+title: "Dashboard Results"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+runtime: shiny
+---
+<style>  
+
+.navbar {
+  background-color: #F5F5DC;
+  border-color: #F5F5DC;
+
+}
+.navbar-brand {
+  color:black!important;
+}
+ 
+a {
+  color:black!important;
+}
+
+a:hover{
+  background-color: #ACD657!important;
+}
+
+.navbar-nav>li>a:focus{
+  background-color: #ACD657!important;
+}
+
+.navbar-nav>li>a:not(active){
+  background-color: #ededc2!important;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: #ededc2}
+
+</style>   
+
+Inputs {.sidebar}
+-------------------------------------------------------------------------------
+
+```{r eruptions, echo=FALSE}
+inputPanel(
+  selectInput("scenario", label = "Select Scenario",
+              choices = list("1" = 1, "2" = 2, "3" = 3, "4" = 4, "5" = 5, 
+                             "6" = 6, "7" = 7, "8" = 8, "9" = 9, "10" = 10,
+                             "11" = 11, "12" = 12, "13" = 13, "14" = 14, "15" = 15,
+                             "16" = 16, "17" = 17, "18" = 18), selected = 1),
+  
+)
+```
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(patchwork)
+library(DT)
+library(shiny)
+
+source("./../../results/process_results.R")
+
+algorithm   <- c("logistic_regression", 
+                  "support_vector_machine", 
+                  "random_forest", 
+                  "xgboost", 
+                  "rusboost", 
+                  "easy_ensemble")
+
+correction  <- c("control", 
+                  "rus", 
+                  "ros", 
+                  "smo", 
+                  "sen")
+
+pairs <- 
+  expand_grid(correction, algorithm) %>% 
+  mutate(pair_id = c(1:30)) %>% 
+  relocate(pair_id)
+```
+
+
+Row {.tabset .tabset-fade  data-height=1000}
+--------------------------------------------------------------------------------
+
+```{r, echo = F}
+n   <- reactive(as.character(input$scenario))
+df  <- reactive(readRDS(paste0("./results/results_sc", n() , "_new.RData")))
+```
+
+### Calibration Plots
+```{r, echo = F, out.width='20%'}
+renderImage({    
+    
+    # Store path to image
+    filename <- normalizePath(paste0("./results/calibration_plot_sc", n(),".png"))
+
+    # Return a list containing the filename
+    list(src = filename, width = 700, height = 700)}, deleteFile = FALSE)
+```
+
+
+```{r, echo = F}
+# renderDataTable({DT::datatable(
+#   df()$summary %>% 
+#     mutate(scenario = as.character(scenario)) %>% 
+#     mutate(across(where(is.numeric), round, 3)) %>%
+#     mutate(pair_id = as.numeric(pair_id)) %>% 
+#     arrange(pair_id, decending = F) %>% 
+#     merge(pairs, by = "pair_id") %>%
+#     relocate(c(scenario, pair_id, correction, algorithm)),
+#   rownames = FALSE)})
+```

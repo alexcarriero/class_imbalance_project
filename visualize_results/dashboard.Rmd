@@ -68,10 +68,14 @@ pairs <-
 
 # Scenario 1 
 
+\
+\ \ \ **Scenario 1: Predictors = $8$, Event Fraction = $0.5$, Sample Size = $\frac{1}{2}N$**\
+\
+
 Row {.tabset .tabset-fade}
 --------------------------------------------------------------------------------
 \
-\ \ \ **Predictors = $8$, Event Fraction = $0.5$, Sample Size = $\frac{1}{2}N$**\
+\ \ \ **Raw Results**\
 \
 
 ```{r, include = FALSE}
@@ -81,29 +85,13 @@ df <- readRDS("./results/results_sc1_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
-```
-
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
 ```
 
 ### Calibration Plots
@@ -126,6 +114,44 @@ a + b + c + d + plot_layout(ncol = 1)
 ```
 
 
+Row {.tabset .tabset-fade}
+--------------------------------------------------------------------------------
+\
+\ \ \ **Recalibrated Results**\
+\
+```{r, include = FALSE}
+df <- readRDS("./results/results_sc1_recalibrated.RData")
+```
+
+
+### Calibration Plots
+```{r, echo = F, out.width = '95%'}
+knitr::include_graphics("./results/calibration_plot_sc1_recalibrated.png")
+```
+
+### Performance Metrics 
+
+```{r fig.height = 8, fig.width = 10}
+df <- 
+  df$overall_dataframe %>% 
+  mutate(pair_id = as.character(pair_id)) %>% 
+  mutate(pair_id = as.numeric(pair_id)) %>% 
+  merge(pairs, by = "pair_id")
+
+
+a <- pm_plot(df, method = "auc", 0.7, 1)
+
+b <- pm_plot(df, method = "bri", -0.5, 1)
+
+c <- pm_plot(df, method = "int", -2, 0.5)
+
+d <- pm_plot(df, method = "slp", -0.5, 5)
+
+a + b + c + d + plot_layout(ncol = 1)
+```
+
+
+
 # Scenario 2 
 
 Row {.tabset .tabset-fade}
@@ -140,29 +166,13 @@ df <- readRDS("./results/results_sc2_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
-```
-
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
 ```
 
 ### Calibration Plots
@@ -200,34 +210,18 @@ df <- readRDS("./results/results_sc3_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
-```
-
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
 ```
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-knitr::include_graphics("./results/grid_plot_sc3.png")
+knitr::include_graphics("./results/calibration_plot_sc3.png")
 ```
 
 ### Performance Metrics 
@@ -259,34 +253,18 @@ df <- readRDS("./results/results_sc4_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
-```
-
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
 ```
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-knitr::include_graphics("./results/grid_plot_sc4.png")
+knitr::include_graphics("./results/calibration_plot_sc4.png")
 ```
 
 ### Performance Metrics 
@@ -318,34 +296,19 @@ df <- readRDS("./results/results_sc5_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
 ```
 
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
-```
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-knitr::include_graphics("./results/grid_plot_sc5.png")
+knitr::include_graphics("./results/calibration_plot_sc5.png")
 ```
 
 ### Performance Metrics 
@@ -368,6 +331,41 @@ Row {.tabset .tabset-fade}
 \
 **Predictors = $8$, Event Fraction = $0.02$, Sample Size = $N$**\
 \
+**Summary Statistics**
+```{r, include = FALSE}
+df <- readRDS("./results/results_sc6_new.RData")
+```
+
+### Overall Summary 
+```{r}
+df$summary %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
+  mutate(across(where(is.numeric), round, 3)) %>%
+  mutate(pair_id = as.numeric(pair_id)) %>% 
+  arrange(pair_id, decending = F) %>% 
+  merge(pairs, by = "pair_id") %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
+  DT::datatable(rownames = FALSE)
+```
+
+### Calibration Plots
+```{r, echo = F, out.width = '95%'}
+knitr::include_graphics("./results/calibration_plot_sc6.png")
+```
+
+### Performance Metrics 
+
+```{r fig.height = 8, fig.width = 10}
+a <- pm_plot(df$overall_dataframe, method = "auc", 0.6, 1)
+
+b <- pm_plot(df$overall_dataframe, method = "bri", -8, 0.5)
+
+c <- pm_plot(df$overall_dataframe, method = "int", -5, 1)
+
+d <- pm_plot(df$overall_dataframe, method = "slp", -1, 3)
+
+a + b + c + d + plot_layout(ncol = 1)
+```
 
 
 # Scenario 7 
@@ -385,34 +383,18 @@ df <- readRDS("./results/results_sc7_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
-```
-
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
 ```
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-#
+knitr::include_graphics("./results/calibration_plot_sc7.png")
 ```
 
 ### Performance Metrics 
@@ -445,29 +427,13 @@ df <- readRDS("./results/results_sc8_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
-```
-
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
 ```
 
 ### Calibration Plots
@@ -497,7 +463,41 @@ Row {.tabset .tabset-fade}
 \
 **Predictors = $8$, Event Fraction = $0.02$, Sample Size = $2N$**\
 \
+**Summary Statistics**
+```{r, include = FALSE}
+df <- readRDS("./results/results_sc9_new.RData")
+```
 
+### Overall Summary 
+```{r}
+df$summary %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
+  mutate(across(where(is.numeric), round, 3)) %>%
+  mutate(pair_id = as.numeric(pair_id)) %>% 
+  arrange(pair_id, decending = F) %>% 
+  merge(pairs, by = "pair_id") %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
+  DT::datatable(rownames = FALSE)
+```
+
+### Calibration Plots
+```{r, echo = F, out.width = '95%'}
+# knitr::include_graphics("./results/calibration_plot_sc9.png")
+```
+
+### Performance Metrics 
+
+```{r fig.height = 8, fig.width = 10}
+a <- pm_plot(df$overall_dataframe, method = "auc", 0.6, 1)
+
+b <- pm_plot(df$overall_dataframe, method = "bri", -8, 0.5)
+
+c <- pm_plot(df$overall_dataframe, method = "int", -5, 1)
+
+d <- pm_plot(df$overall_dataframe, method = "slp", -1, 3)
+
+a + b + c + d + plot_layout(ncol = 1)
+```
 
 
 
@@ -526,34 +526,18 @@ df <- readRDS("./results/results_sc10_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
-```
-
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
 ```
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-#
+# knitr::include_graphics("./results/calibration_plot_sc10.png")
 ```
 
 ### Performance Metrics 
@@ -585,34 +569,19 @@ df <- readRDS("./results/results_sc11_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
 ```
 
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
-```
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-#
+# knitr::include_graphics("./results/calibration_plot_sc11.png")
 ```
 
 ### Performance Metrics 
@@ -638,6 +607,41 @@ Row {.tabset .tabset-fade}
 \
 **Predictors = $16$, Event Fraction = $0.02$, Sample Size = $\frac{1}{2}N$**\
 \
+**Summary Statistics**
+```{r, include = FALSE}
+df <- readRDS("./results/results_sc12_new.RData")
+```
+
+### Overall Summary 
+```{r}
+df$summary %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
+  mutate(across(where(is.numeric), round, 3)) %>%
+  mutate(pair_id = as.numeric(pair_id)) %>% 
+  arrange(pair_id, decending = F) %>% 
+  merge(pairs, by = "pair_id") %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
+  DT::datatable(rownames = FALSE)
+```
+
+### Calibration Plots
+```{r, echo = F, out.width = '95%'}
+# knitr::include_graphics("./results/calibration_plot_sc12.png")
+```
+
+### Performance Metrics 
+
+```{r fig.height = 8, fig.width = 10}
+a <- pm_plot(df$overall_dataframe, method = "auc", 0.6, 1)
+
+b <- pm_plot(df$overall_dataframe, method = "bri", -8, 0.5)
+
+c <- pm_plot(df$overall_dataframe, method = "int", -5, 1)
+
+d <- pm_plot(df$overall_dataframe, method = "slp", -1, 3)
+
+a + b + c + d + plot_layout(ncol = 1)
+```
 
 # Scenario 13
 
@@ -653,34 +657,18 @@ df <- readRDS("./results/results_sc13_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
-```
-
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
 ```
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-#
+# knitr::include_graphics("./results/calibration_plot_sc13.png")
 ```
 
 ### Performance Metrics 
@@ -711,34 +699,19 @@ df <- readRDS("./results/results_sc14_new.RData")
 ### Overall Summary 
 ```{r}
 df$summary %>% 
-  mutate(scenario = as.character(scenario)) %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
   mutate(across(where(is.numeric), round, 3)) %>%
   mutate(pair_id = as.numeric(pair_id)) %>% 
   arrange(pair_id, decending = F) %>% 
   merge(pairs, by = "pair_id") %>%
-  relocate(c(scenario, pair_id, correction, algorithm)) %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
   DT::datatable(rownames = FALSE)
 ```
 
-### Problematic Iterations
-```{r}
-df$problem_iterations %>% 
-  rbind(df$any_na_row) %>% 
-  relocate(c(scenario, pair_id, correction, algorithm, a_warn, a_err)) %>% 
-  mutate(across(where(is.numeric), round, 3)) %>%
-  filter(algorithm != "logistic_regression") %>% 
-  DT::datatable(rownames = FALSE, 
-                 options = list(scrollX = TRUE, 
-                                deferRender = TRUE,
-                                scroller = TRUE,
-                                columnDefs = list(list(width = '500px',targets = c(4,5,19,20))),
-                                rowDefs = list(list(width = '5px')),
-                                autoWidth=TRUE))
-```
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-#
+# knitr::include_graphics("./results/calibration_plot_sc14.png")
 ```
 
 ### Performance Metrics 
@@ -771,6 +744,42 @@ Row {.tabset .tabset-fade}
 \
 **Predictors = $16$, Event Fraction = $0.5$, Sample Size = $2N$**\
 \
+```{r, include = FALSE}
+df <- readRDS("./results/results_sc16_new.RData")
+```
+
+### Overall Summary 
+```{r}
+df$summary %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
+  mutate(across(where(is.numeric), round, 3)) %>%
+  mutate(pair_id = as.numeric(pair_id)) %>% 
+  arrange(pair_id, decending = F) %>% 
+  merge(pairs, by = "pair_id") %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
+  DT::datatable(rownames = FALSE)
+```
+
+
+### Calibration Plots
+```{r, echo = F, out.width = '95%'}
+# knitr::include_graphics("./results/calibration_plot_sc16.png")
+```
+
+### Performance Metrics 
+
+```{r fig.height = 8, fig.width = 10}
+a <- pm_plot(df$overall_dataframe, method = "auc", 0.7, 1)
+
+b <- pm_plot(df$overall_dataframe, method = "bri", -0.5, 0.5)
+
+c <- pm_plot(df$overall_dataframe, method = "int", -2, 0.5)
+
+d <- pm_plot(df$overall_dataframe, method = "slp", -0.5, 5)
+
+a + b + c + d + plot_layout(ncol = 1)
+```
+
 
 # Scenario 17
 
@@ -779,6 +788,40 @@ Row {.tabset .tabset-fade}
 \
 **Predictors = $16$, Event Fraction = $0.2$, Sample Size = $2N$**\
 \
+```{r, include = FALSE}
+df <- readRDS("./results/results_sc17_new.RData")
+```
+
+### Overall Summary 
+```{r}
+df$summary %>% 
+  # mutate(scenario = as.character(scenario)) %>% 
+  mutate(across(where(is.numeric), round, 3)) %>%
+  mutate(pair_id = as.numeric(pair_id)) %>% 
+  arrange(pair_id, decending = F) %>% 
+  merge(pairs, by = "pair_id") %>%
+  relocate(c(pair_id, correction, algorithm)) %>%
+  DT::datatable(rownames = FALSE)
+```
+
+### Calibration Plots
+```{r, echo = F, out.width = '95%'}
+# knitr::include_graphics("./results/calibration_plot_sc17.png")
+```
+
+### Performance Metrics 
+
+```{r fig.height = 8, fig.width = 10}
+a <- pm_plot(df$overall_dataframe, method = "auc", 0.7, 1)
+
+b <- pm_plot(df$overall_dataframe, method = "bri", -0.5, 0.5)
+
+c <- pm_plot(df$overall_dataframe, method = "int", -2, 0.5)
+
+d <- pm_plot(df$overall_dataframe, method = "slp", -0.5, 5)
+
+a + b + c + d + plot_layout(ncol = 1)
+```
 
 # Scenario 18
 
@@ -788,5 +831,6 @@ Row {.tabset .tabset-fade}
 **Predictors = $16$, Event Fraction = $0.2$, Sample Size = $2N$**\
 \
 
+# Error Handling 
 
 

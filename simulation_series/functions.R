@@ -476,7 +476,8 @@ scaled_brier_score <- function(probs, outcome){
     return(NA)
   }
   
-  obs       = as.numeric(outcome)-1
+  if(is.numeric(outcome) == FALSE) {outcome <- as.numeric(outcome) - 1}
+  obs       = outcome
   unscaled  = mean((probs - obs)^2)
   brier_max = mean(obs)*(1 - mean(obs))
   scaled    = 1 - (unscaled / brier_max)
@@ -561,6 +562,20 @@ get_stats <- function(dataframe){
       group_modify(~performance_statistics(pred = .x$pred, class = .x$class))
     
     return(pm)
+}
+
+get_stats_recalibrated <- function(dataframe){
+  pm <- 
+    dataframe %>%
+    mutate(pair_id  = as.factor(pair_id),
+           class    = as.factor(class), 
+           pred     = as.numeric(pred)) %>%
+    group_by(pair_id) %>%
+    group_modify(~performance_statistics(pred = .x$pred, class = .x$class)) %>% 
+    mutate(recalibrated = 1, 
+           recal_warn = r_warn)
+  
+  return(pm)
 }
 
 # --------------- simulation set up --------------------------------------------

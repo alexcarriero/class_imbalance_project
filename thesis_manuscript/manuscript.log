@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.5)  4 APR 2023 10:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.2.5)  11 APR 2023 11:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -402,6 +402,18 @@ File: l3backend-pdftex.def 2023-01-16 L3 backend support: PDF output (pdfTeX)
 
 LaTeX Warning: Label `tab:table' multiply defined.
 
+
+LaTeX Warning: Label `fig:plot' multiply defined.
+
+
+LaTeX Warning: Label `fig:plot' multiply defined.
+
+
+LaTeX Warning: Label `fig:plot' multiply defined.
+
+
+LaTeX Warning: Label `fig:plot' multiply defined.
+
 )
 \openout1 = `manuscript.aux'.
 
@@ -497,81 +509,101 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 84.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 88--90
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 88--90
-
- []
-
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 113.
+(Font)              <10> on input line 90.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 113.
+(Font)              <7> on input line 90.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 113.
-
-Underfull \hbox (badness 10000) in paragraph at lines 124--146
+(Font)              <5> on input line 90.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 114.
+(/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Underfull \hbox (badness 10000) in paragraph at lines 120--129
 
  []
 
 [1
 
 {/Users/alexcarriero/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-Underfull \hbox (badness 10000) in paragraph at lines 221--238
+Underfull \hbox (badness 10000) in paragraph at lines 199--221
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 269--270
-
- []
-
-[3]
-
-Package natbib Warning: Citation `citation' on page 4 undefined on input line 312.
-
-
-Package natbib Warning: Citation `citation' on page 4 undefined on input line 315.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 323--333
+Underfull \hbox (badness 10000) in paragraph at lines 296--313
 
  []
 
 
-Overfull \hbox (58.16528pt too wide) in paragraph at lines 343--362
- [][] 
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
+
  []
 
-[4]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 438.
-(/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/lm/ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [5] [6] (./manuscript.bbl)
+[3] [4]
+
+Package natbib Warning: Citation `citation' on page 5 undefined on input line 387.
+
+
+Package natbib Warning: Citation `citation' on page 5 undefined on input line 390.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 398--408
+
+ []
+
+[5]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 493.
+(/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [6]
+<./../visualize_results/results/calibration_plot_manuscript_sc4.png, id=139, 867.24pt x 1084.05pt>
+File: ./../visualize_results/results/calibration_plot_manuscript_sc4.png Graphic file (type png)
+<use ./../visualize_results/results/calibration_plot_manuscript_sc4.png>
+Package pdftex.def Info: ./../visualize_results/results/calibration_plot_manuscript_sc4.png  used on input line 537.
+(pdftex.def)             Requested size: 468.31587pt x 585.39484pt.
+<./../visualize_results/results/calibration_plot_manuscript_sc5.png, id=141, 867.24pt x 1084.05pt>
+File: ./../visualize_results/results/calibration_plot_manuscript_sc5.png Graphic file (type png)
+<use ./../visualize_results/results/calibration_plot_manuscript_sc5.png>
+Package pdftex.def Info: ./../visualize_results/results/calibration_plot_manuscript_sc5.png  used on input line 546.
+(pdftex.def)             Requested size: 468.31587pt x 585.39484pt.
+<./../visualize_results/results/performance_metrics_sc4.png, id=142, 867.24pt x 1084.05pt>
+File: ./../visualize_results/results/performance_metrics_sc4.png Graphic file (type png)
+<use ./../visualize_results/results/performance_metrics_sc4.png>
+Package pdftex.def Info: ./../visualize_results/results/performance_metrics_sc4.png  used on input line 555.
+(pdftex.def)             Requested size: 468.31587pt x 585.39484pt.
+<./../visualize_results/results/performance_metrics_sc5.png, id=143, 867.24pt x 1084.05pt>
+File: ./../visualize_results/results/performance_metrics_sc5.png Graphic file (type png)
+<use ./../visualize_results/results/performance_metrics_sc5.png>
+Package pdftex.def Info: ./../visualize_results/results/performance_metrics_sc5.png  used on input line 564.
+(pdftex.def)             Requested size: 468.31587pt x 585.39484pt.
+<./../visualize_results/results/performance_metrics_sc6.png, id=144, 867.24pt x 1084.05pt>
+File: ./../visualize_results/results/performance_metrics_sc6.png Graphic file (type png)
+<use ./../visualize_results/results/performance_metrics_sc6.png>
+Package pdftex.def Info: ./../visualize_results/results/performance_metrics_sc6.png  used on input line 573.
+(pdftex.def)             Requested size: 468.31587pt x 585.39484pt.
+[7] [8 <./../visualize_results/results/calibration_plot_manuscript_sc4.png>] [9 <./../visualize_results/results/calibration_plot_manuscript_sc5.png>] [10 <./../visualize_results/results/performance_metrics_sc4.png>] [11 <./../visualize_results/results/performance_metrics_sc5.png>] [12 <./../visualize_results/results/performance_metrics_sc6.png>] [13] (./manuscript.bbl [14])
 
 Package natbib Warning: There were undefined citations.
 
-[7] (./manuscript.aux)
+[15] (./manuscript.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13253 strings out of 478024
- 212088 string characters out of 5838871
+ 13410 strings out of 478024
+ 217033 string characters out of 5838871
  1882346 words of memory out of 5000000
- 33144 multiletter control sequences out of 15000+600000
- 584263 words of font info for 79 fonts, out of 8000000 for 9000
+ 33268 multiletter control sequences out of 15000+600000
+ 584582 words of font info for 80 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 89i,12n,90p,474b,448s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}</Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on manuscript.pdf (7 pages, 280095 bytes).
+ 89i,12n,90p,474b,649s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}</Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri8.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
+Output written on manuscript.pdf (15 pages, 13458212 bytes).
 PDF statistics:
- 248 PDF objects out of 1000 (max. 8388607)
- 204 compressed objects within 3 object streams
- 54 named destinations out of 1000 (max. 500000)
- 97 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 336 PDF objects out of 1000 (max. 8388607)
+ 272 compressed objects within 3 object streams
+ 76 named destinations out of 1000 (max. 500000)
+ 122 words of extra memory for PDF output out of 10000 (max. 10000000)
 

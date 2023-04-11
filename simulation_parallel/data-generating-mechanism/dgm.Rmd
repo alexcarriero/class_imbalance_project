@@ -30,6 +30,10 @@ sample_size <- function(npred, ev, n.level){
 ```
 
 ```{r}
+sample_size(16, 0.2, 0.5)
+```
+
+```{r}
 scenario <- function(npred, ev = 0.5 , n.level = 1, dmu = 0.5){
   # this function takes each factor to be varied in simulation as input
   # and generates the mean and covariance matrices for each class.
