@@ -1,0 +1,1257 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (MiKTeX 21.12.10) (preloaded format=pdflatex 2022.7.6)  6 JUL 2022 12:27
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**./wileyNJD-AMA.tex
+(wileyNJD-AMA.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2021-11-22> (WileyNJD-v2.cls
+Document Class: WileyNJD-v2 2017/06/23 v0.2 Standard LaTeX document class for J
+ournal
+\job@temptoken=\toks16
+(C:/Program Files/MiKTeX\tex/latex/base\article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(C:/Program Files/MiKTeX\tex/latex/base\fleqn.clo
+File: fleqn.clo 2016/12/29 v1.2b Standard LaTeX option (flush left equations)
+\mathindent=\skip47
+Applying: [2015/01/01] Make \[ robust on input line 50.
+LaTeX Info: Redefining \[ on input line 51.
+Already applied: [0000/00/00] Make \[ robust on input line 62.
+Applying: [2015/01/01] Make \] robust on input line 74.
+LaTeX Info: Redefining \] on input line 75.
+Already applied: [0000/00/00] Make \] robust on input line 83.
+)
+(C:/Program Files/MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count183
+\c@section=\count184
+\c@subsection=\count185
+\c@subsubsection=\count186
+\c@paragraph=\count187
+\c@subparagraph=\count188
+\c@figure=\count189
+\c@table=\count190
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen138
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/etex-pkg\etex.sty
+Package: etex 2016/08/01 v2.7 eTeX basic definition package (PEB,DPC)
+\et@xins=\count191
+)
+(C:/Program Files/MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(C:/Program Files/MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
+)
+(C:/Program Files/MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+
+(C:/Program Files/MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(C:/Program Files/MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: pdftex.def on input line 107.
+
+(C:/Program Files/MiKTeX\tex/latex/graphics-def\pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+\Gin@req@height=\dimen139
+\Gin@req@width=\dimen140
+)
+(C:/Program Files/MiKTeX\tex/latex/tools\multicol.sty
+Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
+Normal \count register pool exhausted, switching to extended pool.
+\c@tracingmulticols=\count277
+\mult@box=\box50
+\multicol@leftmargin=\dimen141
+\c@unbalance=\count278
+\c@collectmore=\count279
+\doublecol@number=\count280
+\multicoltolerance=\count281
+\multicolpretolerance=\count282
+\full@width=\dimen142
+\page@free=\dimen143
+\premulticols=\dimen144
+\postmulticols=\dimen145
+\multicolsep=\skip50
+\multicolbaselineskip=\skip51
+\partial@page=\box51
+\last@line=\box52
+\maxbalancingoverflow=\dimen146
+\mult@rightbox=\box53
+\mult@grightbox=\box54
+\mult@firstbox=\box55
+\mult@gfirstbox=\box56
+\@tempa=\box57
+\@tempa=\box58
+\@tempa=\box59
+\@tempa=\box60
+\@tempa=\box61
+\@tempa=\box62
+\@tempa=\box63
+\@tempa=\box64
+\@tempa=\box65
+\@tempa=\box66
+\@tempa=\box67
+\@tempa=\box68
+\@tempa=\box69
+\@tempa=\box70
+\@tempa=\box71
+\@tempa=\box72
+\@tempa=\box73
+\@tempa=\box74
+\@tempa=\box75
+\@tempa=\box76
+\@tempa=\box77
+\@tempa=\box78
+\@tempa=\box79
+\@tempa=\box80
+\@tempa=\box81
+\@tempa=\box82
+\@tempa=\box83
+\@tempa=\box84
+\@tempa=\box85
+\@tempa=\box86
+\@tempa=\box87
+\@tempa=\box88
+\@tempa=\box89
+\@tempa=\box90
+\@tempa=\box91
+\@tempa=\box92
+\c@minrows=\count283
+\c@columnbadness=\count284
+\c@finalcolumnbadness=\count285
+\last@try=\dimen147
+\multicolovershoot=\dimen148
+\multicolundershoot=\dimen149
+\mult@nat@firstbox=\box93
+\colbreak@box=\box94
+\mc@col@check@num=\count286
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/multirow\multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip52
+\multirow@cntb=\count287
+\multirow@dima=\skip53
+\bigstrutjot=\dimen150
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/sttools\cuted.sty
+Package: cuted 2021/10/04 v2.0 Mixing onecolumn and twocolumn modes
+\At@ViperColsBreak=\toks18
+\preCutedStrip=\toks19
+\postCutedStrip=\toks20
+\cuted@@tempbox@a=\box95
+\cuted@@tempbox@c=\box96
+\cuted@@tempbox@var=\box97
+\hold@viper=\box98
+\@viper=\box99
+\cuted@@varbox@a=\box100
+\cuted@@varbox@c=\box101
+\cuted@@tempdim@spread=\dimen151
+\cuted@@tempdim@a=\dimen152
+\cuted@@tempdim@b=\dimen153
+\ht@hold@viper=\dimen154
+\ht@viper=\dimen155
+\var@@pagediscards@ht=\dimen156
+\stripsep=\skip54
+\viper@penalty=\count288
+)
+(C:/Program Files/MiKTeX\tex/generic/iftex\ifpdf.sty
+Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
+
+(C:/Program Files/MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+(C:/Program Files/MiKTeX\tex/latex/url\url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/changepage\changepage.s
+ty
+Package: changepage 2009/10/20 v1.0c check page and change page layout
+\c@cp@cntr=\count289
+\cp@tempcnt=\count290
+) (C:/Program Files/MiKTeX\tex/latex/tools\calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count291
+\calc@Bcount=\count292
+\calc@Adimen=\dimen157
+\calc@Bdimen=\dimen158
+\calc@Askip=\skip55
+\calc@Bskip=\skip56
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count293
+\calc@Cskip=\skip57
+)
+(C:/Program Files/MiKTeX\tex/latex/xcolor\xcolor.sty
+Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
+
+(C:/Program Files/MiKTeX\tex/latex/graphics-cfg\color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: pdftex.def on input line 227.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
+Package xcolor Info: Model `RGB' extended on input line 1368.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1373.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1374.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1375.
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count294
+\float@exts=\toks21
+\float@box=\box102
+\@float@everytoks=\toks22
+\@floatcapt=\box103
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/sttools\floatpag.sty
+Package: floatpag 2021/10/04 v2.0 Different pagestyles on float pages
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/dblfloatfix\dblfloatfix
+.sty
+Package: dblfloatfix 2012/12/31 v1.0a (JAW)
+ (C:/Program Files/MiKTeX\tex/latex/base\fixltx2e.sty
+Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
+Applying: [2015/01/01] Old fixltx2e package on input line 46.
+
+
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+
+Already applied: [0000/00/00] Old fixltx2e package on input line 53.
+)
+\@dblbotnum=\count295
+\c@dblbotnumber=\count296
+) (C:/Program Files/MiKTeX\tex/latex/graphics\rotating.sty
+Package: rotating 2016/08/11 v2.16d rotated objects in LaTeX
+
+(C:/Program Files/MiKTeX\tex/latex/base\ifthen.sty
+Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\c@r@tfl@t=\count297
+\rotFPtop=\skip58
+\rotFPbot=\skip59
+\rot@float@box=\box104
+\rot@mess@toks=\toks23
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/ulem\ulem.sty
+\UL@box=\box105
+\UL@hyphenbox=\box106
+\UL@skip=\skip60
+\UL@hook=\toks24
+\UL@height=\dimen159
+\UL@pe=\count298
+\UL@pixel=\dimen160
+\ULC@box=\box107
+Package: ulem 2019/11/18
+\ULdepth=\dimen161
+)
+(C:/Program Files/MiKTeX\tex/latex/tools\enumerate.sty
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks25
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/soul\soul.sty
+Package: soul 2003/11/17 v2.4 letterspacing/underlining (mf)
+\SOUL@word=\toks26
+\SOUL@lasttoken=\toks27
+\SOUL@cmds=\toks28
+\SOUL@buffer=\toks29
+\SOUL@token=\toks30
+\SOUL@spaceskip=\skip61
+\SOUL@ttwidth=\dimen162
+\SOUL@uldp=\dimen163
+\SOUL@ulht=\dimen164
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/caption\caption.sty
+Package: caption 2022/02/28 v3.6a Customizing captions (AR)
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/caption\caption3.sty
+Package: caption3 2022/02/28 v2.3a caption3 kernel (AR)
+\caption@tempdima=\dimen165
+\captionmargin=\dimen166
+\caption@leftmargin=\dimen167
+\caption@rightmargin=\dimen168
+\caption@width=\dimen169
+\caption@indent=\dimen170
+\caption@parindent=\dimen171
+Normal \dimen register pool exhausted, switching to extended pool.
+\caption@hangindent=\dimen256
+Package caption Info: Standard document class detected.
+)
+\c@caption@flags=\count299
+\c@continuedfloat=\count300
+Package caption Info: changepage package is loaded.
+\caption@adjustwidth@hsize=\dimen257
+\caption@adjustwidth@linewidth=\dimen258
+Package caption Info: float package is loaded.
+Package caption Info: rotating package is loaded.
+)
+(C:/Program Files/MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2021/12/30 3.69 The Babel package
+\babel@savecnt=\count301
+\U@D=\dimen259
+\l@unhyphenated=\language79
+
+(C:/Program Files/MiKTeX\tex/generic/babel\txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count302
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:/Program Files/MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+(C:/Program Files/MiKTeX\tex/latex/babel-english\english.ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language73). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language73). Reported on input line 108.
+))
+(C:/Program Files/MiKTeX\tex/latex/hyperref\hyperref.sty
+Package: hyperref 2021-06-07 v7.00m Hypertext links for LaTeX
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(C:/Program Files/MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/infwarerr\infwarerr.s
+ty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/kvsetkeys\kvsetkeys.s
+ty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/kvdefinekeys\kvdefine
+keys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/pdfescape\pdfescape.s
+ty
+Package: pdfescape 2019/12/09 v1.15 Implements pdfTeX's escape features (HO)
+) (C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/hycolor\hycolor.sty
+Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/letltxmacro\letltxmacro
+.sty
+Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/auxhook\auxhook.sty
+Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/kvoptions\kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+)
+\@linkdim=\dimen260
+\Hy@linkcounter=\count303
+\Hy@pagecounter=\count304
+ (C:/Program Files/MiKTeX\tex/latex/hyperref\pd1enc.def
+File: pd1enc.def 2021-06-07 v7.00m Hyperref: PDFDocEncoding definition (HO)
+Now handling font encoding PD1 ...
+... no UTF-8 mapping file for font encoding PD1
+)
+(C:/Program Files/MiKTeX\tex/latex/hyperref\hyperref-langpatches.def
+File: hyperref-langpatches.def 2021-06-07 v7.00m Hyperref: patches for babel la
+nguages
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/intcalc\intcalc.sty
+Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/etexcmds\etexcmds.sty
+Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
+)
+\Hy@SavedSpaceFactor=\count305
+ (C:/Program Files/MiKTeX\tex/latex/hyperref\puenc.def
+File: puenc.def 2021-06-07 v7.00m Hyperref: PDF Unicode definition (HO)
+Now handling font encoding PU ...
+... no UTF-8 mapping file for font encoding PU
+)
+Package hyperref Info: Hyper figures OFF on input line 4192.
+Package hyperref Info: Link nesting OFF on input line 4197.
+Package hyperref Info: Hyper index ON on input line 4200.
+Package hyperref Info: Plain pages OFF on input line 4207.
+Package hyperref Info: Backreferencing OFF on input line 4212.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4445.
+\c@Hy@tempcnt=\count306
+LaTeX Info: Redefining \url on input line 4804.
+\XeTeXLinkMargin=\dimen261
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/bitset\bitset.sty
+Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/bigintcalc\bigintcalc
+.sty
+Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
+)
+))
+\Fld@menulength=\count307
+\Field@Width=\dimen262
+\Fld@charsize=\dimen263
+Package hyperref Info: Hyper figures OFF on input line 6076.
+Package hyperref Info: Link nesting OFF on input line 6081.
+Package hyperref Info: Hyper index ON on input line 6084.
+Package hyperref Info: backreferencing OFF on input line 6091.
+Package hyperref Info: Link coloring OFF on input line 6096.
+Package hyperref Info: Link coloring with OCG OFF on input line 6101.
+Package hyperref Info: PDF/A mode OFF on input line 6106.
+LaTeX Info: Redefining \ref on input line 6146.
+LaTeX Info: Redefining \pageref on input line 6150.
+ (C:/Program Files/MiKTeX\tex/latex/base\atbegshi-ltx.sty
+Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
+package with kernel methods
+)
+\Hy@abspage=\count308
+\c@Item=\count309
+\c@Hfootnote=\count310
+)
+Package hyperref Info: Driver (autodetected): hpdftex.
+
+(C:/Program Files/MiKTeX\tex/latex/hyperref\hpdftex.def
+File: hpdftex.def 2021-06-07 v7.00m Hyperref driver for pdfTeX
+
+(C:/Program Files/MiKTeX\tex/latex/base\atveryend-ltx.sty
+Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
+kage
+with kernel methods
+)
+\Fld@listcount=\count311
+\c@bookmark@seq@number=\count312
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/rerunfilecheck\rerunfil
+echeck.sty
+Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/uniquecounter\uniquec
+ounter.sty
+Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
+)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+86.
+)
+\Hy@SectionHShift=\skip62
+)
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 279.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/bookmark\bookmark.sty
+Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/bookmark\bkm-pdftex.def
+File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
+\BKM@id=\count313
+)) (C:/Program Files/MiKTeX\tex/latex/oberdiek\twoopt.sty
+Package: twoopt 2016/05/16 v1.6 Definitions with two optional arguments (HO)
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/footmisc\footmisc.sty
+Package: footmisc 2022/03/08 v6.0d a miscellany of footnote facilities
+\FN@temptoken=\toks31
+\footnotemargin=\dimen264
+\@outputbox@depth=\dimen265
+Package footmisc Info: Declaring symbol style bringhurst on input line 695.
+Package footmisc Info: Declaring symbol style chicago on input line 703.
+Package footmisc Info: Declaring symbol style wiley on input line 712.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 723.
+
+Package footmisc Info: Declaring symbol style lamport* on input line 743.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 764
+.
+)
+(C:/Program Files/MiKTeX\tex/latex/tools\tabularx.sty
+Package: tabularx 2020/01/15 v2.11c `tabularx' package (DPC)
+
+(C:/Program Files/MiKTeX\tex/latex/tools\array.sty
+Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
+\col@sep=\dimen266
+\ar@mcellbox=\box108
+\extrarowheight=\dimen267
+\NC@list=\toks32
+\extratabsurround=\skip63
+\backup@length=\skip64
+\ar@cellbox=\box109
+)
+\TX@col@width=\dimen268
+\TX@old@table=\dimen269
+\TX@old@col=\dimen270
+\TX@target=\dimen271
+\TX@delta=\dimen272
+\TX@cols=\count314
+\TX@ftn=\toks33
+)
+\tfboxrule=\dimen273
+\bfboxrule=\dimen274
+\BXRuleThickness=\dimen275
+\BXleftrightskipdimen=\dimen276
+\BXhsize=\dimen277
+\FreePageSpace=\dimen278
+\ovsize=\dimen279
+\adjustskip=\skip65
+\BXbox=\box110
+\xxptspaceamount=\skip66
+\BXboxoutbnewskip=\skip67
+\BXdim=\dimen280
+\BXgraybox=\box111
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/varwidth\varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box112
+\sift@deathcycles=\count315
+\@vwid@loff=\dimen281
+\@vwid@roff=\dimen282
+)
+(C:/Program Files/MiKTeX\tex/latex/tools\dcolumn.sty
+Package: dcolumn 2014/10/28 v1.06 decimal alignment package (DPC)
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\stix.sty
+Package: stix 2018/04/17 v1.1.3-latex STIX fonts support package
+Now handling font encoding LS1 ...
+... no UTF-8 mapping file for font encoding LS1
+Now handling font encoding LS2 ...
+... no UTF-8 mapping file for font encoding LS2
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 76.
+LaTeX Font Info:    Encoding `OML' has changed to `LS1' for symbol font
+(Font)              `letters' in the math version `normal' on input line 76.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> LS1/stix/m/it on input line 76.
+LaTeX Font Info:    Encoding `OML' has changed to `LS1' for symbol font
+(Font)              `letters' in the math version `bold' on input line 76.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> LS1/stix/m/it on input line 76.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 77.
+LaTeX Font Info:    Encoding `OT1' has changed to `LS1' for symbol font
+(Font)              `operators' in the math version `normal' on input line 77.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> LS1/stix/m/n on input line 77.
+LaTeX Font Info:    Encoding `OT1' has changed to `LS1' for symbol font
+(Font)              `operators' in the math version `bold' on input line 77.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> LS1/stix/m/n on input line 77.
+\symbold-operators=\mathgroup4
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 79.
+LaTeX Font Info:    Encoding `OMS' has changed to `LS1' for symbol font
+(Font)              `symbols' in the math version `normal' on input line 79.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> LS1/stixscr/m/n on input line 79.
+LaTeX Font Info:    Encoding `OMS' has changed to `LS1' for symbol font
+(Font)              `symbols' in the math version `bold' on input line 79.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> LS1/stixscr/m/n on input line 79.
+\symsymbols2=\mathgroup5
+\symsymbols3=\mathgroup6
+\symsymbols4=\mathgroup7
+\symintegrals=\mathgroup8
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 84.
+LaTeX Font Info:    Encoding `OMX' has changed to `LS2' for symbol font
+(Font)              `largesymbols' in the math version `normal' on input line 8
+4.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> LS2/stixex/m/n on input line 84.
+LaTeX Font Info:    Encoding `OMX' has changed to `LS2' for symbol font
+(Font)              `largesymbols' in the math version `bold' on input line 84.
+
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> LS2/stixex/m/n on input line 84.
+\symarrows1=\mathgroup9
+\symarrows2=\mathgroup10
+\symarrows3=\mathgroup11
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  LS1/stix/m/it --> LS1/stix/b/it on input line 88.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  LS1/stix/m/n --> LS1/stix/b/n on input line 89.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  LS1/stixscr/m/n --> LS1/stixscr/b/n on input line 90.
+LaTeX Font Info:    Overwriting symbol font `symbols2' in version `bold'
+(Font)                  LS1/stixfrak/m/n --> LS1/stixfrak/b/n on input line 91.
+
+LaTeX Font Info:    Overwriting symbol font `symbols3' in version `bold'
+(Font)                  LS1/stixbb/m/n --> LS1/stixbb/b/n on input line 92.
+LaTeX Font Info:    Overwriting symbol font `symbols4' in version `bold'
+(Font)                  LS1/stixbb/m/it --> LS1/stixbb/b/it on input line 93.
+LaTeX Font Info:    Overwriting symbol font `integrals' in version `bold'
+(Font)                  LS2/stixcal/m/n --> LS2/stixcal/b/n on input line 94.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  LS2/stixex/m/n --> LS2/stixex/b/n on input line 95.
+LaTeX Font Info:    Overwriting symbol font `arrows1' in version `bold'
+(Font)                  LS1/stixsf/m/n --> LS1/stixsf/b/n on input line 96.
+LaTeX Font Info:    Overwriting symbol font `arrows2' in version `bold'
+(Font)                  LS1/stixsf/m/it --> LS1/stixsf/b/it on input line 97.
+LaTeX Font Info:    Overwriting symbol font `arrows3' in version `bold'
+(Font)                  LS2/stixtt/m/n --> LS2/stixtt/b/n on input line 98.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 99.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 106.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 108.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 109.
+LaTeX Font Info:    Redeclaring math symbol \hbar on input line 227.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 698.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 699.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 700.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 701.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 702.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 703.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 704.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 705.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 707.
+LaTeX Font Info:    Redeclaring math accent \check on input line 708.
+LaTeX Font Info:    Redeclaring math accent \vec on input line 716.
+LaTeX Font Info:    Redeclaring math accent \widehat on input line 728.
+LaTeX Font Info:    Redeclaring math accent \widetilde on input line 729.
+LaTeX Info: Redefining \vdots on input line 1518.
+LaTeX Info: Redefining \cdots on input line 1522.
+LaTeX Font Info:    Redeclaring math symbol \mathsterling on input line 1978.
+LaTeX Info: Redefining \not on input line 2144.
+)
+(C:/Program Files/MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+stix on input line 1
+12.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\t1stix.fd
+File: t1stix.fd 2015/04/17 v1.1.2-latex STIX T1 font definitions
+))
+\trimwidth=\skip68
+\trimheight=\skip69
+\typewidth=\skip70
+\typeheight=\skip71
+\normaltextheight=\skip72
+\blindfoliodrop=\skip73
+\figheight=\skip74
+\figwidth=\skip75
+\tabledim=\skip76
+\columnhsizevalue=\dimen283
+\abs@coli@hsize=\skip77
+\abs@colii@hsize=\skip78
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/geometry\geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(C:/Program Files/MiKTeX\tex/generic/iftex\ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count316
+\Gm@cntv=\count317
+\c@Gm@tempcnt=\count318
+\Gm@bindingoffset=\dimen284
+\Gm@wd@mp=\dimen285
+\Gm@odd@mp=\dimen286
+\Gm@even@mp=\dimen287
+\Gm@layoutwidth=\dimen288
+\Gm@layoutheight=\dimen289
+\Gm@layouthoffset=\dimen290
+\Gm@layoutvoffset=\dimen291
+\Gm@dimlist=\toks34
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/geometry\geometry.cfg))
+\parindentvalue=\dimen292
+\pageheight=\dimen293
+\rulecount=\count319
+\leftcolrulepos=\dimen294
+\rightcolrulepos=\dimen295
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/eso-pic\showframe.sty
+Package: showframe 2020/10/14 v0.1j showframe (new impl., RN)
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/eso-pic\eso-pic.sty
+Package: eso-pic 2020/10/14 v3.0a eso-pic (RN)
+\ESO@tempdima=\dimen296
+\ESO@tempdimb=\dimen297
+)
+\SF@tempdima=\dimen298
+)
+\artopleftskipdim=\dimen299
+\@xmlpage=\write3
+\c@spagecounter=\count320
+\c@lpagecounter=\count321
+LaTeX Info: Redefining \rm on input line 1301.
+LaTeX Info: Redefining \sf on input line 1302.
+LaTeX Info: Redefining \tt on input line 1303.
+LaTeX Info: Redefining \bf on input line 1304.
+LaTeX Info: Redefining \it on input line 1305.
+LaTeX Info: Redefining \sl on input line 1306.
+LaTeX Info: Redefining \sc on input line 1307.
+LaTeX Info: Redefining \cal on input line 1308.
+LaTeX Info: Redefining \mit on input line 1309.
+\aucount=\count322
+\corrauthcount=\count323
+\authfncnt=\count324
+\authfnTmpCnt=\count325
+\aufootnotemark=\box113
+\authmarkbox=\box114
+\c@affn=\count326
+\addcount=\count327
+\emailcount=\count328
+\punctcount=\count329
+\foot@titlepage@raise@skip=\skip79
+\lastauthorcnt=\count330
+\fundinginfocount=\count331
+\commafundinginfocount=\count332
+\fundinginfotempcount=\count333
+\tempfundinginfocount=\count334
+\JELinfocount=\count335
+\commaJELinfocount=\count336
+\JELinfotempcount=\count337
+\tempJELinfocount=\count338
+\htftbox=\box115
+\ovsize=\dimen300
+\oovsize=\dimen301
+\FreePageSpace=\dimen302
+\FreePageSpaceTest=\dimen303
+\fadjskip=\skip80
+\adjustskip=\skip81
+\titleskip=\skip82
+\abs@boxa=\box116
+\abs@boxb=\box117
+\abs@boxc=\box118
+\abs@dima=\dimen304
+\abs@dimb=\dimen305
+\abs@dimc=\dimen306
+\adjtitleskip=\skip83
+\c@chapter=\count339
+\secruleskip=\skip84
+\rhverticalsep=\skip85
+
+(NJDnatbib.sty
+Package: NJDnatbib 2010/09/13 8.31b (PWD, AO)
+\bibhang=\skip86
+\bibsep=\skip87
+LaTeX Info: Redefining \cite on input line 700.
+\c@NAT@ctr=\count340
+)
+\c@scheme=\count341
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/booktabs\booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen307
+\lightrulewidth=\dimen308
+\cmidrulewidth=\dimen309
+\belowrulesep=\dimen310
+\belowbottomsep=\dimen311
+\aboverulesep=\dimen312
+\abovetopsep=\dimen313
+\cmidrulesep=\dimen314
+\cmidrulekern=\dimen315
+\defaultaddspace=\dimen316
+\@cmidla=\count342
+\@cmidlb=\count343
+\@aboverulesep=\dimen317
+\@belowrulesep=\dimen318
+\@thisruleclass=\count344
+\@lastruleclass=\count345
+\@thisrulewidth=\dimen319
+)
+(C:/Program Files/MiKTeX\tex/latex/amsmath\amsmath.sty
+Package: amsmath 2021/10/15 v2.17l AMS math features
+\@mathmargin=\skip88
+
+For additional information on amsmath, use the `?' option.
+(C:/Program Files/MiKTeX\tex/latex/amsmath\amstext.sty
+Package: amstext 2021/08/26 v2.01 AMS text
+
+(C:/Program Files/MiKTeX\tex/latex/amsmath\amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks35
+\ex@=\dimen320
+))
+(C:/Program Files/MiKTeX\tex/latex/amsmath\amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen321
+)
+(C:/Program Files/MiKTeX\tex/latex/amsmath\amsopn.sty
+Package: amsopn 2021/08/26 v2.02 operator names
+)
+\inf@bad=\count346
+LaTeX Info: Redefining \frac on input line 234.
+\uproot@=\count347
+\leftroot@=\count348
+LaTeX Info: Redefining \overline on input line 399.
+\classnum@=\count349
+\DOTSCASE@=\count350
+LaTeX Info: Redefining \ldots on input line 496.
+LaTeX Info: Redefining \dots on input line 499.
+\Mathstrutbox@=\box119
+\strutbox@=\box120
+\big@size=\dimen322
+LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
+\macc@depth=\count351
+\c@MaxMatrixCols=\count352
+\dotsspace@=\muskip17
+\c@parentequation=\count353
+\dspbrk@lvl=\count354
+\tag@help=\toks36
+\row@=\count355
+\column@=\count356
+\maxfields@=\count357
+\andhelp@=\toks37
+\eqnshift@=\dimen323
+\alignsep@=\dimen324
+\tagshift@=\dimen325
+\tagwidth@=\dimen326
+\totwidth@=\dimen327
+\lineht@=\dimen328
+\@envbody=\toks38
+\multlinegap=\skip89
+\multlinetaggap=\skip90
+\mathdisplay@stack=\toks39
+LaTeX Info: Redefining \[ on input line 2938.
+LaTeX Info: Redefining \] on input line 2939.
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/amscls\amsthm.sty
+Package: amsthm 2020/05/29 v2.20.6
+\thm@style=\toks40
+\thm@bodyfont=\toks41
+\thm@headfont=\toks42
+\thm@notefont=\toks43
+\thm@headpunct=\toks44
+\thm@preskip=\skip91
+\thm@postskip=\skip92
+\thm@headsep=\skip93
+\dth@everypar=\toks45
+)
+\c@theorem=\count358
+\c@construction=\count359
+\c@estimate=\count360
+\c@lemma=\count361
+\c@corollary=\count362
+\c@result=\count363
+\c@algth=\count364
+\c@proposition=\count365
+\c@hypothesis=\count366
+\c@experiment=\count367
+\c@LWrule=\count368
+\c@procedure=\count369
+\c@assertion=\count370
+\c@axiom=\count371
+\c@conjecture=\count372
+\c@criterion=\count373
+\c@reduction=\count374
+\c@sublemma=\count375
+\c@case=\count376
+\c@remark=\count377
+\c@notation=\count378
+\c@answer=\count379
+\c@base=\count380
+\c@claim=\count381
+\c@ccomment=\count382
+\c@subproof=\count383
+\c@conclusion=\count384
+\c@observation=\count385
+\c@subcase=\count386
+\c@step=\count387
+\c@summary=\count388
+\c@definition=\count389
+\c@condition=\count390
+\c@property=\count391
+\c@problem=\count392
+\c@fact=\count393
+\c@assumption=\count394
+\c@eexample=\count395
+\c@model=\count396
+\c@affirmation=\count397
+\c@application=\count398
+\c@convention=\count399
+\c@discussion=\count400
+\c@exercise=\count401
+\c@question=\count402
+\c@scholium=\count403
+\c@terminology=\count404
+\c@printcitcnt=\count405
+\c@@pps=\count406
+\c@@ppsavesec=\count407
+\c@@ppsaveapp=\count408
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/algorithms\algorithm.st
+y
+Package: algorithm 2009/08/24 v0.1 Document Style `algorithm' - floating enviro
+nment
+\@float@every@algorithm=\toks46
+\c@algorithm=\count409
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/algorithmicx\algorithmi
+cx.sty
+Package: algorithmicx 2005/04/27 v1.2 Algorithmicx
+
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+\c@ALG@line=\count410
+\c@ALG@rem=\count411
+\c@ALG@nested=\count412
+\ALG@tlm=\skip94
+\ALG@thistlm=\skip95
+\c@ALG@Lnr=\count413
+\c@ALG@blocknr=\count414
+\c@ALG@storecount=\count415
+\c@ALG@tmpcounter=\count416
+\ALG@tmplength=\skip96
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/algorithmicx\algpseudoc
+ode.sty
+Package: algpseudocode 
+
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (C:/Program Files/MiKTeX\tex/latex/listings\listings.sty
+\lst@mode=\count417
+\lst@gtempboxa=\box121
+\lst@token=\toks47
+\lst@length=\count418
+\lst@currlwidth=\dimen329
+\lst@column=\count419
+\lst@pos=\count420
+\lst@lostspace=\dimen330
+\lst@width=\dimen331
+\lst@newlines=\count421
+\lst@lineno=\count422
+\lst@maxwidth=\dimen332
+
+(C:/Program Files/MiKTeX\tex/latex/listings\lstmisc.sty
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count423
+\lst@skipnumbers=\count424
+\lst@framebox=\box122
+)
+(C:/Program Files/MiKTeX\tex/latex/listings\listings.cfg
+File: listings.cfg 2020/03/24 1.8d listings configuration
+))
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
+
+(C:/Program Files/MiKTeX\tex/latex/base\alltt.sty
+Package: alltt 2021/01/29 v2.0g defines alltt environment
+)
+\jnlcitationbox=\box123
+\jnlcithsize=\dimen333
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/wrapfig\wrapfig.sty
+\wrapoverhang=\dimen334
+\WF@size=\dimen335
+\c@WF@wrappedlines=\count425
+\WF@box=\box124
+\WF@everypar=\toks48
+Package: wrapfig 2003/01/31  v 3.6
+)
+\wraplines=\count426
+\@authorfigbox=\box125
+\@authorfigboxdim=\skip97
+\biofigadjskip=\skip98
+)
+(C:/Program Files/MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+File: l3backend-pdftex.def 2021-12-14 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count427
+\l__pdf_internal_box=\box126
+)
+
+LaTeX Warning: Unused global option(s):
+    [AMA,STIX1COL].
+
+(wileyNJD-AMA.aux)
+\openout1 = `wileyNJD-AMA.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 13.
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 13.
+LaTeX Font Info:    Trying to load font information for LS1+stix on input line 
+13.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ls1stix.fd
+File: ls1stix.fd 2015/04/17 v1.1.2-latex STIX LS1 font definitions
+)
+LaTeX Font Info:    ... okay on input line 13.
+LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 13.
+LaTeX Font Info:    Trying to load font information for LS2+stix on input line 
+13.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ls2stix.fd
+File: ls2stix.fd 2015/04/17 v1.1.2-latex STIX LS2 font definitions
+)
+LaTeX Font Info:    ... okay on input line 13.
+
+(C:/Program Files/MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count428
+\scratchdimen=\dimen336
+\scratchbox=\box127
+\nofMPsegments=\count429
+\nofMParguments=\count430
+\everyMPshowfont=\toks49
+\MPscratchCnt=\count431
+\MPscratchDim=\dimen337
+\MPnumerator=\count432
+\makeMPintoPDFobject=\count433
+\everyMPtoPDFconversion=\toks50
+) (C:/Program Files/MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+
+(C:/Program Files/MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
+))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: wrapfig package is loaded.
+Package caption Info: End \AtBeginDocument code.
+Package hyperref Info: Link coloring OFF on input line 13.
+
+(C:/Program Files/MiKTeX\tex/latex/hyperref\nameref.sty
+Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/refcount\refcount.sty
+Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
+)
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/generic/gettitlestring\gettit
+lestring.sty
+Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
+)
+\c@section@level=\count434
+)
+LaTeX Info: Redefining \ref on input line 13.
+LaTeX Info: Redefining \pageref on input line 13.
+LaTeX Info: Redefining \nameref on input line 13.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* hratio: 1:1
+* vratio: 1:1
+* modes: twoside 
+* h-part:(L,W,R)=(45.0pt, 507.50787pt, 45.0pt)
+* v-part:(T,H,B)=(57.5pt, 668.79605pt, 59.0pt)
+* \paperwidth=597.50787pt
+* \paperheight=785.29605pt
+* \textwidth=507.50787pt
+* \textheight=668.79605pt
+* \oddsidemargin=-27.26999pt
+* \evensidemargin=-27.26999pt
+* \topmargin=-46.76999pt
+* \headheight=21.0pt
+* \headsep=11.0pt
+* \topskip=6.0pt
+* \footskip=48.5pt
+* \marginparwidth=0.0pt
+* \marginparsep=0.0pt
+* \columnsep=0.0pt
+* \skip\footins=18.0pt plus 2.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count435
+LaTeX Font Info:    Calculating math sizes for size <18> on input line 50.
+LaTeX Font Info:    Trying to load font information for LS1+stixscr on input li
+ne 50.
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ls1stixscr.fd
+File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
+)
+LaTeX Font Info:    Trying to load font information for LS2+stixex on input lin
+e 50.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ls2stixex.fd
+File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
+
+)
+LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input l
+ine 50.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ls1stixfrak.fd
+File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
+)
+LaTeX Font Info:    Trying to load font information for LS1+stixbb on input lin
+e 50.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ls1stixbb.fd
+File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
+
+)
+LaTeX Font Info:    Trying to load font information for LS2+stixcal on input li
+ne 50.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ls2stixcal.fd
+File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
+ons
+)
+LaTeX Font Info:    Trying to load font information for LS1+stixsf on input lin
+e 50.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ls1stixsf.fd
+File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
+
+)
+LaTeX Font Info:    Trying to load font information for LS2+stixtt on input lin
+e 50.
+
+(C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ls2stixtt.fd
+File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
+
+)
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@ifnextchar' on input line 50.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<let>-command' on input line 50.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<let>-command' on input line 50.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\afterassignment' on input line 50.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<let>-command' on input line 50.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<def>-command' on input line 50.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@thanks' on input line 50.
+
+
+Overfull \hbox (346.99213pt too wide) in paragraph at lines 50--50
+[][] | || []|[][] 
+ []
+
+LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 50
+.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 50.
+
+Overfull \vbox (6.46347pt too high) has occurred while \output is active []
+
+
+[1{C:/Users/chinnaraju.k/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
+
+\openout3 = `wileyNJD-AMA.pag'.
+
+]
+<empty.pdf, id=26, 114.43155pt x 86.162pt>
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 9
+7.
+
+(C:/Program Files/MiKTeX\tex/latex/base\t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [2] [3]
+Overfull \hbox (16.5pt too wide) in paragraph at lines 194--194
+[][] 
+ []
+
+[4] [5]
+LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
+311.
+ (C:\Users\chinnaraju.k\AppData\Roaming\MiKTeX\tex/latex/stix\ts1stix.fd
+File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
+)
+Underfull \hbox (badness 10000) in paragraph at lines 330--331
+
+ []
+
+[6]
+
+LaTeX Warning: The counter will not be printed.
+             The label is:  on input line 371.
+
+[7]
+Overfull \hbox (8.03777pt too wide) detected at line 484
+$\LS1/stix/m/it/10.03749 :\LS1/stix/m/n/10.03749 3691 <$ 
+ []
+
+
+Overfull \hbox (5.01874pt too wide) detected at line 485
+$\LS1/stix/m/it/10.03749 :\LS1/stix/m/n/10.03749 6060£$ 
+ []
+
+Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on in
+put line 502.
+[8] [9] [10] [11] [12]
+Overfull \hbox (13.0pt too wide) in paragraph at lines 643--643
+[] [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 647--648
+[]\T1/stix/m/n/10.03749 for pro-gram codes with math. Based on the text pro-vid
+ed in-side the op-tional ar-gu-ment of
+ []
+
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 649.
+[13] [14] [15] (wileyNJD-AMA.bbl [16] [17]) [18] [19
+
+] (wileyNJD-AMA.aux) ) 
+Here is how much of TeX's memory you used:
+ 21442 strings out of 478659
+ 325252 string characters out of 2855757
+ 625025 words of memory out of 3000000
+ 39102 multiletter control sequences out of 15000+600000
+ 553025 words of font info for 210 fonts, out of 8000000 for 9000
+ 1167 hyphenation exceptions out of 8191
+ 75i,13n,77p,1309b,1014s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/chinnaraju.k/AppData/Roaming/MiKTeX/fonts/enc/d
+vips/stix/stix-t1.enc}{C:/Users/chinnaraju.k/AppData/Roaming/MiKTeX/fonts/enc/d
+vips/stix/stix-ts1.enc}{C:/Users/chinnaraju.k/AppData/Roaming/MiKTeX/fonts/enc/
+dvips/cm-super/cm-super-t1.enc}<C:/Users/chinnaraju.k/AppData/Roaming/MiKTeX/fo
+nts/type1/public/stix/STIXGeneral-Bold.pfb><C:/Users/chinnaraju.k/AppData/Roami
+ng/MiKTeX/fonts/type1/public/stix/STIXGeneral-Italic.pfb><C:/Users/chinnaraju.k
+/AppData/Roaming/MiKTeX/fonts/type1/public/stix/STIXGeneral-Regular.pfb><C:/Use
+rs/chinnaraju.k/AppData/Roaming/MiKTeX/fonts/type1/public/cm-super/sftt1000.pfb
+><C:/Users/chinnaraju.k/AppData/Roaming/MiKTeX/fonts/type1/public/stix/stix-mat
+hcal.pfb><C:/Users/chinnaraju.k/AppData/Roaming/MiKTeX/fonts/type1/public/stix/
+stix-mathex.pfb><C:/Users/chinnaraju.k/AppData/Roaming/MiKTeX/fonts/type1/publi
+c/stix/stix-mathit.pfb><C:/Users/chinnaraju.k/AppData/Roaming/MiKTeX/fonts/type
+1/public/stix/stix-mathrm.pfb><C:/Users/chinnaraju.k/AppData/Roaming/MiKTeX/fon
+ts/type1/public/stix/stix-mathsf.pfb>
+Output written on wileyNJD-AMA.pdf (19 pages, 293633 bytes).
+PDF statistics:
+ 362 PDF objects out of 1000 (max. 8388607)
+ 103 named destinations out of 1000 (max. 500000)
+ 198 words of extra memory for PDF output out of 10000 (max. 10000000)
+

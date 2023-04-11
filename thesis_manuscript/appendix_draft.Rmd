@@ -1,0 +1,44 @@
+---
+title: "Appendix"
+output: pdf_document
+---
+
+## Appendix A 
+
+
+Under the assumption of normality for all predictors (in each class), AUC can be calculated directly, using equation (3) [@mvauc].  This equation is suitable when the covariance matrices of each class are *not* equivalent. For $p$ predictors, $\pmb{\Delta_\mu}$ is a $p$ x $1$ vector housing the differences in predictor means between class 0 and class 1. $\pmb{\Sigma_0}$ and $\pmb{\Sigma_1}$ represent the covariance matrices of class 0 and 1 respectively and $\Phi$ represents the cumulative density function (cdf) of the standard normal distribution.\
+
+\begin{equation}
+AUC = \Phi \left( \sqrt{\pmb{\Delta_\mu}{'}\  (\pmb{\Sigma_0} + \pmb{\Sigma_1})^{-1} \ \pmb{\Delta_{\mu}}} \right)
+\end{equation}
+\
+\
+In our research, the differences in predictor means between the classes were equivalent. In other words, the elements of $\pmb{\Delta_\mu}$ were equivalent; denoted by $\delta_\mu$.  The differences in predictor variances between the classes were also equivalent.  The diagonal elements of $\pmb{\Sigma_0}$ were all zero, and the diagonal elements of $\pmb{\Sigma_1}$ were all equal to ($1- \delta_\Sigma$) as shown in section 2.1.  To ensure a unique solution, $\delta_\Sigma$ was fixed to $0.3$.  Then, equation (1) was solved to determine the value of $\delta_\mu$ that yields a concordance statistic ($C$) of $0.85$. \
+\
+Let $\pmb{A} = (\pmb{\Sigma_0} + \pmb{\Sigma_1})^{-1}$,
+
+\begin{align*}
+(\Phi^{-1}(C))^2 &= \pmb{\Delta_\mu{'}}  \pmb{A} \  \pmb{\Delta_{\mu}}\\
+(\Phi^{-1}(C))^2 &= 
+\begin{bmatrix}
+ \delta_\mu & \delta_\mu &   \dots &  \delta_\mu &  \delta_\mu
+\end{bmatrix} \begin{bmatrix} 
+    a_{11} & a_{12}  & \dots  & a_{1p}\\
+    \vdots &         & \ddots & \\
+    a_{p1} &  a_{p2} & \dots  & a_{pp} 
+\end{bmatrix}\begin{bmatrix}
+ \delta_\mu \\ \delta_\mu \\ \vdots \\ \delta_\mu \\ \delta_\mu
+\end{bmatrix}\\
+(\Phi^{-1}(C))^2 &= \delta_{\mu}^2 \sum_{j = 1}^{p} \sum_{i = 1}^{p} a_{ij}
+\end{align*}
+\
+\
+\
+Based on a desired $C$ of $0.85$, 
+
+\begin{equation}
+\delta_\mu = \frac{\Phi^{-1}(0.85)}{\sqrt{\sum_{j = 1}^{p} \sum_{i = 1}^{p} a_{ij}}}.
+\end{equation}\
+\
+
+Equation (2) will be used to derive the appropriate $\delta_\mu$ for each simulation scenario. Meanwhile, $\delta_\Sigma$ will remain fixed at 0.3 for each scenario.
