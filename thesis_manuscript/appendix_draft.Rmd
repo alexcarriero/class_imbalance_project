@@ -42,3 +42,14 @@ Based on a desired $C$ of $0.85$,
 \
 
 Equation (2) will be used to derive the appropriate $\delta_\mu$ for each simulation scenario. Meanwhile, $\delta_\Sigma$ will remain fixed at 0.3 for each scenario.
+
+
+## Appendix B 
+
+
+Under scenarios where training data were class balanced ($EF = 0.5$), imbalance correction methodologies did not preform reliably.  For instance, if the classes are exactly balanced there is nothing to over or under sample, and the algorithm returns an error. In the event of an error with imbalance corrections, the uncorrected data were allowed to proceed to train the classification algorithms. 
+
+
+Conversely, when data were extremely imbalanced ($EF = 0.02$) and sample size is small ($\frac{1}{2}N$ some classification algorithms may return an error. In this case, predicted probabilties were stored as "$NA$".\
+
+In our simulation, we save all warnings and errors, and report the frequency with which errors occur for each imbalance correction and algorithm. We used the tryCatch.W.E function from simsalapar to save errors and warnings in our simulation [@simsalapar]. 
