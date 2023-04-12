@@ -4,6 +4,7 @@ output:
   flexdashboard::flex_dashboard:
     orientation: rows
     vertical_layout: scroll
+runtime: shiny
 ---
 
 <style>  
@@ -45,7 +46,7 @@ library(tidyverse)
 library(patchwork)
 library(DT)
 
-source("./../../results/process_results.R")
+source("process_results.R")
 
 algorithm   <- c("logistic_regression", 
                   "support_vector_machine", 
@@ -75,7 +76,7 @@ pairs <-
 Row {.tabset .tabset-fade}
 --------------------------------------------------------------------------------
 \
-\ \ \ **Raw Results**\
+\ \ \ **Results**\
 \
 
 ```{r, include = FALSE}
@@ -438,7 +439,7 @@ df$summary %>%
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-#
+knitr::include_graphics("./results/calibration_plot_sc8.png")
 ```
 
 ### Performance Metrics 
@@ -537,7 +538,7 @@ df$summary %>%
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-# knitr::include_graphics("./results/calibration_plot_sc10.png")
+knitr::include_graphics("./results/calibration_plot_sc10.png")
 ```
 
 ### Performance Metrics 
@@ -581,7 +582,7 @@ df$summary %>%
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-# knitr::include_graphics("./results/calibration_plot_sc11.png")
+knitr::include_graphics("./results/calibration_plot_sc11.png")
 ```
 
 ### Performance Metrics 
@@ -668,7 +669,7 @@ df$summary %>%
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-# knitr::include_graphics("./results/calibration_plot_sc13.png")
+knitr::include_graphics("./results/calibration_plot_sc13.png")
 ```
 
 ### Performance Metrics 
@@ -711,7 +712,7 @@ df$summary %>%
 
 ### Calibration Plots
 ```{r, echo = F, out.width = '95%'}
-# knitr::include_graphics("./results/calibration_plot_sc14.png")
+knitr::include_graphics("./results/calibration_plot_sc14.png")
 ```
 
 ### Performance Metrics 

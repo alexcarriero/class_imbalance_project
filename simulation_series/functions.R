@@ -475,16 +475,32 @@ scaled_brier_score <- function(probs, outcome){
   if(any(is.na(probs)) == TRUE){
     return(NA)
   }
-  
+
   if(is.numeric(outcome) == FALSE) {outcome <- as.numeric(outcome) - 1}
   obs       = outcome
   unscaled  = mean((probs - obs)^2)
   brier_max = mean(obs)*(1 - mean(obs))
   scaled    = 1 - (unscaled / brier_max)
-  
+
   return(scaled)
 }
-  
+
+
+# scaled_brier_score <- function(probs, outcome){
+#   if(any(is.na(probs)) == TRUE){
+#     return(NA)
+#   }
+# 
+#   if(is.numeric(outcome) == FALSE) {outcome <- as.numeric(outcome) - 1}
+#   obs       = outcome
+#   unscaled  = mean((probs - obs)^2)
+#   brier_max = mean(probs)*(1 - mean(probs))
+#   scaled    = 1 - (unscaled / brier_max)
+# 
+#   return(scaled)
+# }
+
+
 calibration_intercept <- function(probs, outcome){
   if(any(is.na(probs)) == TRUE){
     return(NA)

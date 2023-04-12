@@ -1,0 +1,13 @@
+name: dashboard
+title: dashboard
+username:
+account: alex-carriero
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8816965
+bundleId: 7075032
+url: https://alex-carriero.shinyapps.io/dashboard/
+when: 1681212098.71391
+lastSyncTime: 1681212098.71392
+asMultiple: FALSE
+asStatic: FALSE
