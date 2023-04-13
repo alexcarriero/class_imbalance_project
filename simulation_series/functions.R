@@ -39,87 +39,110 @@ generate_data <- function(inn, test = FALSE){
 
 # class imbalance corrections --------------------------------------------------
 
+
 do_rus <- function(dataframe){
-  k = 0
   
+  message <- 0
+  count   <- 0
+  warn    <- 0
   formula <- outcome~.
   data    <- dataframe
   
-  
-  while(k < 10){
-    
-    k = k + 1
-    
-    df.rus <- 
-      tryCatch(
-        
+  df.rus <- 
+      tryCatch.W.E(
         expr = {
-          df.rus <-  ovun.sample(formula, data, method = "under")$data
-          return(df.rus)
-        },
-        
-        error = function(e){ 
-          df.rus <- "problematic"
-          return(df.rus)
+          df.rus <- ovun.sample(formula, data, method = "under")$data
         }
       )
-    
-    if (df.rus != "problematic")
-      break
-    
+  
+  if(is.data.frame(df.rus$value) == TRUE){
+    c_data  <- df.rus$value
+  } else{
+    message <- as.character(df.rus$value)
+    count   <- 1
+    c_data  <- dataframe
   }
-  return(df.rus)
+  
+  warn <- as.character(df.rus$warning)
+  out  <- list("c_dataframe" = c_data, "correction_err" = message, "count_err" = count, "correction_warning" = warn)
+  return(out)
 }
-
 
 do_ros <- function(dataframe){
-  k = 0
-  
+    
+  message <- 0
+  count   <- 0
+  warn    <- 0
   formula <- outcome~.
   data    <- dataframe
-  
-  
-  while(k < 10){
-    
-    k = k + 1
     
     df.ros <- 
-      tryCatch(
-        
+      tryCatch.W.E(
         expr = {
           df.ros <-  ovun.sample(formula, data, method = "over")$data
-          return(df.ros)
-        },
-        
-        error = function(e){ 
-          df.ros <- "problematic"
-          return(df.ros)
         }
       )
+    if(is.data.frame(df.ros$value) == TRUE){
+      c_data  <- df.ros$value
+    } else{
+      message <- as.character(df.ros$value)
+      count   <- 1
+      c_data  <- dataframe
+    }
     
-    if (df.ros != "problematic")
-      break
-    
-  }
-  return(df.ros)
+    warn <- as.character(df.ros$warning)
+    out  <- list("c_dataframe" = c_data, "correction_err" = message, "count_err" = count, "correction_warning" = warn)
+    return(out)
 }
-
 
 do_smo <- function(df, percOver, k = 5){
-  df.smote <- SMOTE(x = df[-1], y = df[1], percOver, k)
-  df.smote <-
-    df.smote %>%
-    relocate("outcome")
-  return(df.smote)
+  
+  message <- 0
+  count   <- 0
+  warn    <- 0
+  
+  df.smote <- 
+    tryCatch.W.E(
+      expr = {
+        df.smote <- SMOTE(x = df[-1], y = df[1], percOver, k)
+      }
+    )
+  if(is.data.frame(df.smote$value) == TRUE){
+    c_data  <- df.smote$value %>% relocate("outcome")
+  } else{
+    message <- as.character(df.smote$value)
+    count   <- 1
+    c_data  <- df
+  }
+  
+  warn <- as.character(df.smote$warning)
+  out  <- list("c_dataframe" = c_data, "correction_err" = message, "count_err" = count, "correction_warning" = warn)
+  return(out)
 }
 
-
 do_sen <- function(df, percOver, k1 = 5, k2 = 3){
-  df.smote.enn <- SmoteENN(x = df[-1], y = df[1], percOver, k1, k2)
+  
+  message <- 0
+  count   <- 0
+  warn    <- 0
+  
   df.smote.enn <- 
-    df.smote.enn %>% 
-    relocate("outcome")
-  return(df.smote.enn)
+    tryCatch.W.E(
+      expr = {
+        df.smote.enn <- SmoteENN(x = df[-1], y = df[1], percOver, k1, k2)
+      }
+    )
+  if(is.data.frame(df.smote.enn$value) == TRUE){
+    c_data  <- df.smote.enn$value %>% relocate("outcome")
+  } else{
+    message <- as.character(df.smote.enn$value)
+    count   <- 1
+    c_data  <- df
+  }
+  
+  warn <- as.character(df.smote.enn$warning)
+  out  <- list("c_dataframe" = c_data, "correction_err" = message, "count_err" = count, "correction_warning" = warn)
+  return(out)
 }
 
 
@@ -159,7 +182,7 @@ do_lrg <- function(df, test, iter, s){
   }
   
   # output 
-  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problematic" = problematic)
+  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problem" = problematic)
   output <- list("pred" = pred, "warning" = warning, "error" = error, "problem" = problematic)
   return(output)
 }
@@ -236,7 +259,7 @@ do_svm <- function(df, test, iter, s){
   }
   
   # output 
-  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problematic" = problematic)
+  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problem" = problematic)
   output <- list("pred" = pred, "warning" = warning, "error" = error, "problem" = problematic)
   return(output)
 }
@@ -305,7 +328,7 @@ do_rnf <- function(df, test, iter, s){
   }
   
   # output 
-  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problematic" = problematic)
+  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problem" = problematic)
   output <- list("pred" = pred, "warning" = warning, "error" = error, "problem" = problematic)
   return(output)
 }
@@ -370,7 +393,7 @@ do_xgb <- function(df, test, iter, s){
   }
   
   # output 
-  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problematic" = problematic)
+  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problem" = problematic)
   output <- list("pred" = pred, "warning" = warning, "error" = error, "problem" = problematic)
   return(output)
 }
@@ -410,7 +433,7 @@ do_rub <- function(df, test, iter, s){
   }
   
   # output 
-  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problematic" = problematic)
+  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problem" = problematic)
   output <- list("pred" = pred, "warning" = warning, "error" = error, "problem" = problematic)
   return(output)
 }
@@ -451,7 +474,7 @@ do_eas <- function(df, test, iter, s){
   }
   
   # output 
-  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problematic" = problematic)
+  pred   <- cbind(pred, "iter" = iter, "class" = as.numeric(test$outcome) - 1, "problem" = problematic)
   output <- list("pred" = pred, "warning" = warning, "error" = error, "problem" = problematic)
   return(output)
 
@@ -465,42 +488,40 @@ auroc <- function (probs, outcome){
   }
   
   if(is.numeric(outcome) == FALSE) {outcome <- as.numeric(outcome) - 1}
-  # auc  <- as.numeric(pROC::auc(outcome~probs))
+
   auc  <- as.numeric(pROC::roc(outcome~probs, quiet = TRUE)$auc)
   
   return(auc)
 }
 
+brier_score <- function(probs, outcome){
+  if(any(is.na(probs)) == TRUE){
+    return(NA)
+  }
+  
+  if(is.numeric(outcome) == FALSE) {outcome <- as.numeric(outcome) - 1}
+  
+  obs = outcome
+  brier_score  = mean((probs - obs)^2)
+  return(brier_score)
+}
+
+
 scaled_brier_score <- function(probs, outcome){
   if(any(is.na(probs)) == TRUE){
     return(NA)
   }
-
+  
   if(is.numeric(outcome) == FALSE) {outcome <- as.numeric(outcome) - 1}
+  
   obs       = outcome
   unscaled  = mean((probs - obs)^2)
   brier_max = mean(obs)*(1 - mean(obs))
   scaled    = 1 - (unscaled / brier_max)
-
+  
   return(scaled)
 }
-
-
-# scaled_brier_score <- function(probs, outcome){
-#   if(any(is.na(probs)) == TRUE){
-#     return(NA)
-#   }
-# 
-#   if(is.numeric(outcome) == FALSE) {outcome <- as.numeric(outcome) - 1}
-#   obs       = outcome
-#   unscaled  = mean((probs - obs)^2)
-#   brier_max = mean(probs)*(1 - mean(probs))
-#   scaled    = 1 - (unscaled / brier_max)
-# 
-#   return(scaled)
-# }
-
-
+  
 calibration_intercept <- function(probs, outcome){
   if(any(is.na(probs)) == TRUE){
     return(NA)
@@ -546,8 +567,8 @@ performance_statistics <- function(pred, class){
   }
   
   # catch warnings from glms estimating calibration int and slp
-  a = tryCatch.W.E(expr = {calibration_intercept(pred, class)})
-  b = tryCatch.W.E(expr = {calibration_slope(pred,class)})
+  c_int = tryCatch.W.E(expr = {calibration_intercept(pred, class)})
+  c_slp = tryCatch.W.E(expr = {calibration_slope(pred,class)})
   
   return(
     tibble(
@@ -555,13 +576,14 @@ performance_statistics <- function(pred, class){
       max = max(pred),
       var = var(pred),
       auc = auroc(pred, class),
-      bri = scaled_brier_score(pred, class), 
-      int = as.character(a$value), 
-      slp = as.character(b$value),
-      int_warn  = ifelse(is.null(a$warning), "0", as.character(a$warning)),
-      int_count = ifelse(is.null(a$warning), "0" , "1"),
-      slp_warn  = ifelse(is.null(b$warning), "0", as.character(b$warning)), 
-      slp_count = ifelse(is.null(b$warning), "0" , "1"), 
+      s_bri = scaled_brier_score(pred, class), 
+      bri = brier_score(pred,class),
+      int = as.character(c_int$value), 
+      slp = as.character(c_slp$value),
+      int_warn  = ifelse(is.null(c_int$warning), "0", as.character(c_int$warning)),
+      int_count = ifelse(is.null(c_int$warning), "0" , "1"),
+      slp_warn  = ifelse(is.null(c_slp$warning), "0", as.character(c_slp$warning)), 
+      slp_count = ifelse(is.null(c_slp$warning), "0" , "1"), 
       invalid_0 = garbage_below_0, 
       invalid_1 = garbage_above_1
     )
@@ -604,10 +626,6 @@ pairs <-
   mutate(pair_id = c(1:30)) %>% 
   relocate(pair_id)
 
-start_iter <- c(seq(1,   1901, by = 100))
-stop_iter  <- c(seq(100, 2000, by = 100))
-
-which_iters <- cbind("start_iter" = start_iter, "stop_iter" = stop_iter)
 # --------------- simulation code ----------------------------------------------
 
 sim_in_series<- function(scenario, start, stop){
@@ -620,11 +638,9 @@ sim_in_series<- function(scenario, start, stop){
   for (i in start:stop){
   
     # storage
-    dfs   = c()
-    tfs   = c()
-    c_dfs = c()
-    out   = c()
-    info  = c()
+    checks = c()
+    out    = c()
+    info   = c()
   
     # simulation
     for (p in 1:30){
@@ -652,30 +668,32 @@ sim_in_series<- function(scenario, start, stop){
       }
       
       # store last value of first predictor for reproducibility check
-      df_i  <- cbind("value" = pull(df[2])[nrow(df)], "iter" = i, "pair_id" = p, "scenario" = sc)
-      tf_i  <- cbind("value" = pull(tf[2])[nrow(df)], "iter" = i, "pair_id" = p, "scenario" = sc)
-      dfs   <- rbind(dfs, df_i) 
-      tfs   <- rbind(tfs, tf_i) 
+      df_i  <- pull(df[2])[nrow(df)] 
+      tf_i  <- pull(tf[2])[nrow(df)]
     
       # pre-process step 
-      if (ef < 0.485 | ef > 0.515){
-        if(correction == "rus"){ df <- do_rus(df) }
-        if(correction == "ros"){ df <- do_ros(df) }
-        if(correction == "smo"){ df <- do_smo(df, percO) }
-        if(correction == "sen"){ df <- do_sen(df, percO) }
+      if (correction != "control"){
+        if(correction == "rus"){ crr <- do_rus(df) }
+        if(correction == "ros"){ crr <- do_ros(df) }
+        if(correction == "smo"){ crr <- do_smo(df, percO) }
+        if(correction == "sen"){ crr <- do_sen(df, percO) }
+        
+        # save corrected data
+        df <- crr$c_dataframe
       }
-    
+      
       # save last value of first predictor of corrected data frame for reproducibility check
-      c_df_i <- cbind("value" = pull(df[2])[nrow(df)], "iter" = i, "pair_id" = p, "scenario" = sc)
-      c_dfs  <- rbind(c_dfs, c_df_i) 
+      crr_df_i  <- pull(df[2])[nrow(df)]
+      check_i <- cbind("dataframe" = df_i, "testframe" = tf_i, "c_dataframe" = crr_df_i, "iter" = i, "pair_id" = p, "scenario" = sc)
+      checks  <- rbind(checks, check_i) 
     
       # implement algorithm 
-      if(algorithm == "logistic_regression")   { o <- do_lrg(df, tf, i, seed) }
-      if(algorithm == "support_vector_machine"){ o <- do_svm(df, tf, i, seed) }
-      if(algorithm == "random_forest")         { o <- do_rnf(df, tf, i, seed) }
-      if(algorithm == "xgboost")               { o <- do_xgb(df, tf, i, seed) }
-      if(algorithm == "rusboost")              { o <- do_rub(df, tf, i, seed) }
-      if(algorithm == "easy_ensemble")         { o <- do_eas(df, tf, i, seed) }
+      if(algorithm == "logistic_regression")   { alg <- do_lrg(df, tf, i, seed) }
+      if(algorithm == "support_vector_machine"){ alg <- do_svm(df, tf, i, seed) }
+      if(algorithm == "random_forest")         { alg <- do_rnf(df, tf, i, seed) }
+      if(algorithm == "xgboost")               { alg <- do_xgb(df, tf, i, seed) }
+      if(algorithm == "rusboost")              { alg <- do_rub(df, tf, i, seed) }
+      if(algorithm == "easy_ensemble")         { alg <- do_eas(df, tf, i, seed) }
     
       # save iteration information
       iter_info <- 
@@ -686,46 +704,42 @@ sim_in_series<- function(scenario, start, stop){
           "algorithm"  = algorithm, 
           "iter"       = i,
           "seed"       = seed, 
-          "problem"    = o$problem,
-          "warning"    = as.character(o$warning), 
-          "err"        = as.character(o$error), 
           "sc_ef"      = input$event_frac,
           "obs_ef"     = round(ef, 3),
-          "new_ef"     = round(mean(as.numeric(df$outcome)-1), 3)
+          "new_ef"     = round(mean(as.numeric(df$outcome)-1), 3),
+          "c_problem"  = ifelse(correction == "control", "0", crr$count_err),
+          "c_warn"     = ifelse(correction == "control", "0", crr$correction_warning),
+          "c_err"      = ifelse(correction == "control", "0", crr$correction_err),
+          "a_problem"  = alg$problem,
+          "a_warning"  = as.character(alg$warning), 
+          "a_err"      = as.character(alg$error)
         )
     
-      # stave predictions
+      # save predictions
       pred  <- 
         cbind(
-          o$pred, 
-          "scenario" = sc, 
-          "pair_id" = p, 
-          "corrections" = correction, 
-          "algorithms" = algorithm
+          alg$pred, 
+          "scenario"   = sc, 
+          "pair_id"    = p, 
+          "correction" = correction, 
+          "algorithm"  = algorithm
         )
       
       out   <- rbind(out, pred)        # predictions
       info  <- rbind(info, iter_info)  # iteration info
       print(p)
     }
-  
-  # save data frames 
-  dfs  <- as.data.frame(dfs)  %>% `rownames<-`( NULL )
-  saveRDS(dfs, file = paste0("sim_results/dataframes/sc", sc, "_", i, ".rds"))
-  
-  # save test frames
-  tfs  <- as.data.frame(tfs)  %>% `rownames<-`( NULL )
-  saveRDS(tfs, file = paste0("sim_results/testframes/sc", sc, "_", i, ".rds"))
+
   
   # save corrected data frames
-  c_dfs  <- as.data.frame(c_dfs)  %>% `rownames<-`( NULL )
-  saveRDS(c_dfs, file = paste0("sim_results/c_dataframes/sc", sc, "_", i ,".rds"))
+  checks  <- as.data.frame(checks)  %>% `rownames<-`( NULL )
+  saveRDS(checks, file = paste0("sim_results/rep_checks/sc", sc, "_", i ,".rds"))
   
   # save predicted probabilities
   out  <- as.data.frame(out)  %>% `rownames<-`( NULL )
   saveRDS(out, file = paste0("sim_results/predictions/sc", sc, "_", i ,".rds"))
   
-  # save iteration info 
+  # save iteration info
   info <- as.data.frame(info) %>% `rownames<-`( NULL )
   saveRDS(info, file = paste0("sim_results/iteration_info/sc", sc, "_", i,  ".rds"))
   
@@ -734,27 +748,4 @@ sim_in_series<- function(scenario, start, stop){
   results <- merge(info, results, by = "pair_id")
   saveRDS(results, paste0("sim_results/per_iter_results/sc", sc, "_", i,".rds"))
   }
-}
-
-# ------------------------ view results ----------------------------------------
-
-calibration_plot <- function(dataframe){
-  
-  dataframe %>%
-    filter(problematic != 1) %>% 
-    drop_na() %>% 
-    ggplot(aes(x = pred, y = class, group = as.factor(iter))) +
-    geom_line(stat = "smooth",
-              method = stats::loess, 
-              formula = y ~ x,
-              se = F, 
-              linewidth = 1, 
-              alpha = 0.1,
-              color = "#0d0887") +
-    geom_abline(slope = 1, intercept = 0, size = 1) +
-    theme_minimal() +
-    xlab(" ") + 
-    ylab(" ") +
-    xlim(0,1) + 
-    ylim(0,1)  
 }

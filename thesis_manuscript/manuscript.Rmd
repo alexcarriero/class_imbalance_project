@@ -23,13 +23,13 @@ library(xtable)
 # 1 | Introduction 
 
 \
-Prediction modelling in medicine is receiving increased attention from the clinical community [@sandra]. Most often, the purpose of a clinical prediction model is to estimate a patient's risk of experiencing a particular health event (e.g., disease). Risk estimates are used to inform clinical decisions; for instance, to decide if a patient is a good candidate for surgery [@annals; @achilles]. Due to the rare nature of many diseases, data available to train clinical prediction models often exhibit class imbalance (i.e., observations from patients with vs. without the event of interest are not equally represented in the data).  When prediction models are trained using imbalanced data, model performance is diminished; performance for the underrepresented class suffers the most [@cip; @lp2; @yu]. Consequently, class imbalance correction methodologies are proposed as a solution [@cip; @summary_m].\
+Prediction modelling in medicine is receiving increased attention from the clinical community [@sandra]. The purpose of a clinical prediction model is often to estimate a patient's risk of experiencing a particular health event (e.g., disease). Risk estimates are used to inform clinical decisions; for instance, to decide if a patient is a good candidate for surgery [@annals; @achilles]. Due to the rare nature of many diseases, data available to train clinical prediction models often exhibit class imbalance (i.e., observations from patients with vs. without the event of interest are not equally represented in the data).  When prediction models are trained using imbalanced data, model performance is diminished; performance for the underrepresented class suffers the most [@cip; @lp2; @yu]. Consequently, class imbalance correction methodologies are proposed as a solution [@cip; @summary_m].\
 \
-While an abundance of imbalance correction methodologies exist [@summary_m; @lp; @summary_h], the literature describing the effects of such corrections on model performance focuses on a set of performance criteria which are insufficient for assessing model performance in a clinical context. Namely, reviews focus on model *discrimination* () and *classification accuracy* ().\
+While an abundance of imbalance correction methodologies exist [@summary_m; @lp; @summary_h], the literature describing the effects of such corrections on model performance focuses on a set of performance criteria which are insufficient for assessing model performance in a clinical context. Namely, literature focus on model *discrimination* () and *classification accuracy* (). The most relevant performance metrics in assessing the quality of a prediction model are highly context dependent. Consider the following two examples:\
 \
-The most relevant performance metrics in assessing the quality of a prediction model are highly context dependent.  For instance, if a model were designed to predict how likely it is for someone to cancel their hotel room booking, the goal is ultimately to arrive at a count of how many hotel room cancellations can be expected. In this instance, classification accuracy can be an appropriate metric of model performance. To compute accuracy, a person's predicted risk (indicating how likely it is for them to cancel their hotel room) is used to divide the observations into two classes: cancelled or not cancelled. This is done by selecting a decision threshold and considering probabilities above and below the threshold to belong to one of the respective classes. The number of persons who's behaviour was accurately predicted are counted and divided by the total number of observations to determine the model's accuracy.  Here, accuracy is the appropriate measure because we care that, overall, the model can accurately count how many cancellations are expected. In this case, we are not interested in each person's personal predicted risk, nor who it is that cancels, we only care about the overall classification accuracy.\
+If a model were designed to predict how likely it is for someone to cancel their hotel room booking, the goal is ultimately to arrive at a count of how many hotel room cancellations can be expected. In this instance, classification accuracy can be an appropriate metric of model performance. To compute accuracy, a person's predicted risk (indicating how likely it is for them to cancel their hotel room) is used to divide the observations into two classes: cancelled or not cancelled. This is done by selecting a decision threshold and considering probabilities above and below the threshold to belong to one of the respective classes. The number of persons who's behavior was accurately predicted are counted and divided by the total number of persons studied to determine the model's accuracy.  Here, accuracy is the appropriate measure because our interest is to build a model which can accurately predict how many cancellations are expected. In this example, we are less interested in each person's predicted risk, since all predicted risks above (or below) the decision threshold result in the same classification.\
 \
-In a clinical context, our motivations are different.  When a prediction model is developed for use in a clinical context, each patients personal predicted risk is the entity that is used to inform clinical decisions.  Consequently, the reliability of personal predicted risks is quite relevant metric of model performance.  We determine the reliability of personal predicted risks by measuring prediction model *calibration*.  Model calibration is a measure of how much agreement there is between the predicted risks and the observed event fractions. For instance, if 100 people are given a risk prediction of 20%, this should correspond to 20 of them actually having the outcome. If a model is poorly calibrated, it may produce risk estimates that are misleading [@achilles].  For instance, a poorly calibrated model may produce predicted risks that consistently over- or under-estimate true risk or that are too extreme (too close to 0 or 1) or too modest [@achilles]. This can lead to poor treatment decisions or to clinicians communicating false reassurance or hope to patients [@achilles; @12days]. For this reason, it is considered insufficient to assess a clinical prediction model without considering model calibration [@epi].\
+In a clinical context, our motivations are different.  When a prediction model is developed for use in a clinical context, each patients personal predicted risk is the entity that is used to inform clinical decisions.  Consequently, the reliability of personal predicted risks is quite relevant metric of model performance.  We determine the reliability of personal predicted risks by measuring prediction model *calibration*.  Model calibration is a measure of how much agreement there is between the predicted risks and the observed event fractions [@achilles]. For instance, if 100 people are given a risk prediction of 20%, this should correspond to 20 of these people actually having the outcome. If a model is poorly calibrated, it may produce risk estimates that are misleading [@achilles].  A poorly calibrated model may produce predicted risks that consistently over- or under-estimate true risk or that are too extreme (too close to 0 or 1) or too modest [@achilles]. This can lead to poor treatment decisions or to clinicians communicating false reassurance or hope to patients [@achilles; @12days]. For this reason, it is considered insufficient to assess a clinical prediction model without considering model calibration [@epi].5
 \
 Information regarding the effect of imbalance correction methods on model calibration is sparse. Only one study has assessed the impact of imbalance corrections on model calibration. In this study, the authors demonstrate that class imbalance corrections do more harm than good; implementing imbalance corrections resulted in dramatically deteriorated model calibration, to the point that no corrections were recommended [@ruben]. In this study, prediction models were developed using logistic regression or penalized logistic regression [@ruben]. In practice, most prediction models developed for clinical use do not use regression based methods [@constanza]. Rather, a recent systematic review of clinical prediction models indicated that other classification algorithms, like support vector machine and tree-based methods, are more common [@constanza].  The impact of imbalance corrections on model calibration is currently unknown for prediction models developed using these other classification algorithms.\
 \
@@ -156,36 +156,129 @@ sim_sets %>%
         include.rownames=FALSE)
 ```
 
-\
 
 ## 2.3 | Model Development 
 
-All prediction model in our research were developed according to the following two-step procedure.  First, data were pre-processed using an imbalance correction technique. Then, the resulting pseudo-balanced data wee used to train a classification algorithm.\
+All prediction model in our research were developed according to the following two-step procedure.  First, data were pre-processed using an imbalance correction technique. Then, the resulting pseudo-balanced data were used to train a classification algorithm.\
 \
 We implemented a $5$ x $6$ factorial design, to compare the out-of-sample predictive performance of prediction models developed with $5$ imbalance corrections ($1$ control and $4$ imbalance corrections) and $6$ classification algorithms.  In total, we compare the performance of 30 prediction models, each comprised of a unique combination of an imbalance correction and classification algorithm.
 
 
 ### 2.3.1 | Imbalance Corrections 
 
-The imbalance corrections studied in our simulation included: control, random under sampling (RUS), random over sampling (ROS), synthetic majority over sampling (SMOTE) and synthetic majority over sampling with edited neared neighbors (SENN).  **more justification for inclusion** . As determined by a recent systematic review, the most common class imbalance correction currently implemented when developing clinical prediction models is SMOTE [@constanza].  All imbalance corrections and the R packages used for their implementation are summarized in Table 2.\
+The imbalance corrections studied in our simulation included: random under sampling (RUS), random over sampling (ROS), synthetic majority over sampling (SMOTE), synthetic majority over sampling with edited neared neighbors (SENN) and a control, in which no correction was implemented.  As determined by a recent systematic review, RUS, ROS and SMOTE are the imbalance corrections that are commonly implemented when developing clinical prediction models, SMOTE being the most prevalent [@constanza].  Additionally, given literature indicating that SMOTE-ENN can outperform SMOTE under certain conditions, we chose to include SMOTE-ENN to our simulation [@senn; @heart_failure_senn]. Imbalance corrections and the R packages used for their implementation in the simulation study are summarized in Table 2.\
 \
-In the control "correction", data were not corrected for imbalance, and moved to second step of model development untouched (the imbalanced data were used to train prediction models).  All imbalance correction methodologies were implemented to achieve artificially class balanced data ($EF_\mathrm{corrected} \approx 0.5$). RUS achieves class balanced data by randomly disregarding observations from the majority class such that the resulting data are class balanced.  ROS achieves balance by randomly duplicating observations from the minority class (by re-sampling the minority class with replacement) until a balance is achieved.  SMOTE generates artificial observations for the minority class by ---- [@citation]; in our implementation we specify the number of nearest neighbors for smote (k) to be 5, the default in the package used for implementation [@iric]. SMOTE - ENN --- works like this [@citation].  We specify the number of nearest neighbors in the SMOTE step (k1) to be 5, and the number of nearest neighbors in ENN steep (k2) to be 3, the software defaults [@iric]. 
+All imbalance corrections were implemented to achieve artificially class balanced data ($EF \approx 0.5$). RUS achieves class balanced data by randomly disregarding observations from the majority class such that the resulting data are class balanced.  ROS achieves balance by randomly duplicating observations from the minority class (by randomly re-sampling from the minority class with replacement) until a balance is achieved.  SMOTE generates artificial observations for the minority class by interpolating the existing minority class observations [@chawla]; in our implementation we specified the number of nearest neighbors ($k$) for SMOTE to be 5, the default in the package used for implementation [@iric]. When SMOTE generates artificial data for the minority class, it can increase noise near the class boundary, making it more challenging for a classifier to distinguish between the classes. In SMOTE - ENN, SMOTE is implemented first, and then, Wilson's Edited Nearest Neighbor Rule [@wilson] is implemented to remove any observation which is different than most of its nearest neighbors [@senn]. This is done to make it easier for the classifier to distinguish between the classes.  In our implementation, we specified the number of nearest neighbors in the SMOTE step ($k1$) to be 5, and the number of nearest neighbors in ENN step ($k2$) to be 3, the software defaults [@iric]. Finally, in the control "correction", data were not corrected for imbalance, and moved to second step of model development untouched (i.e., the imbalanced data were used to train prediction models). \
+\
+
+```{=tex}
+\begin{table}[htbp]
+\centering
+\caption{Summary of imbalance corrections implementation.}
+\label{tab:table}
+\begin{tabular}{lllc}
+  \toprule
+  Method & Abbreviation & Hyperparameters & R Package \\ 
+  \midrule
+  Random Undesampling & RUS &  & ROSE \cite{rose} \\ 
+  Random Oversampling & ROS &  & ROSE \cite{rose} \\ 
+  Synthetic Majority Over Sampling & SMOTE & $k=5$ & IRIC \cite{iric} \\ 
+  SMOTE - Edited Nearest Neighbours & SENN & $k1=5$, $k2 = 3$ & IRIC \cite{iric} \\ 
+  \bottomrule
+  \multicolumn{4}{l}{\footnotesize Note:} \\
+  \multicolumn{4}{l}{\footnotesize * $k$: the number of nearest neighbors in implementation of SMOTE.} \\
+  \multicolumn{4}{l}{\footnotesize * $k1$: the number of nearest neighbors in the SMOTE step of SMOTE-ENN.} \\
+  \multicolumn{4}{l}{\footnotesize * $k2$: the number of nearest neighbors in the ENN step of SMOTE-ENN.} \\
+\end{tabular}
+\end{table}
+```
+
+```{r, echo = F, results = "asis", warning = F, message = F, include = F}
+Method <- c(
+  "Random Undesampling", 
+  "Random Oversampling",
+  "Synthetic Majority Over Sampling",
+  "SMOTE - Edited Nearest Neighbours"
+  )
+
+Abbreviation <- c("RUS","ROS", "SMOTE", "SENN")
+Hyperparameters <- c( " ", " ", "$k=5$", "$k1=5$, $k2 = 3$")
+
+Implementation <- c( 
+  "ROSE \\cite{rose}", 
+  "ROSE \\cite{rose}", 
+  "IRIC \\cite{iric}", 
+  "IRIC \\cite{iric}"
+  )
+
+
+comment <- list(pos = list(0), command = NULL)
+comment$pos      <- list(4,4,4,4)
+comment$command  <- c(paste0("\\hline\n",
+                          "{\\footnotesize Note:}\n"), 
+                     paste0("\\\\ {\\footnotesize * k: the number of nearest neighbors in implementation of SMOTE.}"), 
+                     paste0("\\\\ {\\footnotesize * k1: the number of nearest neighbors in the SMOTE step of SMOTE-ENN.}"),
+                     paste0("\\\\ {\\footnotesize * k2: the number of nearest neighbors in the ENN step of SMOTE-ENN}"))
+
+cbind(Method, Abbreviation, Hyperparameters, Implementation)%>%
+  as.data.frame()%>%
+  rename("R Package" = "Implementation")%>% 
+  xtable(caption = "Summary of imbalance corrections implementation", 
+         label = "tab:table", escape = F, footnote = F) %>%
+  print(comment = F,
+        booktabs = T,
+        include.rownames=F,      
+        sanitize.text.function = function(x) {x},
+        add.to.row = comment, 
+        hline.after = c(-1,0))
+```
 
 ### 2.3.2 | Classification Algorithms 
 
-Classification algorithms were selected based on a systematic review identifying common algorithms used to develop prediction models in a medical context [@constanza]. These algorithms include: logistic regression, support vector machine, random forest and XGBoost.  Additionally, based on literature summarizing common strategies to handle class imbalance [@yu; @summary_m; @lp; @kaur], we included two ensemble learning algorithms designed specifically to handle class imbalance: RUSBoost and EasyEnsemble. The hyperparameters selected for these classification algorithms, and the R packages used for algorithm implementation are summarized in Table 2.\
+Classification algorithms were selected based on a systematic review identifying common algorithms used to develop prediction models in a medical context [@constanza]. These algorithms include: logistic regression, support vector machine, random forest and XGBoost.  Additionally, based on literature summarizing common strategies to handle class imbalance [@yu; @summary_m; @lp; @kaur], we included two ensemble learning algorithms designed specifically to handle class imbalance: RUSBoost and EasyEnsemble. Both of these algorithms utilize random under-sampling, however, RUSboost is a boosting ensemble, while EasyEnsemble is a bagging ensemble.  The hyperparameters selected for these classification algorithms, and the R packages used for algorithm implementation are summarized in Table 2.\
 
-**Paragraph about implementation.** 
+Logistic regression was implemented using the function `glm` in `base R` [@r]. SVM, RF and XG were implemented using the R package `caret` [@caret].  The methods of implementation were svmRadial, ranger and xgbTree for SVM, RF and XG, respectively.  Each of the algorithms allowed for hyperparameter tuning.  In our implementation of SVM and XG, we used the caret default tune grids and tune length.  For RF, we specified a custom tuning grid: mtry () was allowed to vary from 1 to the total number of predictors, min.node.size () was allowed to vary from 1 to 10 and we specified `gini` as the splitrule ().  To select the hyper-parameters, we implemented 5-fold cross-validation, optimizing for model deviance, for all caret models.  RUSboost was implemented using the R package `ebmc` [@ebmc]; support vector machine, with a radial kern, was selected as the weak classifier in our implementation. Finally, EasyEnsemble was implemented using the R package `IRIC` [@iric]; in no hyper parameter tuning was possible. 
 
-* lr - no hyperparameter 
-* svm - caret, svmRadial, caret default tune grid (C), tunelength = 3 (default)
-* rf - caret,custom tune grid - mtry (1:npred), min.node.size (min.node.size = 1:10), splitrule = "gini"
-* xg - caret default tunegrid, tunelength = 3 (default)
-* rusb - weak classifier = svm with radial kernel (ebmc default) -- boosting ensemble 
-* ee - no tuning (ensemble of adaboost classifiers trained on balanced data.. carries out random undersampling in bagging iterations and uses AdaBoost to train the base classifier) -- bagging ensemble
+* rusb -  kaur 2019, seiffert 2008
+* ee - (ensemble of adaboost classifiers trained on balanced data.. carries out random undersampling in bagging iterations and uses AdaBoost to train the base classifier)
 
 
+\
+\
 ```{r, echo = F, results = "asis", warning = F, message = F}
+Method <- c(
+  "Logistic Regression",
+  "Support Vector Machine",
+  "Random Forest",
+  "XGBoost",
+  "RUSBoost",
+  "EasyEnsemmble"
+  )
+
+Abbreviation <- c("LR", "SVM", "RF", "XG", "RB", "EE")
+Hyperparameters <- c( " ", "tune grid = A", "tune grid = B", "tune grid = C", " ", " ")
+
+Implementation <- c( 
+  "base R \\cite{r}", 
+  "caret \\cite{caret}", 
+  "caret \\cite{caret}", 
+  "caret \\cite{caret}",
+  "ebmc \\cite{ebmc}",
+  "IRIC \\cite{iric}"
+  )
+
+cbind(Method, Abbreviation, Hyperparameters, Implementation)%>%
+  as.data.frame()%>%
+  rename("R Package" = "Implementation")%>% 
+  xtable(caption = "Summary of classification algorithm implementation", 
+         label = "tab:table", escape = F)%>% 
+  print(comment = F,
+        booktabs = T,
+        sanitize.text.function = function(x) {x},
+        include.rownames=FALSE)
+```
+
+```{r, echo = F, results = "asis", warning = F, message = F, include = F}
 
 Summary <- c("\\bf{Imbalance} \\\\ 
               \\bf{Corrections:}",
@@ -274,33 +367,77 @@ For empirical measures of model performance (concordance statistic, scaled Brier
 
 # 3 | Results 
 
+What I've noticed: 
+
+- N: as sample size increases the variance among the calibration curves decreases. Shape doesn't change, but curves are tighter together. opposite is true when sample size decreases.\
+\
+- NPRED: it seems that it is ever so slightly better calibrated with 8 predictors. With 16 predictors the shape of the curves become exaggerated, so if there is miscalibration, that is also exaggerated.\
+\
+- EVENT FRACTION: 
+    
+    CLASS BALANCE (EF = 0.5)
+    
+    - control scenario -- all algorithms are well calibrated, except for EE, which under estimates for predicted risks above 0.5, and over estimates for predicted risks below 0.5. RUS and SMOTE the same. 
+    
+    - ros -- we see separation in the tree based methods (random forest, xgboost, easy ensemble), assuming this is separation represents the chance imbalance falling in favor of class 0 or 1.  need to find out -- color the plot by event fraction. 
+      
+    - senn -- its clear that senn had some errors -- and then the uncorrected data set was passed on, that is what the separation in the senn column appears to represent. -- maybe should filter those instances out ? senn appears to worsen calibration for logistic regression, svm, and xgboost, -- appears to make it better for rusboost ? 
+    
+    MODERATE IMBALANCE (EF = 0.2)
+      
+    - control scenario -- all are well calibrated, except rb and ee, these algorithms consistently over-estimate risk. 
+    
+    - all imbalance corrections -- worsen model calibration, resulting in predicted risks that are too high. The only exception here is random forest + ROS, in this one instance, the model calibration is preserved. no imbalance correction + algorithm out preforms its control. 
+  
+  
+    EXTREME IMBALANCE (EF = 0.02)
+    
+    - control scenario -- if I had to pick a winner its logistic regression, but lr svm, rf, and xg follow the same pattern, start out fine, and then when it comes to predicting who gets the outcome the calibration is very sporadic. calibration in these algorithms is somewhat unpredictable.  Conversly, rb and ee have very predictable behaviour -- severe miscalibration, over-estimating risk. 
+    
+    - all imbalance corrections -- nothing is helping improve calibration.  
+    - rus predictable pattern across algorithms -- over estimating risk 
+    - svm and xg boost similar pattern for ros, smote, senn -- what is going on here. 
+    - again, as an exception, rf appears to like ROS. 
+    
+    
+- What does re-calibration do ? 
+
+... waiting on more results... 
+      
+
 ```{r, echo = F, fig.align="center", out.height = '90%', fig.cap = "Flexible Calibration Curves.  Scenario 4.\\label{fig:plot}"}
-knitr::include_graphics("./../visualize_results/results/calibration_plot_manuscript_sc4.png")
+knitr::include_graphics("./results/calibration_plot_manuscript_sc4.png")
 ```
 
 ```{r, echo = F, fig.align="center", out.height = '90%', fig.cap = "Flexible Calibration Curves.  Scenario 5.\\label{fig:plot}"}
-knitr::include_graphics("./../visualize_results/results/calibration_plot_manuscript_sc5.png")
+knitr::include_graphics("./results/calibration_plot_manuscript_sc5.png")
 ```
 
 ```{r, echo = F, fig.align="center", out.height = '90%', fig.cap = "Flexible Calibration Curves.  Scenario 6.\\label{fig:plot}"}
-knitr::include_graphics("./../visualize_results/results/calibration_plot_manuscript_sc6.png")
+knitr::include_graphics("./results/calibration_plot_manuscript_sc6.png")
 ```
 
 ```{r, echo = F, fig.align="center", out.height = '90%', fig.cap = "Empirical Performance Metrics.  Scenario 4.\\label{fig:plot}"}
-knitr::include_graphics("./../visualize_results/results/performance_metrics_sc4.png")
+knitr::include_graphics("./results/performance_metrics_manuscript_sc4.png")
 ```
 
 ```{r, echo = F, fig.align="center", out.height = '90%', fig.cap = "Empirical Performance Metrics.  Scenario 5.\\label{fig:plot}"}
-knitr::include_graphics("./../visualize_results/results/performance_metrics_sc5.png")
+knitr::include_graphics("./results/performance_metrics_manuscript_sc5.png")
 ```
 
 ```{r, echo = F, fig.align="center", out.height = '90%', fig.cap = "Empirical Performance Metrics.  Scenario 6.\\label{fig:plot}"}
-knitr::include_graphics("./../visualize_results/results/performance_metrics_sc6.png")
+knitr::include_graphics("./results/performance_metrics_manuscript_sc6.png")
 ```
 
 \newpage
 
 # 4 | Disucssion
+
+
+stop correcting for class imbalance. 
+
+in heart failure paper -- they find randfores forest + senn to be winner --- classification accuracy, we see this agrees, highest brier score. 
+
 
 \newpage
 \footnotesize

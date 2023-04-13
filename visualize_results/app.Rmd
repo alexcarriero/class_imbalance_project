@@ -6,41 +6,6 @@ output:
     vertical_layout: scroll
 runtime: shiny
 ---
-<style>  
-
-.navbar {
-  background-color: #ededc2;
-  border-color: #ededc2;
-
-}
-.navbar-brand {
-  color:black!important;
-}
- 
-a {
-  color:black!important;
-}
-
-a:hover{
-  background-color: #ACD657!important;
-}
-
-.navbar-nav>li>a:focus{
-  background-color: #ACD657!important;
-}
-
-.navbar-nav>li>a:not(active){
-  background-color: #ededc2!important;
-}
-
-.nav-tabs-custom > .nav-tabs > li.active {
-  border-top-color: #F5F5DC}
-
-.section.sidebar{
-  background-color: #F5F5DC;
-}
-
-</style>   
 
 Inputs {.sidebar}
 -------------------------------------------------------------------------------
@@ -154,7 +119,7 @@ renderPlot({
   
   a <- pm_plot(df, method = "auc", 0.6, 1)
 
-  b <- pm_plot(df, method = "bri", -8, 0.5)
+  b <- pm_plot(df, method = "bri", 0, 0.4)
 
   c <- pm_plot(df, method = "int", -5, 1)
 
