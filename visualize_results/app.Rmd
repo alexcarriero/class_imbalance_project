@@ -7,6 +7,35 @@ output:
 runtime: shiny
 ---
 
+<style> 
+
+.navbar {
+  background-color: #F5F5DC;
+  border-color: #F5F5DC;
+}
+
+.navbar-brand {
+  color: #101011!important;
+}
+
+.section.sidebar {
+  background-color: #e1e2e5;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: #e1e2e5
+}
+
+body{
+  background-color: #f5f5f5;
+}
+
+.shiny-input-panel{
+  background-color: #f5f5f5;
+}
+
+</style>
+
 Inputs {.sidebar}
 -------------------------------------------------------------------------------
 
@@ -28,7 +57,7 @@ inputPanel(
   selectInput("eventfrac", label = "Event Fraction",
               choices = list("0.5" = 0.5, "0.2" = 0.2, "0.02" = 0.02), selected = 0.5),
   
-  checkboxInput("inputId", label = "recalibrated")
+  checkboxInput("recal", label = "recalibrated")
   
 )
 ```
@@ -40,7 +69,7 @@ library(patchwork)
 library(DT)
 library(shiny)
 
-source("./../../results/process_results.R")
+source("./process_results.R")
 
 algorithm   <- c("logistic_regression", 
                   "support_vector_machine", 
@@ -97,7 +126,14 @@ n <-
 
   )
 
-df  <- reactive(readRDS(paste0("./results/results_sc", n() , "_new.RData")))
+recal <- reactive(input$recal)
+
+df <- 
+  reactive({
+    if(recal() == F){df <- readRDS(paste0("./results/results_sc", n() , "_new.RData"))} 
+    if(recal() == T){df <- readRDS(paste0("./results/results_sc", n() , "_recalibrated.RData"))}
+    return(df)
+  })
 ```
 
 ### Calibration Plots
@@ -105,7 +141,8 @@ df  <- reactive(readRDS(paste0("./results/results_sc", n() , "_new.RData")))
 renderImage({    
     
     # Store path to image
-    filename <- normalizePath(paste0("./results/calibration_plot_sc", n(),".png"))
+    if(recal() == F){filename <- normalizePath(paste0("./results/calibration_plot_sc", n(),".png"))} 
+    if(recal() == T){filename <- normalizePath(paste0("./results/calibration_plot_sc", n(),"_recalibrated.png"))}
 
     # Return a list containing the filename
     list(src = filename, width = 700, height = 700)}, deleteFile = FALSE)
@@ -119,7 +156,7 @@ renderPlot({
   
   a <- pm_plot(df, method = "auc", 0.6, 1)
 
-  b <- pm_plot(df, method = "bri", 0, 0.4)
+  b <- pm_plot(df, method = "bri", 0, 0.3)
 
   c <- pm_plot(df, method = "int", -5, 1)
 

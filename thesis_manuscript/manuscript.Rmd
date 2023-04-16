@@ -29,7 +29,7 @@ While an abundance of imbalance correction methodologies exist [@summary_m; @lp;
 \
 If a model were designed to predict how likely it is for someone to cancel their hotel room booking, the goal is ultimately to arrive at a count of how many hotel room cancellations can be expected. In this instance, classification accuracy can be an appropriate metric of model performance. To compute accuracy, a person's predicted risk (indicating how likely it is for them to cancel their hotel room) is used to divide the observations into two classes: cancelled or not cancelled. This is done by selecting a decision threshold and considering probabilities above and below the threshold to belong to one of the respective classes. The number of persons who's behavior was accurately predicted are counted and divided by the total number of persons studied to determine the model's accuracy.  Here, accuracy is the appropriate measure because our interest is to build a model which can accurately predict how many cancellations are expected. In this example, we are less interested in each person's predicted risk, since all predicted risks above (or below) the decision threshold result in the same classification.\
 \
-In a clinical context, our motivations are different.  When a prediction model is developed for use in a clinical context, each patients personal predicted risk is the entity that is used to inform clinical decisions.  Consequently, the reliability of personal predicted risks is quite relevant metric of model performance.  We determine the reliability of personal predicted risks by measuring prediction model *calibration*.  Model calibration is a measure of how much agreement there is between the predicted risks and the observed event fractions [@achilles]. For instance, if 100 people are given a risk prediction of 20%, this should correspond to 20 of these people actually having the outcome. If a model is poorly calibrated, it may produce risk estimates that are misleading [@achilles].  A poorly calibrated model may produce predicted risks that consistently over- or under-estimate true risk or that are too extreme (too close to 0 or 1) or too modest [@achilles]. This can lead to poor treatment decisions or to clinicians communicating false reassurance or hope to patients [@achilles; @12days]. For this reason, it is considered insufficient to assess a clinical prediction model without considering model calibration [@epi].5
+In a clinical context, our motivations are different.  When a prediction model is developed for clinical use, each patients personal predicted risk is the entity that is used to inform clinical decisions.  Consequently, the reliability of personal predicted risks is quite relevant metric of model performance.  We determine the reliability of personal predicted risks by measuring prediction model *calibration*.  Model calibration is a measure of how much agreement there is between the predicted risks and the observed event fractions [@achilles]. For instance, if 100 people are given a risk prediction of 20%, this should correspond to 20/100 of these people actually having the outcome. If a model is poorly calibrated, it may produce risk estimates that are misleading [@achilles].  A poorly calibrated model may produce predicted risks that consistently over- or under-estimate true risk or that are too extreme (too close to 0 or 1) or too modest [@achilles]. This can lead to poor treatment decisions or to clinicians communicating false reassurance or hope to patients [@achilles; @12days]. For this reason, it is considered insufficient to assess a clinical prediction model without considering model calibration [@epi].
 \
 Information regarding the effect of imbalance correction methods on model calibration is sparse. Only one study has assessed the impact of imbalance corrections on model calibration. In this study, the authors demonstrate that class imbalance corrections do more harm than good; implementing imbalance corrections resulted in dramatically deteriorated model calibration, to the point that no corrections were recommended [@ruben]. In this study, prediction models were developed using logistic regression or penalized logistic regression [@ruben]. In practice, most prediction models developed for clinical use do not use regression based methods [@constanza]. Rather, a recent systematic review of clinical prediction models indicated that other classification algorithms, like support vector machine and tree-based methods, are more common [@constanza].  The impact of imbalance corrections on model calibration is currently unknown for prediction models developed using these other classification algorithms.\
 \
@@ -367,7 +367,7 @@ For empirical measures of model performance (concordance statistic, scaled Brier
 
 # 3 | Results 
 
-What I've noticed: 
+**Observations from Calibration Plots :** 
 
 - N: as sample size increases the variance among the calibration curves decreases. Shape doesn't change, but curves are tighter together. opposite is true when sample size decreases.\
 \
@@ -403,6 +403,9 @@ What I've noticed:
 - What does re-calibration do ? 
 
 ... waiting on more results... 
+
+
+**Observations from Performance Metrics : **
       
 
 ```{r, echo = F, fig.align="center", out.height = '90%', fig.cap = "Flexible Calibration Curves.  Scenario 4.\\label{fig:plot}"}

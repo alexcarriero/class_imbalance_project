@@ -20,15 +20,57 @@ pairs <-
 
 # ------------------ get summary -----------------------------------------------
 
+get_brier_score <- function(dataframe){
+  tibble(
+    brier_score = brier_score(dataframe$pred, dataframe$class)
+  )
+}
+
+save_brier_scores <- function(scN){
+  
+  out = tibble()
+  
+  for(i in 1:2000){
+    
+    df <- 
+      i %>% 
+      paste0("./simulation_results/raw_results/", scN, "/predictions/", scN, "_", . , ".rds") %>% 
+      map(readRDS) %>% 
+      as.data.frame()
+    
+    temp <- 
+      df %>% 
+      mutate(
+        pair_id = as.factor(pair_id), 
+        pred = as.numeric(pred), 
+        class = as.factor(class)
+      ) %>%
+      group_by(pair_id) %>%
+      group_modify(~get_brier_score(.)) %>% 
+      mutate(iter = i) %>% 
+      bind_rows(out)
+    
+    out <- temp
+  }
+  
+  saveRDS(out, paste0("./simulation_results/raw_results/", scN,"/", scN, "_brier_scores.rds"))
+}
+
 get_summary <- function(scN, recalibrated = F){
   
   if(recalibrated == F){
+    
+    # brier_scores <- readRDS(paste0("./simulation_results/raw_results/", scN,"/", scN, "_brier_scores.rds"))
+    
     df <- 
       list.files(path = paste0("./simulation_results/raw_results/", scN,"/per_iter_results/"), pattern = ".rds") %>%
       paste0("./simulation_results/raw_results/", scN,"/per_iter_results/", .) %>%
       map(readRDS) %>% 
-      bind_rows() %>% 
-      rename("a_warn" = "a_warning")
+      bind_rows() # %>% 
+      # rename("a_warn" = "a_warning", 
+      #        "s_bri" =  "bri") %>% 
+      # merge(brier_scores, by = c("pair_id", "iter")) %>% 
+      # rename("bri" = "brier_score")
   }
   
   if(recalibrated == T){
@@ -36,7 +78,8 @@ get_summary <- function(scN, recalibrated = F){
       list.files(path = paste0("./simulation_results/recalibrated_results/", scN,"/per_iter_results/"), pattern = ".rds") %>%
       paste0("./simulation_results/recalibrated_results/", scN,"/per_iter_results/", .) %>%
       map(readRDS) %>% 
-      bind_rows()
+      bind_rows() %>% 
+      merge(pairs, by = "pair_id")
   }
   
   tbl <- 
@@ -44,29 +87,15 @@ get_summary <- function(scN, recalibrated = F){
     mutate(pair_id = as.numeric(as.character(Var1))) %>%
     dplyr::select(pair_id, Freq) %>%
     arrange(pair_id, decreasing = F)
-  
-  # problem_iterations <- 
-  #   df %>% 
-  #   mutate(
-  #     iter = as.factor(iter), 
-  #     pair_id = as.factor(pair_id), 
-  #     scenario = as.numeric(scenario), 
-  #     a_problem = as.numeric(a_problem),
-  #     obs_ef = as.numeric(obs_ef), 
-  #     new_ef = as.numeric(obs_ef)
-  #   ) %>% 
-  #   filter (a_problem == 1 | var == 0) 
-  
-  any_na_row <- df[!complete.cases(df), ]
+
   
   summary_stats <- 
     df %>% 
     group_by(pair_id) %>% 
-    mutate(# scenario = as.numeric(scenario),
-           int = as.numeric(int), 
-           slp = as.numeric(slp)) %>% 
+    mutate(
+      int = as.numeric(int), 
+      slp = as.numeric(slp)) %>% 
     summarise(
-      # scenario = mean(scenario),
       auc_med  = median(auc, na.rm = T), 
       auc_sd   = sd  (auc, na.rm = T), 
       bri_med  = median(bri, na.rm = T), 
@@ -125,18 +154,17 @@ recalibrate_one_iteration <- function(dataframe){
 
 recalibrate <- function(dataframe){
   
-  # retrieve re-calibrated probabilities
-  re_calibrate <- 
-    recalibrated_probabilities(dataframe$pred, dataframe$class)
+  # retrieve re-calibrated probabilities from one data set
+  r_preds <- recalibrate_one_dataset(dataframe$pred, dataframe$class)
   
-  # save warning of from glm
-  r_warn <<- ifelse(is.null(re_calibrate$warning) == TRUE, "0", as.character(re_calibrate$warning))
+  # save warning from glm during recalibration
+  r_warn <<- ifelse(is.null(r_preds$warning) == TRUE, "0", as.character(r_preds$warning))
   
   # update probabilities to re-calibrated probabilities
   dataframe <- 
     dataframe %>% 
     mutate(
-      pred = re_calibrate$pred,
+      pred = r_preds$pred,
       recalibrated = 1
     ) %>% 
     mutate(class = as.numeric(class) -1)
@@ -144,7 +172,7 @@ recalibrate <- function(dataframe){
   return(dataframe)
 }
 
-recalibrated_probabilities <- function(probs, class){
+recalibrate_one_dataset <- function(probs, class){
   
   # computing re-calibrated probabilities
   if(any(is.na(probs)) == TRUE){
@@ -306,7 +334,7 @@ pre_plot <- function(df){
   return(df)
 }
 
-plot_from_coords <- function(df){
+plot_from_coords <- function(df, hex = "#101011"){
   p <-
     ggplot() +
     geom_abline(slope = 1, intercept = 0, linewidth = 1) +
@@ -316,7 +344,7 @@ plot_from_coords <- function(df){
                 se = F,
                 linewidth = 0.01, 
                 alpha = 0.01,
-                color = "#00008B")+ 
+                color = hex)+ 
     theme_minimal() +
     xlab(" ") + 
     ylab(" ") +
@@ -334,7 +362,7 @@ plot_from_coords <- function(df){
 tidy_for_pm_plts <- function(dataframe){
   dataframe %>% 
     mutate(
-      algorithm  = factor(algorithm, 
+      algorithm  = factor(algorithm,
                           levels = c(
                             'easy_ensemble',
                             'rusboost',
@@ -342,23 +370,23 @@ tidy_for_pm_plts <- function(dataframe){
                             'random_forest',
                             'support_vector_machine',
                             'logistic_regression')),
-      correction = factor(correction, 
+      correction = factor(correction,
                           levels = c(
-                            'control', 'rus', 'ros', 'smo', 'sen'))) %>% 
+                            'control', 'rus', 'ros', 'smo', 'sen'))) %>%
     mutate(
-      algorithm = recode(algorithm, 
+      algorithm = recode(algorithm,
                          "logistic_regression"    = "Logistic Regression",
                          "support_vector_machine" = "Support Vector Machine",
                          "random_forest"          = "Random Forest",
                          "xgboost"                = "XGBoost" ,
                          "rusboost"               = "RUSBoost",
-                         "easy_ensemble"          = "EasyEnsemble"), 
+                         "easy_ensemble"          = "EasyEnsemble"),
       correction = recode(correction,
-                          "control" = "Control", 
-                          "rus"    = "RUS", 
-                          "ros"    = "ROS", 
-                          "smo"    = "SMOTE", 
-                          "sen"    = "SMOTE-ENN")) %>% 
+                          "control" = "Control",
+                          "rus"    = "RUS",
+                          "ros"    = "ROS",
+                          "smo"    = "SMOTE",
+                          "sen"    = "SMOTE-ENN")) %>%
     mutate(int = as.numeric(int), 
            slp = as.numeric(slp))
 }
@@ -378,7 +406,7 @@ pm_plot <- function(dataframe, method, xmin, xmax){
     ref <- 0
   }
   if(method == "bri"){
-    title <- "Scaled Brier Score"
+    title <- "Brier Score"
     ref <- 0
   }
   
@@ -392,7 +420,6 @@ pm_plot <- function(dataframe, method, xmin, xmax){
                 draw_quantiles = 0.5,
                 linewidth = 0.25,
                 alpha = 0.5) + 
-    # scale_fill_viridis(discrete = T, direction = -1, option = "D") + 
     theme_minimal() +
     xlab(" ") + 
     ylab(" ") +
