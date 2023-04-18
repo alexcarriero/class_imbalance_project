@@ -30,8 +30,7 @@ Univeristy, Utrecht, The Netherlands}
 \address[b]{Julius Center for Health Sciences and Primary Care,
 University Medical Center Utrecht, Utrecht, The Netherlands}
 
-\corres{*Alex Carriero.\textbackslash{}
-\email{a.j.carriero@umcutrecht.nl}}
+\corres{*Alex Carriero. \email{a.j.carriero@umcutrecht.nl}}
 
 \presentaddress{This is sample for present address text this is sample
 for present address text}
@@ -46,58 +45,55 @@ for present address text}
 \section{Introduction}\label{introduction}}
 
 Prediction modelling in medicine is receiving increased attention from
-the clinical community \citep{sandra}. The purpose of a clinical
-prediction model is often to estimate a patient's risk of experiencing a
-particular health event (e.g., disease). Risk estimates are used to
-inform clinical decisions; for instance, to decide if a patient is a
-good candidate for surgery \citep{annals, achilles}. Due to the rare
-nature of many diseases, data available to train clinical prediction
-models often exhibit class imbalance (i.e., observations from patients
-with vs.~without the event of interest are not equally represented in
-the data). When prediction models are trained using imbalanced data,
-model performance is diminished; performance for the underrepresented
-class suffers the most \citep{cip, lp2}. Consequently, class imbalance
-correction methodologies are proposed as a solution
+the clinical community \citep{sandra}. Most often, the purpose of a
+clinical prediction model is to estimate a patient's risk of
+experiencing a particular health event (e.g., disease). Risk estimates
+are used to inform clinical decisions; for instance, to decide if a
+patient is a good candidate for surgery \citep{annals, achilles}. Due to
+the rare nature of many diseases, data available to train clinical
+prediction models often exhibit class imbalance (i.e., observations from
+patients with vs.~without the event of interest are not equally
+represented in the data). When prediction models are trained using
+imbalanced data, model performance is diminished; performance for the
+underrepresented class suffers the most \citep{cip, lp2}. Consequently,
+class imbalance correction methodologies are proposed as a solution
 \citep{cip, summary_m, lp, summary_h}.\\
 \strut \\
 There is no scarcity of imbalance corrections proposed to solve the
 so-called ``class imbalance problem''; summarized here
 \citep{summary_m, lp, summary_h}. Similarly, there is also no scarcity
-of metrics which may be used to measure their effectiveness; an overview
-of metrics used to quantify the performance of a prediction model can be
-found here {[}@ CITATION{]}. What we see in the literature is that,
-collectively, the benefits of class imbalance correction methodologies
-are presented using a set of performance criteria which are insufficient
-for assessing model performance in a clinical context. In particular,
-information regarding the effect of such corrections on model
-calibration is sparse.\\
+of metrics which may be used to measure their effectiveness. What we see
+in the literature is that, collectively, the benefits of class imbalance
+correction methodologies are presented using a set of performance
+criteria which are insufficient for assessing model performance in a
+clinical context.\\
 \strut \\
 The most relevant performance metrics in assessing the quality of a
 prediction model are highly context dependent. Consider the following
-two motivations for prediction model development.
-
+two motivations for prediction model development.\\
+\strut \\
 If a model were designed to predict how likely it is for someone to
 cancel their hotel room booking, the goal is ultimately to arrive at a
 count of how many hotel room cancellations can be expected. In this
 instance, classification accuracy can be an appropriate metric of model
-performance. To compute accuracy, a person's predicted risk (indicating
-how likely it is for them to cancel their hotel room) is used to divide
-the observations into two classes: cancelled or not cancelled. This is
-done by selecting a decision threshold and considering probabilities
-above and below the threshold to belong to one of the respective
-classes. The number of persons who's behavior was accurately predicted
-are counted and divided by the total number of persons studied to
-determine the model's accuracy. Here, accuracy is the appropriate
-measure because our interest is to build a model which can accurately
-predict how many cancellations are expected. In this example, we are
-less interested in each person's predicted risk, since all predicted
-risks above (or below) the decision threshold result in the same
-classification.\\
-
+performance. To compute classification accuracy, a person's predicted
+risk (indicating how likely it is for them to cancel their hotel room)
+is used to divide the observations into two classes: cancelled or not
+cancelled. This is done by selecting a decision threshold and
+considering probabilities above and below the threshold to belong to one
+of the respective classes. The number of persons who's behavior was
+accurately predicted are counted and divided by the total number of
+persons studied to determine the model's accuracy. Here, accuracy is the
+appropriate measure because our interest is to build a model which can
+accurately predict how many cancellations are expected. In this example,
+we are less interested in each person's predicted risk, since all
+predicted risks above (or below) the decision threshold result in the
+same classification.\\
+\strut \\
 In the clinical context, our motivations are often different. When a
 prediction model is developed for clinical use, each patients personal
 predicted risk is the entity that is used to inform clinical decisions.
-Consequently, the reliability of personal predicted risks is quite
+Consequently, the reliability of personal predicted risks is quite a
 relevant metric of model performance. We determine the reliability of
 personal predicted risks by measuring prediction model
 \emph{calibration}. Model calibration is a measure of how much agreement
@@ -134,10 +130,9 @@ Motivated by the work of Goorbergh and colleagues \citep{ruben}, we must
 ensure that the ``cure'' is not worse than the disease. In our research,
 we assess the impact of imbalance corrections on model calibration for
 prediction models trained with a wide variety of classification
-algorithms including common classification algorithms including:
-logistic regression, support vector machine, random forest, XGBoost
-RUSBoost and EasyEnsemble. Using Monte Carlo simulations, we answer the
-question: \textbf{RESEARCH QUESTION}
+algorithms including: logistic regression, support vector machine,
+random forest, XGBoost RUSBoost and EasyEnsemble. Using Monte Carlo
+simulations, we answer the question: \textbf{RESEARCH QUESTION}
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
@@ -408,24 +403,27 @@ Additionally, based on literature summarizing common strategies to
 handle class imbalance \citep{yu, summary_m, lp, kaur}, we included two
 ensemble learning algorithms designed specifically to handle class
 imbalance: RUSBoost and EasyEnsemble. Both of these algorithms utilize
-random under-sampling, however, RUSboost is a boosting ensemble, while
-EasyEnsemble is a bagging ensemble. The hyperparameters selected for
-these classification algorithms, and the R packages used for algorithm
-implementation are summarized in Table 2.\\
+random under-sampling, RUSboost is a boosting ensemble and EasyEnsemble
+is a bagging ensemble \emph{(maybe elaborate more on how these work?)}.
+The hyperparameters selected for these classification algorithms, and
+the R packages used for algorithm implementation are summarized in Table
+2.\\
 \strut \\
-Logistic regression was implemented using the function \texttt{glm} in
-\texttt{base\ R} \citep{r}. SVM, RF and XG were implemented using the R
-package \texttt{caret} \citep{caret}. The methods of implementation were
-svmRadial, ranger and xgbTree for SVM, RF and XG, respectively. Each of
-the algorithms allowed for hyperparameter tuning. In our implementation
-of SVM and XG, we used the caret default tune grids and tune length. For
-RF, we specified a custom tuning grid: mtry () was allowed to vary from
-1 to the total number of predictors, min.node.size () was allowed to
-vary from 1 to 10 and we specified \texttt{gini} as the splitrule (). To
-select the hyper-parameters, we implemented 5-fold cross-validation,
-optimizing for model deviance, for all caret models. RUSboost was
-implemented using the R package \texttt{ebmc} \citep{ebmc}; support
-vector machine, with a radial kern, was selected as the weak classifier
+Logistic regression (LR) was implemented using the function \texttt{glm}
+in \texttt{base\ R} \citep{r}. Support vector machine (SVM), random
+forest (RF) and xgboost (XG) were implemented using the R package
+\texttt{caret} \citep{caret}. The methods of implementation were
+\texttt{svmRadial}, \texttt{ranger} and \texttt{xgbTree} for SVM, RF and
+XG, respectively. Each of these algorithms allowed for hyperparameter
+tuning. In our implementation of SVM and XG, we used the caret default
+tune grids and tune length. For RF, we specified a custom tuning grid:
+mtry (definition) was allowed to vary from 1 to the total number of
+predictors, min.node.size (definition) was allowed to vary from 1 to 10
+and we specified \texttt{gini} as the splitrule (definition). To select
+the hyper-parameters for SVM, RF and XG, we implemented 5-fold
+cross-validation, optimizing for model deviance. RUSboost was
+implemented using the R package \texttt{ebmc} \citep{ebmc}; a support
+vector machine with a radial kernal was selected as the weak classifier
 in our implementation. Finally, EasyEnsemble was implemented using the R
 package \texttt{IRIC} \citep{iric}; in no hyper parameter tuning was
 possible.
@@ -433,11 +431,13 @@ possible.
 \begin{itemize}
 \tightlist
 \item
-  rusb - kaur 2019, seiffert 2008
+  rusb - boosting algorithm, uses svm as weak classifier, uses random
+  undersampling for each weak classifier, ensemble size = 10, cite that
+  paper which showed that 10 was best for rusboost?
 \item
-  ee - (ensemble of adaboost classifiers trained on balanced data..
+  ee - ensemble of adaboost classifiers trained on balanced data..
   carries out random undersampling in bagging iterations and uses
-  AdaBoost to train the base classifier)
+  AdaBoost to train the base classifier (can happen in parallel)
 \end{itemize}
 
 \begin{table}[ht]
@@ -474,10 +474,25 @@ developed (as described in section 2.3). All prediction models were
 trained using the training data. Out-of-sample performance was then
 assessed using the validation data.\\
 \strut \\
-Justification for recalibration. We implemented logistic regression
-recalibration. Out-of-sample performance was assessed using both the raw
-predictions (no recalibration) and the recalibrated predictions.
-\emph{formula, details}
+Finally, since it is known that these algorithms exhibit miscalibration,
+especially in the presence of imbalance, we implemented a re-calibration
+procedure for all prediction models.
+
+\begin{itemize}
+\tightlist
+\item
+  using validation data we get predicted risks
+\item
+  put those risks in a logistic regression (show formula) -- mod
+  \textless- logistic regresssion with offset = logit(probs)
+\item
+  predict(mod) .. predictions from this validation data = the updated
+  predictions
+\end{itemize}
+
+Out-of-sample performance was assessed using both the raw predictions
+(no re-calibration) and the re-calibrated predictions.\\
+(\textbf{finish this section})
 
 \hypertarget{performance-metrics}{%
 \subsection{Performance Metrics}\label{performance-metrics}}
@@ -490,7 +505,7 @@ Calibration was measured using visual and empirical metrics. We assessed
 calibration visually by means of flexible calibration plots. For each
 simulation iteration, a flexible calibration curve was generated for all
 prediction models. Coordinates for the calibration curve were calculated
-using loess regression; implemented using the R package \texttt{loess}
+using loess regression; implemented using the R package \texttt{stats}
 \citep{loess}. Calibration curves were then generated using
 \texttt{ggplot} \citep{gg}. Additionally, calibration intercept and
 slope were calculated according to their respective definitions in
@@ -501,14 +516,14 @@ computed using the R package pROC \citep{pROC}. For dichotomous risk
 prediction, it is equivalent to the area under the Receiver Operator
 Characteristic curve \citep{epi}.\\
 \strut \\
-Overall performance was measured by scaled Brier score. This metric
-reflects both model discrimination and calibration and was calculated
-according its definition in Steyerberg et al.~(2010) \citep{epi}.\\
+Overall performance was measured by Brier score. This metric reflects
+both model discrimination and calibration and was calculated according
+its definition in Steyerberg et al.~(2010) \citep{epi}.\\
 \strut \\
 For empirical measures of model performance (concordance statistic,
-scaled Brier score, calibration intercept and calibration slope), the
-median over the simulation iterations and corresponding Monte Carlo
-error were reported.
+Brier score, calibration intercept and calibration slope), the median
+over the simulation iterations and corresponding Monte Carlo error were
+reported.
 
 \hypertarget{software-and-error-handling}{%
 \subsection{Software and Error
@@ -516,15 +531,19 @@ Handling}\label{software-and-error-handling}}
 
 \begin{itemize}
 \item
-  this simulation study was conducted using High Performance Computing
-  -- ** insert tech specs**.
+  this simulation study was conducted using HPC -- \textbf{insert tech
+  specs}.
 \item
-  the rest of the analysis done on my computer \ldots{}
+  the results processed on my computer -- \textbf{insert tech spec}
 \item
   link to github for the code
 \item
   errors were carefully monitored and saved \ldots{} see Appendix B
+\item
+  this is what happens in the even of an error
 \end{itemize}
+
+\newpage
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
@@ -534,14 +553,14 @@ Handling}\label{software-and-error-handling}}
 \begin{itemize}
 \item
   N: as sample size increases the variance among the calibration curves
-  decreases. Shape doesn't change, but curves are tighter together.
-  opposite is true when sample size decreases.\\
+  decreases. Shape of curves doesn't change, but curves are tighter
+  together. opposite is true when sample size decreases.\\
   \strut \\
 \item
   NPRED: it seems that it is ever so slightly better calibrated with 8
   predictors. With 16 predictors the shape of the curves become
   exaggerated, so if there is miscalibration, that is also
-  exaggerated.\\
+  exaggerated\ldots{} not really sure, need more plots to tell.\\
   \strut \\
 \item
   EVENT FRACTION:
@@ -550,9 +569,9 @@ Handling}\label{software-and-error-handling}}
 
   \begin{itemize}
   \item
-    control scenario -- all algorithms are well calibrated, except for
-    EE, which under estimates for predicted risks above 0.5, and over
-    estimates for predicted risks below 0.5. RUS and SMOTE the same.
+    control, RUS, SMOTE -- all algorithms are well calibrated, except
+    for EE, which under estimates for predicted risks above 0.5, and
+    over estimates for predicted risks below 0.5.
   \item
     ros -- we see separation in the tree based methods (random forest,
     xgboost, easy ensemble), assuming this is separation represents the
@@ -575,10 +594,10 @@ Handling}\label{software-and-error-handling}}
     algorithms consistently over-estimate risk.
   \item
     all imbalance corrections -- worsen model calibration, resulting in
-    predicted risks that are too high. The only exception here is random
-    forest + ROS, in this one instance, the model calibration is
-    preserved. no imbalance correction + algorithm out preforms its
-    control.
+    predicted risks that are too high. No imbalance correction +
+    algorithm out preforms its control. The only exception here is
+    random forest + ROS, in this one instance, the model calibration is
+    preserved (improved?).
   \end{itemize}
 
   EXTREME IMBALANCE (EF = 0.02)
@@ -587,10 +606,10 @@ Handling}\label{software-and-error-handling}}
   \item
     control scenario -- if I had to pick a winner its logistic
     regression, but lr svm, rf, and xg follow the same pattern, start
-    out fine, and then when it comes to predicting who gets the outcome
-    the calibration is very sporadic. calibration in these algorithms is
+    out fine, and then when it comes to predicted risks above 0.25, the
+    calibration is very sporadic. calibration in these algorithms is
     somewhat unpredictable. Conversly, rb and ee have very predictable
-    behaviour -- severe miscalibration, over-estimating risk.
+    behaviour -- consistently over-estimating risk.
   \item
     all imbalance corrections -- nothing is helping improve
     calibration.\\
@@ -600,15 +619,41 @@ Handling}\label{software-and-error-handling}}
     svm and xg boost similar pattern for ros, smote, senn -- what is
     going on here.
   \item
-    again, as an exception, rf appears to like ROS.
+    again, as an exception, rf appears to do well with ROS.
   \end{itemize}
 \item
   What does re-calibration do ?
+
+  \begin{itemize}
+  \tightlist
+  \item
+    AUC doesn't change
+  \item
+    Cal slope doesn't change
+  \item
+    Cal intercepts all basically zero
+  \item
+    Brier scores become somewhat equal across algorithms ? (not sure,
+    need to see more results)
+  \end{itemize}
+
+  For logistic regression - recalibration improves calibration plots for
+  the imbalance corrections -- but never out preforms the control
+
+  SVM - recalibration impoves RUS plot to be as good as the control, the
+  other are still worse than control
+
+  RF - recalibration makes RUS and ROS as good as control (maybe even
+  better?)
+
+  XG, RB, EE - all still worse than the control
+\item
+  Maybe its more interesting to present the re-calibrated calibration
+  plots
+\item
+  should add a table or plot with gradient fill and numbers to show
+  actual values for median estimates in appendix / app ?
 \end{itemize}
-
-\ldots{} waiting on more results\ldots{}
-
-\textbf{Observations from Performance Metrics : }
 
 \begin{figure}
 
@@ -666,11 +711,6 @@ Handling}\label{software-and-error-handling}}
 
 \hypertarget{disucssion}{%
 \section{Disucssion}\label{disucssion}}
-
-stop correcting for class imbalance?
-
-in heart failure paper -- they find randfores forest + senn to be winner
---- classification accuracy, we see this agrees, highest brier score.
 
 \newpage
 

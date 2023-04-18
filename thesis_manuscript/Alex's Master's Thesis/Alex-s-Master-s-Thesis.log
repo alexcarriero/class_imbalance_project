@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.14)  15 APR 2023 16:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.14)  18 APR 2023 12:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -976,59 +976,69 @@ Package hyperref Info: Link coloring OFF on input line 19.
 LaTeX Info: Command `\dddot' is already robust on input line 19.
 LaTeX Info: Command `\ddddot' is already robust on input line 19.
 \c@lstlisting=\count438
-LaTeX Font Info:    Trying to load font information for LS1+stixscr on input line 43.
+LaTeX Font Info:    Trying to load font information for LS1+stixscr on input line 42.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS2+stixex on input line 43.
+LaTeX Font Info:    Trying to load font information for LS2+stixex on input line 42.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input line 43.
+LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input line 42.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixbb on input line 43.
+LaTeX Font Info:    Trying to load font information for LS1+stixbb on input line 42.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS2+stixcal on input line 43.
+LaTeX Font Info:    Trying to load font information for LS2+stixcal on input line 42.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixsf on input line 43.
+LaTeX Font Info:    Trying to load font information for LS1+stixsf on input line 42.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS2+stixtt on input line 43.
+LaTeX Font Info:    Trying to load font information for LS2+stixtt on input line 42.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 )
-Overfull \vbox (4.5pt too high) detected at line 43
+Overfull \vbox (4.5pt too high) detected at line 42
  []
 
 
-Overfull \hbox (346.99213pt too wide) in paragraph at lines 43--43
+Overfull \hbox (346.99213pt too wide) in paragraph at lines 42--42
 [][] | || []|[][] 
  []
 
-LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 43.
+LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 42.
 
-Package natbib Warning: Citation `lp' on page 1 undefined on input line 61.
-
-
-Package natbib Warning: Citation `summary_h' on page 1 undefined on input line 61.
+Package natbib Warning: Citation `lp' on page 1 undefined on input line 60.
 
 
-Package natbib Warning: Citation `lp' on page 1 undefined on input line 65.
+Package natbib Warning: Citation `summary_h' on page 1 undefined on input line 60.
 
 
-Package natbib Warning: Citation `summary_h' on page 1 undefined on input line 65.
+Package natbib Warning: Citation `lp' on page 1 undefined on input line 64.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--96
+Package natbib Warning: Citation `summary_h' on page 1 undefined on input line 64.
 
- []
+
+Package natbib Warning: Citation `12days' on page 1 undefined on input line 109.
+
+
+Package natbib Warning: Citation `epi' on page 1 undefined on input line 111.
+
+
+Package natbib Warning: Citation `ruben' on page 1 undefined on input line 119.
+
+
+Package natbib Warning: Citation `ruben' on page 1 undefined on input line 120.
+
+
+Package natbib Warning: Citation `ruben' on page 1 undefined on input line 129.
 
 
 Overfull \vbox (6.46347pt too high) has occurred while \output is active []
@@ -1038,67 +1048,51 @@ Overfull \vbox (6.46347pt too high) has occurred while \output is active []
 \openout3 = `Alex-s-Master-s-Thesis.pag'.
 
 ]
-
-Package natbib Warning: Citation `12days' on page 2 undefined on input line 113.
-
-
-Package natbib Warning: Citation `epi' on page 2 undefined on input line 115.
-
-
-Package natbib Warning: Citation `ruben' on page 2 undefined on input line 123.
-
-
-Package natbib Warning: Citation `ruben' on page 2 undefined on input line 124.
-
-
-Package natbib Warning: Citation `ruben' on page 2 undefined on input line 133.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 172--198
+Underfull \hbox (badness 10000) in paragraph at lines 167--193
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 214--217
+Underfull \hbox (badness 10000) in paragraph at lines 209--212
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 214--217
+Underfull \hbox (badness 10000) in paragraph at lines 209--212
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 231--248
+Underfull \hbox (badness 10000) in paragraph at lines 226--243
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 250--269
+Underfull \hbox (badness 10000) in paragraph at lines 245--264
 
  []
 
 [3]
-LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 316.
+LaTeX Font Info:    Calculating math sizes for size <7.5> on input line 311.
 [4]
 
-Package natbib Warning: Citation `yu' on page 5 undefined on input line 408.
+Package natbib Warning: Citation `yu' on page 5 undefined on input line 403.
 
 
-Package natbib Warning: Citation `lp' on page 5 undefined on input line 408.
+Package natbib Warning: Citation `lp' on page 5 undefined on input line 403.
 
 
-Package natbib Warning: Citation `kaur' on page 5 undefined on input line 408.
+Package natbib Warning: Citation `kaur' on page 5 undefined on input line 403.
 
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 416.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 412.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 
-Package natbib Warning: Citation `ebmc' on page 5 undefined on input line 427.
+Package natbib Warning: Citation `ebmc' on page 5 undefined on input line 425.
 
 [5]
-LaTeX Font Info:    Trying to load font information for TS1+stix on input line 436.
+LaTeX Font Info:    Trying to load font information for TS1+stix on input line 434.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
@@ -1106,87 +1100,88 @@ File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 Package natbib Warning: Citation `ebmc' on page 6 undefined on input line 453.
 
 
-Package natbib Warning: Citation `loess' on page 6 undefined on input line 494.
+Package natbib Warning: Citation `loess' on page 6 undefined on input line 509.
 
 
-Package natbib Warning: Citation `gg' on page 6 undefined on input line 495.
+Package natbib Warning: Citation `gg' on page 6 undefined on input line 510.
 
 
-Package natbib Warning: Citation `epi' on page 6 undefined on input line 497.
+Package natbib Warning: Citation `epi' on page 6 undefined on input line 512.
 
 
-Package natbib Warning: Citation `epi' on page 6 undefined on input line 502.
+Package natbib Warning: Citation `epi' on page 6 undefined on input line 517.
 
 
-Package natbib Warning: Citation `epi' on page 6 undefined on input line 506.
+Package natbib Warning: Citation `epi' on page 6 undefined on input line 521.
 
-[6{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix/stix-ts1.enc}]
-Underfull \hbox (badness 10000) in paragraph at lines 536--541
+[6{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix/stix-ts1.enc}] [7]
+Underfull \hbox (badness 10000) in paragraph at lines 555--560
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 560--566
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 541--547
+Underfull \hbox (badness 10000) in paragraph at lines 614--617
 
  []
 
-[7]
-Underfull \hbox (badness 10000) in paragraph at lines 595--598
-
- []
-
-<./../results/calibration_plot_manuscript_sc4.png, id=130, 867.24pt x 1084.05pt>
+[8]
+<./../results/calibration_plot_manuscript_sc4.png, id=134, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc4.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc4.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc4.png  used on input line 615.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc4.png  used on input line 660.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/calibration_plot_manuscript_sc5.png, id=132, 867.24pt x 1084.05pt>
+<./../results/calibration_plot_manuscript_sc5.png, id=136, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc5.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc5.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc5.png  used on input line 624.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc5.png  used on input line 669.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/calibration_plot_manuscript_sc6.png, id=133, 867.24pt x 1084.05pt>
+<./../results/calibration_plot_manuscript_sc6.png, id=137, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc6.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc6.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc6.png  used on input line 633.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc6.png  used on input line 678.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/performance_metrics_manuscript_sc4.png, id=134, 867.24pt x 1084.05pt>
+<./../results/performance_metrics_manuscript_sc4.png, id=138, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc4.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc4.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc4.png  used on input line 642.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc4.png  used on input line 687.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/performance_metrics_manuscript_sc5.png, id=135, 867.24pt x 1084.05pt>
+<./../results/performance_metrics_manuscript_sc5.png, id=139, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc5.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc5.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc5.png  used on input line 651.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc5.png  used on input line 696.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/performance_metrics_manuscript_sc6.png, id=136, 867.24pt x 1084.05pt>
+<./../results/performance_metrics_manuscript_sc6.png, id=140, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc6.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc6.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc6.png  used on input line 660.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc6.png  used on input line 705.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-[8] (./Alex-s-Master-s-Thesis.bbl)
+[9] (./Alex-s-Master-s-Thesis.bbl)
 
 Package natbib Warning: There were undefined citations.
 
-[9] [10 <./../results/calibration_plot_manuscript_sc4.png>] [11 <./../results/calibration_plot_manuscript_sc5.png>] [12 <./../results/calibration_plot_manuscript_sc6.png>] [13 <./../results/performance_metrics_manuscript_sc4.png>] [14 <./../results/performance_metrics_manuscript_sc5.png>] [15 <./../results/performance_metrics_manuscript_sc6.png>] (./Alex-s-Master-s-Thesis.aux)
+[10] [11 <./../results/calibration_plot_manuscript_sc4.png>] [12 <./../results/calibration_plot_manuscript_sc5.png>] [13 <./../results/calibration_plot_manuscript_sc6.png>] [14 <./../results/performance_metrics_manuscript_sc4.png>] [15 <./../results/performance_metrics_manuscript_sc5.png>] [16 <./../results/performance_metrics_manuscript_sc6.png>] (./Alex-s-Master-s-Thesis.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 20151 strings out of 477977
- 312932 string characters out of 5838229
- 1888666 words of memory out of 5000000
+ 20152 strings out of 477977
+ 312939 string characters out of 5838229
+ 1887666 words of memory out of 5000000
  39948 multiletter control sequences out of 15000+600000
  626895 words of font info for 173 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 90i,12n,90p,445b,568s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,12n,90p,445b,540s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/alexcarriero/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm-bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb>
-Output written on Alex-s-Master-s-Thesis.pdf (15 pages, 20520670 bytes).
+Output written on Alex-s-Master-s-Thesis.pdf (16 pages, 20441061 bytes).
 PDF statistics:
- 309 PDF objects out of 1000 (max. 8388607)
- 245 compressed objects within 3 object streams
- 70 named destinations out of 1000 (max. 500000)
+ 317 PDF objects out of 1000 (max. 8388607)
+ 248 compressed objects within 3 object streams
+ 71 named destinations out of 1000 (max. 500000)
  151 words of extra memory for PDF output out of 10000 (max. 10000000)
 
