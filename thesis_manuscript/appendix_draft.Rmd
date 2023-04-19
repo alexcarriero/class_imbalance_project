@@ -45,83 +45,42 @@ Equation (2) was used to derive the appropriate $\delta_\mu$ for each simulation
 
 ## Appendix B 
 
-Errors and warnings were carefully monitored throughout our simulation.  We used the tryCatch.W.E function from `simsalapar` to save all warning and error messages [@simsalapar].  These messages are stored in a data file for each scenario and, along with the raw simulation results, are available upon request.  In Table X and Table Y we present the frequency with which errors occurred for the imbalance corrections and classification algorithms, respectively.\
+Errors and warnings were carefully monitored throughout our simulation.  We used the tryCatch.W.E function from `simsalapar` to save all warning and error messages [@simsalapar].  These messages were stored in a data file for each scenario and, along with the raw simulation results, are available upon request.  In Table BX and Table BY we present the frequency with which errors occurred for the imbalance corrections and classification algorithms, respectively.\
 \
-Under scenarios where training data were class balanced ($EF = 0.5$), imbalance correction methodologies did not preform reliably.  For instance, if the classes are exactly balanced there is nothing to over or under sample, and the algorithm returns an error. In the event of an error with imbalance corrections, the uncorrected data were allowed to proceed to train the classification algorithms.\
+Under scenarios where training data were class balanced ($EF = 0.5$), imbalance correction methodologies did not preform reliably.  For instance, if the classes were exactly balanced there is nothing to over or under sample, and the algorithm returned an error. In the event of an error with imbalance corrections, the uncorrected data were allowed to proceed to train the classification algorithms.\
 \
-Conversely, when data were extremely imbalanced ($EF = 0.02$) and sample size was small ($\frac{1}{2}N$ some classification algorithms returned an error. In this case, predicted risks were stored as NA. In case of data separation, warnings were saved and predicted risks were saved as usual. Finally, under extreme imbalance, the algorithm RUSBoost produced impossible predicted risks (i.e., outside the range $[0,1]$), in these instances, predicted risks below zero and above one were set to $1e-10$ and $1 - e-10$, respectively.\
+Conversely, when data were extremely imbalanced ($EF = 0.02$) and sample size was small ($\frac{1}{2}N$ some classification algorithms returned an error. In this case, predicted risks were stored as `NA`. In case of data separation, warnings messages were stored and predicted risks were saved as usual. Finally, under extreme imbalance, the algorithm RUSBoost produced impossible predicted risks (i.e., outside the range $[0,1]$), in these instances, predicted risks below zero and above one were set to $1e-10$ and $1 - e-10$, respectively.\
 \
+```{r, echo = F}
+# corrections
+cr <- readRDS("error_table_corrections.RDS")
 
-```{r}
-save_errors <- function(){
-  i = 3
-  scN <- paste0("sc", i)
-  
-  df <- readRDS(paste0("./../visualize_results/results/results_", scN, "_new.RData"))$overall_dataframe
-}
+# algorithms
+lr <- readRDS("error_table_logistic_regression.RDS")
+sv <- readRDS("error_table_support_vector_machine.RDS")
+rf <- readRDS("error_table_random_forest.RDS")
+xg <- readRDS("error_table_xgboost.RDS")
+rb <- readRDS("error_table_rusboost.RDS")
+ee <- readRDS("error_table_easy_ensemble.RDS")
 ```
 
-```{r}
-df %>% 
-  count_correction_errors()
+```{r, echo = F}
+library(xtable)
+library(kableExtra)
+
+cr %>% kable() %>% kable_styling()
+lr %>% kable() %>% kable_styling()
+sv %>% kable() %>% kable_styling()
+rf %>% kable() %>% kable_styling()
+xg %>% kable() %>% kable_styling()
+rb %>% kable() %>% kable_styling()
+ee %>% kable() %>% kable_styling()
+
+
+# need to style the kables 
+# and filter for non-zero entries :) 
 ```
 
-```{r}
-df %>% 
-  count_alg_errors() %>% 
-  merge(pairs, by= "pair_id")
-```
-
-```{r}
-df %>% 
-  select(-seed, -sc_ef, -auc, -s_bri, -bri, -int, -slp, -min, -max) %>% 
-  mutate(pair_id = as.factor(pair_id)) %>% 
-  filter(algorithm == "rusboost") %>%
-  group_by(pair_id) %>% 
-  group_modify(~non_zeros(.x$invalid_1)) %>%
-  merge(pairs, by = "pair_id")
-```
-
-
-```{r}
-non_zeros <- function(x){
-  count <- sum(x!="0")
-  return(as.data.frame(count))
-} 
-```
-
-```{r}
-count_correction_errors <- function(dataframe){
-  dataframe %>%
-  select(-seed, -sc_ef, -auc, -s_bri, -bri, -int, -slp, -min, -max) %>% 
-  mutate(correction = as.factor(correction)) %>% 
-  group_by(correction) %>% 
-  group_modify(~non_zeros(.x$c_err)) %>% 
-  mutate(count = count / 6) 
-}
-```
-
-```{r}
-count_alg_errors <- function(dataframe){
-  dataframe %>% 
-  select(-seed, -sc_ef, -auc, -s_bri, -bri, -int, -slp, -min, -max) %>% 
-  mutate(pair_id = as.factor(pair_id)) %>% 
-  group_by(pair_id) %>% 
-  group_modify(~non_zeros(.x$a_err))
-}
-```
-
-```{r}
-count_invalid_probabilities <- function(dataframe){
-  
-}
-```
-
-```{r}
-invalid_probs <- function(a,b) {
-
-}
-```
 
 
 
