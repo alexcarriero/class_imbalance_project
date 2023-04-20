@@ -283,37 +283,6 @@ of data used to train the prediction models
 size, adequate samples size and double the required sample size,
 respectively.
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{rrlrllrrr}
-  \toprule
-Scenario & No. Predictors & Sample Size & Event Fraction & $\mathrm{n}_{\mathrm{train}}$ & $\mathrm{n}_{\mathrm{validation}}$ & $\delta_\mu$ & $\delta_\Sigma$ & C \\ 
-  \midrule
-  1 &   8 & 0.5N & 0.50 & 193 & 1930 & 0.60 & 0.30 & 0.85 \\ 
-    2 &   8 & 0.5N & 0.20 & 124 & 1240 & 0.60 & 0.30 & 0.85 \\ 
-    3 &   8 & 0.5N & 0.02 & 899 & 8990 & 0.60 & 0.30 & 0.85 \\ 
-    4 &   8 & N & 0.50 & 385 & 3850 & 0.60 & 0.30 & 0.85 \\ 
-    5 &   8 & N & 0.20 & 247 & 2470 & 0.60 & 0.30 & 0.85 \\ 
-    6 &   8 & N & 0.02 & 1797 & 17970 & 0.60 & 0.30 & 0.85 \\ 
-    7 &   8 & 2N & 0.50 & 770 & 7700 & 0.60 & 0.30 & 0.85 \\ 
-    8 &   8 & 2N & 0.20 & 494 & 4940 & 0.60 & 0.30 & 0.85 \\ 
-    9 &   8 & 2N & 0.02 & 3594 & 35940 & 0.60 & 0.30 & 0.85 \\ 
-   10 &  16 & 0.5N & 0.50 & 193 & 1930 & 0.49 & 0.30 & 0.85 \\ 
-   11 &  16 & 0.5N & 0.20 & 247 & 2470 & 0.49 & 0.30 & 0.85 \\ 
-   12 &  16 & 0.5N & 0.02 & 1797 & 17970 & 0.49 & 0.30 & 0.85 \\ 
-   13 &  16 & N & 0.50 & 385 & 3850 & 0.49 & 0.30 & 0.85 \\ 
-   14 &  16 & N & 0.20 & 493 & 4930 & 0.49 & 0.30 & 0.85 \\ 
-   15 &  16 & N & 0.02 & 3593 & 35930 & 0.49 & 0.30 & 0.85 \\ 
-   16 &  16 & 2N & 0.50 & 770 & 7700 & 0.49 & 0.30 & 0.85 \\ 
-   17 &  16 & 2N & 0.20 & 986 & 9860 & 0.49 & 0.30 & 0.85 \\ 
-   18 &  16 & 2N & 0.02 & 7186 & 71860 & 0.49 & 0.30 & 0.85 \\ 
-   \bottomrule
-\multicolumn{4}{l}{\footnotesize Note: $N$ is the minimum required sample size for the prediction model.} \\
-\end{tabular}
-\caption{Summary of simulation scenarios.} 
-\label{tab:sim_sets}
-\end{table}
-
 \hypertarget{model-development}{%
 \subsection{Model Development}\label{model-development}}
 
@@ -374,23 +343,6 @@ the software defaults \citep{iric}. Finally, in the control
 second step of model development untouched (i.e., the imbalanced data
 were used to train prediction models).
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{llll}
-  \toprule
-Method & Abbreviation & Hyperparameters & R Package \\ 
-  \midrule
-Random Undesampling & RUS &   & ROSE \cite{rose} \\ 
-  Random Oversampling & ROS &   & ROSE \cite{rose} \\ 
-  Synthetic Majority Over Sampling & SMOTE & $k=5$ & IRIC \cite{iric} \\ 
-  SMOTE - Edited Nearest Neighbours & SENN & $k_1=5$, $k_2 = 3$ & IRIC \cite{iric} \\ 
-   \hline
-{\footnotesize Note:}
- \\ {\footnotesize * $k$: the number of nearest neighbors in implementation of SMOTE.} \\ {\footnotesize * $k_1$: the number of nearest neighbors in the SMOTE step of SMOTE-ENN.} \\ {\footnotesize * $k_2$: the number of nearest neighbors in the ENN step of SMOTE-ENN}\end{tabular}
-\caption{Summary of imbalance corrections implementation} 
-\label{tab:table}
-\end{table}
-
 \hypertarget{classification-algorithms}{%
 \subsubsection{Classification
 Algorithms}\label{classification-algorithms}}
@@ -439,24 +391,6 @@ possible.
   carries out random undersampling in bagging iterations and uses
   AdaBoost to train the base classifier (can happen in parallel)
 \end{itemize}
-
-\begin{table}[ht]
-\centering
-\begin{tabular}{llll}
-  \toprule
-Method & Abbreviation & Hyperparameters & R Package \\ 
-  \midrule
-Logistic Regression & LR &   & base R \cite{r} \\ 
-  Support Vector Machine & SVM & tune grid = A & caret \cite{caret} \\ 
-  Random Forest & RF & tune grid = B & caret \cite{caret} \\ 
-  XGBoost & XG & tune grid = C & caret \cite{caret} \\ 
-  RUSBoost & RB &   & ebmc \cite{ebmc} \\ 
-  EasyEnsemmble & EE &   & IRIC \cite{iric} \\ 
-   \bottomrule
-\end{tabular}
-\caption{Summary of classification algorithm implementation} 
-\label{tab:table}
-\end{table}
 
 \hypertarget{simulation-methods}{%
 \subsection{Simulation Methods}\label{simulation-methods}}

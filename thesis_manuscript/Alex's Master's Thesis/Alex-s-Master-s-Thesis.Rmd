@@ -17,9 +17,8 @@ keywords: keyword; keyword; keyword;
 bibliography: bibfile.bib
 output: 
   rticles::sim_article:
-    keep_tex: TRUE
+    keep_tex:  TRUE
 ---
-
 
 # Introduction
 
@@ -106,36 +105,6 @@ Finally, given that data for each class were generated independently, we had dir
 
 In our simulation study, 18 ($3$ x $2$ x $3$) unique data-generating scenarios were implemented (Table \ref{tab:sim_sets}). This was achieved by varying the following three characteristics of the data: the event fraction (proportion of patients with an event), the number of predictors and sample size. Event fraction ($EF$) varied through the set {0.5, 0.2, 0.02} and number of predictors through the set {8, 16}. In all scenarios, data were generated to yield an expected concordance statistic ($C$) of $0.85$.  Given the number of predictors, the event fraction and expected concordance statistic, we computed the minimum required sample size for a prediction model developed under these conditions.  Sample size calculations were carried out using the R package pmsampsize [@pmsampsize].  The sample size of data used to train the prediction models ($\mathrm{n}_{\mathrm{train}}$) was then varied through the set {$\frac{1}{2}N$, $N$, $2N$} implying half the required sample size, adequate samples size and double the required sample size, respectively.
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{rrlrllrrr}
-  \toprule
-Scenario & No. Predictors & Sample Size & Event Fraction & $\mathrm{n}_{\mathrm{train}}$ & $\mathrm{n}_{\mathrm{validation}}$ & $\delta_\mu$ & $\delta_\Sigma$ & C \\ 
-  \midrule
-  1 &   8 & 0.5N & 0.50 & 193 & 1930 & 0.60 & 0.30 & 0.85 \\ 
-    2 &   8 & 0.5N & 0.20 & 124 & 1240 & 0.60 & 0.30 & 0.85 \\ 
-    3 &   8 & 0.5N & 0.02 & 899 & 8990 & 0.60 & 0.30 & 0.85 \\ 
-    4 &   8 & N & 0.50 & 385 & 3850 & 0.60 & 0.30 & 0.85 \\ 
-    5 &   8 & N & 0.20 & 247 & 2470 & 0.60 & 0.30 & 0.85 \\ 
-    6 &   8 & N & 0.02 & 1797 & 17970 & 0.60 & 0.30 & 0.85 \\ 
-    7 &   8 & 2N & 0.50 & 770 & 7700 & 0.60 & 0.30 & 0.85 \\ 
-    8 &   8 & 2N & 0.20 & 494 & 4940 & 0.60 & 0.30 & 0.85 \\ 
-    9 &   8 & 2N & 0.02 & 3594 & 35940 & 0.60 & 0.30 & 0.85 \\ 
-   10 &  16 & 0.5N & 0.50 & 193 & 1930 & 0.49 & 0.30 & 0.85 \\ 
-   11 &  16 & 0.5N & 0.20 & 247 & 2470 & 0.49 & 0.30 & 0.85 \\ 
-   12 &  16 & 0.5N & 0.02 & 1797 & 17970 & 0.49 & 0.30 & 0.85 \\ 
-   13 &  16 & N & 0.50 & 385 & 3850 & 0.49 & 0.30 & 0.85 \\ 
-   14 &  16 & N & 0.20 & 493 & 4930 & 0.49 & 0.30 & 0.85 \\ 
-   15 &  16 & N & 0.02 & 3593 & 35930 & 0.49 & 0.30 & 0.85 \\ 
-   16 &  16 & 2N & 0.50 & 770 & 7700 & 0.49 & 0.30 & 0.85 \\ 
-   17 &  16 & 2N & 0.20 & 986 & 9860 & 0.49 & 0.30 & 0.85 \\ 
-   18 &  16 & 2N & 0.02 & 7186 & 71860 & 0.49 & 0.30 & 0.85 \\ 
-   \bottomrule
-\multicolumn{4}{l}{\footnotesize Note: $N$ is the minimum required sample size for the prediction model.} \\
-\end{tabular}
-\caption{Summary of simulation scenarios.} 
-\label{tab:sim_sets}
-\end{table}
 
 ## Model Development 
 
@@ -152,22 +121,6 @@ All imbalance corrections were implemented to achieve artificially class balance
 \
 When synthetic data are generated for the minority class, it may cause increased noise near the class boundary, making it more challenging for a classifier to distinguish between the classes. In SMOTE - ENN, class balance is achieved by using combination of SMOTE and Wilson's Edited Nearest Neighbor Rule (ENN) [@wilson].  SMOTE is implement first, to generate synthetic data for the minority class and then ENN is implemented to remove any observation which is different than its nearest neighbors [@senn]. This is done to make it easier for the classifier to distinguish between the classes.  In our implementation, we specified the number of nearest neighbors in the SMOTE step ($k_1$) to be 5, and the number of nearest neighbors in ENN step ($k_2$) to be 3, the software defaults [@iric]. Finally, in the control "correction", data were not corrected for imbalance, and moved to second step of model development untouched (i.e., the imbalanced data were used to train prediction models). 
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{llll}
-  \toprule
-Method & Abbreviation & Hyperparameters & R Package \\ 
-  \midrule
-Random Undesampling & RUS &   & ROSE \cite{rose} \\ 
-  Random Oversampling & ROS &   & ROSE \cite{rose} \\ 
-  Synthetic Majority Over Sampling & SMOTE & $k=5$ & IRIC \cite{iric} \\ 
-  SMOTE - Edited Nearest Neighbours & SENN & $k_1=5$, $k_2 = 3$ & IRIC \cite{iric} \\ 
-   \hline
-{\footnotesize Note:}
- \\ {\footnotesize * $k$: the number of nearest neighbors in implementation of SMOTE.} \\ {\footnotesize * $k_1$: the number of nearest neighbors in the SMOTE step of SMOTE-ENN.} \\ {\footnotesize * $k_2$: the number of nearest neighbors in the ENN step of SMOTE-ENN}\end{tabular}
-\caption{Summary of imbalance corrections implementation} 
-\label{tab:table}
-\end{table}
 
 ### Classification Algorithms
 
@@ -178,23 +131,6 @@ Logistic regression (LR) was implemented using the function `glm` in `base R` [@
 * rusb -  boosting algorithm, uses svm as weak classifier, uses random undersampling for each weak classifier, ensemble size = 10, cite that paper which showed that 10 was best for rusboost?
 * ee - ensemble of adaboost classifiers trained on balanced data.. carries out random undersampling in bagging iterations and uses AdaBoost to train the base classifier (can happen in parallel)
 
-\begin{table}[ht]
-\centering
-\begin{tabular}{llll}
-  \toprule
-Method & Abbreviation & Hyperparameters & R Package \\ 
-  \midrule
-Logistic Regression & LR &   & base R \cite{r} \\ 
-  Support Vector Machine & SVM & tune grid = A & caret \cite{caret} \\ 
-  Random Forest & RF & tune grid = B & caret \cite{caret} \\ 
-  XGBoost & XG & tune grid = C & caret \cite{caret} \\ 
-  RUSBoost & RB &   & ebmc \cite{ebmc} \\ 
-  EasyEnsemmble & EE &   & IRIC \cite{iric} \\ 
-   \bottomrule
-\end{tabular}
-\caption{Summary of classification algorithm implementation} 
-\label{tab:table}
-\end{table}
 
 ## Simulation Methods
 

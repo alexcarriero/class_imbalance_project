@@ -1,0 +1,515 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={nice tables},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{nice tables}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{table-1}{%
+\section{Table 1}\label{table-1}}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Summary of simulation scenarios.}
+\centering
+\begin{tabular}[t]{rrlrllrrr}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & $\mathrm{n}_{\mathrm{train}}$ & $\mathrm{n}_{\mathrm{validation}}$ & $\delta_\mu$ & $\delta_\Sigma$ & C\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 193 & 1930 & 0.6043 & 0.3 & 0.85\\
+\addlinespace
+2 & 8 & 0.5N & 0.20 & 124 & 1240 & 0.6043 & 0.3 & 0.85\\
+\addlinespace
+3 & 8 & 0.5N & 0.02 & 899 & 8990 & 0.6043 & 0.3 & 0.85\\
+\addlinespace
+4 & 8 & N & 0.50 & 385 & 3850 & 0.6043 & 0.3 & 0.85\\
+\addlinespace
+5 & 8 & N & 0.20 & 247 & 2470 & 0.6043 & 0.3 & 0.85\\
+\addlinespace
+6 & 8 & N & 0.02 & 1797 & 17970 & 0.6043 & 0.3 & 0.85\\
+\addlinespace
+7 & 8 & 2N & 0.50 & 770 & 7700 & 0.6043 & 0.3 & 0.85\\
+\addlinespace
+8 & 8 & 2N & 0.20 & 494 & 4940 & 0.6043 & 0.3 & 0.85\\
+\addlinespace
+9 & 8 & 2N & 0.02 & 3594 & 35940 & 0.6043 & 0.3 & 0.85\\
+\addlinespace
+10 & 16 & 0.5N & 0.50 & 193 & 1930 & 0.4854 & 0.3 & 0.85\\
+\addlinespace
+11 & 16 & 0.5N & 0.20 & 247 & 2470 & 0.4854 & 0.3 & 0.85\\
+\addlinespace
+12 & 16 & 0.5N & 0.02 & 1797 & 17970 & 0.4854 & 0.3 & 0.85\\
+\addlinespace
+13 & 16 & N & 0.50 & 385 & 3850 & 0.4854 & 0.3 & 0.85\\
+\addlinespace
+14 & 16 & N & 0.20 & 493 & 4930 & 0.4854 & 0.3 & 0.85\\
+\addlinespace
+15 & 16 & N & 0.02 & 3593 & 35930 & 0.4854 & 0.3 & 0.85\\
+\addlinespace
+16 & 16 & 2N & 0.50 & 770 & 7700 & 0.4854 & 0.3 & 0.85\\
+\addlinespace
+17 & 16 & 2N & 0.20 & 986 & 9860 & 0.4854 & 0.3 & 0.85\\
+\addlinespace
+18 & 16 & 2N & 0.02 & 7186 & 71860 & 0.4854 & 0.3 & 0.85\\
+\bottomrule
+\multicolumn{9}{l}{\rule{0pt}{1em}\textsuperscript{*} N is the minimum required sample size for the prediction model.}\\
+\end{tabular}
+\end{table}
+
+\newpage
+
+\hypertarget{table-2}{%
+\section{Table 2}\label{table-2}}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Summary of imbalance corrections implementation}
+\centering
+\begin{tabular}[t]{llll}
+\toprule
+Method & Abbreviation & Hyperparameters & R Package\\
+\midrule
+Random Undesampling & RUS &  & ROSE \cite{rose}\\
+\addlinespace
+Random Oversampling & ROS &  & ROSE \cite{rose}\\
+\addlinespace
+Synthetic Majority Over Sampling & SMOTE & $k=5$ & IRIC \cite{iric}\\
+\addlinespace
+SMOTE - Edited Nearest Neighbours & SENN & $k1=5$, $k2 = 3$ & IRIC \cite{iric}\\
+\bottomrule
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}      $k$: the number of nearest neighbors in implementation of SMOTE.}\\
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $k1$: the number of nearest neighbors in the SMOTE step of SMOTE-ENN.}\\
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $k2$: the number of nearest neighbors in the ENN step of SMOTE-ENN.}\\
+\end{tabular}
+\end{table}
+
+\newpage
+
+\hypertarget{table-3}{%
+\section{Table 3}\label{table-3}}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Summary of classification algorithm implementation}
+\centering
+\begin{tabular}[t]{llll}
+\toprule
+Method & Abbreviation & Hyperparameters & R Package\\
+\midrule
+Logistic Regression & LR &  & base R \cite{r}\\
+\addlinespace
+Support Vector Machine & SVM & tune grid = A & caret \cite{caret}\\
+\addlinespace
+Random Forest & RF & tune grid = B & caret \cite{caret}\\
+\addlinespace
+XGBoost & XG & tune grid = C & caret \cite{caret}\\
+\addlinespace
+RUSBoost & RB &  & ebmc \cite{ebmc}\\
+\addlinespace
+EasyEnsemmble & EE &  & IRIC \cite{iric}\\
+\bottomrule
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $A$: caret default grid}\\
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $B$: mtry [1: all predictors], min.node.size [1:10], splitrule [gini]}\\
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $C$: caret default grid}\\
+\end{tabular}
+\end{table}
+
+\newpage
+
+\hypertarget{appendix-b-tables}{%
+\section{Appendix B Tables}\label{appendix-b-tables}}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Errors: Imbalance Corrections}
+\centering
+\begin{tabular}[t]{rrlrrrrrr}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 251 & 680 & 680\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 1 & 1\\
+ 
+4 & 8 & N & 0.50 & 0 & 0 & 288 & 488 & 488\\
+ 
+5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+7 & 8 & 2N & 0.50 & 0 & 72 & 331 & 310 & 310\\
+ 
+8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 265 & 692 & 692\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+13 & 16 & N & 0.50 & 0 & 0 & 282 & 502 & 502\\
+ 
+14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+16 & 16 & 2N & 0.50 & 0 & 51 & 326 & 291 & 291\\
+ 
+17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Errors: Logistic Regression}
+\centering
+\begin{tabular}[t]{rrlrrrrrr}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Errors: Support Vector Machine}
+\centering
+\begin{tabular}[t]{rrlrrrrrr}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Errors: Random Forest}
+\centering
+\begin{tabular}[t]{rrlrrrrrr}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Errors: XGBoost}
+\centering
+\begin{tabular}[t]{rrlrrrrrr}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Errors: RUSBoost}
+\centering
+\begin{tabular}[t]{rrlrrrrrr}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 1 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 59 & 9 & 0 & 1 & 1\\
+ 
+4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Errors: EasyEnsemble}
+\centering
+\begin{tabular}[t]{rrlrrrrrr}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+2 & 8 & 0.5N & 0.20 & 1 & 1 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 19 & 29 & 0 & 0 & 0\\
+ 
+4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+ 
+15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
+ 
+16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
+ 
+17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

@@ -17,6 +17,7 @@ header-includes:
 ```{r, echo = F, warning = F, message = F}
 library(tidyverse)
 library(xtable)
+library(kableExtra)
 ```
 
 
@@ -155,7 +156,6 @@ sim_sets %>%
         sanitize.text.function = function(x) {x},
         include.rownames=FALSE)
 ```
-
 
 ## 2.3 | Model Development 
 

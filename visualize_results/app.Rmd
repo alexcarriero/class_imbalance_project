@@ -42,12 +42,6 @@ Inputs {.sidebar}
 ```{r eruptions, echo=FALSE}
 inputPanel(
   
-  # selectInput("scenario", label = "Select Scenario",
-  #             choices = list("1" = 1, "2" = 2, "3" = 3, "4" = 4, "5" = 5, 
-  #                            "6" = 6, "7" = 7, "8" = 8, "9" = 9, "10" = 10,
-  #                            "11" = 11, "12" = 12, "13" = 13, "14" = 14, "15" = 15,
-  #                            "16" = 16, "17" = 17, "18" = 18), selected = 1),
-  
   selectInput("npred", label = "No. of Predictors", 
               choices = list("8" = 8, "16" = 16), selected = 8),
   
@@ -166,5 +160,7 @@ renderPlot({
     
 })
 ```
+
+
 
 
