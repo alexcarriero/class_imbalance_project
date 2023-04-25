@@ -161,6 +161,23 @@ renderPlot({
 })
 ```
 
+### Summary Statistics 
+
+```{r}
+renderDT({
+  
+  df()$summary %>% 
+    mutate(across(where(is.numeric), round, 2)) %>%
+    mutate(pair_id = as.numeric(pair_id)) %>% 
+    arrange(pair_id, decending = F) %>% 
+    merge(pairs, by = "pair_id") %>%
+    reorder_and_rename() %>%
+    relocate(c(pair_id, correction, algorithm)) %>%
+    select(-pair_id) %>%
+    DT::datatable(rownames = FALSE)
+  
+})
+```
 
 
 

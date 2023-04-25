@@ -57,7 +57,7 @@ sim_sets <-
     "C"                  = auc) 
 
 sim_sets %>% 
-  kable(booktabs = T, escape = F, linesep = "\\addlinespace",
+  kable(booktabs = T, escape = F, linesep = "  ", align = rep("c", 9),
                caption = "Summary of simulation scenarios.", label = "tab:table") %>% 
   kable_styling(full_width = F, latex_options ="hold_position") %>% 
   footnote(symbol =  "N is the minimum required sample size for the prediction model.")
@@ -98,7 +98,7 @@ cbind(Method, Abbreviation, Hyperparameters, Implementation)%>%
   as.data.frame()%>%
   rename("R Package" = "Implementation")%>% 
   kable(
-    booktabs = T, escape = F, linesep = "\\addlinespace",
+    booktabs = T, escape = F, linesep = "\\addlinespace", align = rep("c", 4),
     caption = "Summary of imbalance corrections implementation", label = "tab:table") %>%
   kable_styling(full_width = F, latex_options ="hold_position")%>%
   footnote(symbol =  c("\ \ \ \  $k$: the number of nearest neighbors in implementation of SMOTE.", 
@@ -136,7 +136,7 @@ cbind(Method, Abbreviation, Hyperparameters, Implementation)%>%
   as.data.frame()%>%
   rename("R Package" = "Implementation")%>% 
   kable(
-    booktabs = T, escape = F, linesep = "\\addlinespace",
+    booktabs = T, escape = F, linesep = "\\addlinespace", align = rep("c", 4),
     caption = "Summary of classification algorithm implementation", label = "tab:table") %>%
   kable_styling(full_width = F, latex_options ="hold_position") %>%
     footnote(symbol =  c("\ \ \ \ $A$: caret default grid", 
@@ -146,6 +146,71 @@ cbind(Method, Abbreviation, Hyperparameters, Implementation)%>%
 ```
 
 \newpage 
+
+# Results Table 
+```{r, echo = F}
+prepare_for_results_table <- function(dataframe){
+  dataframe %>% 
+  mutate(pair_id = pair_id %>% as.numeric()) %>% 
+  arrange(pair_id) %>% 
+  select(-pair_id) %>% 
+  round(digits = 2) %>% 
+  # mutate(auc_med = paste0(format(round(auc_med, 2), nsmall = 2), " \\n (", format(round(auc_sd, 2), nsmall = 2), ")"),
+  #        bri_med = paste0(format(round(bri_med, 2), nsmall = 2), " \\n (", format(round(bri_sd, 2), nsmall = 2), ")"),
+  #        int_med = paste0(format(round(int_med, 2), nsmall = 2), " \\n (", format(round(int_sd, 2), nsmall = 2), ")"),
+  #        slp_med = paste0(format(round(slp_med, 2), nsmall = 2), " \\n (", format(round(slp_sd, 2), nsmall = 2), ")")) %>%
+  # select(auc_med, bri_med, int_med, slp_med) %>% 
+  t() %>% 
+  as.data.frame() 
+}
+```
+
+```{r, echo = F}
+library(tidyverse)
+library(kableExtra)
+options(scipen = 999)
+a <- readRDS("./../visualize_results/results/results_sc4_new.RData")$summary %>% prepare_for_results_table()
+b <- readRDS("./../visualize_results/results/results_sc5_new.RData")$summary %>% prepare_for_results_table()
+c <- readRDS("./../visualize_results/results/results_sc6_new.RData")$summary %>% prepare_for_results_table()
+
+# x <- readRDS("./../visualize_results/results/results_sc13_new.RData")$summary %>% prepare_for_results_table()
+# y <- readRDS("./../visualize_results/results/results_sc14_new.RData")$summary %>% prepare_for_results_table()
+# z <- readRDS("./../visualize_results/results/results_sc15_new.RData")$summary %>% prepare_for_results_table()
+
+# d <- bind_rows(a,b,c,x,y,z)
+d <- bind_rows(a,b,c)
+
+d <- as.data.frame(d)
+colnames(d) <- c(1:30)
+
+d <- as.matrix(d)
+# x <- data.frame(rnames = rep(c("C", "SD", "Brier Score", "SD", "Cal Int", "SD", "Cal Slp", "SD"),6))
+x <- data.frame(rnames = rep(c("Concordance Statistic", "MCMC Error", "Brier Score", "MCMC Error",
+                               "Calibration Intercept", "MCMC Error", "Calibration Slope", "MCMC Error"),3))
+rownames(d) <- x$rnames
+
+d[d > 10]   <- "BIG"
+
+d %>%
+  kable(booktabs = T, format = "latex", align = rep("c", 30),
+        col.names = rep(c("LR", "SVM", "RF", "XG", "RB", "EE"), 5),
+        linesep = c("\\addlinespace", "\\addlinespace", "\\addlinespace", "\\addlinespace", "\\addlinespace", "\\addlinespace", "\\addlinespace",
+                  "\\addlinespace \\addlinespace \\addlinespace \\addlinespace"),
+        caption = "Results Table", label = "tab:table") %>%
+  kable_styling(latex_options = "scale_down") %>%
+  kableExtra::landscape() %>%
+  pack_rows("8 Predictors,  Event Fraction = 0.5",   1,  8) %>%
+  pack_rows("8 Predictors,  Event Fraction = 0.2",   9, 16) %>%
+  pack_rows("8 Predictors,  Event Fraction = 0.02", 17, 24) %>%
+  # pack_rows("16 Predictors, Event Fraction = 0.5",  25, 32) %>%
+  # pack_rows("16 Predictors, Event Fraction = 0.2",  33, 40) %>%
+  # pack_rows("16 Predictors, Event Fraction = 0.02", 41, 48) %>%
+  # add_indent(c(1:48), level_of_indent = 2) %>%
+  add_indent(c(1:24), level_of_indent = 2) %>%
+  add_header_above(c(" " = 1, "Control" = 6, "RUS" = 6, "ROS" = 6, "SMOTE" = 6, "SENN" = 6))
+```
+
+
 
 # Appendix B Tables 
 ```{r, echo = F}
@@ -163,32 +228,62 @@ ee <- readRDS("error_table_easy_ensemble.RDS")
 
 ```{r, echo = F}
 cr %>% 
-  kable(booktabs = T, escape = F, linesep = " ", caption = "Errors: Imbalance Corrections", label = "tab:table") %>% 
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Imbalance Corrections", label = "tab:table") %>% 
   kable_styling(full_width = F, latex_options ="hold_position")
 
 lr %>% 
-  kable(booktabs = T, escape = F, linesep = " ", caption = "Errors: Logistic Regression", label = "tab:table") %>%
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Logistic Regression", label = "tab:table") %>%
   kable_styling(full_width = F, latex_options ="hold_position")
 
 sv %>% 
-  kable(booktabs = T, escape = F, linesep = " ", caption = "Errors: Support Vector Machine", label = "tab:table") %>%
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Support Vector Machine", label = "tab:table") %>%
   kable_styling(full_width = F, latex_options ="hold_position")
 
 rf %>%
-  kable(booktabs = T, escape = F, linesep = " ", caption = "Errors: Random Forest", label = "tab:table") %>%
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Random Forest", label = "tab:table") %>%
   kable_styling(full_width = F, latex_options ="hold_position")
 
 xg %>% 
-  kable(booktabs = T, escape = F, linesep = " ", caption = "Errors: XGBoost", label = "tab:table") %>%
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: XGBoost", label = "tab:table") %>%
   kable_styling(full_width = F, latex_options ="hold_position")
 
 rb %>% 
-  kable(booktabs = T, escape = F, linesep = " ", caption = "Errors: RUSBoost", label = "tab:table") %>%
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: RUSBoost", label = "tab:table") %>%
   kable_styling(full_width = F, latex_options ="hold_position")
 
 ee %>% 
-  kable(booktabs = T, escape = F, linesep = " ", caption = "Errors: EasyEnsemble", label = "tab:table") %>%
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: EasyEnsemble", label = "tab:table") %>%
   kable_styling(full_width = F, latex_options ="hold_position")
 ```
 
+
+```{r}
+df <- cr %>% 
+  mutate(to_go = Control + RUS + ROS + SMOTE + SENN) %>% 
+  filter(to_go != 0) %>% 
+  select(-to_go)
+
+df %>% 
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Imbalance Corrections", label = "tab:table") %>% 
+  kable_styling(full_width = F, latex_options ="hold_position")
+```
+
+```{r}
+df <- 
+  bind_rows(rb, ee) %>%
+  mutate(to_go = Control + RUS + ROS + SMOTE + SENN) %>% 
+  filter(to_go != 0) %>% 
+  select(-to_go)
+
+df %>% 
+    kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Classification Algorithms", label = "tab:table") %>%
+    kable_styling(full_width = F, latex_options ="hold_position") %>% 
+    pack_rows("RUSBoost:", 1, 2) %>% 
+    pack_rows("EasyEnsemble:", 3, 4) %>% 
+    add_indent(c(1:4), level_of_indent = 2)
+```
+
+```{r}
+
+```
 
