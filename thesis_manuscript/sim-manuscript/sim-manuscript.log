@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  24 APR 2023 21:47
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  25 APR 2023 08:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1052,132 +1052,132 @@ Overfull \vbox (6.46347pt too high) has occurred while \output is active []
 \openout3 = `sim-manuscript.pag'.
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 192--218
+Underfull \hbox (badness 10000) in paragraph at lines 196--222
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 234--237
+Underfull \hbox (badness 10000) in paragraph at lines 238--241
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--237
+Underfull \hbox (badness 10000) in paragraph at lines 238--241
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--268
+Underfull \hbox (badness 10000) in paragraph at lines 255--272
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--289
+Underfull \hbox (badness 10000) in paragraph at lines 274--293
 
  []
 
 
-LaTeX Warning: Reference `tab:sim_sets' on page 3 undefined on input line 294.
+LaTeX Warning: Reference `tab:sim_sets' on page 3 undefined on input line 298.
 
 [3] [4]
 
-Package natbib Warning: Citation `yu' on page 5 undefined on input line 448.
+Package natbib Warning: Citation `yu' on page 5 undefined on input line 453.
 
 
-Package natbib Warning: Citation `kaur' on page 5 undefined on input line 448.
+Package natbib Warning: Citation `kaur' on page 5 undefined on input line 453.
 
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 459.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 464.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
 
-Package natbib Warning: Citation `ebmc' on page 5 undefined on input line 472.
+Package natbib Warning: Citation `ebmc' on page 5 undefined on input line 477.
 
 [5]
 
-Package natbib Warning: Citation `ebmc' on page 6 undefined on input line 490.
+Package natbib Warning: Citation `ebmc' on page 6 undefined on input line 495.
 
 [6] [7]
-Underfull \hbox (badness 10000) in paragraph at lines 641--691
+Underfull \hbox (badness 10000) in paragraph at lines 652--700
 
  []
 
-[8]
-LaTeX Font Info:    Trying to load font information for TS1+stix on input line 699.
+LaTeX Font Info:    Trying to load font information for TS1+stix on input line 704.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
-)
-Underfull \hbox (badness 10000) in paragraph at lines 702--706
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 715--720
-
- []
-
-<./../results/calibration_plot_manuscript_sc4.png, id=173, 867.24pt x 1084.05pt>
+) [8{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix/stix-ts1.enc}]
+<./../results/calibration_plot_manuscript_sc4.png, id=176, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc4.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc4.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc4.png  used on input line 754.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc4.png  used on input line 737.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/calibration_plot_manuscript_sc5.png, id=175, 867.24pt x 1084.05pt>
+<./../results/calibration_plot_manuscript_sc5.png, id=178, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc5.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc5.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc5.png  used on input line 763.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc5.png  used on input line 746.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/calibration_plot_manuscript_sc6.png, id=176, 867.24pt x 1084.05pt>
+<./../results/calibration_plot_manuscript_sc6.png, id=179, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc6.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc6.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc6.png  used on input line 772.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc6.png  used on input line 755.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/performance_metrics_manuscript_sc4.png, id=177, 867.24pt x 1084.05pt>
+<./../results/performance_metrics_manuscript_sc4.png, id=180, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc4.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc4.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc4.png  used on input line 781.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc4.png  used on input line 764.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/performance_metrics_manuscript_sc5.png, id=178, 867.24pt x 1084.05pt>
+<./../results/performance_metrics_manuscript_sc5.png, id=181, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc5.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc5.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc5.png  used on input line 790.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc5.png  used on input line 773.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/performance_metrics_manuscript_sc6.png, id=179, 867.24pt x 1084.05pt>
+<./../results/performance_metrics_manuscript_sc6.png, id=182, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc6.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc6.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc6.png  used on input line 799.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc6.png  used on input line 782.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/auc_across_scenarios.png, id=180, 1445.4pt x 867.24pt>
+<./../results/auc_across_scenarios.png, id=183, 1445.4pt x 867.24pt>
 File: ./../results/auc_across_scenarios.png Graphic file (type png)
 <use ./../results/auc_across_scenarios.png>
-Package pdftex.def Info: ./../results/auc_across_scenarios.png  used on input line 808.
+Package pdftex.def Info: ./../results/auc_across_scenarios.png  used on input line 791.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
-<./../results/bri_across_scenarios.png, id=181, 1445.4pt x 867.24pt>
+<./../results/bri_across_scenarios.png, id=184, 1445.4pt x 867.24pt>
 File: ./../results/bri_across_scenarios.png Graphic file (type png)
 <use ./../results/bri_across_scenarios.png>
-Package pdftex.def Info: ./../results/bri_across_scenarios.png  used on input line 817.
+Package pdftex.def Info: ./../results/bri_across_scenarios.png  used on input line 800.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
-<./../results/int_across_scenarios.png, id=182, 1445.4pt x 867.24pt>
+<./../results/int_across_scenarios.png, id=185, 1445.4pt x 867.24pt>
 File: ./../results/int_across_scenarios.png Graphic file (type png)
 <use ./../results/int_across_scenarios.png>
-Package pdftex.def Info: ./../results/int_across_scenarios.png  used on input line 826.
+Package pdftex.def Info: ./../results/int_across_scenarios.png  used on input line 809.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
-<./../results/slp_across_scenarios.png, id=183, 1445.4pt x 867.24pt>
+<./../results/slp_across_scenarios.png, id=186, 1445.4pt x 867.24pt>
 File: ./../results/slp_across_scenarios.png Graphic file (type png)
 <use ./../results/slp_across_scenarios.png>
-Package pdftex.def Info: ./../results/slp_across_scenarios.png  used on input line 835.
+Package pdftex.def Info: ./../results/slp_across_scenarios.png  used on input line 818.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
-[9{/Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/enc/dvips/stix/stix-ts1.enc}] [10]
-Underfull \hbox (badness 10000) in paragraph at lines 928--937
+
+Underfull \hbox (badness 10000) in paragraph at lines 905--909
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 975--977
+Underfull \hbox (badness 10000) in paragraph at lines 918--923
+
+ []
+
+[9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 945--954
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 978--981
+Underfull \hbox (badness 10000) in paragraph at lines 992--994
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 995--998
 
  []
 
@@ -1185,9 +1185,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 978--981
 pdfTeX warning (ext4): destination with the same identifier (name{equation.5.6}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.982 \newpage
+l.999 \newpage
               ]
-Underfull \hbox (badness 10000) in paragraph at lines 988--1015
+Underfull \hbox (badness 10000) in paragraph at lines 1005--1032
 
  []
 
@@ -1212,10 +1212,10 @@ Here is how much of TeX's memory you used:
  40 hyphenation exceptions out of 8191
  90i,14n,90p,983b,625s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/alexcarriero/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm-bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb>
-Output written on sim-manuscript.pdf (22 pages, 25317142 bytes).
+Output written on sim-manuscript.pdf (22 pages, 25317720 bytes).
 PDF statistics:
- 438 PDF objects out of 1000 (max. 8388607)
- 355 compressed objects within 4 object streams
+ 441 PDF objects out of 1000 (max. 8388607)
+ 358 compressed objects within 4 object streams
  108 named destinations out of 1000 (max. 500000)
  219 words of extra memory for PDF output out of 10000 (max. 10000000)
 

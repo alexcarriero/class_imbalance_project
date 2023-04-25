@@ -102,7 +102,7 @@ Prediction modelling is a useful tool in clinical medicine
 decision making; for instance, to help decide if a patient is a good
 candidate for surgery \citep{annals, achilles}. Most often, the purpose
 of a clinical prediction model is to estimate a patient's risk of
-experiencing a particular heath outcome (e.g., disease). Due to the
+experiencing a particular heath event (e.g., disease). Due to the
 (thankfully) rare nature of many diseases, data available to train
 clinical prediction models often exhibit class imbalance (i.e.,
 observations from patients with vs.~without the event of interest are
@@ -113,20 +113,21 @@ Consequently, class imbalance correction methodologies are proposed as a
 solution \citep{cip, summary_m, lp, summary_h}.\\
 \strut \\
 While an abundance of imbalance correction methodologies are present
-(summarized here \citep{summary_m, lp, summary_h}) information regarding
-the effect of these imbalance corrections on model calibration is
-sparse. Model calibration is a metric used to capture the reliability of
-individual risk predictions. For clinical applications, it is essential
-to measure prediction model calibration. This is because, when a
-prediction models are developed for clinical use, each patient's
-predicted risk is the entity that is used to inform clinical decisions.
-If a model is poorly calibrated, it may produce risk estimates that are
-misleading \citep{achilles}. A poorly calibrated model may produce
-predicted risks that consistently over- or under-estimate true risk or
-that are too extreme (too close to 0 or 1) or too modest
-\citep{achilles}. This can lead to poor treatment decisions or to
-clinicians communicating false reassurance or hope to patients
-\citep{achilles, 12days}.\\
+(summarized here \citep{summary_m, lp, summary_h}), information
+regarding the effect of these imbalance corrections on model calibration
+is sparse. Model calibration is a metric used to capture the reliability
+of individual risk predictions \citep{achilles}. For clinical
+applications, it is essential to measure prediction model calibration.
+This is because, when a prediction models are developed for clinical
+use, each patient's predicted risk is the entity that is used to inform
+clinical decisions. If a model is poorly calibrated, it may produce risk
+estimates that are misleading \citep{achilles}. A poorly calibrated
+model may produce predicted risks that consistently over- or
+under-estimate true risk or that are too extreme (too close to 0 or 1)
+or too modest \citep{achilles}. This can lead to poor treatment
+decisions or to clinicians communicating false reassurance or hope to
+patients \citep{achilles, 12days}. For a detailed introduction to model
+calibration we refer to \citep{achilles}.\\
 \strut \\
 \strut \\
 \strut \\
@@ -161,16 +162,19 @@ prediction models without compromising model calibration?
 
 In our research, we demonstrated the effects of common class imbalance
 correction methodologies, on the out-of-sample performance of clinical
-prediction models. We focused on clinical prediction models designed for
-dichotomous risk prediction. A simulation study was implemented to
-illustrate the effects of imbalance correction methodologies across 18
-unique data-generating scenarios (section 2.2). For each scenario, we
-compared the out-of-sample predictive performance (i.e., model
-performance on data not used to train the model) of models developed
-using a two-step procedure (section 2.3). This procedure consisted of an
-imbalance correction step in which the data were pre-processed, and a
-model training step in which the pre-processed data were used to train a
-machine learning model.
+prediction models trained with a variety of machine learning algorithms.
+We focused on prediction models designed for dichotomous risk
+prediction. A simulation study was implemented to illustrate the effects
+of imbalance correction methodologies across 18 unique data-generating
+scenarios (section 2.2). For each scenario, we compared the
+out-of-sample predictive performance (i.e., model performance on data
+not used to train the model) of models developed using a two-step
+procedure (section 2.3). This procedure consisted of an imbalance
+correction step in which the data were pre-processed, and a model
+training step in which the pre-processed data were used to train a
+machine learning model. Finally, we adhere to the principle of Open
+Science, and therefore, all code used to implement the simulation study,
+and process the results is made publicly available (section 2.6).
 
 \hypertarget{data-generating-mechanism}{%
 \subsection{Data Generating Mechanism}\label{data-generating-mechanism}}
@@ -440,6 +444,7 @@ SMOTE - Edited Nearest Neighbours & SENN & $k1=5$, $k2 = 3$ & IRIC \cite{iric}\\
 \subsubsection{Classification
 Algorithms}\label{classification-algorithms}}
 
+\hfill\break
 Classification algorithms were selected based on a systematic review
 identifying common algorithms used to develop prediction models in a
 medical context \citep{constanza}. These algorithms include: logistic
@@ -542,11 +547,13 @@ re-calibration) and the re-calibrated predictions.
 
 Out-of-sample predictive performance was assessed using measures of
 calibration, discrimination and overall performance. All performance
-metrics were computed using the raw predictions (resulting from the
+metrics were computed using the raw predicted risks (resulting from the
 validation data) and subsequently, using the re-calibrated predictions,
 from each prediction model.\\
 \strut \\
-Calibration was measured using visual and empirical metrics. We assessed
+Model calibration measures the agreement between predicted risks and
+observed proportions in the data \citep{achilles}. Calibration was
+assessed using both visual and empirical metrics. We assessed
 calibration visually by means of flexible calibration curves. For each
 simulation iteration, a flexible calibration curve was generated.
 Coordinates for the calibration curve were calculated using loess
@@ -568,7 +575,8 @@ positive class than for those in the negative class. For dichotomous
 risk prediction, it is equivalent to the area under the Receiver
 Operator Characteristic curve \citep{epi}. A model which perfectly
 discriminates between the classes will have a concordance statistic of
-1; the minimum value for this statistic is 0.5 \citep{epi}.\\
+1; the minimum value for this statistic is 0.5 \citep{epi}. Recall from
+section 2.1, the data generating concordance statistics was 0.85.\\
 \strut \\
 Overall performance was measured by Brier score. This metric reflects
 both model discrimination and calibration and was calculated according
@@ -611,29 +619,32 @@ carefully monitored and stored. Please see Appendix A for details.
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-All results from our simulation study are displayed in a Shiny App:
-\url{https://alex-carriero.shinyapps.io/shiny_app/}.\\
-\strut \\
-Across the 18 data generating scenarios, the results did not differ
-greatly when the number of predictors or sample size varied. In general,
-from Figures 7-10, we see that, across all prediction models, an
-increase in sample size improved model discrimination slightly,
-meanwhile, brier score, calibration intercept and slope were relatively
-unaffected. Similarly, increasing the number of predictors from 8 to 16
-improved model discrimination, while the other performance metrics
-remained relatively unchanged. For this reason, we present the results
-for three simulation scenarios, varying event fraction, while holding
-the number of predictors and sample size constant.\\
-\strut \\
 In this paper, we present calibration plots and summarize the
 performance metrics for simulation scenarios with 8 predictors, adequate
 sample sample size (\(N\)) and: balanced (event fraction \(= 0.5\)),
 moderately imbalanced (event fraction \(=0.2\)) and extremely imbalanced
-(event fraction \(=0.02\)) data, simulation scenarios 4-6, respectively.
+(event fraction \(=0.02\)) data; simulation scenarios 4-6, respectively.
 In Figures 1-3 we present the flexible calibration curves for all
 prediction models across scenarios 4-6, respectively; performance
 metrics for these simulation scenarios are summarized in Table
-\ref{tab:results}.
+\ref{tab:results}. Furthermore, simulation results for all data
+generating scenarios are presented in a Shiny App:
+\href{https://alex-carriero.shinyapps.io/shiny_app/.}{https://alex-carriero.shinyapps.io/shiny\_app/}\\
+\strut \\
+To give an intuition for the results across the 18 data generating
+scenarios, in this paper, we present the median (across simulation
+iterations) for each empirical performance metric, for all prediction
+models in every data generating scenario in Figures 7-10. In general, we
+found that the results did not differ greatly when the number of
+predictors or sample size varied. From Figures 7-10, we see that, across
+all prediction models, an increase in sample size improved median model
+discrimination, meanwhile median brier score, calibration intercept and
+slope were relatively unaffected. Similarly, increasing the number of
+predictors from 8 to 16 improved median model discrimination slightly,
+while the other performance metrics remained unchanged. For this reason,
+we present only the results for three simulation scenarios, varying
+event fraction, while holding the number of predictors and sample size
+constant.
 
 \hypertarget{calibration}{%
 \subsection{Calibration}\label{calibration}}
@@ -650,12 +661,11 @@ separation in the calibration curves, for models using tree-based
 algorithms (RF, XG, EE). This division among the curves reflects the
 direction of the chance imbalance in the training data: top-curves were
 generated when chance imbalance favored the non-events, and
-bottom-curves when chance imbalance favored the events. (\textbf{should
-I show the two-colored plot in an appendix?}). Finally, when SENN was
-used to pre-process the training data, LR, SVM and XG exhibited worse
-calibration than with the control, while RF, RB and EE remained as well
-calibrated as with the control (RF and RB) or slightly better calibrated
-(EE).\\
+bottom-curves when chance imbalance favored the events. Finally, when
+SENN was used to pre-process the training data, LR, SVM and XG exhibited
+worse calibration than with the control, while RF, RB and EE remained as
+well calibrated as with the control (RF and RB) or slightly better
+calibrated (EE).\\
 \strut \\
 When data exhibited moderate imbalance (Figure \ref{fig:plot2}) all
 algorithms, except RB and EE, were well calibrated with the control (no
@@ -676,54 +686,27 @@ not vary much across the iterations, rather, they exhibited a specific
 pattern of miscalibration: all predicted risks over-estimated true risk.
 Similarly, regardless of the algorithm used to develop the prediction
 model, pre-processing the data with an imbalance correction resulted in
-worse model calibration (Figure \ref{fig:plot3}).\\
+worse model calibration (Figure \ref{fig:plot3}). Specifically,
+correcting for imbalance resulted predictions models which consistently
+overestimated true risk.\\
 \strut \\
-- Overall, as imbalance between the classes was magnified, model
-calibration deteriorated for all algorithms.\\
-- Interestingly, imbalance corrections affected model calibration the
-same way, regardless of the algorithm: all yield predicted risk which
-are overestimates.\\
-- No imbalance correction + alogrithm out-performed its control, with
-respect to model calibration.\\
-\strut \\
-\textbf{need to add info about cal intercept, slope and
-re-calibration}\\
-
-\newpage
-
-Random Forest \url{Notes:/}
+Overall, as imbalance between the classes was magnified, model
+calibration deteriorated for all algorithms. Interestingly, all
+imbalance corrections affected model calibration in a similar fashion:
+regardless of the algorithm, the use of an imbalance correction resulted
+in worse model calibration. In summary, no prediction model developed
+using an imbalance correction (imbalance correction + algorithm) out
+performed its control (control + algorithm).\\
 
 \begin{itemize}
 \tightlist
 \item
-  random forest is design to increase model variance (DT has high bias,
-  need to increase variance).
+  need to add info about cal intercept, slope and re-calibration
 \item
-  random forest sways towards under vs.~over fitting \ldots{}
-  calibration slopes are often below 1, highlighting this
-  under-fitting.\\
-\item
-  like the other imbalance corrections, ROS still shifts calibration
-  curves to the right
-\item
-  for some scenarios (when control rf is under-fitting) adding ROS
-  results in good calibration
-\item
-  for other scenarios (when rf is well calibrated) ROS shifts the
-  calibration curves such that they over-estimate risk
-\item
-  ROS shifts the curves to the right less than the other imbalance
-  corrections\\
-  \strut \\
-  WHY:\\
-\item
-  random forest uses bagging -- so with random over sampling -- better
-  chance that each tree sees enough real observations from the minority
-\item
-  each of these bagged samples could technically have occurred by
-  sampling the uncorrected data with replacement (would just be very
-  unlikely)
+  recalibration
 \end{itemize}
+
+\newpage
 
 \hypertarget{discrimination}{%
 \subsection{Discrimination}\label{discrimination}}
@@ -910,6 +893,40 @@ metrics -- or include them all in one section}?
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
+
+Random Forest \url{Notes:/}
+
+\begin{itemize}
+\tightlist
+\item
+  random forest is design to increase model variance (DT has high bias,
+  need to increase variance).
+\item
+  random forest sways towards under vs.~over fitting \ldots{}
+  calibration slopes are often below 1, highlighting this
+  under-fitting.\\
+\item
+  like the other imbalance corrections, ROS still shifts calibration
+  curves to the right
+\item
+  for some scenarios (when control rf is under-fitting) adding ROS
+  results in good calibration
+\item
+  for other scenarios (when rf is well calibrated) ROS shifts the
+  calibration curves such that they over-estimate risk
+\item
+  ROS shifts the curves to the right less than the other imbalance
+  corrections\\
+  \strut \\
+  WHY:\\
+\item
+  random forest uses bagging -- so with random over sampling -- better
+  chance that each tree sees enough real observations from the minority
+\item
+  each of these bagged samples could technically have occurred by
+  sampling the uncorrected data with replacement (would just be very
+  unlikely)
+\end{itemize}
 
 \newpage
 
