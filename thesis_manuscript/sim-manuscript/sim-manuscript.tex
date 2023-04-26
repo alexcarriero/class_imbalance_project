@@ -53,12 +53,10 @@
 \begin{document}
 
 
-\title{Nice Title}
+\title{Implementing class imbalance corrections compromises model
+calibration, always.}
 
 \author[a,b]{Alex Carriero*}
-\author[b]{Maarten van Smeden}
-\author[b]{Kim Luijken}
-\author[c,d]{Ben van Calster}
 
 \authormark{Carriero \emph{et al}.}
 
@@ -66,13 +64,10 @@
 Univeristy, Utrecht, The Netherlands}
 \address[b]{Julius Center for Health Sciences and Primary Care,
 University Medical Center Utrecht, Utrecht, The Netherlands}
-\address[c]{Department of Biomedical Data Sciences, Leiden University
-Medical Center, Leiden, The Netherlands}
-\address[d]{EPI-Center, KU Leuven, Leuven, Belgium}
 
-\corres{*Alex Carriero, \email{alexjcarriero@gmail.com}}
+\corres{*Alex Carriero, Utrecht University.
+~~~~~~~~~~~~~~~\email{a.carriero@students.uu.nl}}
 
-\presentaddress{\textbf{what do I put here}}
 
 \abstract{Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Aenean ut elit odio. Donec fermentum tellus neque, vitae fringilla orci
@@ -90,33 +85,35 @@ dolor. Sed sed tincidunt ex. Curabitur imperdiet egestas tellus in
 iaculis. Maecenas ante neque, pretium vel nisl at, lobortis lacinia
 neque.}
 
-\keywords{Class file; \LaTeX; Statist. Med.; Rmarkdown;}
+\keywords{Class Imbalance; Machine Learning; Calibration; Prediction
+Modeling;}
 
 \maketitle
 
 \hypertarget{introduction}{%
 \section{Introduction}\label{introduction}}
 
-Prediction modelling is a useful tool in clinical medicine
+Prediction modeling is a useful tool in clinical medicine
 \citep{ewout_intro}. Prediction models can be used to aid in clinical
 decision making; for instance, to help decide if a patient is a good
 candidate for surgery \citep{annals, achilles}. Most often, the purpose
 of a clinical prediction model is to estimate a patient's risk of
-experiencing a particular heath event (e.g., disease). Due to the
-(thankfully) rare nature of many diseases, data available to train
-clinical prediction models often exhibit class imbalance (i.e.,
+experiencing a particular heath event (e.g., disease, successful
+surgery). Due to the rare nature of many diseases, data available to
+train clinical prediction models often exhibit class imbalance (i.e.,
 observations from patients with vs.~without the event of interest are
 not equally represented in the data). When prediction models are trained
-using imbalanced data, model performance is diminished; performance for
-the underrepresented class suffers the most \citep{cip, lp2}.
-Consequently, class imbalance correction methodologies are proposed as a
-solution \citep{cip, summary_m, lp, summary_h}.\\
+using imbalanced data, model performance is diminished; with fewer
+observations to learn from, performance for the underrepresented class
+suffers the most \citep{cip, lp2}. Consequently, class imbalance
+correction methodologies are proposed as a solution
+\citep{cip, summary_m, lp, summary_h}.\\
 \strut \\
-While an abundance of imbalance correction methodologies are present
-(summarized here \citep{summary_m, lp, summary_h}), information
+While an abundance of imbalance correction methodologies exist
+(summarized here:\citep{summary_m, lp, summary_h}), information
 regarding the effect of these imbalance corrections on model calibration
 is sparse. Model calibration is a metric used to capture the reliability
-of individual risk predictions \citep{achilles}. For clinical
+of individual risk predictions \citep{achilles}. In clinical
 applications, it is essential to measure prediction model calibration.
 This is because, when a prediction models are developed for clinical
 use, each patient's predicted risk is the entity that is used to inform
@@ -127,10 +124,8 @@ under-estimate true risk or that are too extreme (too close to 0 or 1)
 or too modest \citep{achilles}. This can lead to poor treatment
 decisions or to clinicians communicating false reassurance or hope to
 patients \citep{achilles, 12days}. For a detailed introduction to model
-calibration we refer to \citep{achilles}.\\
-\strut \\
-\strut \\
-\strut \\
+calibration and its relevance in clinical predictive analytics, we refer
+to Van Calster et al.~(2019) \citep{achilles}.\\
 \strut \\
 Only one study has assessed the impact of imbalance corrections on model
 calibration \citep{ruben}. In this study, the authors demonstrate that
@@ -147,7 +142,7 @@ common \citep{constanza}. The impact of imbalance corrections on model
 calibration is currently unknown for prediction models developed using
 these other classification algorithms.\\
 \strut \\
-Motivated by the work of Goorbergh and colleagues \citep{ruben}, we must
+Motivated by the work of Goorbergh et al.~(2022) \citep{ruben}, we must
 ensure that the ``cure'' is not worse than the disease. In our research,
 we assess the impact of imbalance corrections on model calibration for
 prediction models trained with a wide variety of classification
@@ -186,9 +181,10 @@ class (events) as class 0 and class 1, respectively. Data for each class
 were generated independently using distinct multivariate normal
 (\(mvn\)) distributions. As shown in equations 1 and 2, we specified a
 distinct mean and covariance structure for each class. The mean
-structures for the classes are represented as \(\mu_0\) and \(\mu_1\)
-for class 0 and 1, respectively. The covariance matrices are represented
-as \(\Sigma_0\) and \(\Sigma_1\) for class 0 and 1, respectively.
+structures for the classes are represented as \(\pmb{\mu_0}\) and
+\(\pmb{\mu_1}\) for class 0 and 1, respectively. The covariance matrices
+are represented as \(\pmb{\Sigma_0}\) and \(\pmb{\Sigma_1}\) for class 0
+and 1, respectively.
 
 \begin{align}
 &\mathrm{Class \ \  0:} \mathbf{X} \sim mvn( \pmb{\mu_0}, \pmb{\Sigma_0}) = mvn(\pmb{0}, \pmb{\Sigma_0}) \\
@@ -314,7 +310,7 @@ respectively.
 
 \begin{table}[!h]
 
-\caption{\label{tab:tab:sim_sets}Summary of simulation scenarios.}
+\caption{\label{tab:sim_sets}Summary of simulation scenarios.}
 \centering
 \begin{tabular}[t]{ccccccccc}
 \toprule
@@ -371,8 +367,8 @@ Edited Nearest Neighbor Rule (SENN) and a control, in which no
 correction was implemented. As determined by a recent systematic review,
 RUS, ROS and SMOTE are the imbalance corrections that are commonly
 implemented when developing clinical prediction models, SMOTE being the
-most prevalent \citep{constanza}. We included SMOTE-ENN as well, given
-literature indicating that SMOTE-ENN can outperform SMOTE under certain
+most prevalent \citep{constanza}. We included SENN as well, given
+literature indicating that it can outperform SMOTE under certain
 conditions \citep{senn, heart_failure_senn}. All imbalance corrections
 and the R packages used for their implementation in our simulation study
 are summarized in Table 2.\\
@@ -387,21 +383,21 @@ achieved. SMOTE generates artificial observations for the minority class
 by interpolating from the existing minority class observations
 \citep{chawla}. In our implementation, we specified the number of
 nearest neighbors (\(k\)) for SMOTE to be 5 (package default)
-\citep{iric}. In SMOTE - ENN, class balance is achieved by using
-combination of SMOTE and Wilson's Edited Nearest Neighbor Rule (ENN)
-\citep{wilson}. SMOTE is implemented first, to generate synthetic data
-for the minority class and then ENN is implemented to remove any
-observation which is different than its nearest neighbors \citep{senn}.
-This added step is implemented to make it easier for a classifier to
-distinguish between the classes, as when artificial observations are
-generated for the minority class using SMOTE, it may cause an increase
-noise near the class boundary. In our implementation, we specified the
-number of nearest neighbors in the SMOTE step (\(k_1\)) to be 5, and the
-number of nearest neighbors in ENN step (\(k_2\)) to be 3, the software
-defaults \citep{iric}. Finally, in the control ``correction'', data were
-not corrected for imbalance, and moved to second step of model
-development untouched (i.e., the imbalanced data were used to train
-prediction models).
+\citep{iric}. In SENN, class balance is achieved by using combination of
+SMOTE and Wilson's Edited Nearest Neighbor Rule (ENN) \citep{wilson}.
+SMOTE is implemented first, to generate synthetic data for the minority
+class and then ENN is implemented to remove any observation which is
+different than its nearest neighbors \citep{senn}. This added step is
+implemented to make it easier for a classifier to distinguish between
+the classes, as when artificial observations are generated for the
+minority class using SMOTE, it may cause an increase noise near the
+class boundary. In our implementation, we specified the number of
+nearest neighbors in the SMOTE step (\(k_1\)) to be 5, and the number of
+nearest neighbors in ENN step (\(k_2\)) to be 3, the software defaults
+\citep{iric}. Finally, in the control ``correction'', data were not
+corrected for imbalance, and moved to second step of model development
+untouched (i.e., the imbalanced data were used to train prediction
+models).
 
 \begin{table}[!h]
 
@@ -669,14 +665,23 @@ in Figure \ref{fig:plot5} and Table \ref{tab:results}. Similarly, when
 training data were pre-processed with any imbalance correction,
 prediction models produced risk estimates which consistently
 over-estimated true risk, regardless of the classification algorithm
-used (Figure \ref{fig:plot2}). Interestingly, RF trained with ROS data
-was protected against this general trend; for this one prediction model,
-model calibration appeared to be preserved (Figure \ref{fig:plot2}).
-From Figure \ref{fig:plot5} and Table \ref{tab:results}, we see that
-there is a trade off happening: in this scenario, the RF + control
-models had better calibration intercepts, on average (control: -0.04,
-ROS: -0.35) while the RF + ROS models had a better calibration slopes,
-on average (control: 1.27, ROS: 1.10).\\
+used (Figure \ref{fig:plot2}). This can be seen in Figure
+\ref{fig:plot5}, only the models which did not attempt to correct for
+class imbalance (control models for LR, SVM, RF and XG) had calibration
+intercepts centered around zero. Furthermore, we found that only the
+over-sampling corrections (ROS, SMOTE and SENN) had an effect on
+calibration slope, while RUS left calibration slopes relatively
+unaffected. For models that used over-sampling corrections, regardless
+of the algorithm, the predicted risks were either too extreme
+(calibration slopes \textless{} 1; LR, SVM, XG, RB) or too modest
+(calibration slopes \textgreater{} 1; EE). Interestingly, RF trained
+with ROS data was protected against this general trend; for this one
+prediction model, model calibration appeared to be preserved (Figure
+\ref{fig:plot2}). From Figure \ref{fig:plot5} and Table
+\ref{tab:results}, we see that there is a trade off happening: in this
+scenario, the RF + control models had better calibration intercepts, on
+average (control: -0.04, ROS: -0.35) while the RF + ROS models had a
+better calibration slopes, on average (control: 1.27, ROS: 1.10).\\
 \strut \\
 When data were extremely imbalanced (Figure \ref{fig:plot3}), all
 prediction models exhibited miscalibration. Without correcting for
@@ -691,7 +696,14 @@ risk estimates which largely over-estimated true risk. From Figure
 \ref{fig:plot6} and Table \ref{tab:results}, it is clear that in this
 scenario, only the models which did not attempt to correct for class
 imbalance (the control models for LR, SVM, RF and XG) had calibration
-intercepts centered around 0. something about calibration slopes here.\\
+intercepts centered around 0. Interestingly, calibration slopes were
+nearest to 1 for the control models and with RUS (Figure
+\ref{fig:plot6}). In other words, RUS did not worsen calibration slopes,
+while the over-sampling corrections (ROS, SMOTE, SENN) did. The
+over-sample corrections led to predicted risks that were either too
+extreme (calibration slopes \textless{} 1; LR, SVM, RF, XG, RB) or too
+modest (calibration slopes \textgreater{} 1; EE), depending on the
+algorithm (Figure \ref{fig:plot6}).\\
 \strut \\
 Overall, as imbalance between the classes was magnified, model
 calibration deteriorated for all prediction models. Interestingly, all
@@ -761,9 +773,22 @@ scenarios 4, 5, and 6, respectfully. For this reason, we only compare
 Brier scores within simulation scenarios that have the same event
 fraction.\\
 \strut \\
-i don't like the brier score
-
-\newpage
+brier score results.\\
+\strut \\
+* In the performance measures section I say that we assess calibration,
+discrimination, and overall performance -- we measure overall
+performance using Brier Score (the term ``overall performance'' for
+brier score comes from Ewout's 2010 paper). I don't like overall
+performance as a heading, because it seems likes I'm about to give a
+summary of the other two metrics. Is there something else we can use
+instead of overall performance to refer to Brier Score?\\
+\strut \\
+I'm finding it hard to see what is brier score really adding here, after
+re-calibration, all brier scores are comparable -- maybe can just leave
+this metric out? It is difficult to interpret when when event fraction
+is low. I'm finding it difficult to write discussion on this as well --
+without mentioning that we tried scaled brier but that was also
+un-interpretable, but then I don't mention scaled brier in the methods.
 
 \hypertarget{recalibration}{%
 \subsection{Recalibration~}\label{recalibration}}
@@ -779,8 +804,8 @@ curves and less over-estimation of predicted risks. For the class
 balance scenarios, the separation seen among the calibration curves
 disappeared. Importantly, we observed that even after re-calibration, no
 model trained with imbalance corrected data out performed its control,
-with respect to model calibration. This viewed clearly using our Shiny
-App. With respect to discrimination, concordance statistics were
+with respect to model calibration. This can be viewed clearly using our
+Shiny App. With respect to discrimination, concordance statistics were
 relatively unaffected by re-calibration (Table \ref{tab:results}).
 Finally, differences among the prediction models with respect to Brier
 score were minimized after re-calibration such that all prediction
@@ -953,14 +978,56 @@ models yielded comparable Brier scores (Table \ref{tab:results}).
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
-intro intro intro\\
+In this research we aimed to determine if implementing class imbalance
+corrections could improve the out-of-sample predictive performance of
+clinical prediction models, without compromising model calibration. We
+considered five imbalance corrections and six machine learning
+algorithms resulting in a comparison of 30 prediction models. Using
+Monte Carlo simulations, we compared the performance of these prediction
+models over 18 data generating scenarios. We determined that for any
+level of class imbalance, across all algorithms, using uncorrected
+imbalanced data to train prediction models yielded the best model
+calibration. Correcting for imbalance using data pre-processing methods
+(RUS, ROS, SMOTE, SENN) or an imbalance correcting algorithm (RB, EE)
+resulted in prediction models which consistently over-estimated risk. In
+summary, while imbalance corrections improved discrimination for some
+machine learning algorithms, model calibration always diminished.\\
 \strut \\
-Correcting for imbalance using pre-processing methods or an imbalance
-correcting algorithm (RB, EE) resulted in prediction models which
-consistently over-estimated risk. The miscalibration introduced by these
-corrections could not be repaired by re-calibration. In all class
-imbalanced settings, across all algorithms, using uncorrected imbalanced
-data produced the best model calibration.
+In an attempt to improve the miscalibration, we implemented a
+re-calibration procedure. Across all simulation scenarios, we found that
+miscalibration introduced by these corrections could not be fully
+repaired by re-calibration. While miscalibration in the calibration
+intercepts was fully repaired, re-calibration had no effect on
+calibration slopes. Consequently, models developed using over-sampling
+corrections (ROS, SMOTE, SENN) did not out-perform their controls even
+after re-calibration. Interestingly, with RUS, model calibration was
+preserved. Since, using RUS did not effect calibration slopes model
+calibration was not diminished compared to the control.\\
+\strut \\
+Our findings are consistent with those of Goorbergh et al.~(2022)
+\citep{ruben}. In our simulation, pre-processing the data to correct for
+class imbalance had no benefit for model discrimination, for models
+developed with logistic regression. This finding, in combination with
+the evidence that implementing imbalance corrections resulted in
+deteriorated model calibration, lead us to the same conclusion: for
+prediction models developed with LR, imbalance corrections do more harm
+than good. Interestingly, this finding was not true for other machine
+learning algorithms.\\
+\strut \\
+Limitations, algorithm tuning\\
+\strut \\
+Thanks for reading my paper - stop correcting for class imbalance unless
+you want to not be able to interpret the predicted risks - the end
+
+\hypertarget{conclusion}{%
+\section{Conclusion}\label{conclusion}}
+
+Class imbalance is a problem due to the fundamental lack of information
+available for the minority class. Given our findings, creating
+artificially-balanced data (via pre-processing methods or imbalance
+correcting algorithms) does not solve this problem. If the goal of a
+clinical prediction model is to produce reliable predicted risks on an
+individual basis, then correcting for class imbalance not advised.
 
 \newpage
 
@@ -989,6 +1056,7 @@ cumulative density function (cdf) of the standard normal distribution.\\
 \begin{equation} \tag{A.1}
 C = \Phi \left( \sqrt{\pmb{\Delta_\mu}{'}\  (\pmb{\Sigma_0} + \pmb{\Sigma_1})^{-1} \ \pmb{\Delta_{\mu}}} \right)
 \end{equation}\\
+\strut \\
 \strut \\
 In our research, the differences in predictor means between the classes
 were equivalent. In other words, the elements of \(\pmb{\Delta_\mu}\)
@@ -1029,7 +1097,7 @@ Based on a desired \(C\) of \(0.85\),\\
 Equation (\(A.2\)) was used to derive the appropriate \(\delta_\mu\) for
 each simulation scenario. The R code used for implementation of this
 formula can be found on GitHub, in the directory
-\texttt{simulation\_code} sub-directory
+\texttt{simulation\_code}, sub-directory
 \texttt{data-generating-mechanism}:
 \url{https://github.com/alexcarriero/masters_thesis}.\\
 \strut \\
