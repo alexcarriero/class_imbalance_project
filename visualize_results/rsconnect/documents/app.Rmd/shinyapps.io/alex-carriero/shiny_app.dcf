@@ -1,0 +1,14 @@
+name: shiny_app
+title: shiny_app
+username:
+account: alex-carriero
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 8851703
+bundleId: 7125059
+url: https://alex-carriero.shinyapps.io/shiny_app/
+when: 1682280315.1211
+lastSyncTime: 1682280315.12111
+asMultiple: TRUE
+asStatic: FALSE
+ignoredFiles: dashboard.Rmd

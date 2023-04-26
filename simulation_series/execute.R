@@ -4,7 +4,7 @@ library(MASS)
 library(caret)
 library(pROC)
 
-setwd("/Users/alexcarriero/Desktop/thesis github/masters_thesis/simulation_series/")
+# setwd("/Users/alexcarriero/Desktop/thesis github/masters_thesis/simulation_series/")
 
 # Manual Override Package Installation
 # ROSE 
@@ -29,7 +29,7 @@ source("packages/simsalapar-master/R/tryCatchWE.R")
 # Helpers ----------------------------------------------------------------------
 
 # functions
-source("functions2.R")
+source("functions.R")
 
 # seeds 
 seed.farm <- readRDS("seeds/seedfarm.RData")
@@ -39,10 +39,10 @@ set <- readRDS("data-generating-mechanism/set.RData")
 
 # Simulation -------------------------------------------------------------------
 
-# slurm_id <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
+slurm_id <- as.numeric(Sys.getenv("SLURM_ARRAY_TASK_ID"))
 
 scenario <- 1
-start    <- 14 # which_iters[slurm_id,1]
-stop     <- 14 # which_iters[slurm_id,2]
+start    <- which_iters[slurm_id,1]
+stop     <- which_iters[slurm_id,2]
 
 sim_in_series(scenario, start, stop)
