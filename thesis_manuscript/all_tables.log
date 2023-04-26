@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  24 APR 2023 15:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  25 APR 2023 10:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -346,7 +346,7 @@ Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
 ) (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2023-04-20 v7.00w Hypertext links for LaTeX
+Package: hyperref 2023-04-22 v7.00x Hypertext links for LaTeX
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
 Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
 ) (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -387,7 +387,7 @@ Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
 \Hy@linkcounter=\count301
 \Hy@pagecounter=\count302
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2023-04-20 v7.00w Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2023-04-22 v7.00x Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -395,7 +395,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count303
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2023-04-20 v7.00w Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2023-04-22 v7.00x Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
@@ -439,7 +439,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2023-04-20 v7.00w Hyperref driver for pdfTeX
+File: hpdftex.def 2023-04-22 v7.00x Hyperref driver for pdfTeX
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
@@ -646,7 +646,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 605.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 635.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [6
@@ -665,15 +665,15 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 13312 strings out of 477961
- 210486 string characters out of 5837168
- 1943074 words of memory out of 5000000
- 33256 multiletter control sequences out of 15000+600000
+ 13313 strings out of 477961
+ 210502 string characters out of 5837168
+ 2027074 words of memory out of 5000000
+ 33257 multiletter control sequences out of 15000+600000
  557991 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  89i,13n,90p,495b,476s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb>
-Output written on all_tables.pdf (9 pages, 183441 bytes).
+Output written on all_tables.pdf (9 pages, 183578 bytes).
 PDF statistics:
  142 PDF objects out of 1000 (max. 8388607)
  111 compressed objects within 2 object streams

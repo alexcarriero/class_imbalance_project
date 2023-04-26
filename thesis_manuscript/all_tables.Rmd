@@ -173,20 +173,20 @@ a <- readRDS("./../visualize_results/results/results_sc4_new.RData")$summary %>%
 b <- readRDS("./../visualize_results/results/results_sc5_new.RData")$summary %>% prepare_for_results_table()
 c <- readRDS("./../visualize_results/results/results_sc6_new.RData")$summary %>% prepare_for_results_table()
 
-# x <- readRDS("./../visualize_results/results/results_sc13_new.RData")$summary %>% prepare_for_results_table()
-# y <- readRDS("./../visualize_results/results/results_sc14_new.RData")$summary %>% prepare_for_results_table()
-# z <- readRDS("./../visualize_results/results/results_sc15_new.RData")$summary %>% prepare_for_results_table()
+x <- readRDS("./../visualize_results/results/results_sc4_recalibrated.RData")$summary %>% prepare_for_results_table()
+y <- readRDS("./../visualize_results/results/results_sc5_recalibrated.RData")$summary %>% prepare_for_results_table()
+z <- readRDS("./../visualize_results/results/results_sc6_recalibrated.RData")$summary %>% prepare_for_results_table()
 
-# d <- bind_rows(a,b,c,x,y,z)
-d <- bind_rows(a,b,c)
+d <- bind_rows(a,b,c,x,y,z)
+# d <- bind_rows(a,b,c)
 
 d <- as.data.frame(d)
 colnames(d) <- c(1:30)
 
 d <- as.matrix(d)
-# x <- data.frame(rnames = rep(c("C", "SD", "Brier Score", "SD", "Cal Int", "SD", "Cal Slp", "SD"),6))
 x <- data.frame(rnames = rep(c("Concordance Statistic", "MCMC Error", "Brier Score", "MCMC Error",
-                               "Calibration Intercept", "MCMC Error", "Calibration Slope", "MCMC Error"),3))
+                               "Calibration Intercept", "MCMC Error", "Calibration Slope", "MCMC Error"),6))
+
 rownames(d) <- x$rnames
 
 d[d > 10]   <- "BIG"
@@ -194,19 +194,18 @@ d[d > 10]   <- "BIG"
 d %>%
   kable(booktabs = T, format = "latex", align = rep("c", 30),
         col.names = rep(c("LR", "SVM", "RF", "XG", "RB", "EE"), 5),
-        linesep = c("\\addlinespace", "\\addlinespace", "\\addlinespace", "\\addlinespace", "\\addlinespace", "\\addlinespace", "\\addlinespace",
-                  "\\addlinespace \\addlinespace \\addlinespace \\addlinespace"),
+        linesep = c("", "", "", "", "", "", "",
+                  "\\addlinespace \\addlinespace"),
         caption = "Results Table", label = "tab:table") %>%
   kable_styling(latex_options = "scale_down") %>%
   kableExtra::landscape() %>%
-  pack_rows("8 Predictors,  Event Fraction = 0.5",   1,  8) %>%
-  pack_rows("8 Predictors,  Event Fraction = 0.2",   9, 16) %>%
-  pack_rows("8 Predictors,  Event Fraction = 0.02", 17, 24) %>%
-  # pack_rows("16 Predictors, Event Fraction = 0.5",  25, 32) %>%
-  # pack_rows("16 Predictors, Event Fraction = 0.2",  33, 40) %>%
-  # pack_rows("16 Predictors, Event Fraction = 0.02", 41, 48) %>%
-  # add_indent(c(1:48), level_of_indent = 2) %>%
-  add_indent(c(1:24), level_of_indent = 2) %>%
+  pack_rows("Scenario 4:",   1,  8) %>%
+  pack_rows("Scenario 5:",   9, 16) %>%
+  pack_rows("Scenario 6:", 17, 24) %>%
+  pack_rows("Scenario 4, Recalibrated:",  25, 32) %>%
+  pack_rows("Scenario 5, Recalibrated:",  33, 40) %>%
+  pack_rows("Scenario 6, Recalibrated:", 41, 48) %>%
+  add_indent(c(1:48), level_of_indent = 2) %>%
   add_header_above(c(" " = 1, "Control" = 6, "RUS" = 6, "ROS" = 6, "SMOTE" = 6, "SENN" = 6))
 ```
 
