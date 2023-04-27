@@ -262,7 +262,7 @@
 \RequirePackage[figuresright]{rotating}%
 %\RequirePackage{longtable}%
 %%\RequirePackage{threeparttable}%
-%%\RequirePackage{ulem}%
+\RequirePackage{ulem}%
 \RequirePackage{enumerate}%
 \RequirePackage{soul}
 \usepackage{caption}

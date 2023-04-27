@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  26 APR 2023 17:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  27 APR 2023 17:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -884,11 +884,7 @@ Package: longtable 2021-09-01 v4.17 Multi-page Table package (DPC)
 \c@LT@tables=\count441
 \c@LT@chunks=\count442
 \LT@p@ftn=\toks50
-)
-\cslhangindent=\skip109
-\csllabelwidth=\skip110
-\cslentryspacingunit=\skip111
-(/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+) (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count443
 \l__pdf_internal_box=\box132
@@ -897,43 +893,39 @@ File: l3backend-pdftex.def 2023-04-19 L3 backend support: PDF output (pdfTeX)
 LaTeX Warning: Unused global option(s):
     [AMA,STIX1COL].
 
-(./sim-manuscript.aux
-
-LaTeX Warning: Label `tab:tab:table' multiply defined.
-
-)
+(./sim-manuscript.aux)
 \openout1 = `sim-manuscript.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 53.
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 53.
-LaTeX Font Info:    Trying to load font information for LS1+stix on input line 53.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 24.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for LS1/stix/m/n on input line 24.
+LaTeX Font Info:    Trying to load font information for LS1+stix on input line 24.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls1stix.fd
 File: ls1stix.fd 2015/04/17 v1.1.2-latex STIX LS1 font definitions
 )
-LaTeX Font Info:    ... okay on input line 53.
-LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 53.
-LaTeX Font Info:    Trying to load font information for LS2+stix on input line 53.
+LaTeX Font Info:    ... okay on input line 24.
+LaTeX Font Info:    Checking defaults for LS2/stix/m/n on input line 24.
+LaTeX Font Info:    Trying to load font information for LS2+stix on input line 24.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls2stix.fd
 File: ls2stix.fd 2015/04/17 v1.1.2-latex STIX LS2 font definitions
 )
-LaTeX Font Info:    ... okay on input line 53.
+LaTeX Font Info:    ... okay on input line 24.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -950,7 +942,7 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 53.
+Package hyperref Info: Link coloring OFF on input line 24.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -987,42 +979,45 @@ Package hyperref Info: Link coloring OFF on input line 53.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Command `\dddot' is already robust on input line 53.
-LaTeX Info: Command `\ddddot' is already robust on input line 53.
+LaTeX Info: Command `\dddot' is already robust on input line 24.
+LaTeX Info: Command `\ddddot' is already robust on input line 24.
 \c@lstlisting=\count444
-LaTeX Font Info:    Trying to load font information for LS1+stixscr on input line 91.
+LaTeX Font Info:    Trying to load font information for LS1+stixscr on input line 61.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS2+stixex on input line 91.
+LaTeX Font Info:    Trying to load font information for LS2+stixex on input line 61.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input line 91.
+LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input line 61.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixbb on input line 91.
+LaTeX Font Info:    Trying to load font information for LS1+stixbb on input line 61.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS2+stixcal on input line 91.
+LaTeX Font Info:    Trying to load font information for LS2+stixcal on input line 61.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS1+stixsf on input line 91.
+LaTeX Font Info:    Trying to load font information for LS1+stixsf on input line 61.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 )
-LaTeX Font Info:    Trying to load font information for LS2+stixtt on input line 91.
+LaTeX Font Info:    Trying to load font information for LS2+stixtt on input line 61.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/stix/ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 )
-Overfull \hbox (346.99213pt too wide) in paragraph at lines 91--91
+Overfull \hbox (346.99213pt too wide) in paragraph at lines 61--61
 [][] | || []|[][] 
  []
 
-LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 91.
+LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 61.
+
+Overfull \vbox (2.18697pt too high) has occurred while \output is active []
+
 
 Overfull \vbox (6.46347pt too high) has occurred while \output is active []
 
@@ -1031,140 +1026,125 @@ Overfull \vbox (6.46347pt too high) has occurred while \output is active []
 \openout3 = `sim-manuscript.pag'.
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 192--218
+Underfull \hbox (badness 10000) in paragraph at lines 164--190
 
  []
 
 [2]
-Underfull \hbox (badness 10000) in paragraph at lines 234--237
+Underfull \hbox (badness 10000) in paragraph at lines 206--209
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--237
+Underfull \hbox (badness 10000) in paragraph at lines 206--209
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 251--268
+Underfull \hbox (badness 10000) in paragraph at lines 223--240
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 270--289
+Underfull \hbox (badness 10000) in paragraph at lines 242--261
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 265--281
 
  []
 
 [3] [4]
+Underfull \hbox (badness 10000) in paragraph at lines 333--371
 
-Package natbib Warning: Citation `yu' on page 5 undefined on input line 434.
+ []
 
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 445.
+
+Package natbib Warning: Citation `yu' on page 5 undefined on input line 404.
+
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 415.
 (/Users/alexcarriero/Library/TinyTeX/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2022/07/10 v2.5l Standard LaTeX font definitions
-) [5]
-Underfull \hbox (badness 10000) in paragraph at lines 489--511
+)
+Underfull \hbox (badness 10000) in paragraph at lines 398--429
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 459--482
 
  []
 
 [6] [7] [8] [9]
-<./../results/calibration_plot_manuscript_sc4.png, id=223, 867.24pt x 1084.05pt>
+<./../results/calibration_plot_manuscript_sc4.png, id=219, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc4.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc4.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc4.png  used on input line 816.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc4.png  used on input line 801.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/calibration_plot_manuscript_sc5.png, id=225, 867.24pt x 1084.05pt>
+<./../results/calibration_plot_manuscript_sc5.png, id=221, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc5.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc5.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc5.png  used on input line 825.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc5.png  used on input line 810.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/calibration_plot_manuscript_sc6.png, id=226, 867.24pt x 1084.05pt>
+<./../results/calibration_plot_manuscript_sc6.png, id=222, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc6.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc6.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc6.png  used on input line 834.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc6.png  used on input line 819.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/performance_metrics_manuscript_sc4.png, id=227, 867.24pt x 1084.05pt>
+<./../results/performance_metrics_manuscript_sc4.png, id=223, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc4.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc4.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc4.png  used on input line 843.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc4.png  used on input line 828.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/performance_metrics_manuscript_sc5.png, id=228, 867.24pt x 1084.05pt>
+<./../results/performance_metrics_manuscript_sc5.png, id=224, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc5.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc5.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc5.png  used on input line 852.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc5.png  used on input line 837.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/performance_metrics_manuscript_sc6.png, id=229, 867.24pt x 1084.05pt>
+<./../results/performance_metrics_manuscript_sc6.png, id=225, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc6.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc6.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc6.png  used on input line 861.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc6.png  used on input line 846.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
-<./../results/auc_across_scenarios.png, id=230, 1445.4pt x 867.24pt>
+<./../results/auc_across_scenarios.png, id=226, 1445.4pt x 867.24pt>
 File: ./../results/auc_across_scenarios.png Graphic file (type png)
 <use ./../results/auc_across_scenarios.png>
-Package pdftex.def Info: ./../results/auc_across_scenarios.png  used on input line 870.
+Package pdftex.def Info: ./../results/auc_across_scenarios.png  used on input line 855.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
-<./../results/bri_across_scenarios.png, id=231, 1445.4pt x 867.24pt>
+<./../results/bri_across_scenarios.png, id=227, 1445.4pt x 867.24pt>
 File: ./../results/bri_across_scenarios.png Graphic file (type png)
 <use ./../results/bri_across_scenarios.png>
-Package pdftex.def Info: ./../results/bri_across_scenarios.png  used on input line 879.
+Package pdftex.def Info: ./../results/bri_across_scenarios.png  used on input line 864.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
-<./../results/int_across_scenarios.png, id=232, 1445.4pt x 867.24pt>
+<./../results/int_across_scenarios.png, id=228, 1445.4pt x 867.24pt>
 File: ./../results/int_across_scenarios.png Graphic file (type png)
 <use ./../results/int_across_scenarios.png>
-Package pdftex.def Info: ./../results/int_across_scenarios.png  used on input line 888.
+Package pdftex.def Info: ./../results/int_across_scenarios.png  used on input line 873.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
-<./../results/slp_across_scenarios.png, id=233, 1445.4pt x 867.24pt>
+<./../results/slp_across_scenarios.png, id=229, 1445.4pt x 867.24pt>
 File: ./../results/slp_across_scenarios.png Graphic file (type png)
 <use ./../results/slp_across_scenarios.png>
-Package pdftex.def Info: ./../results/slp_across_scenarios.png  used on input line 897.
+Package pdftex.def Info: ./../results/slp_across_scenarios.png  used on input line 882.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
-[10] [11] [12]
-Underfull \hbox (badness 10000) in paragraph at lines 1046--1056
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1092
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1094--1104
-
- []
-
-[13
-pdfTeX warning (ext4): destination with the same identifier (name{equation.6.6}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1105 \newpage
-               ]
-Underfull \hbox (badness 10000) in paragraph at lines 1111--1138
-
- []
-
-(./sim-manuscript.bbl [14] [15])
+[10] [11] (./sim-manuscript.bbl [12])
 
 Package natbib Warning: There were undefined citations.
 
-[16] [17 <./../results/calibration_plot_manuscript_sc4.png>] [18 <./../results/calibration_plot_manuscript_sc5.png>] [19 <./../results/calibration_plot_manuscript_sc6.png>] [20 <./../results/performance_metrics_manuscript_sc4.png>] [21 <./../results/performance_metrics_manuscript_sc5.png>] [22 <./../results/performance_metrics_manuscript_sc6.png>] [23 <./../results/auc_across_scenarios.png> <./../results/bri_across_scenarios.png>] [24 <./../results/int_across_scenarios.png> <./../results/slp_across_scenarios.png>] (./sim-manuscript.aux)
-
-LaTeX Warning: There were multiply-defined labels.
-
- ) 
+[13] [14 <./../results/calibration_plot_manuscript_sc4.png>] [15 <./../results/calibration_plot_manuscript_sc5.png>] [16 <./../results/calibration_plot_manuscript_sc6.png>] [17 <./../results/performance_metrics_manuscript_sc4.png>] [18 <./../results/performance_metrics_manuscript_sc5.png>] [19 <./../results/performance_metrics_manuscript_sc6.png>] [20 <./../results/auc_across_scenarios.png> <./../results/bri_across_scenarios.png>] [21 <./../results/int_across_scenarios.png> <./../results/slp_across_scenarios.png>] (./sim-manuscript.aux) ) 
 Here is how much of TeX's memory you used:
- 20730 strings out of 477961
- 321628 string characters out of 5837168
- 2013074 words of memory out of 5000000
- 40491 multiletter control sequences out of 15000+600000
+ 20690 strings out of 477961
+ 321007 string characters out of 5837168
+ 1887074 words of memory out of 5000000
+ 40466 multiletter control sequences out of 15000+600000
  604496 words of font info for 135 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 90i,14n,90p,1000b,621s stack positions out of 10000i,1000n,20000p,200000b,200000s
- </Users/alexcarriero/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm-bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb>
-Output written on sim-manuscript.pdf (24 pages, 25328132 bytes).
+ 90i,12n,90p,551b,621s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ </Users/alexcarriero/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm-bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb>
+Output written on sim-manuscript.pdf (21 pages, 25305755 bytes).
 PDF statistics:
- 499 PDF objects out of 1000 (max. 8388607)
- 410 compressed objects within 5 object streams
- 116 named destinations out of 1000 (max. 500000)
- 235 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 443 PDF objects out of 1000 (max. 8388607)
+ 366 compressed objects within 4 object streams
+ 101 named destinations out of 1000 (max. 500000)
+ 211 words of extra memory for PDF output out of 10000 (max. 10000000)
 
