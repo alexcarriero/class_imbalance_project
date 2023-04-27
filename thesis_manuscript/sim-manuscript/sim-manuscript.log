@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  27 APR 2023 17:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  27 APR 2023 18:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1080,52 +1080,52 @@ Underfull \hbox (badness 10000) in paragraph at lines 459--482
 <./../results/calibration_plot_manuscript_sc4.png, id=219, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc4.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc4.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc4.png  used on input line 801.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc4.png  used on input line 805.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
 <./../results/calibration_plot_manuscript_sc5.png, id=221, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc5.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc5.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc5.png  used on input line 810.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc5.png  used on input line 814.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
 <./../results/calibration_plot_manuscript_sc6.png, id=222, 867.24pt x 1084.05pt>
 File: ./../results/calibration_plot_manuscript_sc6.png Graphic file (type png)
 <use ./../results/calibration_plot_manuscript_sc6.png>
-Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc6.png  used on input line 819.
+Package pdftex.def Info: ./../results/calibration_plot_manuscript_sc6.png  used on input line 823.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
 <./../results/performance_metrics_manuscript_sc4.png, id=223, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc4.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc4.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc4.png  used on input line 828.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc4.png  used on input line 832.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
 <./../results/performance_metrics_manuscript_sc5.png, id=224, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc5.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc5.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc5.png  used on input line 837.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc5.png  used on input line 841.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
 <./../results/performance_metrics_manuscript_sc6.png, id=225, 867.24pt x 1084.05pt>
 File: ./../results/performance_metrics_manuscript_sc6.png Graphic file (type png)
 <use ./../results/performance_metrics_manuscript_sc6.png>
-Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc6.png  used on input line 846.
+Package pdftex.def Info: ./../results/performance_metrics_manuscript_sc6.png  used on input line 850.
 (pdftex.def)             Requested size: 456.75398pt x 570.95432pt.
 <./../results/auc_across_scenarios.png, id=226, 1445.4pt x 867.24pt>
 File: ./../results/auc_across_scenarios.png Graphic file (type png)
 <use ./../results/auc_across_scenarios.png>
-Package pdftex.def Info: ./../results/auc_across_scenarios.png  used on input line 855.
+Package pdftex.def Info: ./../results/auc_across_scenarios.png  used on input line 859.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
 <./../results/bri_across_scenarios.png, id=227, 1445.4pt x 867.24pt>
 File: ./../results/bri_across_scenarios.png Graphic file (type png)
 <use ./../results/bri_across_scenarios.png>
-Package pdftex.def Info: ./../results/bri_across_scenarios.png  used on input line 864.
+Package pdftex.def Info: ./../results/bri_across_scenarios.png  used on input line 868.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
 <./../results/int_across_scenarios.png, id=228, 1445.4pt x 867.24pt>
 File: ./../results/int_across_scenarios.png Graphic file (type png)
 <use ./../results/int_across_scenarios.png>
-Package pdftex.def Info: ./../results/int_across_scenarios.png  used on input line 873.
+Package pdftex.def Info: ./../results/int_across_scenarios.png  used on input line 877.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
 <./../results/slp_across_scenarios.png, id=229, 1445.4pt x 867.24pt>
 File: ./../results/slp_across_scenarios.png Graphic file (type png)
 <use ./../results/slp_across_scenarios.png>
-Package pdftex.def Info: ./../results/slp_across_scenarios.png  used on input line 882.
+Package pdftex.def Info: ./../results/slp_across_scenarios.png  used on input line 886.
 (pdftex.def)             Requested size: 456.75398pt x 274.05542pt.
 [10] [11] (./sim-manuscript.bbl [12])
 
@@ -1141,7 +1141,7 @@ Here is how much of TeX's memory you used:
  40 hyphenation exceptions out of 8191
  90i,12n,90p,551b,621s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/alexcarriero/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm-bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb>
-Output written on sim-manuscript.pdf (21 pages, 25305755 bytes).
+Output written on sim-manuscript.pdf (21 pages, 25305798 bytes).
 PDF statistics:
  443 PDF objects out of 1000 (max. 8388607)
  366 compressed objects within 4 object streams

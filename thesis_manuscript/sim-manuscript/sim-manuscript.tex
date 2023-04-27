@@ -736,20 +736,24 @@ aren't all exactly equal to 0.84, just by rounding}).
 \subsection{Overall Performance}\label{overall-performance}}
 
 \hfill\break
-As the event fraction decreases, so do the median brier scores for all
+As the event fraction decreased, so did median brier scores for all
 prediction models (Figure \ref{fig:plot8}). In our results, it is only
 appropriate to compare Brier scores among prediction models from
-simulation scenarios that have the same event fraction. As the event
+simulation scenarios that have the same event fraction. As event
 fraction decreases, it is easier for a prediction model to achieve a
 high brier score. For instance, a trivial majority classifier (a model
 which produces the same predicted risk, 0, for all individuals) would
 achieve Brier scores of 0.50, 0.19 and 0.02 in scenarios 4, 5, and 6,
-respectfully. For this reason, we only compare Brier scores within
+respectfully. For this reason, we only compared Brier scores within
 simulation scenarios that have the same event fraction.\\
 \strut \\
 For balanced data (Figure \ref{fig:plot4}), median Brier scores ranged
-from {[}0.15, 0.19{]}.\\
-- \textbf{what to say here}.\\
+from {[}0.15, 0.19{]}. For models built with LR or RF, class imbalance
+corrections had no effect on median Brier score (see Appendix C). For
+models built with SVM, XG, RB or EE, imbalance corrections had had
+minimal effects, which were largely algorithm dependent. Notably, the
+largest difference in median Brier scores among prediction models built
+with the same algorithm was \(0.1\).\\
 \strut \\
 For moderately imbalanced data (Figure \ref{fig:plot5}), median Brier
 scores ranged from {[}0.12, 0.2{]}. Notably, the models which did not
@@ -757,23 +761,23 @@ attempt to correct for imbalance (control models for LR, SVM, RF and
 XG), outperformed all other prediction models, with respect to brier
 score (Brier scores: 0.12). Again, with the exception of RF + ROS, which
 preformed equally as well as the aforementioned control models (Brier
-Score: 0.12). In this scenario, models built with RUS has a particularly
-poor performance, relative to the others; all RUS median brier scores of
-0.2, worse than a trivial majority classifier, with the exception of RUS
-+ SVM which preformed slightly better (Brier Score: 0.16).\\
+Score: 0.12). In this scenario, models built with RUS had particularly
+poor performance relative to the others; all RUS models had median brier
+scores of 0.2, worse than a trivial majority classifier, with the
+exception of RUS + SVM which preformed slightly better (Brier Score:
+0.16).\\
 \strut \\
 For data with extreme imbalance (Figure \ref{fig:plot6}), median Brier
 scores ranged from {[}0.02, 0.22{]}. Again, the models which did not
 attempt to correct for imbalance (control models for LR, SVM, RF and
 XG), outperformed all other prediction models (Brier scores: 0.02). In
 this scenario, ROS + RF and ROS + XG preformed just as well as the
-aforementioned control models (Brier scores: 0.02). Notably, models
-built with RUS had substantially higher Brier scores (ranging from
-{[}0.17, 0.22{]}) as well as higher corresponding MCMC errors, than the
-other models (Figure \ref{fig:plot6}). While imbalance corrections
-worsened median Brier score for all algorithms, the effect was most
-pronounced for LR (control: 0.02, RUS: 0.19, ROS: 0.16, SMOTE: 0.15,
-SENN: 0.16).
+aforementioned control models (Brier scores: 0.02). Models built with
+RUS had substantially worse Brier scores (ranging from {[}0.17, 0.22{]})
+as well as larger corresponding MCMC errors, than the other models
+(Figure \ref{fig:plot6}). Finally, while imbalance corrections worsened
+median Brier score for all algorithms, the effect was most pronounced
+for LR (control: 0.02, RUS: 0.19, ROS: 0.16, SMOTE: 0.15, SENN: 0.16).
 
 \hypertarget{recalibration}{%
 \subsection{Recalibration~}\label{recalibration}}
@@ -785,16 +789,16 @@ procedure fixed the calibration intercepts to be zero for all simulation
 iterations, while calibration slopes were unaffected (see Appendix C).
 Consequently, the flexible calibration plots improved: there was less
 variability visible among the calibration curves and less
-over-estimation of predicted risks. For the class balance scenarios, the
-separation seen among the calibration curves disappeared. Importantly,
-we observed that even after re-calibration, no model trained with
-imbalance corrected data out performed its control, with respect to
-model calibration. This can be viewed clearly using our Shiny App. With
-respect to discrimination, concordance statistics were relatively
-unaffected by re-calibration (see Appendix C). Finally, differences
-among the prediction models with respect to Brier score were minimized
-after re-calibration such that all prediction models yielded comparable
-Brier scores (see Appendix C).
+over-estimation of predicted risks. For the class balanced scenarios,
+the separation seen among the calibration curves disappeared.
+Importantly, we observed that even after re-calibration, no model
+trained with imbalance corrected data out performed its control, with
+respect to model calibration. This can be viewed clearly using our Shiny
+App. With respect to discrimination, concordance statistics were
+relatively unaffected by re-calibration (see Appendix C). Finally,
+differences among the prediction models with respect to Brier score were
+minimized after re-calibration such that all prediction models yielded
+comparable Brier scores (see Appendix C).
 
 \begin{figure}
 
@@ -902,19 +906,19 @@ calibration. Correcting for imbalance using data pre-processing methods
 (RUS, ROS, SMOTE, SENN) or an imbalance correcting algorithm (RB, EE)
 resulted in prediction models which consistently over-estimated risk. In
 summary, while imbalance corrections improved discrimination for some
-machine learning algorithms, model calibration and consequetly, overall
-performance were always diminished.\\
+machine learning algorithms, model calibration and (consequently)
+overall performance were always diminished.\\
 \strut \\
 In an attempt to improve miscalibration, we implemented a re-calibration
 procedure. Across all simulation scenarios, we found that the
 miscalibration introduced by these corrections could not be fully
-repaired by re-calibration. While miscalibration in calibration
-intercepts was fully repaired, re-calibration had no effect on
-calibration slopes. Consequently, models developed using over-sampling
-corrections (ROS, SMOTE, SENN) did not out-perform their controls even
-after re-calibration. Interestingly, with RUS, model calibration was
-preserved. Since, using RUS did not effect calibration slopes model
-calibration was not diminished compared to the control.\\
+repaired by re-calibration. While calibration in the intercepts was
+fully restored, re-calibration had no effect on calibration slopes.
+Consequently, models developed using over-sampling corrections (ROS,
+SMOTE, SENN) did not out-perform their controls even after
+re-calibration. Interestingly, with RUS, model calibration was
+preserved. Since, using RUS did not largely effect calibration slopes
+model calibration was not diminished compared to the control.\\
 \strut \\
 Our findings are consistent with those of Goorbergh et al.~(2022)
 \citep{ruben}. In our simulation, pre-processing the data to correct for
@@ -925,15 +929,17 @@ deteriorated model calibration, lead us to the same conclusion: for
 prediction models developed with LR, imbalance corrections did more harm
 than good. Interestingly, this finding was not true for other machine
 learning algorithms. In particular, for models developed with SVM or RF,
-all imbalance corrections improved discrimination.\\
+all imbalance corrections improved discrimination when data exhibited
+extreme imbalance (event fraction = 0.02).\\
 \strut \\
 We note several limitation in our simulation study. First,
 hyper-parameter tuning procedures were sub-optimal. For models developed
 with SVM or XG, we used the default tuning procedures from the R package
-\texttt{caret}, which checks only 3 values for each tuning parameter.
-More extensive tuning could perhaps improve model performance in the
-control setting, but would be unlikely to alter the effects seen as a
-consequence of the imbalance corrections. something else.\\
+\texttt{caret}. This software default checks only 3 values for each
+tuning parameter. More extensive tuning could perhaps improve model
+performance in the control setting, but would be unlikely to alter the
+effects seen as a consequence of the imbalance corrections. something
+else.\\
 \strut \\
 Directions for future research, (thinking about this)
 
@@ -945,7 +951,7 @@ available for the underrepresented class. Given our findings, creating
 artificially-balanced data (via pre-processing methods or imbalance
 correcting algorithms) does not solve this problem. If the goal of a
 clinical prediction model is to produce reliable predicted risks on an
-individual basis, then correcting for class imbalance not advised.
+individual basis, then correcting for class imbalance is not advised.
 
 \newpage
 
