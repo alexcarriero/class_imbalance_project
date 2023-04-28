@@ -34,46 +34,6 @@
 \makeatother
 \usepackage{xcolor}
 \usepackage[margin=1in]{geometry}
-\usepackage{color}
-\usepackage{fancyvrb}
-\newcommand{\VerbBar}{|}
-\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
-\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
-% Add ',fontsize=\small' for more characters per line
-\usepackage{framed}
-\definecolor{shadecolor}{RGB}{248,248,248}
-\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
-\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
-\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
-\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\BuiltInTok}[1]{#1}
-\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
-\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
-\newcommand{\ExtensionTok}[1]{#1}
-\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
-\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\ImportTok}[1]{#1}
-\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
-\newcommand{\NormalTok}[1]{#1}
-\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
-\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
-\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
-\newcommand{\RegionMarkerTok}[1]{#1}
-\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
-\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
-\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -326,334 +286,6 @@ Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS &
 \midrule
 1 & 8 & 0.5N & 0.50 & 0 & 0 & 251 & 680 & 680\\
  
-2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 1 & 1\\
- 
-4 & 8 & N & 0.50 & 0 & 0 & 288 & 488 & 488\\
- 
-5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-7 & 8 & 2N & 0.50 & 0 & 72 & 331 & 310 & 310\\
- 
-8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-10 & 16 & 0.5N & 0.50 & 0 & 0 & 265 & 692 & 692\\
- 
-11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-13 & 16 & N & 0.50 & 0 & 0 & 282 & 502 & 502\\
- 
-14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-16 & 16 & 2N & 0.50 & 0 & 51 & 326 & 291 & 291\\
- 
-17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[!h]
-
-\caption{\label{tab:tab:table}Errors: Logistic Regression}
-\centering
-\begin{tabular}[t]{ccccccccc}
-\toprule
-Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
-\midrule
-1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[!h]
-
-\caption{\label{tab:tab:table}Errors: Support Vector Machine}
-\centering
-\begin{tabular}[t]{ccccccccc}
-\toprule
-Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
-\midrule
-1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[!h]
-
-\caption{\label{tab:tab:table}Errors: Random Forest}
-\centering
-\begin{tabular}[t]{ccccccccc}
-\toprule
-Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
-\midrule
-1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[!h]
-
-\caption{\label{tab:tab:table}Errors: XGBoost}
-\centering
-\begin{tabular}[t]{ccccccccc}
-\toprule
-Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
-\midrule
-1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-2 & 8 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[!h]
-
-\caption{\label{tab:tab:table}Errors: RUSBoost}
-\centering
-\begin{tabular}[t]{ccccccccc}
-\toprule
-Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
-\midrule
-1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-2 & 8 & 0.5N & 0.20 & 0 & 1 & 0 & 0 & 0\\
- 
-3 & 8 & 0.5N & 0.02 & 59 & 9 & 0 & 1 & 1\\
- 
-4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{table}[!h]
-
-\caption{\label{tab:tab:table}Errors: EasyEnsemble}
-\centering
-\begin{tabular}[t]{ccccccccc}
-\toprule
-Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
-\midrule
-1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-2 & 8 & 0.5N & 0.20 & 1 & 1 & 0 & 0 & 0\\
- 
-3 & 8 & 0.5N & 0.02 & 19 & 29 & 0 & 0 & 0\\
- 
-4 & 8 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-5 & 8 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-6 & 8 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-7 & 8 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-8 & 8 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-9 & 8 & 2N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-11 & 16 & 0.5N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-12 & 16 & 0.5N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-13 & 16 & N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-14 & 16 & N & 0.20 & 0 & 0 & 0 & 0 & 0\\
- 
-15 & 16 & N & 0.02 & 0 & 0 & 0 & 0 & 0\\
- 
-16 & 16 & 2N & 0.50 & 0 & 0 & 0 & 0 & 0\\
- 
-17 & 16 & 2N & 0.20 & 0 & 0 & 0 & 0 & 0\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df }\OtherTok{\textless{}{-}}\NormalTok{ cr }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{to\_go =}\NormalTok{ Control }\SpecialCharTok{+}\NormalTok{ RUS }\SpecialCharTok{+}\NormalTok{ ROS }\SpecialCharTok{+}\NormalTok{ SMOTE }\SpecialCharTok{+}\NormalTok{ SENN) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(to\_go }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{to\_go)}
-
-\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{kable}\NormalTok{(}\AttributeTok{booktabs =}\NormalTok{ T, }\AttributeTok{escape =}\NormalTok{ F, }\AttributeTok{linesep =} \StringTok{" "}\NormalTok{, }\AttributeTok{align =} \FunctionTok{rep}\NormalTok{(}\StringTok{"c"}\NormalTok{, }\DecValTok{9}\NormalTok{), }\AttributeTok{caption =} \StringTok{"Errors: Imbalance Corrections"}\NormalTok{, }\AttributeTok{label =} \StringTok{"tab:table"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{full\_width =}\NormalTok{ F, }\AttributeTok{latex\_options =}\StringTok{"hold\_position"}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{table}[!h]
-
-\caption{\label{tab:tab:table}Errors: Imbalance Corrections}
-\centering
-\begin{tabular}[t]{ccccccccc}
-\toprule
-Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
-\midrule
-1 & 8 & 0.5N & 0.50 & 0 & 0 & 251 & 680 & 680\\
- 
 3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 1 & 1\\
  
 4 & 8 & N & 0.50 & 0 & 0 & 288 & 488 & 488\\
@@ -668,23 +300,6 @@ Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS &
 \bottomrule
 \end{tabular}
 \end{table}
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{df }\OtherTok{\textless{}{-}} 
-  \FunctionTok{bind\_rows}\NormalTok{(rb, ee) }\SpecialCharTok{\%\textgreater{}\%}
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{to\_go =}\NormalTok{ Control }\SpecialCharTok{+}\NormalTok{ RUS }\SpecialCharTok{+}\NormalTok{ ROS }\SpecialCharTok{+}\NormalTok{ SMOTE }\SpecialCharTok{+}\NormalTok{ SENN) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{filter}\NormalTok{(to\_go }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{select}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{to\_go)}
-
-\NormalTok{df }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{kable}\NormalTok{(}\AttributeTok{booktabs =}\NormalTok{ T, }\AttributeTok{escape =}\NormalTok{ F, }\AttributeTok{linesep =} \StringTok{" "}\NormalTok{, }\AttributeTok{align =} \FunctionTok{rep}\NormalTok{(}\StringTok{"c"}\NormalTok{, }\DecValTok{9}\NormalTok{), }\AttributeTok{caption =} \StringTok{"Errors: Classification Algorithms"}\NormalTok{, }\AttributeTok{label =} \StringTok{"tab:table"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
-    \FunctionTok{kable\_styling}\NormalTok{(}\AttributeTok{full\_width =}\NormalTok{ F, }\AttributeTok{latex\_options =}\StringTok{"hold\_position"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{pack\_rows}\NormalTok{(}\StringTok{"RUSBoost:"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{pack\_rows}\NormalTok{(}\StringTok{"EasyEnsemble:"}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-    \FunctionTok{add\_indent}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{4}\NormalTok{), }\AttributeTok{level\_of\_indent =} \DecValTok{2}\NormalTok{)}
-\end{Highlighting}
-\end{Shaded}
 
 \begin{table}[!h]
 
@@ -705,6 +320,56 @@ Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS &
 \hspace{2em}\hspace{1em}2 & 8 & 0.5N & 0.20 & 1 & 1 & 0 & 0 & 0\\
  
 \hspace{2em}\hspace{1em}3 & 8 & 0.5N & 0.02 & 19 & 29 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:invalid_ps}Invalid Probabilities RUSBoost}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+2 & 8 & 0.5N & 0.20 & 2 & 0 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 188 & 0 & 1 & 0 & 3\\
+ 
+6 & 8 & N & 0.02 & 22 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 2 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 44 & 0 & 3 & 1 & 1\\
+ 
+15 & 16 & N & 0.02 & 1 & 0 & 0 & 0 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:invalid_ps}LR Separation}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 1\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 99 & 0 & 0 & 36\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 501 & 1 & 2 & 2\\
+ 
+5 & 8 & N & 0.20 & 0 & 1 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 5 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 13\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 19 & 0 & 0 & 3\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 232 & 0 & 0 & 0\\
 \bottomrule
 \end{tabular}
 \end{table}

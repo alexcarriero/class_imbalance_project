@@ -212,6 +212,7 @@ d %>%
 
 
 # Appendix B Tables 
+
 ```{r, echo = F}
 # corrections
 cr <- readRDS("error_table_corrections.RDS")
@@ -223,40 +224,16 @@ rf <- readRDS("error_table_random_forest.RDS")
 xg <- readRDS("error_table_xgboost.RDS")
 rb <- readRDS("error_table_rusboost.RDS")
 ee <- readRDS("error_table_easy_ensemble.RDS")
+
+# invalid probs
+bad_ps <- readRDS("rb_invalid_probs.RDS")
+
+# separation 
+lg_sep <- readRDS("lg_separation.RDS")
 ```
 
-```{r, echo = F}
-cr %>% 
-  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Imbalance Corrections", label = "tab:table") %>% 
-  kable_styling(full_width = F, latex_options ="hold_position")
-
-lr %>% 
-  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Logistic Regression", label = "tab:table") %>%
-  kable_styling(full_width = F, latex_options ="hold_position")
-
-sv %>% 
-  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Support Vector Machine", label = "tab:table") %>%
-  kable_styling(full_width = F, latex_options ="hold_position")
-
-rf %>%
-  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: Random Forest", label = "tab:table") %>%
-  kable_styling(full_width = F, latex_options ="hold_position")
-
-xg %>% 
-  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: XGBoost", label = "tab:table") %>%
-  kable_styling(full_width = F, latex_options ="hold_position")
-
-rb %>% 
-  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: RUSBoost", label = "tab:table") %>%
-  kable_styling(full_width = F, latex_options ="hold_position")
-
-ee %>% 
-  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Errors: EasyEnsemble", label = "tab:table") %>%
-  kable_styling(full_width = F, latex_options ="hold_position")
-```
-
-
-```{r}
+```{r, echo = F} 
+# correction table
 df <- cr %>% 
   mutate(to_go = Control + RUS + ROS + SMOTE + SENN) %>% 
   filter(to_go != 0) %>% 
@@ -267,7 +244,9 @@ df %>%
   kable_styling(full_width = F, latex_options ="hold_position")
 ```
 
-```{r}
+```{r, echo = F}
+# algorithm table 
+
 df <- 
   bind_rows(rb, ee) %>%
   mutate(to_go = Control + RUS + ROS + SMOTE + SENN) %>% 
@@ -282,7 +261,29 @@ df %>%
     add_indent(c(1:4), level_of_indent = 2)
 ```
 
-```{r}
+```{r, echo = F}
+# rusboost table - invalid probs 
 
+df <- 
+  bad_ps %>% 
+  mutate(to_go = Control + RUS + ROS + SMOTE + SENN) %>% 
+  filter(to_go != 0) %>% 
+  select(-to_go)
+
+df %>% 
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "Invalid Probabilities RUSBoost", label = "tab:invalid_ps") %>%
+  kable_styling(full_width = F, latex_options ="hold_position") 
+```
+
+```{r, echo = F}
+df <- 
+  lg_sep %>% 
+  mutate(to_go = Control + RUS + ROS + SMOTE + SENN) %>% 
+  filter(to_go != 0) %>% 
+  select(-to_go)
+
+df %>% 
+  kable(booktabs = T, escape = F, linesep = " ", align = rep("c", 9), caption = "LR Separation", label = "invalid_ps") %>%
+  kable_styling(full_width = F, latex_options ="hold_position") 
 ```
 

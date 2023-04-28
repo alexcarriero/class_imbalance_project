@@ -116,6 +116,57 @@ Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS &
 \end{table}\
 
 
+
+\begin{table}[!h]
+\renewcommand\thetable{B3} 
+\caption{Counts of simulation iterations in which RUSBoost produced invalid probabilities.}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+2 & 8 & 0.5N & 0.20 & 2 & 0 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 188 & 0 & 1 & 0 & 3\\
+ 
+6 & 8 & N & 0.02 & 22 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 2 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 44 & 0 & 3 & 1 & 1\\
+ 
+15 & 16 & N & 0.02 & 1 & 0 & 0 & 0 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\renewcommand\thetable{B4} 
+\caption{Counts of simulation iterations in which a data separation warning was produced by logistic regression.}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 1\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 99 & 0 & 0 & 36\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 501 & 1 & 2 & 2\\
+ 
+5 & 8 & N & 0.20 & 0 & 1 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 5 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 13\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 19 & 0 & 0 & 3\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 232 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
 ## Appendix C 
 
 In Table C1, median performance measures and their Monte Carlo errors across 2000 simulation iterations are presented for data-generating scenarios 4-6.
