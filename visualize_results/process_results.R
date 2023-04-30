@@ -26,7 +26,9 @@ get_brier_score <- function(dataframe){
   )
 }
 
-save_brier_scores <- function(scN){
+save_brier_scores <- function(i){
+  
+  scN <- paste0("sc", i)
   
   out = tibble()
   
@@ -56,21 +58,25 @@ save_brier_scores <- function(scN){
   saveRDS(out, paste0("./simulation_results/raw_results/", scN,"/", scN, "_brier_scores.rds"))
 }
 
-get_summary <- function(scN, recalibrated = F){
+get_summary <- function(i, recalibrated = F){
   
+  scN <- paste0("sc", i)
+  print(scN)
   if(recalibrated == F){
     
-    # brier_scores <- readRDS(paste0("./simulation_results/raw_results/", scN,"/", scN, "_brier_scores.rds"))
+    brier_scores <- readRDS(paste0("./simulation_results/raw_results/", scN,"/", scN, "_brier_scores.rds"))
     
     df <- 
       list.files(path = paste0("./simulation_results/raw_results/", scN,"/per_iter_results/"), pattern = ".rds") %>%
       paste0("./simulation_results/raw_results/", scN,"/per_iter_results/", .) %>%
       map(readRDS) %>% 
-      bind_rows() # %>% 
-      # rename("a_warn" = "a_warning", 
-      #        "s_bri" =  "bri") %>% 
-      # merge(brier_scores, by = c("pair_id", "iter")) %>% 
-      # rename("bri" = "brier_score")
+      bind_rows() %>%
+      rename("a_warn" = "a_warning",
+             "s_bri" =  "bri") %>%
+      merge(brier_scores, by = c("pair_id", "iter")) %>%
+      rename("bri" = "brier_score")
+    
+    saveRDS(df, paste0("./../masters_thesis/visualize_results/results/results_", scN ,"_new.RData"))
   }
   
   if(recalibrated == T){
@@ -106,7 +112,14 @@ get_summary <- function(scN, recalibrated = F){
       slp_sd   = sd  (slp, na.rm = T)
     ) 
   
-  return(list("overall_dataframe" = df, "rows_per_pair" = tbl,  "summary"= summary_stats))
+  out <- list("overall_dataframe" = df, "rows_per_pair" = tbl,  "summary"= summary_stats)
+  
+  if (recalibrated == F){
+    saveRDS(out, paste0("./../masters_thesis/visualize_results/results/results_", scN ,".RData"))
+  }
+  if (recalibrated == T){
+    saveRDS(out, paste0( "./../masters_thesis/visualize_results/results/results_", scN ,"_recalibrated.RData"))
+  }
 } 
 
 # ------------------ re-calibration --------------------------------------------
@@ -234,12 +247,11 @@ reorder_and_rename <- function(dataframe){
                           "rus"    = "RUS",
                           "ros"    = "ROS",
                           "smo"    = "SMOTE",
-                          "sen"    = "SMOTE-ENN"))
+                          "sen"    = "SENN"))
 }
 
 ready2plot <- function(dataframe){
   dataframe %>% 
-  # filter(problem != 1) %>% 
   drop_na() %>% 
   mutate(
       pred  = as.numeric(pred), 
@@ -338,24 +350,62 @@ plot_from_coords <- function(df, hex = "#101011"){
   p <-
     ggplot() +
     geom_abline(slope = 1, intercept = 0, linewidth = 1) +
+    # geom_smooth(data = df, aes(x = x, y = y, group = iter, color = chance_imbalance), 
     geom_smooth(data = df, aes(x = x, y = y, group = iter), 
                 method = "loess",
                 formula = y ~ x, 
                 se = F,
                 linewidth = 0.01, 
-                alpha = 0.01,
-                color = hex)+ 
+                color = hex,
+                alpha = 0.01) + 
     theme_minimal() +
-    xlab(" ") + 
-    ylab(" ") +
     xlim(0,1) + 
     ylim(0,1) + 
     facet_grid(algorithm ~ correction) +
-    theme(legend.position = "none") 
+    theme(legend.position = "none") + 
+    xlab("Predicted Risk") + 
+    ylab("Observed Proportion") 
   
   return(p) 
 }
 
+calibration_plot <- function(i, recalibrated = F){
+  
+  scN <- paste0("sc", i)
+  
+  if (recalibrated == F){
+    df <- 
+      list.files(path = paste0("./processed_results/plot_coords/raw_results/", scN, "/"), pattern = ".rds") %>%
+      paste0("./processed_results/plot_coords/raw_results/", scN, "/", .) %>%
+      map(readRDS) %>% 
+      bind_rows() %>% 
+      as.data.frame() %>% 
+      drop_na() %>%
+      pre_plot()
+  
+    p <- plot_from_coords(df)
+  
+    ggsave(paste0("./../masters_thesis/visualize_results/results/calibration_plot_", scN, ".png"), 
+           plot = p,  width = 14, height = 14)
+  
+  }
+  
+  if(recalibrated == T){
+    df <- 
+      list.files(path = paste0("./processed_results/plot_coords/recalibrated_results/", scN, "/"), pattern = ".rds") %>%
+      paste0("./processed_results/plot_coords/recalibrated_results/", scN, "/", .) %>%
+      map(readRDS) %>% 
+      bind_rows() %>% 
+      as.data.frame() %>%
+      drop_na() %>%
+      pre_plot()
+    
+    p <- plot_from_coords(df)
+    
+    ggsave(paste0("./../masters_thesis/visualize_results/results/calibration_plot_", scN, "_recalibrated.png"), 
+           plot = p,  width = 14, height = 14)
+  }
+}
 
 # ----------------performance metric plots -------------------------------------
 
@@ -375,18 +425,18 @@ tidy_for_pm_plts <- function(dataframe){
                             'control', 'rus', 'ros', 'smo', 'sen'))) %>%
     mutate(
       algorithm = recode(algorithm,
-                         "logistic_regression"    = "Logistic Regression",
-                         "support_vector_machine" = "Support Vector Machine",
-                         "random_forest"          = "Random Forest",
-                         "xgboost"                = "XGBoost" ,
-                         "rusboost"               = "RUSBoost",
-                         "easy_ensemble"          = "EasyEnsemble"),
+                         "logistic_regression"    = "LR",
+                         "support_vector_machine" = "SVM",
+                         "random_forest"          = "RF",
+                         "xgboost"                = "XG" ,
+                         "rusboost"               = "RB",
+                         "easy_ensemble"          = "EE"),
       correction = recode(correction,
                           "control" = "Control",
                           "rus"    = "RUS",
                           "ros"    = "ROS",
                           "smo"    = "SMOTE",
-                          "sen"    = "SMOTE-ENN")) %>%
+                          "sen"    = "SENN")) %>%
     mutate(int = as.numeric(int), 
            slp = as.numeric(slp))
 }
@@ -394,19 +444,19 @@ tidy_for_pm_plts <- function(dataframe){
 pm_plot <- function(dataframe, method, xmin, xmax){
   
   if(method == "auc"){
-    title <- "Concordance Statistic"
+    title <- "Concordance Statistic:"
     ref   <- 0.85
   }
   if(method == "slp"){
-    title <- "Calibration Slope"
+    title <- "Calibration Slope:"
     ref   <- 1
   }
   if(method == "int"){
-    title <- "Calibration Intercept"
+    title <- "Calibration Intercept:"
     ref <- 0
   }
   if(method == "bri"){
-    title <- "Brier Score"
+    title <- "Brier Score:"
     ref <- 0
   }
   
@@ -419,12 +469,337 @@ pm_plot <- function(dataframe, method, xmin, xmax){
                 color = "grey",
                 draw_quantiles = 0.5,
                 linewidth = 0.25,
-                alpha = 0.5) + 
+                alpha = 0.4) + 
     theme_minimal() +
     xlab(" ") + 
     ylab(" ") +
     ylim(xmin, xmax) +
     coord_flip() + 
     facet_wrap(~correction, nrow = 1) + 
-    ggtitle(title)
+    ggtitle(title) + 
+    theme(text=element_text(family="Times"))
+}
+
+# ------------------- scenario plots -------------------------------------------
+
+reorder_and_rename2 <- function(dataframe){
+  dataframe %>% 
+    mutate(
+      algorithm  = factor(algorithm,
+                          levels = c(
+                            'logistic_regression',
+                            'support_vector_machine',
+                            'random_forest',
+                            'xgboost',
+                            'rusboost',
+                            'easy_ensemble')),
+      correction = factor(correction,
+                          levels = c(
+                            'control', 'rus', 'ros', 'smo', 'sen'))) %>%
+    mutate(
+      algorithm = recode(algorithm,
+                         "logistic_regression"    = "LR",
+                         "support_vector_machine" = "SVM",
+                         "random_forest"          = "RF",
+                         "xgboost"                = "XG" ,
+                         "rusboost"               = "RB",
+                         "easy_ensemble"          = "EE"),
+      correction = recode(correction,
+                          "control" = "Control",
+                          "rus"    = "RUS",
+                          "ros"    = "ROS",
+                          "smo"    = "SMOTE",
+                          "sen"    = "SENN"))
+}
+
+all_summaries <- function(recalibrated = F){
+  
+  tutto <- data.frame()
+  
+  if(recalibrated == F){
+    for(i in 1:18){
+    
+      df <- paste0("./../masters_thesis/visualize_results/results/results_sc", i, ".RData") %>% readRDS() 
+      df <- df$summary %>% mutate(scenario = i) %>% relocate(scenario) 
+      df <- df %>% mutate(pair_id = pair_id %>% as.numeric()) %>% arrange(pair_id)
+    
+      tutto <- bind_rows(tutto, df) 
+    }
+  }
+  
+  if(recalibrated == T){
+    for(i in 1:18){
+      
+      df <- paste0("./../masters_thesis/visualize_results/results/results_sc", i, "_recalibrated.RData") %>% readRDS() 
+      df <- df$summary %>% mutate(scenario = i) %>% relocate(scenario) 
+      df <- df %>% mutate(pair_id = pair_id %>% as.numeric()) %>% arrange(pair_id)
+      
+      tutto <- bind_rows(tutto, df) 
+    }
+  }
+  
+  return(tutto)
+}
+
+scenario_graph <- function(dataframe, method){
+  
+  if(method == "auc_med"){
+    title <- "Concordance Statistic"
+    ref   <- 0.85
+  }
+  if(method == "slp_med"){
+    title <- "Calibration Slope"
+    ref   <- 1
+  }
+  if(method == "int_med"){
+    title <- "Calibration Intercept"
+    ref <- 0
+  }
+  if(method == "bri_med"){
+    title <- "Brier Score"
+    ref <- 0
+  }
+  
+  sim_sets  <- sim_sets %>% mutate(scenario = sc)
+  
+  df <- 
+    dataframe %>% 
+    merge(pairs, by = "pair_id") %>%
+    merge(sim_sets, by = "scenario") %>%
+    mutate(ef = as.factor(ef)) %>%
+    mutate(
+      ef = recode(ef, 
+                  "0.5"  = "Event Fraction = 0.5",
+                  "0.2"  = "Event Fraction = 0.2",
+                  "0.02" = "Event Fraction = 0.02"
+      ))%>% 
+    mutate(npred = as.factor(npred)) %>% 
+    mutate(
+      npred = recode(npred, 
+                     "8"  = "8 Predictors", 
+                     "16" = "16 Predictors"
+      ))
+  
+  ggplot(data = df, aes_string(x = "pair_id", y = method , color = "n")) + 
+    geom_point(size = 0.6) + 
+    geom_line(linewidth = 0.2) + 
+    coord_flip() + 
+    facet_nested(npred ~ ef) + 
+    scale_color_manual("Sample Size", values = c("#BFCDE0", "#40798C", "#161032"))+
+    theme(panel.background = element_rect(
+      color="#f0f0f0", fill="#F2F3F5", size=1.5, linetype="solid"
+    ),
+    strip.background = element_rect(
+      color="#f0f0f0", fill="#F5F5DC", size=1.5, linetype="solid"
+    ), 
+    text=element_text(family="Times", size = 20),
+    strip.text = element_text(size = rel(1.25))) + 
+    xlab("Prediction Model") + 
+    ylab(title)
+}
+
+#-------------------- error handling -------------------------------------------
+
+npred <- c(8,16)
+ef    <- c(0.5,0.2,0.02)
+n     <- c("0.5N", "N", "2N")
+sets  <- expand.grid("ef" = ef, "n" = n, "npred" = npred)
+
+sim_sets <- sets %>% mutate(sc = c(1:18))
+sim_sets <- sim_sets[1:18,]
+
+
+non_zeros <- function(x){
+  
+  count <- sum(x!="0")
+  return(as.data.frame(count))
+  
+} 
+
+count_correction_errors <- function(dataframe){
+  dataframe %>%
+    select(-seed, -sc_ef, -auc, -s_bri, -bri, -int, -slp, -min, -max) %>% 
+    mutate(correction = as.factor(correction)) %>% 
+    group_by(correction) %>% 
+    group_modify(~non_zeros(.x$c_err)) %>% 
+    mutate(count = count / 6) 
+}
+
+count_alg_errors <- function(dataframe){
+  dataframe %>% 
+    select(-seed, -sc_ef, -auc, -s_bri, -bri, -int, -slp, -min, -max) %>% 
+    mutate(pair_id = as.factor(pair_id)) %>% 
+    group_by(pair_id) %>% 
+    group_modify(~non_zeros(.x$a_err))
+}
+
+count_rb_invalid <- function(dataframe){
+  dataframe %>% 
+    select(-seed, -sc_ef, -auc, -s_bri, -bri, -int, -slp, -min, -max) %>% 
+    mutate(pair_id = as.factor(pair_id)) %>% 
+    mutate(invalid = invalid_0 + invalid_1) %>% 
+    group_by(pair_id) %>% 
+    group_modify(~non_zeros(.x$invalid))
+}
+
+count_lg_separation <- function(dataframe){
+  dataframe %>% 
+    select(-seed, -sc_ef, -auc, -s_bri, -bri, -int, -slp, -min, -max) %>% 
+    mutate(pair_id = as.factor(pair_id)) %>% 
+    group_by(pair_id) %>% 
+    group_modify(~non_zeros(.x$a_warn))
+}
+
+save_errors_corr <- function(i){
+  
+  scN <- paste0("sc", i)
+  df  <- readRDS(paste0("./../masters_thesis/visualize_results/results/results_", scN, ".RData"))$overall_dataframe
+  
+  err <- count_correction_errors(df) %>% pull(count)
+  return(err)
+  
+}
+
+save_errors_alg <- function(i, name){
+  
+  scN <- paste0("sc", i)
+  df  <- readRDS(paste0("./../masters_thesis/visualize_results/results/results_", scN, ".RData"))$overall_dataframe
+  
+  err <- 
+    count_alg_errors(df) %>% 
+    merge(pairs, by = "pair_id") %>% 
+    filter(algorithm == name) %>%
+    mutate(pair_id = pair_id %>% as.character() %>% as.numeric()) %>% 
+    arrange(pair_id, decreasing = F) %>% 
+    pull(count)
+  
+  return(err)
+}
+
+save_errors_rb <- function(i){
+  
+  scN <- paste0("sc", i)
+  df  <- readRDS(paste0("./../masters_thesis/visualize_results/results/results_", scN, ".RData"))$overall_dataframe
+  
+  err <- count_rb_invalid(df) %>% 
+    merge(pairs, by = "pair_id") %>% 
+    mutate(pair_id = pair_id %>% as.character() %>% as.numeric()) %>% 
+    arrange(pair_id) %>% 
+    filter(algorithm == "rusboost") %>% 
+    pull(count)
+  
+  return(err)
+  
+}
+
+save_lg_separation <- function(i){
+  
+  scN <- paste0("sc", i)
+  df  <- readRDS(paste0("./../masters_thesis/visualize_results/results/results_", scN, ".RData"))$overall_dataframe
+  
+  err <- 
+    count_lg_separation(df) %>% 
+    merge(pairs, by = "pair_id") %>% 
+    mutate(pair_id = pair_id %>% as.character() %>% as.numeric()) %>% 
+    arrange(pair_id) %>% 
+    filter(algorithm == "logistic_regression") %>% 
+    pull(count)
+  
+  return(err)
+  
+}
+
+make_table_corrections <- function(){
+  
+  corr_err <- data.frame()
+
+  for (i in 1:18){
+    row      <- save_errors_corr(i) %>% t() %>% as.data.frame() 
+    corr_err <- bind_rows(corr_err, row)
+  }
+
+  colnames(corr_err) <- c("control", "rus", "ros", "smo", "sen")
+
+  table <- 
+    corr_err %>% 
+    mutate(sc = c(1:18)) %>% 
+    merge(sim_sets, by = "sc") %>% 
+    relocate(sc, npred, n, ef)
+
+  colnames(table) <- c("Scenario", "No. Predictors", "Sample Size", "Event Fraction", 
+                     "Control", "RUS", "ROS", "SMOTE", "SENN")
+
+  saveRDS(table, "./../masters_thesis/thesis_manuscript/error_table_corrections.RDS")
+}
+
+make_table_algorithm <- function(algorithm){
+  
+  alg_err <- data.frame()
+  
+  for (i in 1:18){
+    row      <- save_errors_alg(i, algorithm) %>% t() %>% as.data.frame() 
+    alg_err  <- bind_rows(alg_err, row)
+  }
+  
+  colnames(alg_err) <- c("control", "rus", "ros", "smo", "sen")
+  
+  table <- 
+    alg_err %>% 
+    mutate(sc = c(1:18)) %>% 
+    merge(sim_sets, by = "sc") %>% 
+    relocate(sc, npred, n, ef)
+  
+  colnames(table) <- c("Scenario", "No. Predictors", "Sample Size", "Event Fraction", 
+                       "Control", "RUS", "ROS", "SMOTE", "SENN")
+  
+  print(table)
+  saveRDS(table, paste0("./../masters_thesis/thesis_manuscript/error_table_", algorithm, ".RDS"))
+}
+
+make_table_rb_invalid <- function(){
+  
+  invalid_probs <- data.frame()
+  
+  for (i in 1:18){
+    row            <- save_errors_rb(i) %>% t() %>% as.data.frame() 
+    invalid_probs  <- bind_rows(invalid_probs, row)
+  }
+  
+  colnames(invalid_probs) <- c("control", "rus", "ros", "smo", "sen")
+  
+  table <- 
+    invalid_probs %>% 
+    mutate(sc = c(1:18)) %>% 
+    merge(sim_sets, by = "sc") %>% 
+    relocate(sc, npred, n, ef)
+  
+  colnames(table) <- c("Scenario", "No. Predictors", "Sample Size", "Event Fraction", 
+                       "Control", "RUS", "ROS", "SMOTE", "SENN")
+  
+  print(table)
+  saveRDS(table, paste0("./../masters_thesis/thesis_manuscript/rb_invalid_probs.RDS"))
+}
+
+make_table_lg_separation <- function(){
+  
+  invalid_probs <- data.frame()
+  
+  for (i in 1:18){
+    row            <- save_lg_separation(i) %>% t() %>% as.data.frame() 
+    invalid_probs  <- bind_rows(invalid_probs, row)
+  }
+  
+  colnames(invalid_probs) <- c("control", "rus", "ros", "smo", "sen")
+  
+  table <- 
+    invalid_probs %>% 
+    mutate(sc = c(1:18)) %>% 
+    merge(sim_sets, by = "sc") %>% 
+    relocate(sc, npred, n, ef)
+  
+  colnames(table) <- c("Scenario", "No. Predictors", "Sample Size", "Event Fraction", 
+                       "Control", "RUS", "ROS", "SMOTE", "SENN")
+  
+  print(table)
+  saveRDS(table, paste0("./../masters_thesis/thesis_manuscript/lg_separation.RDS"))
 }

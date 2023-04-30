@@ -124,7 +124,7 @@ recal <- reactive(input$recal)
 
 df <- 
   reactive({
-    if(recal() == F){df <- readRDS(paste0("./results/results_sc", n() , "_new.RData"))} 
+    if(recal() == F){df <- readRDS(paste0("./results/results_sc", n() , ".RData"))} 
     if(recal() == T){df <- readRDS(paste0("./results/results_sc", n() , "_recalibrated.RData"))}
     return(df)
   })
@@ -166,15 +166,32 @@ renderPlot({
 ```{r}
 renderDT({
   
-  df()$summary %>% 
+  df <- df()$summary %>% 
     mutate(across(where(is.numeric), round, 2)) %>%
     mutate(pair_id = as.numeric(pair_id)) %>% 
     arrange(pair_id, decending = F) %>% 
     merge(pairs, by = "pair_id") %>%
+    mutate(
+      auc_med = paste0(format(round(auc_med, 2), nsmall = 2), " (", format(round(auc_sd, 2), nsmall = 2), ")"),
+      bri_med = paste0(format(round(bri_med, 2), nsmall = 2), " (", format(round(bri_sd, 2), nsmall = 2), ")"),
+      int_med = paste0(format(round(int_med, 2), nsmall = 2), " (", format(round(int_sd, 2), nsmall = 2), ")"),
+      slp_med = paste0(format(round(slp_med, 2), nsmall = 2), " (", format(round(slp_sd, 2), nsmall = 2), ")")) %>%
     reorder_and_rename() %>%
     relocate(c(pair_id, correction, algorithm)) %>%
-    select(-pair_id) %>%
-    DT::datatable(rownames = FALSE)
+    select(-pair_id, -auc_sd, -bri_sd, -int_sd, -slp_sd) 
+  
+  colnames(df) <- c("Imbalance Correction", 
+                    "Classification Algorithm", 
+                    "Concordance Statistic",
+                    "Brier Score", 
+                    "Calibration Intercept",
+                    "Calibration Slope")
+
+  df %>% DT::datatable(
+    rownames = FALSE, 
+    caption = htmltools::tags$caption(
+      style = 'caption-side: top; text-align: center;',
+      'Summary Statistics: Median (MCMC Error) of performance metrics across 2000 simulation iterations.'))
   
 })
 ```
