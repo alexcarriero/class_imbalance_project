@@ -1,0 +1,152 @@
+---
+title: ''
+output: pdf_document
+
+header-includes: 
+- \usepackage{longtable}
+- \usepackage{booktabs}
+- \usepackage{rotating}
+- \usepackage[labelfont=bf]{caption}
+---
+
+# APPENDIX
+
+## Appendix A: Deriving Data Generating Parameters Based on Concordance Statistic\
+
+Under the assumption of normality for all predictors (in each class), the concordance statistic ($C$) of the data can be calculated directly, using equation ($A1$).  This equation is suitable when the covariance matrices of each class are *not* equivalent. For $p$ predictors, $\pmb{\Delta_\mu}$ is a $p$ x $1$ vector housing the differences in predictor means between class 0 and class 1. $\pmb{\Sigma_0}$ and $\pmb{\Sigma_1}$ represent the covariance matrices of class 0 and 1 respectively and $\Phi$ is the cumulative density function (cdf) of the standard normal distribution.\
+\
+\begin{equation} \tag{A1}
+C = \Phi \left( \sqrt{\pmb{\Delta_\mu}{'}\  (\pmb{\Sigma_0} + \pmb{\Sigma_1})^{-1} \ \pmb{\Delta_{\mu}}} \right)
+\end{equation}\
+\
+\
+In our research, the differences in predictor means between the classes were equivalent. In other words, the elements of $\pmb{\Delta_\mu}$ were equivalent; denoted by $\delta_\mu$.  The differences in predictor variances between the classes were also equivalent.  The diagonal elements of $\pmb{\Sigma_0}$ were all zero, and the diagonal elements of $\pmb{\Sigma_1}$ were all equal to ($1- \delta_\Sigma$) as shown in section 2.1.  To ensure a unique solution, $\delta_\Sigma$ was fixed to $0.3$.  Then, equation ($A1$) was solved to determine the value of $\delta_\mu$ that yields a concordance statistic ($C$) of $0.85$. \
+\
+Let $\pmb{A} = (\pmb{\Sigma_0} + \pmb{\Sigma_1})^{-1}$,
+
+\begin{align*}
+(\Phi^{-1}(C))^2 &= \pmb{\Delta_\mu{'}}  \pmb{A} \  \pmb{\Delta_{\mu}}\\
+(\Phi^{-1}(C))^2 &= 
+\begin{bmatrix}
+ \delta_\mu & \delta_\mu &   \dots &  \delta_\mu &  \delta_\mu
+\end{bmatrix} \begin{bmatrix} 
+    a_{11} & a_{12}  & \dots  & a_{1p}\\
+    \vdots &         & \ddots & \\
+    a_{p1} &  a_{p2} & \dots  & a_{pp} 
+\end{bmatrix}\begin{bmatrix}
+ \delta_\mu \\ \delta_\mu \\ \vdots \\ \delta_\mu \\ \delta_\mu
+\end{bmatrix}\\
+(\Phi^{-1}(C))^2 &= \delta_{\mu}^2 \sum_{j = 1}^{p} \sum_{i = 1}^{p} a_{ij}
+\end{align*}
+\
+\
+\
+Based on a desired $C$ of $0.85$, \
+\
+\begin{equation} \tag{A2}
+\delta_\mu = \frac{\Phi^{-1}(0.85)}{\sqrt{\sum_{j = 1}^{p} \sum_{i = 1}^{p} a_{ij}}}.
+\end{equation}\
+\
+\
+Equation ($A2$) was used to derive the appropriate $\delta_\mu$ for each simulation scenario. The R code used for implementation of this formula can be found on GitHub, in the directory `simulation_code`, sub-directory `data-generating-mechanism`: **add the link**
+
+\newpage
+
+## Appendix B: Median Performance Measures Across 18/18 Simulation Scenarios.\
+\
+```{r, echo = F, fig.align="center", out.height='70%', fig.cap = "Median concordance statistics for all prediction models in 18/18 simulation scenarios.\\label{fig:B1}"}
+knitr::include_graphics("./results/auc_across_scenarios.png")
+```
+
+```{r, echo = F, fig.align="center", out.height='70%', fig.cap = "Median Brier scores for all prediction models in 18/18 simulation scenarios.\\label{fig:B2}"}
+knitr::include_graphics("./results/bri_across_scenarios.png")
+```
+
+```{r, echo = F, fig.align="center", out.height='70%', fig.cap = "Median calibration intercepts for all prediction models in 18/18 simulation scenarios.\\label{fig:B3}"}
+knitr::include_graphics("./results/int_across_scenarios.png")
+```
+
+```{r, echo = F, fig.align="center", out.height='70%', fig.cap = "Median calibration slopes for all prediction models in 18/18 simulation scenarios.\\label{fig:B4}"}
+knitr::include_graphics("./results/slp_across_scenarios.png")
+```
+
+\newpage 
+## Appendix C: Table of Results for Simulation Scenarios 4-6
+
+In Table C, median performance measures and their Monte Carlo errors across 2000 simulation iterations are presented for simulation scenarios 4-6. These simulation scenarios are characterized by 8 predictors, adequate sample size (N) and balanced (event fraction = 0.5), moderately imbalanced (event fraction = 0.2) and extremely imbalanced (event fraction = 0.02) event fractions, respectfully. 
+
+\begin{sidewaystable}
+\renewcommand\thetable{C} 
+\caption{Median performance measures and their Monte Carlo erros across 2000 simulations iterations for simulation scenarios 4-6.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lcccccccccccccccccccccccccccccc}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 4}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.86 & 0.84 & 0.84 & 0.84 & 0.83 & 0.84 & 0.86 & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.82 & 0.83 & 0.82 & 0.84 & 0.86 & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.84 & 0.83 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{1} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.17 & 0.17 & 0.18 & 0.17 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & 0 & 0 & 0 & 0.01 & 0 & 0 & 0 & 0 & 0 & 0.01 & 0.01 & 0 & 0 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0 & 0 & 0 & 0.01 & 0.01 & 0 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & 0 & 0 & -0.01 & 0 & -0.11 & 0 & -0.01 & 0 & -0.01 & 0 & -0.11 & 0 & -0.01 & 0 & 0.09 & 0 & -0.09 & 0.04 & -0.01 & 0 & -0.01 & 0.01 & -0.1 & 0 & 0.08 & 0.13 & 0.08 & 0.11 & -0.1 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.14 & 0.12 & 0.15 & 0.07 & 0.05 & 0.11 & 0.12 & 0.09 & 0.11 & 0.07 & 0.05 & 0.13 & 0.2 & 0.34 & 0.51 & 0.18 & 0.17 & 0.1 & 0.11 & 0.09 & 0.11 & 0.08 & 0.05 & 0.23 & 0.25 & 0.15 & 0.26 & 0.14 & 0.07\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.96 & 1.25 & 0.91 & 1.46 & 2.27 & 0.92 & 0.96 & 1.25 & 0.9 & 1.46 & 2.25 & 0.88 & 0.87 & 1.21 & 0.56 & 1.26 & 2.09 & 0.9 & 0.94 & 1.21 & 0.89 & 1.43 & 2.22 & 0.57 & 0.58 & 0.78 & 0.52 & 0.83 & 1.62\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.1 & 0.11 & 0.18 & 0.12 & 0.17 & 0.17 & 0.11 & 0.11 & 0.18 & 0.12 & 0.17 & 0.17 & 0.12 & 0.11 & 0.19 & 0.1 & 0.15 & 0.16 & 0.1 & 0.11 & 0.18 & 0.12 & 0.16 & 0.16 & 0.19 & 0.2 & 0.27 & 0.21 & 0.33 & 0.34\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 5}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.82 & 0.82 & 0.82 & 0.83 & 0.82 & 0.83 & 0.85 & 0.83 & 0.8 & 0.81 & 0.8 & 0.83 & 0.83 & 0.83 & 0.79 & 0.8 & 0.8 & 0.84 & 0.83 & 0.82 & 0.81 & 0.8 & 0.81 & 0.83 & 0.83 & 0.82 & 0.82 & 0.81 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.12 & 0.12 & 0.17 & 0.2 & 0.18 & 0.16 & 0.18 & 0.19 & 0.2 & 0.2 & 0.17 & 0.15 & 0.12 & 0.15 & 0.15 & 0.15 & 0.16 & 0.14 & 0.13 & 0.15 & 0.14 & 0.15 & 0.19 & 0.16 & 0.15 & 0.17 & 0.16 & 0.15\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & -0.01 & -0.05 & -0.04 & 0.04 & -1.27 & -1.3 & -1.62 & -1.4 & -1.36 & -1.67 & -1.51 & -1.31 & -1.41 & -0.98 & -0.35 & -0.04 & -0.85 & -0.77 & -1.42 & -0.7 & -0.63 & -0.73 & -0.74 & -0.9 & -1.95 & -1.22 & -0.98 & -1.49 & -1.09 & -1\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.22 & 0.23 & 0.18 & 0.23 & 0.1 & 0.07 & 0.4 & 0.23 & 0.18 & 0.36 & 0.14 & 0.08 & 0.16 & 0.24 & 0.17 & 0.43 & 0.17 & 0.1 & 0.18 & 0.3 & 0.18 & 0.33 & 0.2 & 0.1 & 0.3 & 0.4 & 0.24 & 0.46 & 0.25 & 0.1\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.85 & 0.97 & 1.27 & 0.79 & 1.52 & 2.31 & 0.67 & 0.96 & 1.26 & 0.62 & 1.3 & 2.01 & 0.76 & 0.61 & 1.1 & 0.33 & 0.85 & 1.78 & 0.71 & 0.55 & 0.84 & 0.41 & 0.78 & 1.71 & 0.54 & 0.43 & 0.66 & 0.35 & 0.58 & 1.48\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.55 & 0.2 & 0.13 & 0.24 & 0.27 & 0.17 & 0.26 & 0.31 & 0.14 & 0.24 & 0.27 & 0.14 & 0.11 & 0.2 & 0.05 & 0.13 & 0.18 & 0.13 & 0.1 & 0.15 & 0.07 & 0.13 & 0.17 & 0.12 & 0.08 & 0.15 & 0.05 & 0.1 & 0.16\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 6}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.71 & 0.78 & 0.82 & 0.83 & 0.81 & 0.82 & 0.84 & 0.82 & 0.79 & 0.81 & 0.79 & 0.84 & 0.8 & 0.81 & 0.76 & 0.76 & 0.76 & 0.84 & 0.8 & 0.8 & 0.78 & 0.76 & 0.78 & 0.84 & 0.8 & 0.8 & 0.79 & 0.77 & 0.79\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.04 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.03 & 0.03 & 0.03 & 0.01 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.16 & 0.2 & 0.19 & 0.17 & 0.18 & 0.21 & 0.22 & 0.2 & 0.16 & 0.05 & 0.02 & 0.02 & 0.04 & 0.04 & 0.15 & 0.05 & 0.03 & 0.03 & 0.03 & 0.05 & 0.16 & 0.05 & 0.03 & 0.04 & 0.04 & 0.05\\
+\hspace{2em}\hspace{1em}MCMC Error & 0 & 0 & 0 & 0 & 0.02 & 0.01 & 0.04 & 0.03 & 0.03 & 0.04 & 0.03 & 0.02 & 0.01 & 0.01 & 0 & 0 & 0 & 0 & 0.02 & 0.01 & 0 & 0 & 0 & 0.01 & 0.02 & 0.01 & 0 & 0 & 0 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & -0.01 & -0.07 & -0.07 & 0.01 & -3.6 & -3.74 & -4.71 & -3.93 & -3.84 & -4.73 & -3.98 & -3.77 & -4.09 & -3.55 & -0.41 & 0.61 & -1.67 & -2.16 & -4.24 & -2.69 & -1.22 & -1.4 & -1.41 & -2.49 & -4.47 & -3.24 & -1.45 & -2.11 & -1.78 & -2.49\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.2 & 0.19 & BIG & 0.2 & BIG & 0.08 & BIG & 0.34 & 0.28 & 0.62 & 0.17 & 0.09 & 0.16 & 0.77 & BIG & 0.46 & 0.31 & 0.15 & 0.19 & 0.67 & BIG & 0.47 & 0.29 & 0.13 & 0.24 & 0.75 & BIG & 0.56 & 0.3 & 0.13\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.9 & 1.41 & 0.63 & 0.84 & 1.49 & 2.29 & 0.54 & 0.96 & 1.18 & 0.52 & 1.26 & 1.86 & 0.72 & 0.14 & 0.53 & 0.25 & 0.35 & 1.67 & 0.62 & 0.16 & 0.48 & 0.22 & 0.28 & 1.5 & 0.57 & 0.15 & 0.45 & 0.2 & 0.25 & 1.38\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 6.07 & 0.2 & 0.13 & 0.28 & 0.3 & 0.18 & 0.66 & 0.32 & 0.12 & 0.26 & 0.28 & 0.13 & 0.04 & 0.18 & 0.02 & 0.06 & 0.17 & 0.11 & 0.03 & 0.12 & 0.02 & 0.05 & 0.13 & 0.11 & 0.03 & 0.11 & 0.02 & 0.04 & 0.12\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 4 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.82 & 0.83 & 0.82 & 0.84 & 0.86 & 0.86 & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.84 & 0.83 & 0.84 & 0.83 & 0.84 & 0.84 & 0.83 & 0.84 & 0.86 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.17 & 0.18 & 0.17 & 0.19 & 0.16 & 0.15 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17 & 0.17 & 0.17 & 0.16 & 0.17 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & 0 & 0.01 & 0.01 & 0 & 0 & 0.01 & 0 & 0.01 & 0.01 & 0.01 & 0 & 0 & 0 & 0 & 0.01 & 0.01 & 0 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0 & 0.01 & 0 & 0 & 0 & 0 & 0 & 0\\
+\hspace{2em}\hspace{1em}Calibration Intercept & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \vphantom{2} 0\\
+\hspace{2em}\hspace{1em}MCMC Error & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \vphantom{2} 0\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.9 & 1.46 & 2.25 & 0.88 & 0.87 & 1.21 & 0.56 & 1.26 & 2.09 & 0.9 & 0.96 & 0.94 & 1.21 & 0.89 & 1.43 & 2.22 & 0.57 & 0.58 & 0.78 & 0.52 & 0.83 & 1.25 & 1.62 & 0.91 & 1.46 & 2.27 & 0.92 & 0.96 & 1.25\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.1 & 0.12 & 0.17 & 0.17 & 0.12 & 0.11 & 0.19 & 0.1 & 0.15 & 0.16 & 0.1 & 0.11 & 0.11 & 0.18 & 0.12 & 0.16 & 0.16 & 0.19 & 0.2 & 0.27 & 0.21 & 0.33 & 0.18 & 0.34 & 0.12 & 0.17 & 0.17 & 0.11 & 0.11 & 0.18\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 5 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.8 & 0.81 & 0.8 & 0.83 & 0.83 & 0.83 & 0.79 & 0.8 & 0.8 & 0.84 & 0.82 & 0.83 & 0.82 & 0.81 & 0.8 & 0.81 & 0.83 & 0.83 & 0.82 & 0.82 & 0.81 & 0.82 & 0.82 & 0.82 & 0.83 & 0.82 & 0.83 & 0.85 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.13 & 0.13 & 0.14 & 0.12 & 0.13 & 0.12 & 0.15 & 0.13 & 0.13 & 0.12 & 0.12 & 0.13 & 0.12 & 0.14 & 0.13 & 0.13 & 0.13 & 0.14 & 0.13 & 0.15 & 0.13 & 0.12 & 0.13 & 0.12 & 0.12 & 0.13 & 0.13 & 0.12 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0 & 0.01 & 0.01 & 0.01 & 0 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \vphantom{1} 0\\
+\hspace{2em}\hspace{1em}MCMC Error & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & \vphantom{1} 0\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.85 & 0.62 & 1.3 & 2.01 & 0.76 & 0.61 & 1.1 & 0.33 & 0.85 & 1.78 & 0.71 & 0.97 & 0.55 & 0.84 & 0.41 & 0.78 & 1.71 & 0.54 & 0.43 & 0.66 & 0.35 & 0.58 & 1.27 & 1.48 & 0.79 & 1.52 & 2.31 & 0.67 & 0.96 & 1.26\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.14 & 0.24 & 0.27 & 0.14 & 0.11 & 0.2 & 0.05 & 0.13 & 0.18 & 0.13 & 0.55 & 0.1 & 0.15 & 0.07 & 0.13 & 0.17 & 0.12 & 0.08 & 0.15 & 0.05 & 0.1 & 0.2 & 0.16 & 0.13 & 0.24 & 0.27 & 0.17 & 0.26 & 0.31\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 6 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.79 & 0.81 & 0.79 & 0.84 & 0.79 & 0.8 & 0.76 & 0.76 & 0.76 & 0.84 & 0.71 & 0.8 & 0.8 & 0.78 & 0.76 & 0.78 & 0.84 & 0.8 & 0.8 & 0.79 & 0.77 & 0.78 & 0.79 & 0.82 & 0.83 & 0.81 & 0.82 & 0.84 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.03 & 0.03 & 0.01 & 0.03 & 0.1 & 0.02 & 0.03 & 0.02 & 0.01 & 0.04 & 0.02 & 0.04 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.05 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\hspace{2em}\hspace{1em}Calibration Intercept & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+\hspace{2em}\hspace{1em}MCMC Error & 0 & 0 & 0 & 0 & 0 & 0 & BIG & 0 & 0 & 0 & 0 & 0 & 0 & 3.57 & 0 & 0 & 0 & 0 & 0 & 4.82 & 0 & 0 & 2.77 & 0 & 0 & 1.43 & 0 & 1.01 & 0 & 0\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.9 & 0.52 & 1.26 & 1.86 & 0.72 & 0.14 & 0.56 & 0.25 & 0.35 & 1.67 & 0.62 & 1.41 & 0.16 & 0.48 & 0.22 & 0.28 & 1.5 & 0.57 & 0.15 & 0.45 & 0.2 & 0.25 & 0.63 & 1.38 & 0.84 & 1.49 & 2.29 & 0.54 & 0.96 & 1.18\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.12 & 0.26 & 0.28 & 0.13 & 0.05 & 0.16 & 0.02 & 0.06 & 0.17 & 0.11 & 6.07 & 0.03 & 0.12 & 0.02 & 0.05 & 0.13 & 0.11 & 0.03 & 0.11 & 0.02 & 0.04 & 0.2 & 0.12 & 0.13 & 0.28 & 0.3 & 0.18 & 0.66 & 0.32\\
+\bottomrule
+\end{tabular}}
+\end{sidewaystable}
+
