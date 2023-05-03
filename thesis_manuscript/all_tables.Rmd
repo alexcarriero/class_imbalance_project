@@ -16,11 +16,11 @@ library(kableExtra)
 
 ```{r, echo = F, results = 'asis'}
 # load .csv file containing data frame of simulation scenario setting
-sim_sets <- read.csv("./../simulation_series/data-generating-mechanism/sim_settings.csv") %>% 
+sim_sets <- read.csv("./../simulation_code/own_device/data-generating-mechanism/sim_settings.csv") %>% 
   filter(npred < 17)
 
 # load .RData file containing data frame of data generating parameters and sample size
-set <- readRDS("./../simulation_series/data-generating-mechanism/set.RData")
+set <- readRDS("./../simulation_code/own_device/data-generating-mechanism/set.RData")
 
 # retrieve sample size for each scenario
 sample_size <- c()
@@ -147,71 +147,10 @@ cbind(Method, Abbreviation, Hyperparameters, Implementation)%>%
 
 \newpage 
 
-# Results Table 
-```{r, echo = F}
-prepare_for_results_table <- function(dataframe){
-  dataframe %>% 
-  mutate(pair_id = pair_id %>% as.numeric()) %>% 
-  arrange(pair_id) %>% 
-  select(-pair_id) %>% 
-  round(digits = 2) %>% 
-  # mutate(auc_med = paste0(format(round(auc_med, 2), nsmall = 2), " \\n (", format(round(auc_sd, 2), nsmall = 2), ")"),
-  #        bri_med = paste0(format(round(bri_med, 2), nsmall = 2), " \\n (", format(round(bri_sd, 2), nsmall = 2), ")"),
-  #        int_med = paste0(format(round(int_med, 2), nsmall = 2), " \\n (", format(round(int_sd, 2), nsmall = 2), ")"),
-  #        slp_med = paste0(format(round(slp_med, 2), nsmall = 2), " \\n (", format(round(slp_sd, 2), nsmall = 2), ")")) %>%
-  # select(auc_med, bri_med, int_med, slp_med) %>% 
-  t() %>% 
-  as.data.frame() 
-}
-```
 
-```{r, echo = F}
-library(tidyverse)
-library(kableExtra)
-options(scipen = 999)
-a <- readRDS("./../visualize_results/results/results_sc4_new.RData")$summary %>% prepare_for_results_table()
-b <- readRDS("./../visualize_results/results/results_sc5_new.RData")$summary %>% prepare_for_results_table()
-c <- readRDS("./../visualize_results/results/results_sc6_new.RData")$summary %>% prepare_for_results_table()
+# Appendix Tables 
 
-x <- readRDS("./../visualize_results/results/results_sc4_recalibrated.RData")$summary %>% prepare_for_results_table()
-y <- readRDS("./../visualize_results/results/results_sc5_recalibrated.RData")$summary %>% prepare_for_results_table()
-z <- readRDS("./../visualize_results/results/results_sc6_recalibrated.RData")$summary %>% prepare_for_results_table()
-
-d <- bind_rows(a,b,c,x,y,z)
-# d <- bind_rows(a,b,c)
-
-d <- as.data.frame(d)
-colnames(d) <- c(1:30)
-
-d <- as.matrix(d)
-x <- data.frame(rnames = rep(c("Concordance Statistic", "MCMC Error", "Brier Score", "MCMC Error",
-                               "Calibration Intercept", "MCMC Error", "Calibration Slope", "MCMC Error"),6))
-
-rownames(d) <- x$rnames
-
-d[d > 10]   <- "BIG"
-
-d %>%
-  kable(booktabs = T, format = "latex", align = rep("c", 30),
-        col.names = rep(c("LR", "SVM", "RF", "XG", "RB", "EE"), 5),
-        linesep = c("", "", "", "", "", "", "",
-                  "\\addlinespace \\addlinespace"),
-        caption = "Results Table", label = "tab:table") %>%
-  kable_styling(latex_options = "scale_down") %>%
-  kableExtra::landscape() %>%
-  pack_rows("Scenario 4:",   1,  8) %>%
-  pack_rows("Scenario 5:",   9, 16) %>%
-  pack_rows("Scenario 6:", 17, 24) %>%
-  pack_rows("Scenario 4, Recalibrated:",  25, 32) %>%
-  pack_rows("Scenario 5, Recalibrated:",  33, 40) %>%
-  pack_rows("Scenario 6, Recalibrated:", 41, 48) %>%
-  add_indent(c(1:48), level_of_indent = 2) %>%
-  add_header_above(c(" " = 1, "Control" = 6, "RUS" = 6, "ROS" = 6, "SMOTE" = 6, "SENN" = 6))
-```
-
-
-
-# Appendix B Tables 
+## Error Handling Tables 
 
 ```{r, echo = F}
 # corrections
@@ -287,3 +226,78 @@ df %>%
   kable_styling(full_width = F, latex_options ="hold_position") 
 ```
 
+## Results Tables 
+
+```{r, echo = F}
+prepare_for_results_table <- function(dataframe){
+  dataframe %>% 
+  mutate(pair_id = pair_id %>% as.numeric()) %>% 
+  arrange(pair_id) %>% 
+  select(-pair_id) %>% 
+  round(digits = 2) %>% 
+  t() %>% 
+  as.data.frame() 
+}
+```
+
+```{r, echo = F}
+make_results_table <- function(A, B, C){
+  
+  scA <- paste0("sc", A)
+  scB <- paste0("sc", B)
+  scC <- paste0("sc", C)
+  
+  # raw results
+  a <- readRDS(paste0("./../visualize_results/results/results_", scA, ".RData"))$summary %>% prepare_for_results_table()
+  b <- readRDS(paste0("./../visualize_results/results/results_", scB, ".RData"))$summary %>% prepare_for_results_table()
+  c <- readRDS(paste0("./../visualize_results/results/results_", scC, ".RData"))$summary %>% prepare_for_results_table()
+  
+  # recalibrated results
+  x <- readRDS(paste0("./../visualize_results/results/results_",  scA, "_recalibrated.RData"))$summary %>% prepare_for_results_table()
+  y <- readRDS(paste0("./../visualize_results/results/results_",  scB, "_recalibrated.RData"))$summary %>% prepare_for_results_table()
+  z <- readRDS(paste0("./../visualize_results/results/results_",  scC, "_recalibrated.RData"))$summary %>% prepare_for_results_table()
+
+  d <- bind_rows(a,b,c,x,y,z)
+
+  # label columns 1:30
+  d <- as.data.frame(d)
+  colnames(d) <- c(1:30)
+  
+  # label rows 
+  d <- as.matrix(d)
+  x <- data.frame(rnames = rep(c("Concordance Statistic", "MCMC Error", "Brier Score", "MCMC Error",
+                                 "Calibration Intercept", "MCMC Error", "Calibration Slope", "MCMC Error"), 6))
+  
+  rownames(d) <- x$rnames
+  
+  # substitute large values 
+  d[d > 10]   <- "BIG"
+  
+  # generate table 
+  d %>%
+  kable(booktabs = T, format = "latex", align = rep("c", 30),
+        col.names = rep(c("LR", "SVM", "RF", "XG", "RB", "EE"), 5),
+        linesep = c("", "", "", "", "", "", "",
+                  "\\addlinespace \\addlinespace"),
+        caption = "Results Table", label = "tab:table") %>%
+  kable_styling(latex_options = "scale_down") %>%
+  kableExtra::landscape() %>%
+  pack_rows(paste("Scenario", A),   1,  8) %>%
+  pack_rows(paste("Scenario", B),   9, 16) %>%
+  pack_rows(paste("Scenario", C), 17, 24) %>%
+  pack_rows(paste("Scenario", A,"Recalibrated"),  25, 32) %>%
+  pack_rows(paste("Scenario", B,"Recalibrated"),  33, 40) %>%
+  pack_rows(paste("Scenario", C,"Recalibrated"), 41, 48) %>%
+  add_indent(c(1:48), level_of_indent = 2) %>%
+  add_header_above(c(" " = 1, "Control" = 6, "RUS" = 6, "ROS" = 6, "SMOTE" = 6, "SENN" = 6))
+}
+```
+
+```{r, echo = F}
+make_results_table(1,2,3)
+make_results_table(4,5,6)
+make_results_table(7,8,9)
+make_results_table(10,11,12)
+make_results_table(13,14,15)
+make_results_table(16,17,18)
+```

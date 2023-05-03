@@ -5,10 +5,10 @@ account: alex-carriero
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 8851703
-bundleId: 7153035
+bundleId: 7168441
 url: https://alex-carriero.shinyapps.io/shiny_app/
-when: 1682769941.25199
-lastSyncTime: 1682769941.25201
+when: 1683116327.21834
+lastSyncTime: 1683116327.21835
 asMultiple: TRUE
 asStatic: FALSE
 ignoredFiles: dashboard.Rmd

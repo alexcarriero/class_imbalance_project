@@ -414,23 +414,23 @@ tidy_for_pm_plts <- function(dataframe){
     mutate(
       algorithm  = factor(algorithm,
                           levels = c(
-                            'easy_ensemble',
-                            'rusboost',
-                            'xgboost',
-                            'random_forest',
+                            'logistic_regression',
                             'support_vector_machine',
-                            'logistic_regression')),
+                            'random_forest',
+                            'xgboost',
+                            'rusboost',
+                            'easy_ensemble')),
       correction = factor(correction,
                           levels = c(
-                            'control', 'rus', 'ros', 'smo', 'sen'))) %>%
+                            'sen', 'smo', 'ros', 'rus', 'control'))) %>%
     mutate(
       algorithm = recode(algorithm,
-                         "logistic_regression"    = "LR",
-                         "support_vector_machine" = "SVM",
-                         "random_forest"          = "RF",
-                         "xgboost"                = "XG" ,
-                         "rusboost"               = "RB",
-                         "easy_ensemble"          = "EE"),
+                         "logistic_regression"    = "Logistic Regression",
+                         "support_vector_machine" = "Support Vector Machine",
+                         "random_forest"          = "Random Forest",
+                         "xgboost"                = "XGBoost" ,
+                         "rusboost"               = "RUSBoost",
+                         "easy_ensemble"          = "EasyEnsemble"),
       correction = recode(correction,
                           "control" = "Control",
                           "rus"    = "RUS",
@@ -464,7 +464,7 @@ pm_plot <- function(dataframe, method, xmin, xmax){
     tidy_for_pm_plts() %>%
     ggplot() + 
     geom_hline(yintercept = ref, color = "black", linewidth = 1) + 
-    geom_violin(aes_string(x = "algorithm", y = method),
+    geom_violin(aes_string(x = "correction", y = method),
                 fill  = "#b3cd41", 
                 color = "grey",
                 draw_quantiles = 0.5,
@@ -475,7 +475,7 @@ pm_plot <- function(dataframe, method, xmin, xmax){
     ylab(" ") +
     ylim(xmin, xmax) +
     coord_flip() + 
-    facet_wrap(~correction, nrow = 1) + 
+    facet_wrap(~algorithm, nrow = 1) + 
     ggtitle(title) + 
     theme(text=element_text(family="Times"))
 }
@@ -583,19 +583,31 @@ scenario_graph <- function(dataframe, method){
   ggplot(data = df, aes_string(x = "pair_id", y = method , color = "n")) + 
     geom_point(size = 0.6) + 
     geom_line(linewidth = 0.2) + 
+    geom_hline(yintercept = ref, color = "black", linewidth = 1) + 
     coord_flip() + 
     facet_nested(npred ~ ef) + 
-    scale_color_manual("Sample Size", values = c("#BFCDE0", "#40798C", "#161032"))+
+    scale_color_manual("Sample Size", values = c("blue", "#40798C", "#161032"))+
+    theme_minimal() + 
     theme(panel.background = element_rect(
-      color="#f0f0f0", fill="#F2F3F5", size=1.5, linetype="solid"
+      color="#FEFEFA", fill="#FFFFFF", size=1.5, linetype="solid"
     ),
     strip.background = element_rect(
-      color="#f0f0f0", fill="#F5F5DC", size=1.5, linetype="solid"
+      color="#FEFEFA", fill="#F5F5DC", size=1.5, linetype="solid"
     ), 
+    panel.spacing.y = unit(3, "lines"),
+    panel.spacing.x = unit(3, "lines"),
+    legend.key = element_rect( color="#FEFEFA", fill = "#FFFFFF"),
     text=element_text(family="Times", size = 20),
+    axis.text.y = element_text(hjust=0.95),
     strip.text = element_text(size = rel(1.25))) + 
     xlab("Prediction Model") + 
-    ylab(title)
+    ylab(title) + 
+    scale_x_discrete(limits = c(
+      "Control-LR", "Control-SVM", "Control-RF", "Control-XG", "Control-RB", "Control-EE", 
+      "RUS-LR", "RUS-SVM", "RUS-RF", "RUS-XG", "RUS-RB", "RUS-EE", 
+      "ROS-LR", "ROS-SVM", "ROS-RF", "ROS-XG", "ROS-RB", "ROS-EE", 
+      "SMOTE-LR", "SMOTE-SVM", "SMOTE-RF", "SMOTE-XG", "SMOTE-RB", "SMOTE-EE", 
+      "SENN-LR", "SENN-SVM", "SENN-RF", "SENN-XG", "SENN-RB", "SENN-EE"))
 }
 
 #-------------------- error handling -------------------------------------------

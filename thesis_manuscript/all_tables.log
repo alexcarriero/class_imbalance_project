@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  28 APR 2023 14:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  1 MAY 2023 22:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -462,6 +462,21 @@ LaTeX Warning: Label `tab:tab:table' multiply defined.
 
 LaTeX Warning: Label `tab:tab:table' multiply defined.
 
+
+LaTeX Warning: Label `tab:tab:table' multiply defined.
+
+
+LaTeX Warning: Label `tab:tab:table' multiply defined.
+
+
+LaTeX Warning: Label `tab:tab:table' multiply defined.
+
+
+LaTeX Warning: Label `tab:tab:table' multiply defined.
+
+
+LaTeX Warning: Label `tab:tab:table' multiply defined.
+
 )
 \openout1 = `all_tables.aux'.
 
@@ -594,10 +609,7 @@ LaTeX Warning: Citation `ebmc' on page 3 undefined on input line 185.
 
 LaTeX Warning: Citation `iric' on page 3 undefined on input line 187.
 
-[3] [4] [5] [6
-
-
-] (./all_tables.aux)
+[3] [4] [5] [6] [7] [8] [9] [10] [11] (./all_tables.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -606,18 +618,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 12777 strings out of 477961
- 201890 string characters out of 5837168
+ 12792 strings out of 477961
+ 202032 string characters out of 5837168
  2027074 words of memory out of 5000000
- 32741 multiletter control sequences out of 15000+600000
- 557672 words of font info for 71 fonts, out of 8000000 for 9000
+ 32744 multiletter control sequences out of 15000+600000
+ 560670 words of font info for 72 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  89i,13n,90p,353b,467s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb>
-Output written on all_tables.pdf (6 pages, 150601 bytes).
+Output written on all_tables.pdf (11 pages, 168748 bytes).
 PDF statistics:
- 116 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
- 25 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 153 PDF objects out of 1000 (max. 8388607)
+ 122 compressed objects within 2 object streams
+ 37 named destinations out of 1000 (max. 500000)
+ 49 words of extra memory for PDF output out of 10000 (max. 10000000)
 

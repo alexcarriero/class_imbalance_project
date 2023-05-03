@@ -1,5 +1,5 @@
 ---
-title: "Dashboard Results"
+title: "Simulation Results"
 output: 
   flexdashboard::flex_dashboard:
     orientation: rows
@@ -51,7 +51,7 @@ inputPanel(
   selectInput("eventfrac", label = "Event Fraction",
               choices = list("0.5" = 0.5, "0.2" = 0.2, "0.02" = 0.02), selected = 0.5),
   
-  checkboxInput("recal", label = "recalibrated")
+  checkboxInput("recal", label = "Recalibrated Results")
   
 )
 ```
@@ -60,8 +60,8 @@ inputPanel(
 library(flexdashboard)
 library(tidyverse)
 library(patchwork)
-library(DT)
 library(shiny)
+library(DT)
 
 source("./process_results.R")
 
