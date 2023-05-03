@@ -128,33 +128,14 @@ Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS &
 15 & 16 & N & 0.02 & 1 & 0 & 0 & 0 & 1\\
 \bottomrule
 \end{tabular}
-\end{table}
-
-```{r, echo = F, results = 'hide'}
-# a <-readRDS("./../visualize_results/results/results_sc1.RData")
-# 
-# a <- a$overall_dataframe %>% mutate(obs_ef= as.numeric(obs_ef))
-# 
-# min(a$obs_ef)
-# max(a$obs_ef)
-# 
-# b <- a$overall_dataframe %>% 
-#   filter(c_err != "0") %>% 
-#   filter(correction == "sen") %>% 
-#   mutate(obs_ef = as.numeric(obs_ef))
-# 
-# min(b$obs_ef)
-# max(b$obs_ef)
-
-# Error in sample.int(length(x), size, replace, prob): cannot take a sample larger than the population when 'replace = FALSE'\n
-# Error in nn2(numerMatrix, numerMatrix, k + 1): Cannot find more nearest neighbours than there are points\n
-# Error in nn2(numerMatrix, numerMatrix, k + 1): Cannot find more nearest neighbours than there are points\n
-```
+\end{table}\
+\
 
 
 ## Results Tables\ 
 
 In Tables S5-10, median performance measures and their Monte Carlo errors across 2000 simulation iterations are presented for all 18 simulation scenarios. 
+
 
 \begin{sidewaystable}
 \renewcommand\thetable{S5} 
@@ -611,8 +592,9 @@ In Tables S5-10, median performance measures and their Monte Carlo errors across
 
 \clearpage 
 
-## Calibration Plots (no re-calibration)
-
+## Calibration Plots (no re-calibration)\
+\
+\
 ```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 1. This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Flexible curves were generated using raw predicted risks; no re-calibration. \\label{fig:cal_1}", results = 'asis'}
 knitr::include_graphics("./results/calibration_plot_manuscript_sc1.png")
 ```
@@ -687,9 +669,9 @@ knitr::include_graphics("./results/calibration_plot_manuscript_sc18.png")
 
 \clearpage  
 
-## Calibration Plots (after re-calibration)
-
-
+## Calibration Plots (after re-calibration)\
+\
+\
 ```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 1. This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Flexible curves were generated using re-calibrated predicted risks.\\label{fig:recal_1}"}
 knitr::include_graphics("./results/calibration_plot_manuscript_sc1_recalibrated.png")
 ```
@@ -764,152 +746,154 @@ knitr::include_graphics("./results/calibration_plot_manuscript_sc18_recalibrated
 
 \clearpage 
 
-## Violin Plots (no re-calibration)
-
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 1.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration.\\label{fig:violin_1}"}
+## Violin Plots (no re-calibration)\
+\
+\
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 1.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.  \\label{fig:violin_1}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc1.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 2.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_2}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 2.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:violin_2}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc2.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 3.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_3}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 3.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:violin_3}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc3.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 4.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_4}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 4.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:violin_4}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc4.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 5.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_5}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 5.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:violin_5}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc5.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 6.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_6}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 6.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:violin_6}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc6.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 7.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_7}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 7.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:violin_7}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc7.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 8.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2).  Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_8}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 8.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2).  Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:violin_8}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc8.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 9.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration.\\label{fig:violin_9}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 9.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:violin_9}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc9.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 10.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_10}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 10.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:violin_10}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc10.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 11.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_11}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 11.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:violin_11}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc11.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 12.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_12}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 12.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:violin_12}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc12.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 13.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration.\\label{fig:violin_13}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 13.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:violin_13}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc13.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 14.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_14}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 14.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:violin_14}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc14.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 15.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and extremely imbalanced data (event fraction = 0.02).  Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_15}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 15.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and extremely imbalanced data (event fraction = 0.02).  Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:violin_15}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc15.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 16.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_16}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 16.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:violin_16}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc16.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '75%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 17.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. \\label{fig:violin_17}"}
+```{r, echo = F, fig.align="center", out.height= '75%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 17.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:violin_17}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc17.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 18.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration.\\label{fig:violin_18}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 18.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:violin_18}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc18.png")
 ```
 
 \clearpage 
 
-## Violin Plots (after re-calibration)
-
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 1.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_1}"}
+## Violin Plots (after re-calibration)\
+\
+\
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 1.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:recal_violin_1}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc1_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 2.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_2}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 2.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_2}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc2_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 3.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_3}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 3.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:recal_violin_3}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc3_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 4.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_4}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 4.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_4}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc4_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 5.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_5}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 5.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_5}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc5_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 6.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_6}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 6.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_6}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc6_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 7.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_7}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 7.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:recal_violin_7}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc7_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 8.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_8}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 8.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_8}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc8_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 9.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_9}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 9.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:recal_violin_9}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc9_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 10.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_10}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 10.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_10}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc10_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 11.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_11}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 11.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_11}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc11_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 12.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_12}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 12.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_12}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc12_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 13.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks.\\label{fig:rrecal_violin_13}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 13.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:rrecal_violin_13}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc13_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 14.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_14}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 14.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.\\label{fig:recal_violin_14}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc14_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 15.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_15}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 15.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_15}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc15_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 16.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_16}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 16.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_16}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc16_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 17.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_17}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 17.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks.  The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_17}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc17_recalibrated.png")
 ```
 
-```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 18.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. \\label{fig:recal_violin_18}"}
+```{r, echo = F, fig.align="center", out.height= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 18.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and extremely imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. \\label{fig:recal_violin_18}"}
 knitr::include_graphics("./results/performance_metrics_manuscript_sc18_recalibrated.png")
 ```

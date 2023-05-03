@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  3 MAY 2023 14:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  3 MAY 2023 19:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1045,7 +1045,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 334--339
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 341--350
+Underfull \hbox (badness 10000) in paragraph at lines 341--354
 
  []
 
@@ -1053,57 +1053,55 @@ Underfull \hbox (badness 10000) in paragraph at lines 341--350
 pdfTeX warning (ext4): destination with the same identifier (name{equation.5.1}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.350 \clearpage
-                ] [21
-
-]
-<./../../results/auc_across_scenarios.png, id=137, 1445.4pt x 1445.4pt>
-File: ./../../results/auc_across_scenarios.png Graphic file (type png)
-<use ./../../results/auc_across_scenarios.png>
-Package pdftex.def Info: ./../../results/auc_across_scenarios.png  used on input line 360.
+l.355 \clearpage
+                ]
+<./../results/auc_across_scenarios.png, id=133, 1445.4pt x 1445.4pt>
+File: ./../results/auc_across_scenarios.png Graphic file (type png)
+<use ./../results/auc_across_scenarios.png>
+Package pdftex.def Info: ./../results/auc_across_scenarios.png  used on input line 358.
 (pdftex.def)             Requested size: 456.75398pt x 456.75905pt.
-[22 <./../../results/auc_across_scenarios.png>]
-<./../../results/bri_across_scenarios.png, id=146, 1445.4pt x 1445.4pt>
-File: ./../../results/bri_across_scenarios.png Graphic file (type png)
-<use ./../../results/bri_across_scenarios.png>
-Package pdftex.def Info: ./../../results/bri_across_scenarios.png  used on input line 371.
+[21 <./../results/auc_across_scenarios.png>]
+<./../results/bri_across_scenarios.png, id=141, 1445.4pt x 1445.4pt>
+File: ./../results/bri_across_scenarios.png Graphic file (type png)
+<use ./../results/bri_across_scenarios.png>
+Package pdftex.def Info: ./../results/bri_across_scenarios.png  used on input line 369.
 (pdftex.def)             Requested size: 456.75398pt x 456.75905pt.
-[23 <./../../results/bri_across_scenarios.png>]
-<./../../results/int_across_scenarios.png, id=153, 1445.4pt x 1445.4pt>
-File: ./../../results/int_across_scenarios.png Graphic file (type png)
-<use ./../../results/int_across_scenarios.png>
-Package pdftex.def Info: ./../../results/int_across_scenarios.png  used on input line 382.
+[22 <./../results/bri_across_scenarios.png>]
+<./../results/int_across_scenarios.png, id=149, 1445.4pt x 1445.4pt>
+File: ./../results/int_across_scenarios.png Graphic file (type png)
+<use ./../results/int_across_scenarios.png>
+Package pdftex.def Info: ./../results/int_across_scenarios.png  used on input line 380.
 (pdftex.def)             Requested size: 456.75398pt x 456.75905pt.
-[24 <./../../results/int_across_scenarios.png>]
-<./../../results/slp_across_scenarios.png, id=160, 1445.4pt x 1445.4pt>
-File: ./../../results/slp_across_scenarios.png Graphic file (type png)
-<use ./../../results/slp_across_scenarios.png>
-Package pdftex.def Info: ./../../results/slp_across_scenarios.png  used on input line 393.
+[23 <./../results/int_across_scenarios.png>]
+<./../results/slp_across_scenarios.png, id=156, 1445.4pt x 1445.4pt>
+File: ./../results/slp_across_scenarios.png Graphic file (type png)
+<use ./../results/slp_across_scenarios.png>
+Package pdftex.def Info: ./../results/slp_across_scenarios.png  used on input line 391.
 (pdftex.def)             Requested size: 456.75398pt x 456.75905pt.
-[25 <./../../results/slp_across_scenarios.png>] [26
+[24 <./../results/slp_across_scenarios.png>] (./Appendix.bbl) [25
 
 
 
 
 
-] [27] (./Appendix.bbl) [28] (./Appendix.aux)
+] (./Appendix.aux)
 
 LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 20548 strings out of 477961
- 316815 string characters out of 5837168
- 2001074 words of memory out of 5000000
- 40363 multiletter control sequences out of 15000+600000
+ 20542 strings out of 477961
+ 316642 string characters out of 5837168
+ 1872074 words of memory out of 5000000
+ 40361 multiletter control sequences out of 15000+600000
  624123 words of font info for 172 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  90i,14n,90p,997b,579s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/alexcarriero/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb>
-Output written on Appendix.pdf (28 pages, 8408370 bytes).
+Output written on Appendix.pdf (25 pages, 8403870 bytes).
 PDF statistics:
- 345 PDF objects out of 1000 (max. 8388607)
- 219 compressed objects within 3 object streams
- 63 named destinations out of 1000 (max. 500000)
+ 331 PDF objects out of 1000 (max. 8388607)
+ 208 compressed objects within 3 object streams
+ 59 named destinations out of 1000 (max. 500000)
  125 words of extra memory for PDF output out of 10000 (max. 10000000)
 
