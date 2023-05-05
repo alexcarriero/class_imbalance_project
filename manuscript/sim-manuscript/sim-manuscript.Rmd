@@ -1,5 +1,5 @@
 ---
-title:  "Class imbalance corrections cause prediction models to over-estimate risk, except when they don't: a simulation study." 
+title:  "The harms of class imbalance corrections for calibration in machine learning: a simulation study." 
 author:
 - name: Alex Carriero*
   num: a,b

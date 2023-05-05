@@ -1,10 +1,23 @@
 ---
 title: "Simulation Results"
-output: 
+output:
   flexdashboard::flex_dashboard:
     orientation: rows
     vertical_layout: scroll
 runtime: shiny
+resource_files:
+- results/calibration_plot_sc1_recalibrated.png
+- results/calibration_plot_sc1.png
+- results/calibration_plot_sc2_recalibrated.png
+- results/calibration_plot_sc3_recalibrated.png
+- results/calibration_plot_sc2.png
+- results/calibration_plot_sc3.png
+- results/results_sc1_recalibrated.RData
+- results/results_sc1.RData
+- results/results_sc3_recalibrated.RData
+- results/results_sc2_recalibrated.RData
+- results/results_sc2.RData
+- results/results_sc3.RData
 ---
 
 <style> 

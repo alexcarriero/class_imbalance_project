@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  4 MAY 2023 23:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  5 MAY 2023 11:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1174,9 +1174,9 @@ Here is how much of TeX's memory you used:
  40474 multiletter control sequences out of 15000+600000
  604496 words of font info for 135 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 90i,15n,90p,1407b,615s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,15n,90p,1185b,615s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </Users/alexcarriero/Library/TinyTeX/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Italic.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/STIXGeneral-Regular.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathex.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathit.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm-bold.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathrm.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/stix/stix-mathscr.pfb>
-Output written on sim-manuscript.pdf (25 pages, 28282528 bytes).
+Output written on sim-manuscript.pdf (25 pages, 28281016 bytes).
 PDF statistics:
  489 PDF objects out of 1000 (max. 8388607)
  398 compressed objects within 4 object streams
