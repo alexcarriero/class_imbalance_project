@@ -121,7 +121,7 @@ Method <- c(
   )
 
 Abbreviation <- c("LR", "SVM", "RF", "XG", "RB", "EE")
-Hyperparameters <- c( " ", "tune grid = A", "tune grid = B", "tune grid = C", " ", " ")
+Hyperparameters <- c( " ", "caret default", "mtry [1: all predictors], min.node.size [1:10], splitrule [gini]", "caret default", " ", " ")
 
 Implementation <- c( 
   "base R \\cite{r}", 
@@ -134,15 +134,16 @@ Implementation <- c(
 
 cbind(Method, Abbreviation, Hyperparameters, Implementation)%>%
   as.data.frame()%>%
-  rename("R Package" = "Implementation")%>% 
+  rename("R Package" = "Implementation", 
+         "Hyperparameter Tuning Grid" = "Hyperparameters")%>% 
   kable(
-    booktabs = T, escape = F, linesep = "\\addlinespace", align = rep("c", 4),
+    booktabs = T, escape = F, linesep = "\\addlinespace", align = c("l","l", "l", "l"),
     caption = " machine learning algorithms  ", label = "tab:table") %>%
-  kable_styling(full_width = F, latex_options ="hold_position") %>%
-    footnote(symbol =  c("\ \ \ \ $A$: caret default grid", 
-                         "\ \ \ \ $B$: mtry [1: all predictors], min.node.size [1:10], splitrule [gini]",
-                         "\ \ \ \ $C$: caret default grid"), 
-           symbol_manual = c("*", "*", "*"), escape = F)
+  kable_styling(full_width = F, latex_options ="hold_position") # %>% 
+    # footnote(symbol =  c("\ \ \ \ $A$: caret default grid", 
+    #                      "\ \ \ \ $B$: mtry [1: all predictors], min.node.size [1:10], splitrule [gini]",
+    #                      "\ \ \ \ $C$: caret default grid"), 
+    #        symbol_manual = c("*", "*", "*"), escape = F)
 ```
 
 \newpage 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  4 MAY 2023 13:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.21)  5 MAY 2023 13:47
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -609,6 +609,11 @@ LaTeX Warning: Citation `ebmc' on page 3 undefined on input line 185.
 
 LaTeX Warning: Citation `iric' on page 3 undefined on input line 187.
 
+
+Overfull \hbox (46.38397pt too wide) in paragraph at lines 173--190
+ [][] 
+ []
+
 [3] [4] [5] [6] [7] [8] [9] [10] [11
 
 
@@ -639,7 +644,7 @@ Here is how much of TeX's memory you used:
  14 hyphenation exceptions out of 8191
  89i,14n,90p,353b,467s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/alexcarriero/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb>
-Output written on all_tables.pdf (11 pages, 167187 bytes).
+Output written on all_tables.pdf (11 pages, 166464 bytes).
 PDF statistics:
  153 PDF objects out of 1000 (max. 8388607)
  122 compressed objects within 2 object streams

@@ -42,6 +42,24 @@
 	year = {2015}}
 
 
+@article{maartens_paper,
+	author = {Maarten van Smeden and Karel GM Moons and Joris AH de Groot and Gary S Collins and Douglas G Altman and Marinus JC Eijkemans and Johannes B Reitsma},
+	journal = {Statistical Methods in Medical Research},
+	number = {8},
+	pages = {2455-2474},
+	title = {Sample size for binary logistic prediction models: Beyond events per variable criteria},
+	volume = {28},
+	year = {2019}}
+
+
+@article{newpaper,
+	author = {Riley, Richard D and Ensor, Joie and Snell, Kym I E and Harrell, Frank E and Martin, Glen P and Reitsma, Johannes B and Moons, Karel G M and Collins, Gary and van Smeden, Maarten},
+	journal = {BMJ},
+	title = {Calculating the sample size required for developing a clinical prediction model},
+	volume = {368},
+	year = {2020}}
+
+
 @article{cip,
 	author = {Megahed, Fadel M. and Chen, Ying-Ju and Megahed, Aly and Ong, Yuya and Altman, Naomi and Krzywinski, Martin},
 	journal = {Nature Methods},
@@ -91,7 +109,26 @@
     note = {R package version 1.1.2},
     url = {https://CRAN.R-project.org/package=pmsampsize},
 }
+
+@article{rusboost,
+  author={Seiffert, Chris and Khoshgoftaar, Taghi M. and Van Hulse, Jason and Napolitano, Amri},
+  booktitle={2008 19th International Conference on Pattern Recognition}, 
+  title={RUSBoost: Improving classification performance when training data is skewed}, 
+  year={2008},
+  volume={},
+  number={},
+  pages={1-4},
+  doi={10.1109/ICPR.2008.4761297}}
   
+  @article{ee,
+  author={Liu, Xu-Ying and Wu, Jianxin and Zhou, Zhi-Hua},
+  journal={IEEE Transactions on Systems, Man, and Cybernetics, Part B (Cybernetics)}, 
+  title={Exploratory Undersampling for Class-Imbalance Learning}, 
+  year={2009},
+  volume={39},
+  number={2},
+  pages={539-550},
+  doi={10.1109/TSMCB.2008.2007853}}
 
 @article{constanza,
 	author = {Navarro, Constanza and Damen, Johanna and van Smeden, Maarten and Takada, Toshihiko and Nijman, Steven and Dhiman, Paula and Ma, Jie and Collins, Gary and Bajpai, Ram and Riley, Richard and Moons, Karel and Hooft, Lotty},
@@ -144,15 +181,7 @@ numpages = {10}
   pages={408-421},
   doi={10.1109/TSMC.1972.4309137}}	
 	
-	
-@Manual{r,
-    title = {R: A Language and Environment for Statistical Computing},
-    author = {{R Core Team}},
-    organization = {R Foundation for Statistical Computing},
-    address = {Vienna, Austria},
-    year = {2021},
-    url = {https://www.R-project.org/},
-}	
+
   
 @Article{rose,
     title = {{ROSE}: a {P}ackage for {B}inary {I}mbalanced {L}earning},
@@ -195,15 +224,16 @@ numpages = {10}
 	year = {2019}
 }
 
-@Manual{caret,
-    title = {caret: Classification and Regression Training},
-    author = {Max Kuhn},
-    organization = {},
-    address = {},
-    year = {2021},
-    note = {R package version 6.0-90},
-    url = {https://CRAN.R-project.org/package=caret},
-  }
+
+@article{caret,
+	author = {Kuhn, Max},
+	journal = {Journal of Statistical Software},
+	number = {5},
+	pages = {1--26},
+	title = {Building Predictive Models in R Using the caret Package},
+	volume = {28},
+	year = {2008}}
+
   
 @Book{gg,
     author = {Hadley Wickham},
@@ -214,7 +244,7 @@ numpages = {10}
     url = {https://ggplot2.tidyverse.org},
 }
 
-@Manual{loess,
+@Manual{r,
     title = {R: A Language and Environment for Statistical Computing},
     author = {{R Core Team}},
     organization = {R Foundation for Statistical Computing},
@@ -223,11 +253,9 @@ numpages = {10}
     url = {https://www.R-project.org/},
 }
 
-@Manual{ebmc,
+@article{ebmc,
     title = {ebmc: Ensemble-Based Methods for Class Imbalance Problem},
     author = {Hsiang Hao and {Chen}},
-    organization = {},
-    address = {},
     year = {2022},
     note = {R package version 1.0.1},
     url = {https://CRAN.R-project.org/package=ebmc},
@@ -307,4 +335,25 @@ numpages = {10}
   author={Prabhjot Kaur and Anjana Gosain},
   journal={International Journal of Advanced Computer Science and Applications},
   year={2019}
+}
+
+@article{platt,
+	author = {Bj{\"o}rn B{\"o}ken},
+	journal = {Information Systems},
+	pages = {101641},
+	title = {On the appropriateness of Platt scaling in classifier calibration},
+	volume = {95},
+	year = {2021}}
+
+@article{probst,
+	doi = {10.1002/widm.1301},
+	url = {https://doi.org/10.1002%2Fwidm.1301},
+	year = 2019,
+	month = {jan},
+	publisher = {Wiley},
+	volume = {9},
+	number = {3},
+	author = {Philipp Probst and Marvin N. Wright and Anne-Laure Boulesteix},
+	title = {Hyperparameters and tuning strategies for random forest},
+	journal = {{WIREs} Data Mining and Knowledge Discovery}
 }

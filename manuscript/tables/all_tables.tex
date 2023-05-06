@@ -88,7 +88,7 @@
 
 \begin{table}[!h]
 
-\caption{\label{tab:tab:table} }
+\caption{\label{tab:tab:table} sim settings }
 \centering
 \begin{tabular}[t]{ccccccccc}
 \toprule
@@ -141,7 +141,7 @@ Scenario & No. Predictors & Sample Size & Event Fraction & $\mathrm{n}_{\mathrm{
 
 \begin{table}[!h]
 
-\caption{\label{tab:tab:table} }
+\caption{\label{tab:tab:table} imbalance corrections }
 \centering
 \begin{tabular}[t]{cccc}
 \toprule
@@ -168,27 +168,24 @@ SMOTE - Edited Nearest Neighbours & SENN & $k1=5$, $k2 = 3$ & IRIC \cite{iric}\\
 
 \begin{table}[!h]
 
-\caption{\label{tab:tab:table} }
+\caption{\label{tab:tab:table} machine learning algorithms  }
 \centering
-\begin{tabular}[t]{cccc}
+\begin{tabular}[t]{llll}
 \toprule
-Method & Abbreviation & Hyperparameters & R Package\\
+Method & Abbreviation & Hyperparameter Tuning Grid & R Package\\
 \midrule
 Logistic Regression & LR &  & base R \cite{r}\\
 \addlinespace
-Support Vector Machine & SVM & tune grid = A & caret \cite{caret}\\
+Support Vector Machine & SVM & caret default & caret \cite{caret}\\
 \addlinespace
-Random Forest & RF & tune grid = B & caret \cite{caret}\\
+Random Forest & RF & mtry [1: all predictors], min.node.size [1:10], splitrule [gini] & caret \cite{caret}\\
 \addlinespace
-XGBoost & XG & tune grid = C & caret \cite{caret}\\
+XGBoost & XG & caret default & caret \cite{caret}\\
 \addlinespace
 RUSBoost & RB &  & ebmc \cite{ebmc}\\
 \addlinespace
 EasyEnsemmble & EE &  & IRIC \cite{iric}\\
 \bottomrule
-\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $A$: caret default grid}\\
-\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $B$: mtry [1: all predictors], min.node.size [1:10], splitrule [gini]}\\
-\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $C$: caret default grid}\\
 \end{tabular}
 \end{table}
 
