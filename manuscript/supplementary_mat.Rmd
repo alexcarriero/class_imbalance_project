@@ -239,7 +239,7 @@ In Tables S5-10, median performance measures and their Monte Carlo errors across
 
 \begin{sidewaystable}
 \renewcommand\thetable{S5} 
-\caption{Median performance measures and their Monte Carlo erros across 2000 simulations iterations for simulation scenarios 1-3.}
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 1-3.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
@@ -319,7 +319,7 @@ In Tables S5-10, median performance measures and their Monte Carlo errors across
 
 \begin{sidewaystable}
 \renewcommand\thetable{S6} 
-\caption{Median performance measures and their Monte Carlo erros across 2000 simulations iterations for simulation scenarios 4-6.}
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 4-6.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
@@ -399,7 +399,7 @@ In Tables S5-10, median performance measures and their Monte Carlo errors across
 
 \begin{sidewaystable}
 \renewcommand\thetable{S7} 
-\caption{Median performance measures and their Monte Carlo erros across 2000 simulations iterations for simulation scenarios 7-9.}
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 7-9.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
@@ -479,7 +479,7 @@ In Tables S5-10, median performance measures and their Monte Carlo errors across
 
 \begin{sidewaystable}
 \renewcommand\thetable{S8} 
-\caption{Median performance measures and their Monte Carlo erros across 2000 simulations iterations for simulation scenarios 10-12.}
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 10-12.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
@@ -560,7 +560,7 @@ In Tables S5-10, median performance measures and their Monte Carlo errors across
 
 \begin{sidewaystable}
 \renewcommand\thetable{S9} 
-\caption{Median performance measures and their Monte Carlo erros across 2000 simulations iterations for simulation scenarios 13-15.}
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 13-15.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
@@ -641,7 +641,7 @@ In Tables S5-10, median performance measures and their Monte Carlo errors across
 
 \begin{sidewaystable}
 \renewcommand\thetable{S10} 
-\caption{Median performance measures and their Monte Carlo erros across 2000 simulations iterations for simulation scenarios 16-18.}
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 16-18.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
@@ -942,16 +942,16 @@ knitr::include_graphics("./figures/performance_metrics_manuscript_sc16.png")
 ```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 17.  This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_17}"}
 knitr::include_graphics("./figures/performance_metrics_manuscript_sc17.png")
 ```
-\clearpage
+
 ```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 18.  This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:violin_18}"}
 knitr::include_graphics("./figures/performance_metrics_manuscript_sc18.png")
 ```
-
+\clearpage
 \newpage
 
-### Violin Plots (after re-calibration)\
-\
-```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 1.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_1}", fig.pos = "h"}
+### Violin Plots (after re-calibration)
+
+```{r, echo = F, fig.align="center", out.width= '60%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 1.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_1}", fig.pos = "h"}
 knitr::include_graphics("./figures/performance_metrics_manuscript_sc1_recalibrated.png")
 ```
 

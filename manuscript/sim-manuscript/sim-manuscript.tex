@@ -57,7 +57,7 @@ simulations, we compared the predictive performance of models trained
 with imbalance corrected data to models trained with data that were not
 corrected for imbalance across 18 unique data-generating scenarios.
 Imbalance corrections included: random undersampling, random
-oversampling, synthetic majority oversampling, synthetic majority
+oversampling, synthetic majority oversampling, and synthetic majority
 oversampling with Wilson's Edited Nearest Neighbor rule. In all
 scenarios, data that were not corrected for class imbalance produced
 prediction models with better calibration performance than data that
@@ -169,7 +169,7 @@ As we focused on dichotomous risk prediction, we generated data
 comprised of two classes. We refer to the negative class (non-events)
 and positive class (events) as class 0 and class 1, respectively. Data
 for each class were generated independently using distinct multivariate
-normal (\(mvn\)) distributions. As shown in equations 1 and 2, we
+normal (\(mvn\)) distributions. As shown in equations (1) and (2), we
 specified a distinct mean and covariance structure for each class. The
 mean structures for the classes are represented as \(\pmb{\mu_0}\) and
 \(\pmb{\mu_1}\) for class 0 and 1, respectively. The covariance matrices
@@ -180,8 +180,8 @@ and 1, respectively.
 &\mathrm{Class \ \  0:} \mathbf{X} \sim mvn( \pmb{\mu_0}, \pmb{\Sigma_0}) = mvn(\pmb{0}, \pmb{\Sigma_0}), \\
 &\mathrm{Class \ \  1:} \mathbf{X} \sim mvn( \pmb{\mu_1}, \pmb{\Sigma_1}) = mvn(\pmb{\Delta_\mu}, \pmb{\Sigma_0} - \pmb{\Delta_\Sigma})
 \end{align}\\
-As shown in equation 2, the differences in parameter values between the
-two classes are represented by \(\pmb{\Delta_\mu}\) and
+As shown in equation (2), the differences in parameter values between
+the two classes are represented by \(\pmb{\Delta_\mu}\) and
 \(\pmb{\Delta_\Sigma}\); a vector and matrix comprised of the
 differences in predictor means, and variances/ covariances, between the
 classes, respectively. We specified no variation in means among
@@ -625,8 +625,8 @@ Materials (section C) and are also displayed in an interactive manner in
 our Shiny App:
 \url{https://alex-carriero.shinyapps.io/class_imbalance/}.\\
 \strut \\
-In next sections, we focus on the results for simulation scenarios with
-8 predictors, sample size equivalent to the minimum required sample
+In the next sections, we focus on the results for simulation scenarios
+with 8 predictors, sample size equivalent to the minimum required sample
 sample size (N) and balanced (event fraction \(= 0.5\)), moderately
 imbalanced (event fraction \(=0.2\)) and strongly imbalanced (event
 fraction \(=0.02\)) data, simulation scenarios 4-6, respectively.
@@ -779,7 +779,7 @@ For moderately imbalanced data (event fraction = 0.2), median Brier
 scores ranged from {[}0.12, 0.20{]}. Notably, the models which did not
 attempt to correct for imbalance (control models for LR, SVM, RF and XG)
 outperformed all other prediction models, with respect to Brier score
-(Brier scores: 0.12). Again, with the exception of RF + ROS, which
+(Brier scores: 0.12). Again, with the exception of ROS-RF, which
 preformed equally as well as the aforementioned models (Brier Score:
 0.12). In this scenario, models built with RUS had particularly poor
 performance relative to the others (Figure \ref{fig:plot5}); all RUS
@@ -1017,16 +1017,16 @@ we noted three models where imbalance corrections conferred a slight
 benefit to both model discrimination and calibration in some simulation
 scenarios: RUS-(SVM, RF) and ROS-RF. Finally, while previous studies
 found that imbalance correcting algorithms improved model discrimination
-\citep{kaur, rusboost, ee}, we found these algorithms (RB, EE), often
-conferred no benefit or worsened both model discrimination and
+\citep{kaur, rusboost, ee}, we found these algorithms (RB, EE), on
+average conferred no benefit or worsened both model discrimination and
 calibration in the 8 predictor scenarios. With 16 predictors, RB and EE
 did show improved discrimination compared to the algorithms which did
 not innately correct for imbalance, often at the cost of model
 calibration.\\
 \strut \\
-Our study had three limitations which warrant discussion. Firstly, hyper
-parameter tuning for SVM and XG was not as extensive as it was for RF.
-More extensive tuning could perhaps improve model performance in
+Our study had three limitations which warrant discussion. Firstly,
+hyperparameter tuning for SVM and XG was not as extensive as it was for
+RF. More extensive tuning could perhaps improve model performance in
 general, but would be unlikely to alter the effects seen as a
 consequence of the imbalance corrections. Extensive tuning was
 implemented for RF based on guidance from Probst \emph{et al}. (2019)
