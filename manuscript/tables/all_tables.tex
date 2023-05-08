@@ -1,0 +1,769 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={nice tables},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{nice tables}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{table-1}{%
+\section{Table 1}\label{table-1}}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table} sim settings }
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & $\mathrm{n}_{\mathrm{train}}$ & $\mathrm{n}_{\mathrm{validation}}$ & $\delta_\mu$ & $\delta_\Sigma$ & C\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 193 & 1930 & 0.6043 & 0.3 & 0.85\\
+  
+2 & 8 & 0.5N & 0.20 & 124 & 1240 & 0.6043 & 0.3 & 0.85\\
+  
+3 & 8 & 0.5N & 0.02 & 899 & 8990 & 0.6043 & 0.3 & 0.85\\
+  
+4 & 8 & N & 0.50 & 385 & 3850 & 0.6043 & 0.3 & 0.85\\
+  
+5 & 8 & N & 0.20 & 247 & 2470 & 0.6043 & 0.3 & 0.85\\
+  
+6 & 8 & N & 0.02 & 1797 & 17970 & 0.6043 & 0.3 & 0.85\\
+  
+7 & 8 & 2N & 0.50 & 770 & 7700 & 0.6043 & 0.3 & 0.85\\
+  
+8 & 8 & 2N & 0.20 & 494 & 4940 & 0.6043 & 0.3 & 0.85\\
+  
+9 & 8 & 2N & 0.02 & 3594 & 35940 & 0.6043 & 0.3 & 0.85\\
+  
+10 & 16 & 0.5N & 0.50 & 193 & 1930 & 0.4854 & 0.3 & 0.85\\
+  
+11 & 16 & 0.5N & 0.20 & 247 & 2470 & 0.4854 & 0.3 & 0.85\\
+  
+12 & 16 & 0.5N & 0.02 & 1797 & 17970 & 0.4854 & 0.3 & 0.85\\
+  
+13 & 16 & N & 0.50 & 385 & 3850 & 0.4854 & 0.3 & 0.85\\
+  
+14 & 16 & N & 0.20 & 493 & 4930 & 0.4854 & 0.3 & 0.85\\
+  
+15 & 16 & N & 0.02 & 3593 & 35930 & 0.4854 & 0.3 & 0.85\\
+  
+16 & 16 & 2N & 0.50 & 770 & 7700 & 0.4854 & 0.3 & 0.85\\
+  
+17 & 16 & 2N & 0.20 & 986 & 9860 & 0.4854 & 0.3 & 0.85\\
+  
+18 & 16 & 2N & 0.02 & 7186 & 71860 & 0.4854 & 0.3 & 0.85\\
+\bottomrule
+\multicolumn{9}{l}{\rule{0pt}{1em}\textsuperscript{*} N is the minimum required sample size for the prediction model.}\\
+\end{tabular}
+\end{table}
+
+\newpage
+
+\hypertarget{table-2}{%
+\section{Table 2}\label{table-2}}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table} imbalance corrections }
+\centering
+\begin{tabular}[t]{cccc}
+\toprule
+Method & Abbreviation & Hyperparameters & R Package\\
+\midrule
+Random Undesampling & RUS &  & ROSE \cite{rose}\\
+\addlinespace
+Random Oversampling & ROS &  & ROSE \cite{rose}\\
+\addlinespace
+Synthetic Majority Over Sampling & SMOTE & $k=5$ & IRIC \cite{iric}\\
+\addlinespace
+SMOTE - Edited Nearest Neighbours & SENN & $k1=5$, $k2 = 3$ & IRIC \cite{iric}\\
+\bottomrule
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}      $k$: the number of nearest neighbors in implementation of SMOTE.}\\
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $k1$: the number of nearest neighbors in the SMOTE step of SMOTE-ENN.}\\
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{*}     $k2$: the number of nearest neighbors in the ENN step of SMOTE-ENN.}\\
+\end{tabular}
+\end{table}
+
+\newpage
+
+\hypertarget{table-3}{%
+\section{Table 3}\label{table-3}}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table} machine learning algorithms  }
+\centering
+\begin{tabular}[t]{llll}
+\toprule
+Method & Abbreviation & Hyperparameter Tuning Grid & R Package\\
+\midrule
+Logistic Regression & LR &  & base R \cite{r}\\
+\addlinespace
+Support Vector Machine & SVM & caret default & caret \cite{caret}\\
+\addlinespace
+Random Forest & RF & mtry [1: all predictors], min.node.size [1:10], splitrule [gini] & caret \cite{caret}\\
+\addlinespace
+XGBoost & XG & caret default & caret \cite{caret}\\
+\addlinespace
+RUSBoost & RB &  & ebmc \cite{ebmc}\\
+\addlinespace
+EasyEnsemmble & EE &  & IRIC \cite{iric}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\hypertarget{results-tables}{%
+\section{Results Tables}\label{results-tables}}
+
+\begin{landscape}\begin{table}
+
+\caption{\label{tab:tab:table} }
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 1}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.85 & 0.84 & 0.83 & 0.83 & 0.81 & 0.84 & 0.85 & 0.84 & 0.83 & 0.82 & 0.81 & 0.83 & 0.84 & 0.83 & 0.81 & 0.81 & 0.81 & 0.84 & 0.85 & 0.83 & 0.83 & 0.82 & 0.81 & 0.83 & 0.85 & 0.83 & 0.82 & 0.82 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.16 & 0.17 & 0.17 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17 & 0.17 & 0.18 & 0.19 & 0.17 & 0.16 & 0.18 & 0.20 & 0.18 & 0.19 & 0.17 & 0.16 & 0.17 & 0.17 & 0.18 & 0.19 & 0.18 & 0.17 & 0.17 & 0.19 & 0.17 & 0.18\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.21 & 0.20 & 0.17 & 0.23 & 0.11 & 0.06 & 0.17 & 0.16 & 0.12 & 0.18 & 0.11 & 0.07 & 0.21 & 0.30 & 0.37 & 0.65 & 0.24 & 0.19 & 0.15 & 0.17 & 0.13 & 0.18 & 0.12 & 0.07 & 0.35 & 0.32 & 0.19 & 0.36 & 0.18 & 0.09\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.97 & 1.29 & 0.80 & 1.37 & >10.0 & 0.84 & 0.97 & 1.28 & 0.79 & 1.37 & >10.0 & 0.78 & 0.85 & 1.21 & 0.49 & 1.16 & 1.99 & 0.83 & 0.95 & 1.23 & 0.78 & 1.32 & >10.0 & 0.54 & 0.61 & 0.85 & 0.49 & 0.86 & 1.68\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.16 & 0.24 & 0.13 & 0.21 & 0.22 & 0.14 & 0.16 & 0.25 & 0.13 & 0.21 & 0.22 & 0.16 & 0.16 & 0.24 & 0.12 & 0.19 & 0.21 & 0.14 & 0.16 & 0.24 & 0.14 & 0.21 & 0.21 & 0.22 & 0.24 & 0.32 & 0.20 & 0.33 & 0.36\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 2}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.81 & 0.80 & 0.79 & 0.82 & 0.80 & 0.80 & 0.83 & 0.81 & 0.78 & 0.80 & 0.78 & 0.82 & 0.82 & 0.81 & 0.78 & 0.79 & 0.78 & 0.82 & 0.82 & 0.81 & 0.79 & 0.79 & 0.80 & 0.82 & 0.82 & 0.81 & 0.80 & 0.80 & 0.81\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.02 & 0.04 & 0.03 & 0.03 & 0.02 & 0.03 & 0.04 & 0.02 & 0.03 & 0.04 & 0.04 & 0.04 & 0.02 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.02 & 0.03 & 0.03 & 0.02 & 0.03 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.13 & 0.13 & 0.13 & 0.14 & 0.18 & 0.20 & 0.21 & 0.17 & 0.19 & 0.22 & 0.21 & 0.21 & 0.17 & 0.15 & 0.13 & 0.16 & 0.15 & 0.15 & 0.17 & 0.14 & 0.14 & 0.16 & 0.15 & 0.16 & 0.20 & 0.16 & 0.15 & 0.18 & 0.16 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.05 & 0.03 & 0.02 & 0.03 & 0.02 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.71 & 0.99 & 1.24 & 0.61 & 1.59 & >10.0 & 0.45 & 1.02 & 1.27 & 0.49 & 1.38 & 1.85 & 0.62 & 0.55 & 1.06 & 0.33 & 0.80 & 1.63 & 0.57 & 0.51 & 0.81 & 0.37 & 0.74 & 1.59 & 0.40 & 0.40 & 0.66 & 0.34 & 0.59 & 1.40\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.19 & >10.0 & 0.28 & 0.14 & 0.33 & 0.37 & 0.21 & >10.0 & 0.39 & 0.12 & 0.31 & 0.37 & 0.17 & 0.15 & 0.26 & 0.06 & 0.16 & 0.24 & 0.16 & 0.13 & 0.21 & 0.08 & 0.15 & 0.23 & 0.14 & 0.09 & 0.19 & 0.06 & 0.11 & 0.21\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 3}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.70 & 0.75 & 0.80 & 0.82 & 0.80 & 0.77 & 0.83 & 0.80 & 0.77 & 0.79 & 0.77 & 0.82 & 0.79 & 0.79 & 0.74 & 0.74 & 0.74 & 0.82 & 0.79 & 0.78 & 0.77 & 0.75 & 0.77 & 0.82 & 0.79 & 0.79 & 0.78 & 0.75 & 0.78\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.02 & 0.05 & 0.03 & 0.03 & 0.04 & 0.03 & 0.06 & 0.03 & 0.03 & 0.04 & 0.04 & 0.04 & 0.02 & 0.03 & 0.03 & 0.04 & 0.04 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.04 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.04 & 0.03\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.14 & 0.21 & 0.24 & 0.18 & 0.20 & 0.22 & 0.23 & 0.21 & 0.16 & 0.04 & 0.02 & 0.02 & 0.03 & 0.03 & 0.15 & 0.04 & 0.03 & 0.03 & 0.03 & 0.04 & 0.16 & 0.04 & 0.03 & 0.04 & 0.04 & 0.04\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.81 & 1.40 & 0.47 & 0.70 & 1.52 & >10.0 & 0.25 & 1.01 & 1.20 & 0.50 & 1.42 & 1.71 & 0.59 & 0.11 & 0.37 & 0.26 & 0.33 & 1.30 & 0.50 & 0.15 & 0.42 & 0.22 & 0.28 & 1.25 & 0.46 & 0.14 & 0.37 & 0.21 & 0.27 & 1.17\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 1 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.83 & 0.82 & 0.81 & 0.83 & 0.84 & 0.83 & 0.81 & 0.81 & 0.81 & 0.84 & 0.85 & 0.85 & 0.83 & 0.83 & 0.82 & 0.81 & 0.83 & 0.85 & 0.83 & 0.82 & 0.82 & 0.84 & 0.82 & 0.83 & 0.83 & 0.81 & 0.84 & 0.85 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.17 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17 & 0.19 & 0.18 & 0.19 & 0.17 & 0.16 & 0.16 & 0.17 & 0.17 & 0.17 & 0.19 & 0.17 & 0.17 & 0.17 & 0.18 & 0.17 & 0.17 & 0.18 & 0.17 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.79 & 1.37 & >10.0 & 0.78 & 0.85 & 1.21 & 0.49 & 1.16 & 1.99 & 0.83 & 0.97 & 0.95 & 1.23 & 0.78 & 1.32 & >10.0 & 0.54 & 0.61 & 0.85 & 0.49 & 0.86 & 1.29 & 1.68 & 0.80 & 1.37 & >10.0 & 0.84 & 0.97 & 1.28\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.13 & 0.21 & 0.22 & 0.16 & 0.16 & 0.24 & 0.12 & 0.19 & 0.21 & 0.14 & 0.16 & 0.16 & 0.24 & 0.14 & 0.21 & 0.21 & 0.22 & 0.24 & 0.32 & 0.20 & 0.33 & 0.24 & 0.36 & 0.13 & 0.21 & 0.22 & 0.14 & 0.16 & 0.25\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 2 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.78 & 0.80 & 0.78 & 0.82 & 0.82 & 0.81 & 0.78 & 0.79 & 0.78 & 0.82 & 0.81 & 0.82 & 0.81 & 0.79 & 0.79 & 0.80 & 0.82 & 0.82 & 0.81 & 0.80 & 0.80 & 0.80 & 0.81 & 0.79 & 0.82 & 0.80 & 0.80 & 0.83 & 0.81\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.02 & 0.04 & 0.04 & 0.04 & 0.02 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.02 & 0.04 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.02 & 0.03 & 0.03 & 0.02 & 0.03 & 0.02 & 0.03 & 0.07 & 0.02 & 0.03\\
+\hspace{2em}\hspace{1em}Brier Score & 0.13 & 0.14 & 0.13 & 0.14 & 0.13 & 0.13 & 0.13 & 0.16 & 0.13 & 0.13 & 0.13 & 0.13 & 0.14 & 0.13 & 0.15 & 0.13 & 0.13 & 0.14 & 0.14 & 0.13 & 0.15 & 0.14 & 0.13 & 0.13 & 0.14 & 0.13 & 0.14 & 0.15 & 0.12 & 0.13\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.71 & 0.49 & 1.38 & 1.85 & 0.62 & 0.55 & 1.06 & 0.33 & 0.80 & 1.63 & 0.57 & 0.99 & 0.51 & 0.81 & 0.37 & 0.74 & 1.59 & 0.40 & 0.40 & 0.66 & 0.34 & 0.59 & 1.24 & 1.40 & 0.61 & 1.59 & >10.0 & 0.45 & 1.02 & 1.27\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.19 & 0.12 & 0.31 & 0.37 & 0.17 & 0.15 & 0.26 & 0.06 & 0.16 & 0.24 & 0.16 & >10.0 & 0.13 & 0.21 & 0.08 & 0.15 & 0.23 & 0.14 & 0.09 & 0.19 & 0.06 & 0.11 & 0.28 & 0.21 & 0.14 & 0.33 & 0.37 & 0.20 & >10.0 & 0.39\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 3 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.77 & 0.79 & 0.77 & 0.82 & 0.78 & 0.78 & 0.74 & 0.74 & 0.74 & 0.82 & 0.70 & 0.79 & 0.78 & 0.77 & 0.75 & 0.77 & 0.82 & 0.79 & 0.78 & 0.78 & 0.75 & 0.75 & 0.78 & 0.80 & 0.82 & 0.80 & 0.77 & 0.83 & 0.80\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.02 & 0.04 & 0.04 & 0.04 & 0.02 & 0.04 & 0.13 & 0.04 & 0.04 & 0.03 & 0.02 & 0.05 & 0.03 & 0.08 & 0.03 & 0.04 & 0.03 & 0.02 & 0.03 & 0.09 & 0.03 & 0.04 & 0.06 & 0.03 & 0.03 & 0.06 & 0.03 & 0.12 & 0.03 & 0.04\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.81 & 0.50 & 1.42 & 1.71 & 0.59 & 0.11 & 0.47 & 0.26 & 0.33 & 1.30 & 0.50 & 1.40 & 0.15 & 0.43 & 0.22 & 0.28 & 1.25 & 0.46 & 0.14 & 0.40 & 0.21 & 0.27 & 0.49 & 1.17 & 0.70 & 1.53 & >10.0 & 0.32 & 1.01 & 1.20\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbours)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\end{tabular}}
+\end{table}
+\end{landscape}
+
+\begin{landscape}\begin{table}
+
+\caption{\label{tab:tab:table} }
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 4}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.86 & 0.84 & 0.84 & 0.84 & 0.83 & 0.84 & 0.86 & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.82 & 0.83 & 0.82 & 0.84 & 0.86 & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.84 & 0.83 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{1} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.17 & 0.17 & 0.18 & 0.17 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.14 & 0.12 & 0.15 & 0.07 & 0.05 & 0.11 & 0.12 & 0.09 & 0.11 & 0.07 & 0.05 & 0.13 & 0.20 & 0.34 & 0.51 & 0.18 & 0.17 & 0.10 & 0.11 & 0.09 & 0.11 & 0.08 & 0.05 & 0.23 & 0.25 & 0.15 & 0.26 & 0.14 & 0.07\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.96 & 1.25 & 0.91 & 1.46 & >10.0 & 0.92 & 0.96 & 1.25 & 0.90 & 1.46 & >10.0 & 0.88 & 0.87 & 1.21 & 0.56 & 1.26 & >10.0 & 0.90 & 0.94 & 1.21 & 0.89 & 1.43 & >10.0 & 0.57 & 0.58 & 0.78 & 0.52 & 0.83 & 1.62\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.11 & 0.18 & 0.12 & 0.17 & 0.17 & 0.11 & 0.11 & 0.18 & 0.12 & 0.17 & 0.17 & 0.12 & 0.11 & 0.19 & 0.10 & 0.15 & 0.16 & 0.10 & 0.11 & 0.18 & 0.12 & 0.16 & 0.16 & 0.19 & 0.20 & 0.27 & 0.21 & 0.33 & 0.34\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 5}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.82 & 0.82 & 0.82 & 0.83 & 0.82 & 0.83 & 0.85 & 0.83 & 0.80 & 0.81 & 0.80 & 0.83 & 0.83 & 0.83 & 0.79 & 0.80 & 0.80 & 0.84 & 0.83 & 0.82 & 0.81 & 0.80 & 0.81 & 0.83 & 0.83 & 0.82 & 0.82 & 0.81 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.12 & 0.12 & 0.17 & 0.20 & 0.18 & 0.16 & 0.18 & 0.19 & 0.20 & 0.20 & 0.17 & 0.15 & 0.12 & 0.15 & 0.15 & 0.15 & 0.16 & 0.14 & 0.13 & 0.15 & 0.14 & 0.15 & 0.19 & 0.16 & 0.15 & 0.17 & 0.16 & 0.15\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.22 & 0.23 & 0.18 & 0.23 & 0.10 & 0.07 & 0.40 & 0.23 & 0.18 & 0.36 & 0.14 & 0.08 & 0.16 & 0.24 & 0.17 & 0.43 & 0.17 & 0.10 & 0.18 & 0.30 & 0.18 & 0.33 & 0.20 & 0.10 & 0.30 & 0.40 & 0.24 & 0.46 & 0.25 & 0.10\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.85 & 0.97 & 1.27 & 0.79 & 1.52 & >10.0 & 0.67 & 0.96 & 1.26 & 0.62 & 1.30 & >10.0 & 0.76 & 0.61 & 1.10 & 0.33 & 0.85 & 1.78 & 0.71 & 0.55 & 0.84 & 0.41 & 0.78 & 1.71 & 0.54 & 0.43 & 0.66 & 0.35 & 0.58 & 1.48\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.55 & 0.20 & 0.13 & 0.24 & 0.27 & 0.17 & 0.26 & 0.31 & 0.14 & 0.24 & 0.27 & 0.14 & 0.11 & 0.20 & 0.05 & 0.13 & 0.18 & 0.13 & 0.10 & 0.15 & 0.07 & 0.13 & 0.17 & 0.12 & 0.08 & 0.15 & 0.05 & 0.10 & 0.16\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 6}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.71 & 0.78 & 0.82 & 0.83 & 0.81 & 0.82 & 0.84 & 0.82 & 0.79 & 0.81 & 0.79 & 0.84 & 0.80 & 0.81 & 0.76 & 0.76 & 0.76 & 0.84 & 0.80 & 0.80 & 0.78 & 0.76 & 0.78 & 0.84 & 0.80 & 0.80 & 0.79 & 0.77 & 0.79\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.04 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.03 & 0.03 & 0.03 & 0.01 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.16 & 0.20 & 0.19 & 0.17 & 0.18 & 0.21 & 0.22 & 0.20 & 0.16 & 0.05 & 0.02 & 0.02 & 0.04 & 0.04 & 0.15 & 0.05 & 0.03 & 0.03 & 0.03 & 0.05 & 0.16 & 0.05 & 0.03 & 0.04 & 0.04 & 0.05\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & 0.01 & 0.04 & 0.03 & 0.03 & 0.04 & 0.03 & 0.02 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.02 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.90 & 1.41 & 0.63 & 0.84 & 1.49 & >10.0 & 0.54 & 0.96 & 1.18 & 0.52 & 1.26 & 1.86 & 0.72 & 0.14 & 0.53 & 0.25 & 0.35 & 1.67 & 0.62 & 0.16 & 0.48 & 0.22 & 0.28 & 1.50 & 0.57 & 0.15 & 0.45 & 0.20 & 0.25 & 1.38\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & >10.0 & 0.20 & 0.13 & 0.28 & 0.30 & 0.18 & 0.66 & 0.32 & 0.12 & 0.26 & 0.28 & 0.13 & 0.04 & 0.18 & 0.02 & 0.06 & 0.17 & 0.11 & 0.03 & 0.12 & 0.02 & 0.05 & 0.13 & 0.11 & 0.03 & 0.11 & 0.02 & 0.04 & 0.12\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 4 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.82 & 0.83 & 0.82 & 0.84 & 0.86 & 0.86 & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.84 & 0.83 & 0.84 & 0.83 & 0.84 & 0.84 & 0.83 & 0.84 & 0.86 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.17 & 0.18 & 0.17 & 0.19 & 0.16 & 0.15 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17 & 0.17 & 0.17 & 0.16 & 0.17 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.90 & 1.46 & >10.0 & 0.88 & 0.87 & 1.21 & 0.56 & 1.26 & >10.0 & 0.90 & 0.96 & 0.94 & 1.21 & 0.89 & 1.43 & >10.0 & 0.57 & 0.58 & 0.78 & 0.52 & 0.83 & 1.25 & 1.62 & 0.91 & 1.46 & >10.0 & 0.92 & 0.96 & 1.25\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.12 & 0.17 & 0.17 & 0.12 & 0.11 & 0.19 & 0.10 & 0.15 & 0.16 & 0.10 & 0.11 & 0.11 & 0.18 & 0.12 & 0.16 & 0.16 & 0.19 & 0.20 & 0.27 & 0.21 & 0.33 & 0.18 & 0.34 & 0.12 & 0.17 & 0.17 & 0.11 & 0.11 & 0.18\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 5 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.80 & 0.81 & 0.80 & 0.83 & 0.83 & 0.83 & 0.79 & 0.80 & 0.80 & 0.84 & 0.82 & 0.83 & 0.82 & 0.81 & 0.80 & 0.81 & 0.83 & 0.83 & 0.82 & 0.82 & 0.81 & 0.82 & 0.82 & 0.82 & 0.83 & 0.82 & 0.83 & 0.85 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.13 & 0.13 & 0.14 & 0.12 & 0.13 & 0.12 & 0.15 & 0.13 & 0.13 & 0.12 & 0.12 & 0.13 & 0.12 & 0.14 & 0.13 & 0.13 & 0.13 & 0.14 & 0.13 & 0.15 & 0.13 & 0.12 & 0.13 & 0.12 & 0.12 & 0.13 & 0.13 & 0.12 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.85 & 0.62 & 1.30 & >10.0 & 0.76 & 0.61 & 1.10 & 0.33 & 0.85 & 1.78 & 0.71 & 0.97 & 0.55 & 0.84 & 0.41 & 0.78 & 1.71 & 0.54 & 0.43 & 0.66 & 0.35 & 0.58 & 1.27 & 1.48 & 0.79 & 1.52 & >10.0 & 0.67 & 0.96 & 1.26\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.14 & 0.24 & 0.27 & 0.14 & 0.11 & 0.20 & 0.05 & 0.13 & 0.18 & 0.13 & 0.55 & 0.10 & 0.15 & 0.07 & 0.13 & 0.17 & 0.12 & 0.08 & 0.15 & 0.05 & 0.10 & 0.20 & 0.16 & 0.13 & 0.24 & 0.27 & 0.17 & 0.26 & 0.31\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 6 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.79 & 0.81 & 0.79 & 0.84 & 0.79 & 0.80 & 0.76 & 0.76 & 0.76 & 0.84 & 0.71 & 0.80 & 0.80 & 0.78 & 0.76 & 0.78 & 0.84 & 0.80 & 0.80 & 0.79 & 0.77 & 0.78 & 0.79 & 0.82 & 0.83 & 0.81 & 0.82 & 0.84 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.03 & 0.03 & 0.01 & 0.03 & 0.10 & 0.02 & 0.03 & 0.02 & 0.01 & 0.04 & 0.02 & 0.04 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.05 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.90 & 0.52 & 1.26 & 1.86 & 0.72 & 0.14 & 0.56 & 0.25 & 0.35 & 1.67 & 0.62 & 1.41 & 0.16 & 0.48 & 0.22 & 0.28 & 1.50 & 0.57 & 0.15 & 0.45 & 0.20 & 0.25 & 0.63 & 1.38 & 0.84 & 1.49 & >10.0 & 0.54 & 0.96 & 1.18\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.12 & 0.26 & 0.28 & 0.13 & 0.05 & 0.16 & 0.02 & 0.06 & 0.17 & 0.11 & >10.0 & 0.03 & 0.12 & 0.02 & 0.05 & 0.13 & 0.11 & 0.03 & 0.11 & 0.02 & 0.04 & 0.20 & 0.12 & 0.13 & 0.28 & 0.30 & 0.18 & 0.66 & 0.32\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbours)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\end{tabular}}
+\end{table}
+\end{landscape}
+
+\begin{landscape}\begin{table}
+
+\caption{\label{tab:tab:table} }
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 7}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.85 & 0.86 & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.86 & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.85 & 0.85 & 0.83 & 0.84 & 0.83 & 0.85 & 0.86 & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.86 & 0.84 & 0.85 & 0.84 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.16 & 0.18 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.16 & 0.16 & 0.17 & 0.16 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.10 & 0.09 & 0.10 & 0.05 & 0.03 & 0.07 & 0.08 & 0.06 & 0.08 & 0.05 & 0.03 & 0.08 & 0.14 & 0.32 & 0.40 & 0.13 & 0.15 & 0.06 & 0.08 & 0.06 & 0.07 & 0.05 & 0.03 & 0.16 & 0.19 & 0.12 & 0.18 & 0.10 & 0.05\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.96 & 0.96 & 1.21 & 0.96 & 1.59 & >10.0 & 0.95 & 0.96 & 1.22 & 0.96 & 1.58 & >10.0 & 0.94 & 0.90 & 1.20 & 0.62 & 1.40 & >10.0 & 0.95 & 0.95 & 1.19 & 0.95 & 1.57 & >10.0 & 0.58 & 0.57 & 0.73 & 0.53 & 0.86 & 1.61\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.08 & 0.08 & 0.14 & 0.10 & 0.13 & 0.14 & 0.08 & 0.08 & 0.14 & 0.10 & 0.13 & 0.13 & 0.09 & 0.08 & 0.14 & 0.11 & 0.13 & 0.13 & 0.08 & 0.08 & 0.13 & 0.10 & 0.13 & 0.13 & 0.16 & 0.16 & 0.22 & 0.18 & 0.30 & 0.33\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 8}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.83 & 0.83 & 0.84 & 0.84 & 0.83 & 0.84 & 0.85 & 0.84 & 0.83 & 0.83 & 0.81 & 0.84 & 0.84 & 0.84 & 0.81 & 0.82 & 0.82 & 0.84 & 0.84 & 0.83 & 0.82 & 0.82 & 0.82 & 0.84 & 0.84 & 0.83 & 0.83 & 0.82 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.12 & 0.12 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17 & 0.18 & 0.19 & 0.19 & 0.16 & 0.15 & 0.12 & 0.15 & 0.15 & 0.15 & 0.16 & 0.14 & 0.13 & 0.15 & 0.14 & 0.15 & 0.19 & 0.16 & 0.14 & 0.17 & 0.15 & 0.15\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.15 & 0.15 & 0.12 & 0.15 & 0.07 & 0.05 & 0.19 & 0.17 & 0.13 & 0.21 & 0.11 & 0.06 & 0.11 & 0.15 & 0.12 & 0.31 & 0.11 & 0.07 & 0.13 & 0.19 & 0.13 & 0.23 & 0.13 & 0.07 & 0.20 & 0.27 & 0.18 & 0.35 & 0.18 & 0.08\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.96 & 1.28 & 0.91 & 1.52 & >10.0 & 0.80 & 0.95 & 1.22 & 0.79 & 1.33 & >10.0 & 0.85 & 0.66 & 1.12 & 0.34 & 0.95 & 1.92 & 0.79 & 0.59 & 0.85 & 0.43 & 0.86 & 1.83 & 0.62 & 0.46 & 0.66 & 0.34 & 0.63 & 1.54\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.11 & 0.19 & 0.15 & 0.12 & 0.18 & 0.20 & 0.13 & 0.15 & 0.23 & 0.13 & 0.20 & 0.20 & 0.11 & 0.08 & 0.16 & 0.04 & 0.11 & 0.14 & 0.10 & 0.07 & 0.10 & 0.07 & 0.10 & 0.13 & 0.09 & 0.06 & 0.11 & 0.06 & 0.09 & 0.13\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 9}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.85 & 0.72 & 0.79 & 0.84 & 0.84 & 0.83 & 0.83 & 0.85 & 0.83 & 0.82 & 0.82 & 0.81 & 0.84 & 0.80 & 0.82 & 0.78 & 0.78 & 0.78 & 0.84 & 0.80 & 0.81 & 0.79 & 0.78 & 0.80 & 0.84 & 0.81 & 0.81 & 0.80 & 0.78 & 0.80\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.16 & 0.19 & 0.18 & 0.16 & 0.17 & 0.19 & 0.20 & 0.20 & 0.16 & 0.08 & 0.02 & 0.02 & 0.04 & 0.05 & 0.16 & 0.06 & 0.03 & 0.04 & 0.04 & 0.07 & 0.17 & 0.06 & 0.03 & 0.04 & 0.04 & 0.07\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.95 & 1.42 & 0.76 & 0.94 & 1.48 & >10.0 & 0.69 & 0.92 & 1.15 & 0.71 & 1.24 & 1.96 & 0.80 & 0.21 & 0.64 & 0.28 & 0.40 & >10.0 & 0.71 & 0.19 & 0.55 & 0.24 & 0.31 & 1.86 & 0.66 & 0.18 & 0.52 & 0.22 & 0.27 & 1.68\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.09 & 0.64 & 0.14 & 0.12 & 0.20 & 0.22 & 0.13 & 0.17 & 0.26 & 0.13 & 0.21 & 0.21 & 0.10 & 0.04 & 0.14 & 0.02 & 0.05 & 0.13 & 0.09 & 0.03 & 0.08 & 0.02 & 0.04 & 0.12 & 0.09 & 0.03 & 0.07 & 0.02 & 0.03 & 0.11\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 7 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.85 & 0.85 & 0.83 & 0.84 & 0.83 & 0.85 & 0.86 & 0.86 & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.86 & 0.84 & 0.85 & 0.84 & 0.85 & 0.84 & 0.85 & 0.84 & 0.83 & 0.85 & 0.86 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.16 & 0.17 & 0.17 & 0.18 & 0.16 & 0.15 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.16 & 0.16 & 0.17 & 0.16 & 0.16 & 0.17 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.96 & 0.96 & 1.58 & >10.0 & 0.94 & 0.90 & 1.20 & 0.62 & 1.40 & >10.0 & 0.95 & 0.96 & 0.95 & 1.19 & 0.95 & 1.57 & >10.0 & 0.58 & 0.57 & 0.73 & 0.53 & 0.86 & 1.21 & 1.61 & 0.96 & 1.59 & >10.0 & 0.95 & 0.96 & 1.22\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.08 & 0.10 & 0.13 & 0.13 & 0.09 & 0.08 & 0.14 & 0.11 & 0.13 & 0.13 & 0.08 & 0.08 & 0.08 & 0.13 & 0.10 & 0.13 & 0.13 & 0.16 & 0.16 & 0.22 & 0.18 & 0.30 & 0.14 & 0.33 & 0.10 & 0.13 & 0.14 & 0.08 & 0.08 & 0.14\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 8 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.83 & 0.83 & 0.81 & 0.84 & 0.84 & 0.84 & 0.81 & 0.82 & 0.82 & 0.84 & 0.83 & 0.84 & 0.83 & 0.82 & 0.82 & 0.82 & 0.84 & 0.84 & 0.83 & 0.83 & 0.82 & 0.83 & 0.83 & 0.84 & 0.84 & 0.83 & 0.84 & 0.85 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.12 & 0.13 & 0.12 & 0.12 & 0.12 & 0.15 & 0.12 & 0.13 & 0.12 & 0.12 & 0.13 & 0.12 & 0.14 & 0.13 & 0.13 & 0.12 & 0.13 & 0.12 & 0.14 & 0.13 & 0.12 & 0.12 & 0.12 & 0.12 & 0.13 & 0.12 & 0.11 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.79 & 1.33 & >10.0 & 0.85 & 0.66 & 1.12 & 0.34 & 0.95 & 1.92 & 0.79 & 0.96 & 0.59 & 0.85 & 0.43 & 0.86 & 1.83 & 0.62 & 0.46 & 0.66 & 0.34 & 0.63 & 1.28 & 1.54 & 0.91 & 1.52 & >10.0 & 0.80 & 0.95 & 1.22\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.11 & 0.13 & 0.20 & 0.20 & 0.11 & 0.08 & 0.16 & 0.04 & 0.11 & 0.14 & 0.10 & 0.19 & 0.07 & 0.10 & 0.07 & 0.10 & 0.13 & 0.09 & 0.06 & 0.11 & 0.06 & 0.09 & 0.15 & 0.13 & 0.12 & 0.18 & 0.20 & 0.13 & 0.15 & 0.23\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 9 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.85 & 0.82 & 0.82 & 0.81 & 0.84 & 0.80 & 0.82 & 0.78 & 0.78 & 0.78 & 0.84 & 0.72 & 0.80 & 0.81 & 0.79 & 0.78 & 0.80 & 0.84 & 0.81 & 0.81 & 0.80 & 0.78 & 0.79 & 0.80 & 0.84 & 0.84 & 0.83 & 0.83 & 0.85 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.06 & 0.02 & 0.02 & 0.02 & 0.01 & 0.03 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.72 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 1.24 & <0.01 & <0.01 & 1.02 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.95 & 0.71 & 1.24 & 1.96 & 0.80 & 0.21 & 0.64 & 0.28 & 0.40 & >10.0 & 0.71 & 1.42 & 0.19 & 0.55 & 0.24 & 0.31 & 1.86 & 0.66 & 0.18 & 0.52 & 0.22 & 0.27 & 0.76 & 1.68 & 0.94 & 1.48 & >10.0 & 0.69 & 0.92 & 1.15\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.09 & 0.13 & 0.21 & 0.21 & 0.10 & 0.05 & 0.12 & 0.02 & 0.05 & 0.13 & 0.09 & 0.64 & 0.03 & 0.08 & 0.02 & 0.04 & 0.12 & 0.09 & 0.03 & 0.07 & 0.02 & 0.03 & 0.14 & 0.11 & 0.12 & 0.20 & 0.22 & 0.13 & 0.17 & 0.26\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbours)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\end{tabular}}
+\end{table}
+\end{landscape}
+
+\begin{landscape}\begin{table}
+
+\caption{\label{tab:tab:table} }
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 10}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.82 & 0.86 & 0.84 & 0.82 & 0.85 & 0.83 & 0.82 & 0.86 & 0.83 & 0.82 & 0.85 & 0.82 & 0.81 & 0.86 & 0.83 & 0.81 & 0.84 & 0.82 & 0.82 & 0.86 & 0.83 & 0.82 & 0.84 & 0.83 & 0.82 & 0.86 & 0.83 & 0.82 & 0.84 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.19 & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.19 & 0.18 & 0.16 & 0.18 & 0.20 & 0.17 & 0.19 & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.19 & 0.19 & 0.16 & 0.17 & 0.19 & 0.17 & 0.18\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.23 & 0.20 & 0.16 & 0.22 & 0.13 & 0.06 & 0.19 & 0.17 & 0.11 & 0.18 & 0.12 & 0.06 & 0.27 & 0.38 & 0.35 & 0.69 & 0.32 & 0.18 & 0.17 & 0.18 & 0.12 & 0.18 & 0.14 & 0.07 & 0.43 & 0.30 & 0.15 & 0.33 & 0.19 & 0.08\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.71 & 0.98 & 1.47 & 0.81 & 1.27 & >10.0 & 0.69 & 0.98 & 1.47 & 0.80 & 1.28 & >10.0 & 0.61 & 0.84 & 1.40 & 0.49 & 1.12 & >10.0 & 0.69 & 0.95 & 1.41 & 0.78 & 1.23 & >10.0 & 0.44 & 0.66 & 1.13 & 0.52 & 0.93 & >10.0\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.16 & 0.28 & 0.15 & 0.17 & 0.24 & 0.12 & 0.17 & 0.29 & 0.15 & 0.17 & 0.24 & 0.12 & 0.15 & 0.31 & 0.12 & 0.15 & 0.24 & 0.12 & 0.15 & 0.27 & 0.15 & 0.17 & 0.24 & 0.19 & 0.23 & 0.31 & 0.21 & 0.24 & 0.35\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 11}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.82 & 0.85 & 0.81 & 0.82 & 0.85 & 0.82 & 0.80 & 0.85 & 0.82 & 0.79 & 0.83 & 0.80 & 0.82 & 0.85 & 0.83 & 0.80 & 0.83 & 0.81 & 0.82 & 0.86 & 0.82 & 0.81 & 0.84 & 0.82 & 0.82 & 0.86 & 0.82 & 0.82 & 0.84 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.03 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.13 & 0.12 & 0.13 & 0.13 & 0.16 & 0.20 & 0.21 & 0.16 & 0.18 & 0.20 & 0.20 & 0.20 & 0.17 & 0.13 & 0.12 & 0.15 & 0.13 & 0.15 & 0.17 & 0.12 & 0.13 & 0.15 & 0.13 & 0.15 & 0.21 & 0.14 & 0.15 & 0.17 & 0.14 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.03 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.70 & 0.96 & 1.54 & 0.80 & 1.50 & >10.0 & 0.44 & 0.99 & 1.46 & 0.59 & 1.32 & >10.0 & 0.61 & 0.57 & 1.27 & 0.36 & 0.83 & >10.0 & 0.56 & 0.54 & 1.04 & 0.40 & 0.77 & >10.0 & 0.39 & 0.44 & 0.87 & 0.36 & 0.65 & 1.78\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.28 & 0.29 & 0.15 & 0.21 & 0.28 & 0.15 & 0.26 & 0.39 & 0.15 & 0.21 & 0.28 & 0.12 & 0.10 & 0.27 & 0.05 & 0.10 & 0.21 & 0.11 & 0.09 & 0.20 & 0.06 & 0.09 & 0.19 & 0.10 & 0.07 & 0.19 & 0.05 & 0.07 & 0.20\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 12}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.77 & 0.75 & 0.82 & 0.85 & 0.81 & 0.77 & 0.85 & 0.81 & 0.78 & 0.83 & 0.79 & 0.82 & 0.83 & 0.82 & 0.78 & 0.78 & 0.78 & 0.82 & 0.84 & 0.81 & 0.81 & 0.80 & 0.80 & 0.82 & 0.84 & 0.81 & 0.82 & 0.81 & 0.81\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.04 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.15 & 0.20 & 0.24 & 0.16 & 0.19 & 0.22 & 0.22 & 0.21 & 0.16 & 0.03 & 0.02 & 0.02 & 0.02 & 0.04 & 0.15 & 0.03 & 0.02 & 0.03 & 0.02 & 0.05 & 0.16 & 0.03 & 0.02 & 0.03 & 0.03 & 0.05\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & 0.01 & 0.06 & 0.03 & 0.03 & 0.04 & 0.03 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.80 & 1.22 & 0.86 & 0.85 & 1.51 & >10.0 & 0.28 & 1.01 & 1.45 & 0.48 & 1.37 & >10.0 & 0.60 & 0.12 & 0.69 & 0.28 & 0.48 & 1.93 & 0.51 & 0.19 & 0.74 & 0.26 & 0.39 & 1.84 & 0.45 & 0.19 & 0.68 & 0.25 & 0.38 & 1.70\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.11 & 0.52 & 0.20 & 0.14 & 0.23 & 0.29 & 0.15 & 0.62 & 0.42 & 0.12 & 0.23 & 0.29 & 0.11 & 0.02 & 0.20 & 0.02 & 0.06 & 0.21 & 0.09 & 0.03 & 0.13 & 0.02 & 0.04 & 0.16 & 0.09 & 0.02 & 0.12 & 0.02 & 0.05 & 0.15\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 10 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.82 & 0.82 & 0.85 & 0.82 & 0.81 & 0.86 & 0.83 & 0.81 & 0.84 & 0.82 & 0.82 & 0.86 & 0.86 & 0.83 & 0.82 & 0.84 & 0.83 & 0.82 & 0.86 & 0.83 & 0.82 & 0.84 & 0.84 & 0.83 & 0.82 & 0.85 & 0.83 & 0.82 & 0.86 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.17 & 0.16 & 0.19 & 0.18 & 0.16 & 0.17 & 0.19 & 0.16 & 0.19 & 0.18 & 0.15 & 0.15 & 0.17 & 0.17 & 0.16 & 0.19 & 0.19 & 0.16 & 0.17 & 0.19 & 0.16 & 0.17 & 0.18 & 0.17 & 0.16 & 0.19 & 0.18 & 0.15 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.71 & 0.80 & 1.28 & >10.0 & 0.61 & 0.84 & 1.40 & 0.49 & 1.12 & >10.0 & 0.69 & 0.98 & 0.95 & 1.41 & 0.78 & 1.23 & >10.0 & 0.44 & 0.66 & 1.13 & 0.52 & 0.93 & 1.47 & >10.0 & 0.81 & 1.27 & >10.0 & 0.69 & 0.98 & 1.47\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.15 & 0.17 & 0.24 & 0.12 & 0.15 & 0.31 & 0.12 & 0.15 & 0.24 & 0.12 & 0.16 & 0.15 & 0.27 & 0.15 & 0.17 & 0.24 & 0.19 & 0.23 & 0.31 & 0.21 & 0.24 & 0.28 & 0.35 & 0.15 & 0.17 & 0.24 & 0.12 & 0.17 & 0.29\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 11 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.82 & 0.79 & 0.83 & 0.80 & 0.82 & 0.85 & 0.83 & 0.80 & 0.83 & 0.81 & 0.82 & 0.85 & 0.86 & 0.82 & 0.81 & 0.84 & 0.82 & 0.82 & 0.86 & 0.82 & 0.82 & 0.84 & 0.81 & 0.83 & 0.82 & 0.85 & 0.82 & 0.80 & 0.85 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.03 & 0.01 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.13 & 0.14 & 0.12 & 0.14 & 0.13 & 0.12 & 0.12 & 0.15 & 0.12 & 0.13 & 0.13 & 0.12 & 0.12 & 0.12 & 0.14 & 0.12 & 0.13 & 0.14 & 0.13 & 0.12 & 0.14 & 0.12 & 0.13 & 0.13 & 0.13 & 0.12 & 0.13 & 0.15 & 0.11 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.70 & 0.59 & 1.32 & >10.0 & 0.61 & 0.57 & 1.27 & 0.36 & 0.83 & >10.0 & 0.56 & 0.96 & 0.54 & 1.04 & 0.40 & 0.77 & >10.0 & 0.39 & 0.44 & 0.87 & 0.36 & 0.65 & 1.54 & 1.78 & 0.80 & 1.50 & >10.0 & 0.44 & 0.99 & 1.46\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.15 & 0.21 & 0.28 & 0.12 & 0.10 & 0.27 & 0.05 & 0.10 & 0.21 & 0.11 & 0.28 & 0.09 & 0.20 & 0.06 & 0.09 & 0.19 & 0.10 & 0.07 & 0.19 & 0.05 & 0.07 & 0.29 & 0.20 & 0.15 & 0.21 & 0.28 & 0.15 & 0.26 & 0.39\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 12 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.78 & 0.83 & 0.79 & 0.82 & 0.81 & 0.82 & 0.78 & 0.78 & 0.78 & 0.82 & 0.77 & 0.84 & 0.81 & 0.81 & 0.80 & 0.80 & 0.82 & 0.84 & 0.81 & 0.82 & 0.81 & 0.75 & 0.81 & 0.82 & 0.85 & 0.81 & 0.77 & 0.85 & 0.81\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.02 & 0.03 & 0.02 & 0.04 & 0.04 & 0.02 & 0.03 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.09 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.80 & 0.48 & 1.37 & >10.0 & 0.60 & 0.12 & 0.69 & 0.28 & 0.48 & 1.93 & 0.51 & 1.22 & 0.19 & 0.74 & 0.26 & 0.39 & 1.84 & 0.45 & 0.19 & 0.68 & 0.25 & 0.38 & 0.86 & 1.70 & 0.85 & 1.51 & >10.0 & 0.29 & 1.01 & 1.45\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.11 & 0.12 & 0.23 & 0.29 & 0.11 & 0.02 & 0.19 & 0.02 & 0.06 & 0.21 & 0.09 & 0.52 & 0.03 & 0.13 & 0.02 & 0.04 & 0.15 & 0.09 & 0.02 & 0.12 & 0.02 & 0.05 & 0.20 & 0.15 & 0.14 & 0.23 & 0.29 & 0.13 & 0.62 & 0.42\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbours)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\end{tabular}}
+\end{table}
+\end{landscape}
+
+\begin{landscape}\begin{table}
+
+\caption{\label{tab:tab:table} }
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 13}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.84 & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.84 & 0.83 & 0.87 & 0.84 & 0.83 & 0.85 & 0.84 & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.84 & 0.83 & 0.87 & 0.84 & 0.84 & 0.85 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{3} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.15 & 0.16 & 0.16 & 0.16 & 0.18 & 0.17 & 0.15 & 0.16 & 0.16 & 0.16 & 0.18 & 0.17 & 0.15 & 0.17 & 0.18 & 0.16 & 0.19 & 0.17 & 0.15 & 0.16 & 0.16 & 0.16 & 0.18 & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.18\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.15 & 0.15 & 0.11 & 0.14 & 0.09 & 0.04 & 0.12 & 0.12 & 0.08 & 0.11 & 0.09 & 0.04 & 0.15 & 0.28 & 0.33 & 0.57 & 0.28 & 0.17 & 0.11 & 0.12 & 0.08 & 0.11 & 0.10 & 0.05 & 0.25 & 0.24 & 0.12 & 0.26 & 0.18 & 0.06\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.97 & 1.43 & 0.93 & 1.24 & >10.0 & 0.83 & 0.96 & 1.43 & 0.92 & 1.24 & >10.0 & 0.78 & 0.85 & 1.38 & 0.56 & 1.09 & >10.0 & 0.82 & 0.95 & 1.40 & 0.90 & 1.21 & >10.0 & 0.53 & 0.63 & 1.07 & 0.57 & 0.81 & 1.99\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.11 & 0.20 & 0.14 & 0.13 & 0.19 & 0.10 & 0.12 & 0.20 & 0.14 & 0.13 & 0.19 & 0.11 & 0.11 & 0.23 & 0.10 & 0.12 & 0.18 & 0.10 & 0.11 & 0.19 & 0.14 & 0.13 & 0.18 & 0.17 & 0.19 & 0.24 & 0.21 & 0.23 & 0.32\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 14}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.87 & 0.82 & 0.84 & 0.86 & 0.84 & 0.82 & 0.86 & 0.84 & 0.83 & 0.85 & 0.83 & 0.83 & 0.86 & 0.84 & 0.82 & 0.84 & 0.83 & 0.83 & 0.87 & 0.83 & 0.83 & 0.84 & 0.84 & 0.83 & 0.87 & 0.83 & 0.84 & 0.85 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{2} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.11 & 0.12 & 0.12 & 0.16 & 0.19 & 0.18 & 0.15 & 0.17 & 0.18 & 0.19 & 0.19 & 0.17 & 0.13 & 0.12 & 0.14 & 0.13 & 0.14 & 0.17 & 0.12 & 0.12 & 0.14 & 0.13 & 0.15 & 0.20 & 0.14 & 0.14 & 0.17 & 0.14 & 0.15\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.15 & 0.16 & 0.12 & 0.15 & 0.09 & 0.05 & 0.23 & 0.18 & 0.11 & 0.21 & 0.12 & 0.05 & 0.11 & 0.19 & 0.12 & 0.32 & 0.15 & 0.07 & 0.14 & 0.26 & 0.12 & 0.26 & 0.17 & 0.07 & 0.25 & 0.33 & 0.16 & 0.36 & 0.24 & 0.07\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.96 & 1.53 & 0.92 & 1.40 & >10.0 & 0.67 & 0.98 & 1.43 & 0.81 & 1.22 & >10.0 & 0.76 & 0.62 & 1.28 & 0.36 & 0.81 & >10.0 & 0.70 & 0.56 & 1.07 & 0.42 & 0.74 & >10.0 & 0.52 & 0.45 & 0.85 & 0.37 & 0.57 & 1.87\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.15 & 0.23 & 0.15 & 0.15 & 0.21 & 0.11 & 0.16 & 0.27 & 0.15 & 0.16 & 0.21 & 0.10 & 0.08 & 0.19 & 0.04 & 0.08 & 0.16 & 0.09 & 0.07 & 0.14 & 0.06 & 0.08 & 0.15 & 0.08 & 0.06 & 0.14 & 0.06 & 0.06 & 0.15\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 15}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.76 & 0.78 & 0.84 & 0.86 & 0.83 & 0.81 & 0.86 & 0.83 & 0.81 & 0.84 & 0.82 & 0.84 & 0.84 & 0.83 & 0.81 & 0.79 & 0.80 & 0.83 & 0.84 & 0.82 & 0.82 & 0.80 & 0.82 & 0.83 & 0.85 & 0.82 & 0.83 & 0.81 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.15 & 0.19 & 0.19 & 0.16 & 0.18 & 0.19 & 0.21 & 0.20 & 0.16 & 0.03 & 0.02 & 0.02 & 0.02 & 0.05 & 0.15 & 0.03 & 0.02 & 0.03 & 0.03 & 0.06 & 0.17 & 0.03 & 0.02 & 0.03 & 0.03 & 0.06\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.03 & 0.02 & 0.02 & 0.03 & 0.02 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.89 & 1.28 & 0.98 & 0.92 & 1.38 & >10.0 & 0.53 & 0.98 & 1.41 & 0.71 & 1.19 & >10.0 & 0.72 & 0.13 & 0.79 & 0.30 & 0.42 & >10.0 & 0.62 & 0.20 & 0.80 & 0.26 & 0.34 & >10.0 & 0.56 & 0.19 & 0.73 & 0.25 & 0.33 & 1.99\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.08 & 0.30 & 0.14 & 0.13 & 0.16 & 0.22 & 0.12 & 0.19 & 0.31 & 0.15 & 0.17 & 0.21 & 0.08 & 0.02 & 0.12 & 0.02 & 0.03 & 0.15 & 0.07 & 0.02 & 0.09 & 0.02 & 0.03 & 0.12 & 0.07 & 0.02 & 0.08 & 0.02 & 0.03 & 0.11\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 13 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.84 & 0.85 & 0.84 & 0.83 & 0.87 & 0.84 & 0.83 & 0.85 & 0.84 & 0.84 & 0.87 & 0.87 & 0.85 & 0.84 & 0.85 & 0.84 & 0.83 & 0.87 & 0.84 & 0.84 & 0.85 & 0.85 & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.87 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{1} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.16 & 0.16 & 0.18 & 0.17 & 0.15 & 0.17 & 0.18 & 0.16 & 0.18 & 0.17 & 0.15 & 0.15 & 0.16 & 0.16 & 0.16 & 0.18 & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.16 & 0.17 & 0.16 & 0.16 & 0.18 & 0.17 & 0.15 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.92 & 1.24 & >10.0 & 0.78 & 0.85 & 1.38 & 0.56 & 1.09 & >10.0 & 0.82 & 0.97 & 0.95 & 1.40 & 0.90 & 1.21 & >10.0 & 0.53 & 0.63 & 1.07 & 0.57 & 0.81 & 1.43 & 1.99 & 0.93 & 1.24 & >10.0 & 0.83 & 0.96 & 1.43\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.14 & 0.13 & 0.19 & 0.11 & 0.11 & 0.23 & 0.10 & 0.12 & 0.18 & 0.10 & 0.11 & 0.11 & 0.19 & 0.14 & 0.13 & 0.18 & 0.17 & 0.19 & 0.24 & 0.21 & 0.23 & 0.20 & 0.32 & 0.14 & 0.13 & 0.19 & 0.10 & 0.12 & 0.20\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 14 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.83 & 0.85 & 0.83 & 0.83 & 0.86 & 0.84 & 0.82 & 0.84 & 0.83 & 0.83 & 0.87 & 0.87 & 0.83 & 0.83 & 0.84 & 0.84 & 0.83 & 0.87 & 0.83 & 0.84 & 0.85 & 0.82 & 0.85 & 0.84 & 0.86 & 0.84 & 0.82 & 0.86 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.12 & 0.13 & 0.12 & 0.12 & 0.12 & 0.14 & 0.12 & 0.13 & 0.12 & 0.11 & 0.12 & 0.12 & 0.13 & 0.12 & 0.13 & 0.13 & 0.12 & 0.12 & 0.13 & 0.12 & 0.12 & 0.12 & 0.12 & 0.11 & 0.13 & 0.13 & 0.11 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.81 & 1.22 & >10.0 & 0.76 & 0.62 & 1.28 & 0.36 & 0.81 & >10.0 & 0.70 & 0.96 & 0.56 & 1.07 & 0.42 & 0.74 & >10.0 & 0.52 & 0.45 & 0.85 & 0.37 & 0.57 & 1.53 & 1.87 & 0.92 & 1.40 & >10.0 & 0.67 & 0.98 & 1.43\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.15 & 0.16 & 0.21 & 0.10 & 0.08 & 0.19 & 0.04 & 0.08 & 0.16 & 0.09 & 0.15 & 0.07 & 0.14 & 0.06 & 0.08 & 0.15 & 0.08 & 0.06 & 0.14 & 0.06 & 0.06 & 0.23 & 0.15 & 0.15 & 0.15 & 0.21 & 0.11 & 0.16 & 0.27\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 15 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.81 & 0.84 & 0.82 & 0.84 & 0.83 & 0.83 & 0.81 & 0.79 & 0.80 & 0.83 & 0.76 & 0.84 & 0.82 & 0.82 & 0.80 & 0.82 & 0.83 & 0.85 & 0.82 & 0.83 & 0.81 & 0.78 & 0.83 & 0.84 & 0.86 & 0.83 & 0.81 & 0.86 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.72 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.89 & 0.71 & 1.19 & >10.0 & 0.72 & 0.13 & 0.79 & 0.30 & 0.42 & >10.0 & 0.62 & 1.28 & 0.20 & 0.80 & 0.26 & 0.34 & >10.0 & 0.56 & 0.19 & 0.73 & 0.25 & 0.33 & 0.98 & 1.99 & 0.92 & 1.38 & >10.0 & 0.53 & 0.98 & 1.41\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.08 & 0.15 & 0.17 & 0.21 & 0.08 & 0.02 & 0.12 & 0.02 & 0.03 & 0.15 & 0.07 & 0.30 & 0.02 & 0.09 & 0.02 & 0.03 & 0.12 & 0.07 & 0.02 & 0.08 & 0.02 & 0.03 & 0.14 & 0.11 & 0.13 & 0.16 & 0.22 & 0.12 & 0.19 & 0.31\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbours)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\end{tabular}}
+\end{table}
+\end{landscape}
+
+\begin{landscape}\begin{table}
+
+\caption{\label{tab:tab:table} }
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 16}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.88 & 0.86 & 0.86 & 0.86 & 0.85 & 0.84 & 0.88 & 0.86 & 0.86 & 0.86 & 0.85 & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.85 & 0.84 & 0.88 & 0.85 & 0.86 & 0.86 & 0.85 & 0.84 & 0.87 & 0.85 & 0.85 & 0.86 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.14 & 0.16 & 0.15 & 0.15 & 0.18 & 0.16 & 0.14 & 0.16 & 0.15 & 0.15 & 0.18 & 0.16 & 0.15 & 0.17 & 0.17 & 0.16 & 0.18 & 0.16 & 0.14 & 0.16 & 0.15 & 0.15 & 0.18 & 0.17 & 0.15 & 0.16 & 0.16 & 0.16 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.11 & 0.08 & 0.10 & 0.06 & 0.03 & 0.08 & 0.09 & 0.06 & 0.08 & 0.06 & 0.03 & 0.09 & 0.20 & 0.31 & 0.48 & 0.24 & 0.16 & 0.07 & 0.09 & 0.06 & 0.08 & 0.07 & 0.03 & 0.17 & 0.19 & 0.10 & 0.18 & 0.15 & 0.04\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.96 & 1.41 & 0.98 & 1.27 & >10.0 & 0.91 & 0.96 & 1.41 & 0.98 & 1.27 & >10.0 & 0.88 & 0.87 & 1.38 & 0.62 & 1.11 & >10.0 & 0.91 & 0.95 & 1.39 & 0.95 & 1.25 & >10.0 & 0.58 & 0.61 & 1.02 & 0.60 & 0.76 & 1.98\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.07 & 0.08 & 0.14 & 0.11 & 0.10 & 0.14 & 0.07 & 0.08 & 0.14 & 0.11 & 0.10 & 0.15 & 0.08 & 0.08 & 0.16 & 0.10 & 0.10 & 0.15 & 0.07 & 0.08 & 0.13 & 0.11 & 0.10 & 0.14 & 0.14 & 0.15 & 0.18 & 0.16 & 0.21 & 0.30\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 17}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.87 & 0.83 & 0.85 & 0.87 & 0.85 & 0.84 & 0.87 & 0.85 & 0.84 & 0.86 & 0.84 & 0.84 & 0.87 & 0.85 & 0.84 & 0.84 & 0.85 & 0.84 & 0.87 & 0.84 & 0.85 & 0.85 & 0.85 & 0.84 & 0.87 & 0.84 & 0.85 & 0.85 & 0.86\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{3} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.11 & 0.12 & 0.11 & 0.15 & 0.18 & 0.17 & 0.15 & 0.17 & 0.17 & 0.18 & 0.19 & 0.16 & 0.13 & 0.12 & 0.13 & 0.13 & 0.14 & 0.16 & 0.12 & 0.12 & 0.13 & 0.12 & 0.15 & 0.20 & 0.14 & 0.14 & 0.16 & 0.14 & 0.15\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.12 & 0.09 & 0.10 & 0.06 & 0.03 & 0.13 & 0.13 & 0.08 & 0.13 & 0.10 & 0.04 & 0.07 & 0.12 & 0.08 & 0.21 & 0.10 & 0.04 & 0.10 & 0.16 & 0.09 & 0.18 & 0.11 & 0.04 & 0.17 & 0.22 & 0.12 & 0.27 & 0.17 & 0.05\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.96 & 1.48 & 0.96 & 1.36 & >10.0 & 0.79 & 0.95 & 1.39 & 0.93 & 1.19 & >10.0 & 0.85 & 0.66 & 1.28 & 0.40 & 0.84 & >10.0 & 0.78 & 0.59 & 1.07 & 0.43 & 0.77 & >10.0 & 0.59 & 0.47 & 0.84 & 0.38 & 0.55 & 1.96\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.07 & 0.09 & 0.16 & 0.11 & 0.12 & 0.16 & 0.09 & 0.10 & 0.19 & 0.14 & 0.12 & 0.17 & 0.07 & 0.06 & 0.13 & 0.04 & 0.07 & 0.13 & 0.07 & 0.05 & 0.10 & 0.04 & 0.06 & 0.12 & 0.06 & 0.04 & 0.10 & 0.04 & 0.05 & 0.12\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 18}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.76 & 0.79 & 0.86 & 0.87 & 0.85 & 0.83 & 0.87 & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.84 & 0.84 & 0.83 & 0.80 & 0.82 & 0.84 & 0.84 & 0.84 & 0.84 & 0.81 & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.82 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{2} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.14 & 0.19 & 0.18 & 0.15 & 0.17 & 0.18 & 0.19 & 0.19 & 0.16 & 0.04 & 0.02 & 0.03 & 0.03 & 0.06 & 0.16 & 0.04 & 0.02 & 0.03 & 0.03 & 0.07 & 0.17 & 0.04 & 0.03 & 0.04 & 0.03 & 0.07\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.09 & 0.09 & 0.10 & 0.06 & 0.04 & 0.28 & 0.19 & 0.11 & 0.23 & 0.14 & 0.04 & 0.07 & 0.42 & 0.10 & 0.26 & 0.19 & 0.06 & 0.09 & 0.35 & 0.11 & 0.22 & 0.14 & 0.06 & 0.12 & 0.38 & 0.12 & 0.24 & 0.18 & 0.06\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.95 & 1.30 & 1.09 & 0.96 & 1.32 & >10.0 & 0.68 & 0.95 & 1.32 & 0.88 & 1.12 & >10.0 & 0.79 & 0.17 & 0.86 & 0.34 & 0.39 & >10.0 & 0.69 & 0.21 & 0.83 & 0.30 & 0.33 & >10.0 & 0.63 & 0.20 & 0.75 & 0.28 & 0.31 & >10.0\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.06 & 0.21 & 0.11 & 0.09 & 0.11 & 0.17 & 0.10 & 0.13 & 0.22 & 0.15 & 0.13 & 0.17 & 0.07 & 0.02 & 0.08 & 0.02 & 0.03 & 0.13 & 0.06 & 0.02 & 0.07 & 0.02 & 0.02 & 0.11 & 0.06 & 0.02 & 0.06 & 0.02 & 0.02 & 0.11\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 16 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.86 & 0.86 & 0.85 & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.85 & 0.84 & 0.88 & 0.88 & 0.85 & 0.86 & 0.86 & 0.85 & 0.84 & 0.87 & 0.85 & 0.85 & 0.86 & 0.86 & 0.85 & 0.86 & 0.86 & 0.85 & 0.84 & 0.88 & 0.86\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.15 & 0.15 & 0.18 & 0.16 & 0.14 & 0.16 & 0.17 & 0.16 & 0.18 & 0.16 & 0.14 & 0.14 & 0.16 & 0.15 & 0.15 & 0.18 & 0.17 & 0.15 & 0.16 & 0.16 & 0.15 & 0.16 & 0.17 & 0.15 & 0.15 & 0.18 & 0.16 & 0.14 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.98 & 1.27 & >10.0 & 0.88 & 0.87 & 1.38 & 0.62 & 1.11 & >10.0 & 0.91 & 0.96 & 0.95 & 1.39 & 0.95 & 1.25 & >10.0 & 0.58 & 0.61 & 1.02 & 0.60 & 0.76 & 1.41 & 1.98 & 0.98 & 1.27 & >10.0 & 0.91 & 0.96 & 1.41\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.07 & 0.11 & 0.10 & 0.15 & 0.08 & 0.08 & 0.16 & 0.10 & 0.10 & 0.15 & 0.07 & 0.08 & 0.08 & 0.13 & 0.11 & 0.10 & 0.14 & 0.14 & 0.15 & 0.18 & 0.16 & 0.21 & 0.14 & 0.30 & 0.11 & 0.10 & 0.14 & 0.07 & 0.08 & 0.14\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 17 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.84 & 0.86 & 0.84 & 0.84 & 0.87 & 0.85 & 0.84 & 0.84 & 0.85 & 0.84 & 0.87 & 0.87 & 0.84 & 0.85 & 0.85 & 0.85 & 0.84 & 0.87 & 0.84 & 0.85 & 0.85 & 0.83 & 0.86 & 0.85 & 0.87 & 0.85 & 0.84 & 0.87 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{1} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.11 & 0.13 & 0.12 & 0.11 & 0.11 & 0.13 & 0.12 & 0.13 & 0.12 & 0.11 & 0.11 & 0.11 & 0.13 & 0.12 & 0.13 & 0.13 & 0.12 & 0.12 & 0.13 & 0.12 & 0.12 & 0.12 & 0.11 & 0.11 & 0.13 & 0.12 & 0.11 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.93 & 1.19 & >10.0 & 0.85 & 0.66 & 1.28 & 0.40 & 0.84 & >10.0 & 0.78 & 0.96 & 0.59 & 1.07 & 0.43 & 0.77 & >10.0 & 0.59 & 0.47 & 0.84 & 0.38 & 0.55 & 1.48 & 1.96 & 0.96 & 1.36 & >10.0 & 0.79 & 0.95 & 1.39\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.07 & 0.14 & 0.12 & 0.17 & 0.07 & 0.06 & 0.13 & 0.04 & 0.07 & 0.13 & 0.07 & 0.09 & 0.05 & 0.10 & 0.04 & 0.06 & 0.12 & 0.06 & 0.04 & 0.10 & 0.04 & 0.05 & 0.16 & 0.12 & 0.11 & 0.12 & 0.16 & 0.09 & 0.10 & 0.19\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 18 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.84 & 0.84 & 0.83 & 0.80 & 0.82 & 0.84 & 0.76 & 0.84 & 0.84 & 0.84 & 0.81 & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.82 & 0.79 & 0.84 & 0.86 & 0.87 & 0.85 & 0.83 & 0.87 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.95 & 0.88 & 1.12 & >10.0 & 0.79 & 0.17 & 0.86 & 0.34 & 0.39 & >10.0 & 0.69 & 1.30 & 0.21 & 0.83 & 0.30 & 0.33 & >10.0 & 0.63 & 0.20 & 0.75 & 0.28 & 0.31 & 1.09 & >10.0 & 0.96 & 1.32 & >10.0 & 0.68 & 0.95 & 1.32\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.06 & 0.15 & 0.13 & 0.17 & 0.07 & 0.03 & 0.08 & 0.02 & 0.03 & 0.13 & 0.06 & 0.21 & 0.02 & 0.07 & 0.02 & 0.02 & 0.11 & 0.06 & 0.02 & 0.06 & 0.02 & 0.02 & 0.11 & 0.11 & 0.09 & 0.11 & 0.17 & 0.10 & 0.13 & 0.22\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbours)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\end{tabular}}
+\end{table}
+\end{landscape}
+
+\hypertarget{appendix-tables}{%
+\section{Appendix Tables}\label{appendix-tables}}
+
+\hypertarget{error-handling-tables}{%
+\subsection{Error Handling Tables}\label{error-handling-tables}}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Errors: Imbalance Corrections}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 251 & 680 & 680\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 1 & 1\\
+ 
+4 & 8 & N & 0.50 & 0 & 0 & 288 & 488 & 488\\
+ 
+7 & 8 & 2N & 0.50 & 0 & 72 & 331 & 310 & 310\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 265 & 692 & 692\\
+ 
+13 & 16 & N & 0.50 & 0 & 0 & 282 & 502 & 502\\
+ 
+16 & 16 & 2N & 0.50 & 0 & 51 & 326 & 291 & 291\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:table}Errors: Classification Algorithms}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{RUSBoost:}}\\
+\hspace{2em}\hspace{1em}2 & 8 & 0.5N & 0.20 & 0 & 1 & 0 & 0 & 0\\
+ 
+\hspace{2em}\hspace{1em}3 & 8 & 0.5N & 0.02 & 59 & 9 & 0 & 1 & 1\\
+ 
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{EasyEnsemble:}}\\
+\hspace{2em}\hspace{1em}2 & 8 & 0.5N & 0.20 & 1 & 1 & 0 & 0 & 0\\
+ 
+\hspace{2em}\hspace{1em}3 & 8 & 0.5N & 0.02 & 19 & 29 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:tab:invalid_ps}Invalid Probabilities RUSBoost}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+2 & 8 & 0.5N & 0.20 & 2 & 0 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 188 & 0 & 1 & 0 & 3\\
+ 
+6 & 8 & N & 0.02 & 22 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 2 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 44 & 0 & 3 & 1 & 1\\
+ 
+15 & 16 & N & 0.02 & 1 & 0 & 0 & 0 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+
+\caption{\label{tab:invalid_ps}LR Separation}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 1\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 99 & 0 & 0 & 36\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 501 & 1 & 2 & 2\\
+ 
+5 & 8 & N & 0.20 & 0 & 1 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 5 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 13\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 19 & 0 & 0 & 3\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 232 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

@@ -1,0 +1,13 @@
+name: class_imbalance
+title: class_imbalance
+username:
+account: alex-carriero
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9035856
+bundleId: 7177626
+url: https://alex-carriero.shinyapps.io/class_imbalance/
+when: 1683276928.89583
+lastSyncTime: 1683276928.89586
+asMultiple: FALSE
+asStatic: FALSE

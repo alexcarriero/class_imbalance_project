@@ -1,0 +1,1024 @@
+---
+title: ''
+output:  pdf_document
+  
+mainfont: "serif"
+geometry: "margin = 0.5in"
+
+header-includes: 
+  - \usepackage{longtable}
+  - \usepackage{booktabs}
+  - \usepackage{rotating}
+  - \usepackage[labelfont=bf]{caption}
+  - \renewcommand{\figurename}{Figure S}
+  - \makeatletter
+  - \def\fnum@figure{\figurename\thefigure}
+  - \makeatother
+---
+
+# Supplementary Material 
+
+## A: Reproducibility 
+
+Our simulation study was conducted using Utrecht University Medical Center’s (UMCU) high performance computer (HPC).  This high performance computer uses two distinct types of central processing units (CPUs): Intel(R) Xeon (R) Silver and Intel(R) Xeon (R)Gold. These distinct central processing units do not produce homogeneous results when tasked with random number generation.  For instance, under the same seed specification, sampling a random integer between 1 and 10 will not result in the same integer between the CPUs.\
+\
+This HPC architecture has consequences for the reproducibility of our simulation study. For example,  in our simulation each scenario is comprised of 2000 simulation iterations. One data set is generated for each iteration.  Seeds are generated and saved a priori for all iterations and then each iteration is sent to the HPC as a single job (i.e., 2000 jobs sent per simulation scenario). Jobs are then allocated randomly to nodes on the HPC to run in parallel.  On an HPC with homogeneous processing units, regardless of which node a job is allocated to, the same data set is generated, since a seed is specified.  This allows for complete reproducibility, since if the process is repeated, the random allocation of jobs does not affect the data set that is generated for any given iteration.\
+\
+On UMCU's HPC, half of the available nodes use the Intel(R) Xeon(R) Silver CPU while the other half use the Intel(R) Xeon(R) Gold CPU. These nodes generate different data sets, even when the same seed is provided. Consequently, if the aforementioned procedure is repeated, the random allocation of jobs will affect which data sets are generated (e.g., iteration 3 gets the CPU Silver on the first run, but when repeated, iteration 3 gets the CPU Gold, resulting in a different data set and therefore different results). In other words, for each iteration, one of two possible data sets is generated.  If this simulation were re-run on an HPC with homogeneous CPUs, for instance, all nodes being CPU Silver, the iterations which were randomly allocated to CPU Silver in our simulation would be exactly reproduced, but those that were allocated to CPU Gold would not.  Therefore, there is no way to exactly reproduce the results of this simulation study.\
+\
+Even though the results of this simulation cannot be exactly regenerated, a sufficiently large number of iterations were conducted in each simulation scenario, such that the results are protected against potential bias from a small sample.  Upon full replication of this simulation study, the overall conclusions should not differ in a meaningful way. Session info for each device used in our research is included below.\
+\
+
+\newpage
+Please find the R sessionInfo from the HPC used to run the simulation here:\
+\footnotesize
+```{r, eval = FALSE}
+R version 4.2.2 (2022-10-31)
+Platform: x86_64-unknown-linux-gnu (64-bit)
+Running under: CentOS Linux 7 (Core)
+
+Matrix products: default
+BLAS/LAPACK: /gnu/store/xghpgl3fnr603z16vg7hldmpxygriqm2-openblas-0.3.20/lib/libopenblasp-r0.3.20.so
+
+locale:
+[1] C
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] lubridate_1.9.1 forcats_1.0.0   stringr_1.5.0   dplyr_1.1.0    
+ [5] purrr_1.0.1     readr_2.1.3     tidyr_1.3.0     tibble_3.1.8   
+ [9] tidyverse_2.0.0 MASS_7.3-58.2   caret_6.0-93    lattice_0.20-45
+[13] ggplot2_3.4.0   pROC_1.18.0     foreach_1.5.2   RANN_2.6.1     
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_1.2.0     reshape2_1.4.4       listenv_0.9.0       
+ [4] splines_4.2.2        colorspace_2.1-0     vctrs_0.5.2         
+ [7] generics_0.1.3       stats4_4.2.2         utf8_1.2.3          
+[10] survival_3.5-0       prodlim_2019.11.13   rlang_1.0.6         
+[13] ModelMetrics_1.2.2.2 pillar_1.8.1         glue_1.6.2          
+[16] withr_2.5.0          lifecycle_1.0.3      plyr_1.8.8          
+[19] lava_1.7.1           timeDate_4022.108    munsell_0.5.0       
+[22] gtable_0.3.1         future_1.31.0        recipes_1.0.4       
+[25] codetools_0.2-19     tzdb_0.3.0           parallel_4.2.2      
+[28] class_7.3-21         fansi_1.0.4          Rcpp_1.0.10         
+[31] scales_1.2.1         ipred_0.9-13         parallelly_1.34.0   
+[34] hms_1.1.2            digest_0.6.31        stringi_1.7.12      
+[37] grid_4.2.2           hardhat_1.2.0        cli_3.6.0           
+[40] tools_4.2.2          magrittr_2.0.3       future.apply_1.10.0 
+[43] pkgconfig_2.0.3      ellipsis_0.3.2       Matrix_1.5-3        
+[46] data.table_1.14.6    timechange_0.2.0     gower_1.0.1         
+[49] iterators_1.0.14     R6_2.5.1             globals_0.16.2      
+[52] rpart_4.1.19         nnet_7.3-18          nlme_3.1-162        
+[55] compiler_4.2.2   
+```
+\normalsize
+
+\newpage
+Furthermore, R sessionInfo from the device used to process all results is shown here:\
+\
+\footnotesize
+```{r, eval=FALSE}
+R version 4.1.2 (2021-11-01)
+Platform: aarch64-apple-darwin20 (64-bit)
+Running under: macOS Monterey 12.4
+
+Matrix products: default
+LAPACK: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] simsalapar_1.0-11 patchwork_1.1.2   ggh4x_0.2.4       pROC_1.18.0       caret_6.0-90      lattice_0.20-45   MASS_7.3-55      
+ [8] lubridate_1.9.2   forcats_1.0.0     stringr_1.5.0     dplyr_1.1.0       purrr_1.0.1       readr_2.1.4       tidyr_1.3.0      
+[15] tibble_3.1.8      ggplot2_3.4.2     tidyverse_2.0.0  
+
+loaded via a namespace (and not attached):
+ [1] nlme_3.1-155         webshot_0.5.2        httr_1.4.5           tools_4.1.2          bslib_0.4.2          utf8_1.2.2          
+ [7] R6_2.5.1             DT_0.27              rpart_4.1.16         colorspace_2.0-2     nnet_7.3-17          withr_2.5.0         
+[13] tidyselect_1.2.0     curl_4.3.3           compiler_4.1.2       cli_3.6.1            rvest_1.0.3          xml2_1.3.3          
+[19] sass_0.4.5           sfsmisc_1.1-12       scales_1.2.1         askpass_1.1          systemfonts_1.0.4    digest_0.6.31       
+[25] rmarkdown_2.21       svglite_2.1.0        rticles_0.24.9       pkgconfig_2.0.3      htmltools_0.5.5      parallelly_1.34.0   
+[31] fastmap_1.1.1        htmlwidgets_1.5.4    rlang_1.1.0          rstudioapi_0.14      shiny_1.7.4          jquerylib_0.1.4     
+[37] generics_0.1.3       jsonlite_1.8.4       ModelMetrics_1.2.2.2 magrittr_2.0.3       kableExtra_1.3.4     Matrix_1.5-1        
+[43] Rcpp_1.0.9           munsell_0.5.0        fansi_1.0.2          lifecycle_1.0.3      stringi_1.7.12       yaml_2.3.7          
+[49] plyr_1.8.7           recipes_0.1.17       grid_4.1.2           parallel_4.1.2       listenv_0.8.0        promises_1.2.0.1    
+[55] splines_4.1.2        hms_1.1.2            flexdashboard_0.6.1  knitr_1.42           pillar_1.8.1         stats4_4.1.2        
+[61] reshape2_1.4.4       future.apply_1.8.1   codetools_0.2-18     glue_1.6.2           evaluate_0.20        data.table_1.14.2   
+[67] vctrs_0.6.1          tzdb_0.2.0           httpuv_1.6.8         foreach_1.5.2        gtable_0.3.0         openssl_2.0.5       
+[73] future_1.31.0        cachem_1.0.7         gridBase_0.4-7       xfun_0.38            gower_1.0.0          mime_0.12           
+[79] prodlim_2019.11.13   xtable_1.8-4         later_1.3.0          rsconnect_0.8.29     class_7.3-20         survival_3.5-3      
+[85] viridisLite_0.4.0    timeDate_3043.102    iterators_1.0.14     lava_1.6.10          globals_0.16.2       timechange_0.2.0    
+[91] ellipsis_0.3.2       ipred_0.9-12  
+```
+\normalsize
+\newpage
+
+## B: Error Handling\
+
+Errors and warnings were carefully monitored throughout our simulation.  We used the tryCatch.W.E function from the R package `simsalapar` to save any warning or error messages.  These messages were stored in a data frame, along with the raw simulation results, and are available upon request.\
+\
+Under scenarios where training data were class balanced (event fraction $= 0.5$), imbalance correction methodologies used in the pre-processing step of model development did not preform reliably. For simulation iterations with very little observed imbalance (i.e., observed event fractions too close to 0.5), some imbalance corrections returned an error.  In the event of such an error, we allowed the original (uncorrected) data set to to be used as training data in the next step of model development (i.e., machine learning algorithms were trained with uncorrected data). In Table \ref{tab:S1}, we present the frequency with which errors occurred as a consequence of imbalance corrections, for all simulation scenarios.\
+\
+Conversely, when data were strongly imbalanced (event fraction $= 0.02$) and sample size was small ($0.5$N) some machine learning algorithms returned an error. In this case, we saved predicted risks as missing (NA), since no predicted risks were generated by the model. Consequently, all empirical performance measures were saved as missing and no flexible calibration curve was generated.  In Table \ref{tab:S2}, we present the frequency with which errors occurred as a consequence of machine learning algorithms, for all simulation scenarios. Importantly, recall that for each iteration of the simulation, any given machine learning algorithm was used to create 5 different prediction models, each trained with unique data  (resulting from the control, RUS, ROS, SMOTE and SENN imbalance corrections, respectively). Therefore, in Table \ref{tab:S2} we present errors resulting from each of the 5 distinct prediction models for each machine learning algorithm.\
+\
+For prediction models built with logistic regression, the `glm` function in `base R` provided a warning if separation occurred (i.e., all predicted risks were either 0 or 1). In case of separation, predicted risks were saved as usual and an indication of the warning was saved. Data separation was most common when random under sampling was used. The frequency of data separation for logistic regression models, in all simulation scenarios, is presented in Table \ref{tab:S3}.\
+\
+Finally, we found that in some simulation scenarios, the algorithm RUSBoost produced impossible predicted risks (i.e., outside the range $[0,1]$).  In these instances, predicted risks below zero and above one were set to $1^{-10}$ and $1 - 1^{-10}$, respectively, and an indication of this behavior was saved.  The number of prediction models built with RUSBoost that resulted in impossible predicted risks, in all simulation scenarios, is presented in Table \ref{tab:S4}. \
+\
+\
+\begin{table}[!h]
+\renewcommand\thetable{S1} 
+\caption{\label{tab:S1} Frequency of simulation iterations in which an imbalance correction produced an error in 18/18 simulation scenarios.  Scenarios with zero errors are omitted. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 251 & 680 & 680\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 0 & 0 & 1 & 1\\
+ 
+4 & 8 & N & 0.50 & 0 & 0 & 288 & 488 & 488\\
+ 
+7 & 8 & 2N & 0.50 & 0 & 72 & 331 & 310 & 310\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 265 & 692 & 692\\
+ 
+13 & 16 & N & 0.50 & 0 & 0 & 282 & 502 & 502\\
+ 
+16 & 16 & 2N & 0.50 & 0 & 51 & 326 & 291 & 291\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\newpage
+
+\begin{table}[!h]
+\renewcommand\thetable{S2} 
+\caption{\label{tab:S2}Frequency of simulation iterations in which a machine learning algorithm produced an error in 18/18 simulation scenarios. Scenarios with zero errors are omitted. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). No errors were observed with logistic regression, support vector machine, random forest or xgboost.}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{RUSBoost:}}\\
+\addlinespace
+\hspace{2em}\hspace{1em}2 & 8 & 0.5N & 0.20 & 0 & 1 & 0 & 0 & 0\\
+\hspace{2em}\hspace{1em}3 & 8 & 0.5N & 0.02 & 59 & 9 & 0 & 1 & 1\\
+\addlinespace[0.3em]
+\multicolumn{9}{l}{\textbf{EasyEnsemble:}}\\
+\addlinespace
+\hspace{2em}\hspace{1em}2 & 8 & 0.5N & 0.20 & 1 & 1 & 0 & 0 & 0\\
+\hspace{2em}\hspace{1em}3 & 8 & 0.5N & 0.02 & 19 & 29 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}\
+
+\begin{table}[!h]
+\renewcommand\thetable{S3} 
+\caption{\label{tab:S3} Frequency of simulation iterations in which a data separation warning was produced by logistic regression. Scenarios with zero separation warnings are omitted. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighborss).}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+1 & 8 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 1\\
+ 
+2 & 8 & 0.5N & 0.20 & 0 & 99 & 0 & 0 & 36\\
+ 
+3 & 8 & 0.5N & 0.02 & 0 & 501 & 1 & 2 & 2\\
+ 
+5 & 8 & N & 0.20 & 0 & 1 & 0 & 0 & 0\\
+ 
+6 & 8 & N & 0.02 & 0 & 5 & 0 & 0 & 0\\
+ 
+10 & 16 & 0.5N & 0.50 & 0 & 0 & 0 & 0 & 13\\
+ 
+11 & 16 & 0.5N & 0.20 & 0 & 19 & 0 & 0 & 3\\
+ 
+12 & 16 & 0.5N & 0.02 & 0 & 232 & 0 & 0 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}\
+
+\begin{table}[!h]
+\renewcommand\thetable{S4} 
+\caption{\label{tab:S4} Frequency of simulation iterations in which RUSBoost produced invalid probabilities in 18/18 simulation scenarios. Scenarios where RUSBoost produced no invalid probabilities are omitted. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).}
+\centering
+\begin{tabular}[t]{ccccccccc}
+\toprule
+Scenario & No. Predictors & Sample Size & Event Fraction & Control & RUS & ROS & SMOTE & SENN\\
+\midrule
+2 & 8 & 0.5N & 0.20 & 2 & 0 & 0 & 0 & 0\\
+ 
+3 & 8 & 0.5N & 0.02 & 188 & 0 & 1 & 0 & 3\\
+ 
+6 & 8 & N & 0.02 & 22 & 0 & 0 & 0 & 0\\
+ 
+9 & 8 & 2N & 0.02 & 2 & 0 & 0 & 0 & 0\\
+ 
+12 & 16 & 0.5N & 0.02 & 44 & 0 & 3 & 1 & 1\\
+ 
+15 & 16 & N & 0.02 & 1 & 0 & 0 & 0 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+## C: Complete Simulation Results\ 
+
+In Tables S5-10, median performance measures and their Monte Carlo errors across 2000 simulation iterations are presented for all simulation scenarios. In Figures S1-S18 (S19-S36) we present the calibration plots for all simulation scenarios without re-calibration (with re-calibration). In Figures S37-S64 (S65-S72) we present the violin plots for our performance measures, in all simulation scenarios, without re-calibration (with re-calibration).  
+
+### Results Tables
+
+\begin{sidewaystable}
+\renewcommand\thetable{S5} 
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 1-3.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 1}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.85 & 0.84 & 0.83 & 0.83 & 0.81 & 0.84 & 0.85 & 0.84 & 0.83 & 0.82 & 0.81 & 0.83 & 0.84 & 0.83 & 0.81 & 0.81 & 0.81 & 0.84 & 0.85 & 0.83 & 0.83 & 0.82 & 0.81 & 0.83 & 0.85 & 0.83 & 0.82 & 0.82 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.16 & 0.17 & 0.17 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17 & 0.17 & 0.18 & 0.19 & 0.17 & 0.16 & 0.18 & 0.20 & 0.18 & 0.19 & 0.17 & 0.16 & 0.17 & 0.17 & 0.18 & 0.19 & 0.18 & 0.17 & 0.17 & 0.19 & 0.17 & 0.18\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.21 & 0.20 & 0.17 & 0.23 & 0.11 & 0.06 & 0.17 & 0.16 & 0.12 & 0.18 & 0.11 & 0.07 & 0.21 & 0.30 & 0.37 & 0.65 & 0.24 & 0.19 & 0.15 & 0.17 & 0.13 & 0.18 & 0.12 & 0.07 & 0.35 & 0.32 & 0.19 & 0.36 & 0.18 & 0.09\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.97 & 1.29 & 0.80 & 1.37 & >10.0 & 0.84 & 0.97 & 1.28 & 0.79 & 1.37 & >10.0 & 0.78 & 0.85 & 1.21 & 0.49 & 1.16 & 1.99 & 0.83 & 0.95 & 1.23 & 0.78 & 1.32 & >10.0 & 0.54 & 0.61 & 0.85 & 0.49 & 0.86 & 1.68\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.16 & 0.24 & 0.13 & 0.21 & 0.22 & 0.14 & 0.16 & 0.25 & 0.13 & 0.21 & 0.22 & 0.16 & 0.16 & 0.24 & 0.12 & 0.19 & 0.21 & 0.14 & 0.16 & 0.24 & 0.14 & 0.21 & 0.21 & 0.22 & 0.24 & 0.32 & 0.20 & 0.33 & 0.36\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 2}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.81 & 0.80 & 0.79 & 0.82 & 0.80 & 0.80 & 0.83 & 0.81 & 0.78 & 0.80 & 0.78 & 0.82 & 0.82 & 0.81 & 0.78 & 0.79 & 0.78 & 0.82 & 0.82 & 0.81 & 0.79 & 0.79 & 0.80 & 0.82 & 0.82 & 0.81 & 0.80 & 0.80 & 0.81\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.02 & 0.04 & 0.03 & 0.03 & 0.02 & 0.03 & 0.04 & 0.02 & 0.03 & 0.04 & 0.04 & 0.04 & 0.02 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.02 & 0.03 & 0.03 & 0.02 & 0.03 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.13 & 0.13 & 0.13 & 0.14 & 0.18 & 0.20 & 0.21 & 0.17 & 0.19 & 0.22 & 0.21 & 0.21 & 0.17 & 0.15 & 0.13 & 0.16 & 0.15 & 0.15 & 0.17 & 0.14 & 0.14 & 0.16 & 0.15 & 0.16 & 0.20 & 0.16 & 0.15 & 0.18 & 0.16 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.05 & 0.03 & 0.02 & 0.03 & 0.02 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.71 & 0.99 & 1.24 & 0.61 & 1.59 & >10.0 & 0.45 & 1.02 & 1.27 & 0.49 & 1.38 & 1.85 & 0.62 & 0.55 & 1.06 & 0.33 & 0.80 & 1.63 & 0.57 & 0.51 & 0.81 & 0.37 & 0.74 & 1.59 & 0.40 & 0.40 & 0.66 & 0.34 & 0.59 & 1.40\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.19 & >10.0 & 0.28 & 0.14 & 0.33 & 0.37 & 0.21 & >10.0 & 0.39 & 0.12 & 0.31 & 0.37 & 0.17 & 0.15 & 0.26 & 0.06 & 0.16 & 0.24 & 0.16 & 0.13 & 0.21 & 0.08 & 0.15 & 0.23 & 0.14 & 0.09 & 0.19 & 0.06 & 0.11 & 0.21\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 3}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.70 & 0.75 & 0.80 & 0.82 & 0.80 & 0.77 & 0.83 & 0.80 & 0.77 & 0.79 & 0.77 & 0.82 & 0.79 & 0.79 & 0.74 & 0.74 & 0.74 & 0.82 & 0.79 & 0.78 & 0.77 & 0.75 & 0.77 & 0.82 & 0.79 & 0.79 & 0.78 & 0.75 & 0.78\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.02 & 0.05 & 0.03 & 0.03 & 0.04 & 0.03 & 0.06 & 0.03 & 0.03 & 0.04 & 0.04 & 0.04 & 0.02 & 0.03 & 0.03 & 0.04 & 0.04 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.04 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.04 & 0.03\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.14 & 0.21 & 0.24 & 0.18 & 0.20 & 0.22 & 0.23 & 0.21 & 0.16 & 0.04 & 0.02 & 0.02 & 0.03 & 0.03 & 0.15 & 0.04 & 0.03 & 0.03 & 0.03 & 0.04 & 0.16 & 0.04 & 0.03 & 0.04 & 0.04 & 0.04\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.81 & 1.40 & 0.47 & 0.70 & 1.52 & >10.0 & 0.25 & 1.01 & 1.20 & 0.50 & 1.42 & 1.71 & 0.59 & 0.11 & 0.37 & 0.26 & 0.33 & 1.30 & 0.50 & 0.15 & 0.42 & 0.22 & 0.28 & 1.25 & 0.46 & 0.14 & 0.37 & 0.21 & 0.27 & 1.17\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 1 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.83 & 0.82 & 0.81 & 0.83 & 0.84 & 0.83 & 0.81 & 0.81 & 0.81 & 0.84 & 0.85 & 0.85 & 0.83 & 0.83 & 0.82 & 0.81 & 0.83 & 0.85 & 0.83 & 0.82 & 0.82 & 0.84 & 0.82 & 0.83 & 0.83 & 0.81 & 0.84 & 0.85 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.17 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17 & 0.19 & 0.18 & 0.19 & 0.17 & 0.16 & 0.16 & 0.17 & 0.17 & 0.17 & 0.19 & 0.17 & 0.17 & 0.17 & 0.18 & 0.17 & 0.17 & 0.18 & 0.17 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.79 & 1.37 & >10.0 & 0.78 & 0.85 & 1.21 & 0.49 & 1.16 & 1.99 & 0.83 & 0.97 & 0.95 & 1.23 & 0.78 & 1.32 & >10.0 & 0.54 & 0.61 & 0.85 & 0.49 & 0.86 & 1.29 & 1.68 & 0.80 & 1.37 & >10.0 & 0.84 & 0.97 & 1.28\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.13 & 0.21 & 0.22 & 0.16 & 0.16 & 0.24 & 0.12 & 0.19 & 0.21 & 0.14 & 0.16 & 0.16 & 0.24 & 0.14 & 0.21 & 0.21 & 0.22 & 0.24 & 0.32 & 0.20 & 0.33 & 0.24 & 0.36 & 0.13 & 0.21 & 0.22 & 0.14 & 0.16 & 0.25\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 2 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.78 & 0.80 & 0.78 & 0.82 & 0.82 & 0.81 & 0.78 & 0.79 & 0.78 & 0.82 & 0.81 & 0.82 & 0.81 & 0.79 & 0.79 & 0.80 & 0.82 & 0.82 & 0.81 & 0.80 & 0.80 & 0.80 & 0.81 & 0.79 & 0.82 & 0.80 & 0.80 & 0.83 & 0.81\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.02 & 0.04 & 0.04 & 0.04 & 0.02 & 0.03 & 0.02 & 0.03 & 0.03 & 0.03 & 0.02 & 0.04 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.03 & 0.02 & 0.03 & 0.03 & 0.02 & 0.03 & 0.02 & 0.03 & 0.07 & 0.02 & 0.03\\
+\hspace{2em}\hspace{1em}Brier Score & 0.13 & 0.14 & 0.13 & 0.14 & 0.13 & 0.13 & 0.13 & 0.16 & 0.13 & 0.13 & 0.13 & 0.13 & 0.14 & 0.13 & 0.15 & 0.13 & 0.13 & 0.14 & 0.14 & 0.13 & 0.15 & 0.14 & 0.13 & 0.13 & 0.14 & 0.13 & 0.14 & 0.15 & 0.12 & 0.13\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.71 & 0.49 & 1.38 & 1.85 & 0.62 & 0.55 & 1.06 & 0.33 & 0.80 & 1.63 & 0.57 & 0.99 & 0.51 & 0.81 & 0.37 & 0.74 & 1.59 & 0.40 & 0.40 & 0.66 & 0.34 & 0.59 & 1.24 & 1.40 & 0.61 & 1.59 & >10.0 & 0.45 & 1.02 & 1.27\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.19 & 0.12 & 0.31 & 0.37 & 0.17 & 0.15 & 0.26 & 0.06 & 0.16 & 0.24 & 0.16 & >10.0 & 0.13 & 0.21 & 0.08 & 0.15 & 0.23 & 0.14 & 0.09 & 0.19 & 0.06 & 0.11 & 0.28 & 0.21 & 0.14 & 0.33 & 0.37 & 0.20 & >10.0 & 0.39\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 3 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.77 & 0.79 & 0.77 & 0.82 & 0.78 & 0.78 & 0.74 & 0.74 & 0.74 & 0.82 & 0.70 & 0.79 & 0.78 & 0.77 & 0.75 & 0.77 & 0.82 & 0.79 & 0.78 & 0.78 & 0.75 & 0.75 & 0.78 & 0.80 & 0.82 & 0.80 & 0.77 & 0.83 & 0.80\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.02 & 0.04 & 0.04 & 0.04 & 0.02 & 0.04 & 0.13 & 0.04 & 0.04 & 0.03 & 0.02 & 0.05 & 0.03 & 0.08 & 0.03 & 0.04 & 0.03 & 0.02 & 0.03 & 0.09 & 0.03 & 0.04 & 0.06 & 0.03 & 0.03 & 0.06 & 0.03 & 0.12 & 0.03 & 0.04\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.81 & 0.50 & 1.42 & 1.71 & 0.59 & 0.11 & 0.47 & 0.26 & 0.33 & 1.30 & 0.50 & 1.40 & 0.15 & 0.43 & 0.22 & 0.28 & 1.25 & 0.46 & 0.14 & 0.40 & 0.21 & 0.27 & 0.49 & 1.17 & 0.70 & 1.53 & >10.0 & 0.32 & 1.01 & 1.20\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{3} Scenario 1: 8 predictors, half the required sample size (0.5N), class balanced data (event fraction = 0.5)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{4} Scenario 2: 8 predictors, half the required sample size (0.5N), moderately imbalanced data (event fraction = 0.2)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{5} Scenario 3: 8 predictors, half the required sample size (0.5N), strongly imbalanced data (event fraction = 0.02)}\\
+\end{tabular}}
+\end{sidewaystable}
+
+\begin{sidewaystable}
+\renewcommand\thetable{S6} 
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 4-6.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 4}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.86 & 0.84 & 0.84 & 0.84 & 0.83 & 0.84 & 0.86 & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.82 & 0.83 & 0.82 & 0.84 & 0.86 & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.84 & 0.83 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{1} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.17 & 0.17 & 0.18 & 0.17 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.14 & 0.12 & 0.15 & 0.07 & 0.05 & 0.11 & 0.12 & 0.09 & 0.11 & 0.07 & 0.05 & 0.13 & 0.20 & 0.34 & 0.51 & 0.18 & 0.17 & 0.10 & 0.11 & 0.09 & 0.11 & 0.08 & 0.05 & 0.23 & 0.25 & 0.15 & 0.26 & 0.14 & 0.07\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.96 & 1.25 & 0.91 & 1.46 & >10.0 & 0.92 & 0.96 & 1.25 & 0.90 & 1.46 & >10.0 & 0.88 & 0.87 & 1.21 & 0.56 & 1.26 & >10.0 & 0.90 & 0.94 & 1.21 & 0.89 & 1.43 & >10.0 & 0.57 & 0.58 & 0.78 & 0.52 & 0.83 & 1.62\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.11 & 0.18 & 0.12 & 0.17 & 0.17 & 0.11 & 0.11 & 0.18 & 0.12 & 0.17 & 0.17 & 0.12 & 0.11 & 0.19 & 0.10 & 0.15 & 0.16 & 0.10 & 0.11 & 0.18 & 0.12 & 0.16 & 0.16 & 0.19 & 0.20 & 0.27 & 0.21 & 0.33 & 0.34\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 5}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.82 & 0.82 & 0.82 & 0.83 & 0.82 & 0.83 & 0.85 & 0.83 & 0.80 & 0.81 & 0.80 & 0.83 & 0.83 & 0.83 & 0.79 & 0.80 & 0.80 & 0.84 & 0.83 & 0.82 & 0.81 & 0.80 & 0.81 & 0.83 & 0.83 & 0.82 & 0.82 & 0.81 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.12 & 0.12 & 0.17 & 0.20 & 0.18 & 0.16 & 0.18 & 0.19 & 0.20 & 0.20 & 0.17 & 0.15 & 0.12 & 0.15 & 0.15 & 0.15 & 0.16 & 0.14 & 0.13 & 0.15 & 0.14 & 0.15 & 0.19 & 0.16 & 0.15 & 0.17 & 0.16 & 0.15\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.22 & 0.23 & 0.18 & 0.23 & 0.10 & 0.07 & 0.40 & 0.23 & 0.18 & 0.36 & 0.14 & 0.08 & 0.16 & 0.24 & 0.17 & 0.43 & 0.17 & 0.10 & 0.18 & 0.30 & 0.18 & 0.33 & 0.20 & 0.10 & 0.30 & 0.40 & 0.24 & 0.46 & 0.25 & 0.10\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.85 & 0.97 & 1.27 & 0.79 & 1.52 & >10.0 & 0.67 & 0.96 & 1.26 & 0.62 & 1.30 & >10.0 & 0.76 & 0.61 & 1.10 & 0.33 & 0.85 & 1.78 & 0.71 & 0.55 & 0.84 & 0.41 & 0.78 & 1.71 & 0.54 & 0.43 & 0.66 & 0.35 & 0.58 & 1.48\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.55 & 0.20 & 0.13 & 0.24 & 0.27 & 0.17 & 0.26 & 0.31 & 0.14 & 0.24 & 0.27 & 0.14 & 0.11 & 0.20 & 0.05 & 0.13 & 0.18 & 0.13 & 0.10 & 0.15 & 0.07 & 0.13 & 0.17 & 0.12 & 0.08 & 0.15 & 0.05 & 0.10 & 0.16\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 6}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.71 & 0.78 & 0.82 & 0.83 & 0.81 & 0.82 & 0.84 & 0.82 & 0.79 & 0.81 & 0.79 & 0.84 & 0.80 & 0.81 & 0.76 & 0.76 & 0.76 & 0.84 & 0.80 & 0.80 & 0.78 & 0.76 & 0.78 & 0.84 & 0.80 & 0.80 & 0.79 & 0.77 & 0.79\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.04 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.03 & 0.03 & 0.03 & 0.01 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.16 & 0.20 & 0.19 & 0.17 & 0.18 & 0.21 & 0.22 & 0.20 & 0.16 & 0.05 & 0.02 & 0.02 & 0.04 & 0.04 & 0.15 & 0.05 & 0.03 & 0.03 & 0.03 & 0.05 & 0.16 & 0.05 & 0.03 & 0.04 & 0.04 & 0.05\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & 0.01 & 0.04 & 0.03 & 0.03 & 0.04 & 0.03 & 0.02 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.02 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.90 & 1.41 & 0.63 & 0.84 & 1.49 & >10.0 & 0.54 & 0.96 & 1.18 & 0.52 & 1.26 & 1.86 & 0.72 & 0.14 & 0.53 & 0.25 & 0.35 & 1.67 & 0.62 & 0.16 & 0.48 & 0.22 & 0.28 & 1.50 & 0.57 & 0.15 & 0.45 & 0.20 & 0.25 & 1.38\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & >10.0 & 0.20 & 0.13 & 0.28 & 0.30 & 0.18 & 0.66 & 0.32 & 0.12 & 0.26 & 0.28 & 0.13 & 0.04 & 0.18 & 0.02 & 0.06 & 0.17 & 0.11 & 0.03 & 0.12 & 0.02 & 0.05 & 0.13 & 0.11 & 0.03 & 0.11 & 0.02 & 0.04 & 0.12\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 4 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.82 & 0.83 & 0.82 & 0.84 & 0.86 & 0.86 & 0.84 & 0.84 & 0.83 & 0.82 & 0.84 & 0.85 & 0.84 & 0.84 & 0.83 & 0.84 & 0.83 & 0.84 & 0.84 & 0.83 & 0.84 & 0.86 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.17 & 0.18 & 0.17 & 0.19 & 0.16 & 0.15 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17 & 0.17 & 0.17 & 0.16 & 0.17 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.90 & 1.46 & >10.0 & 0.88 & 0.87 & 1.21 & 0.56 & 1.26 & >10.0 & 0.90 & 0.96 & 0.94 & 1.21 & 0.89 & 1.43 & >10.0 & 0.57 & 0.58 & 0.78 & 0.52 & 0.83 & 1.25 & 1.62 & 0.91 & 1.46 & >10.0 & 0.92 & 0.96 & 1.25\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.12 & 0.17 & 0.17 & 0.12 & 0.11 & 0.19 & 0.10 & 0.15 & 0.16 & 0.10 & 0.11 & 0.11 & 0.18 & 0.12 & 0.16 & 0.16 & 0.19 & 0.20 & 0.27 & 0.21 & 0.33 & 0.18 & 0.34 & 0.12 & 0.17 & 0.17 & 0.11 & 0.11 & 0.18\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 5 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.80 & 0.81 & 0.80 & 0.83 & 0.83 & 0.83 & 0.79 & 0.80 & 0.80 & 0.84 & 0.82 & 0.83 & 0.82 & 0.81 & 0.80 & 0.81 & 0.83 & 0.83 & 0.82 & 0.82 & 0.81 & 0.82 & 0.82 & 0.82 & 0.83 & 0.82 & 0.83 & 0.85 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.13 & 0.13 & 0.14 & 0.12 & 0.13 & 0.12 & 0.15 & 0.13 & 0.13 & 0.12 & 0.12 & 0.13 & 0.12 & 0.14 & 0.13 & 0.13 & 0.13 & 0.14 & 0.13 & 0.15 & 0.13 & 0.12 & 0.13 & 0.12 & 0.12 & 0.13 & 0.13 & 0.12 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.85 & 0.62 & 1.30 & >10.0 & 0.76 & 0.61 & 1.10 & 0.33 & 0.85 & 1.78 & 0.71 & 0.97 & 0.55 & 0.84 & 0.41 & 0.78 & 1.71 & 0.54 & 0.43 & 0.66 & 0.35 & 0.58 & 1.27 & 1.48 & 0.79 & 1.52 & >10.0 & 0.67 & 0.96 & 1.26\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.14 & 0.14 & 0.24 & 0.27 & 0.14 & 0.11 & 0.20 & 0.05 & 0.13 & 0.18 & 0.13 & 0.55 & 0.10 & 0.15 & 0.07 & 0.13 & 0.17 & 0.12 & 0.08 & 0.15 & 0.05 & 0.10 & 0.20 & 0.16 & 0.13 & 0.24 & 0.27 & 0.17 & 0.26 & 0.31\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 6 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.79 & 0.81 & 0.79 & 0.84 & 0.79 & 0.80 & 0.76 & 0.76 & 0.76 & 0.84 & 0.71 & 0.80 & 0.80 & 0.78 & 0.76 & 0.78 & 0.84 & 0.80 & 0.80 & 0.79 & 0.77 & 0.78 & 0.79 & 0.82 & 0.83 & 0.81 & 0.82 & 0.84 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.03 & 0.03 & 0.01 & 0.03 & 0.10 & 0.02 & 0.03 & 0.02 & 0.01 & 0.04 & 0.02 & 0.04 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.05 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.90 & 0.52 & 1.26 & 1.86 & 0.72 & 0.14 & 0.56 & 0.25 & 0.35 & 1.67 & 0.62 & 1.41 & 0.16 & 0.48 & 0.22 & 0.28 & 1.50 & 0.57 & 0.15 & 0.45 & 0.20 & 0.25 & 0.63 & 1.38 & 0.84 & 1.49 & >10.0 & 0.54 & 0.96 & 1.18\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.12 & 0.26 & 0.28 & 0.13 & 0.05 & 0.16 & 0.02 & 0.06 & 0.17 & 0.11 & >10.0 & 0.03 & 0.12 & 0.02 & 0.05 & 0.13 & 0.11 & 0.03 & 0.11 & 0.02 & 0.04 & 0.20 & 0.12 & 0.13 & 0.28 & 0.30 & 0.18 & 0.66 & 0.32\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{3} Scenario 4: 8 predictors, minimum required sample size (N), class balanced data (event fraction = 0.5)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{4} Scenario 5: 8 predictors, minimum required sample size (N), moderately imbalanced data (event fraction = 0.2)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{5} Scenario 6: 8 predictors, minimum required sample size (N), strongly imbalanced data (event fraction = 0.02)}\\
+\end{tabular}}
+\end{sidewaystable}
+
+\begin{sidewaystable}
+\renewcommand\thetable{S7} 
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 7-9.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 7}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.85 & 0.86 & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.86 & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.85 & 0.85 & 0.83 & 0.84 & 0.83 & 0.85 & 0.86 & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.86 & 0.84 & 0.85 & 0.84 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.16 & 0.18 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.16 & 0.16 & 0.17 & 0.16 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.10 & 0.09 & 0.10 & 0.05 & 0.03 & 0.07 & 0.08 & 0.06 & 0.08 & 0.05 & 0.03 & 0.08 & 0.14 & 0.32 & 0.40 & 0.13 & 0.15 & 0.06 & 0.08 & 0.06 & 0.07 & 0.05 & 0.03 & 0.16 & 0.19 & 0.12 & 0.18 & 0.10 & 0.05\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.96 & 0.96 & 1.21 & 0.96 & 1.59 & >10.0 & 0.95 & 0.96 & 1.22 & 0.96 & 1.58 & >10.0 & 0.94 & 0.90 & 1.20 & 0.62 & 1.40 & >10.0 & 0.95 & 0.95 & 1.19 & 0.95 & 1.57 & >10.0 & 0.58 & 0.57 & 0.73 & 0.53 & 0.86 & 1.61\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.08 & 0.08 & 0.14 & 0.10 & 0.13 & 0.14 & 0.08 & 0.08 & 0.14 & 0.10 & 0.13 & 0.13 & 0.09 & 0.08 & 0.14 & 0.11 & 0.13 & 0.13 & 0.08 & 0.08 & 0.13 & 0.10 & 0.13 & 0.13 & 0.16 & 0.16 & 0.22 & 0.18 & 0.30 & 0.33\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 8}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.83 & 0.83 & 0.84 & 0.84 & 0.83 & 0.84 & 0.85 & 0.84 & 0.83 & 0.83 & 0.81 & 0.84 & 0.84 & 0.84 & 0.81 & 0.82 & 0.82 & 0.84 & 0.84 & 0.83 & 0.82 & 0.82 & 0.82 & 0.84 & 0.84 & 0.83 & 0.83 & 0.82 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.12 & 0.12 & 0.17 & 0.19 & 0.17 & 0.16 & 0.17 & 0.18 & 0.19 & 0.19 & 0.16 & 0.15 & 0.12 & 0.15 & 0.15 & 0.15 & 0.16 & 0.14 & 0.13 & 0.15 & 0.14 & 0.15 & 0.19 & 0.16 & 0.14 & 0.17 & 0.15 & 0.15\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.15 & 0.15 & 0.12 & 0.15 & 0.07 & 0.05 & 0.19 & 0.17 & 0.13 & 0.21 & 0.11 & 0.06 & 0.11 & 0.15 & 0.12 & 0.31 & 0.11 & 0.07 & 0.13 & 0.19 & 0.13 & 0.23 & 0.13 & 0.07 & 0.20 & 0.27 & 0.18 & 0.35 & 0.18 & 0.08\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.96 & 1.28 & 0.91 & 1.52 & >10.0 & 0.80 & 0.95 & 1.22 & 0.79 & 1.33 & >10.0 & 0.85 & 0.66 & 1.12 & 0.34 & 0.95 & 1.92 & 0.79 & 0.59 & 0.85 & 0.43 & 0.86 & 1.83 & 0.62 & 0.46 & 0.66 & 0.34 & 0.63 & 1.54\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.11 & 0.19 & 0.15 & 0.12 & 0.18 & 0.20 & 0.13 & 0.15 & 0.23 & 0.13 & 0.20 & 0.20 & 0.11 & 0.08 & 0.16 & 0.04 & 0.11 & 0.14 & 0.10 & 0.07 & 0.10 & 0.07 & 0.10 & 0.13 & 0.09 & 0.06 & 0.11 & 0.06 & 0.09 & 0.13\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 9}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.85 & 0.72 & 0.79 & 0.84 & 0.84 & 0.83 & 0.83 & 0.85 & 0.83 & 0.82 & 0.82 & 0.81 & 0.84 & 0.80 & 0.82 & 0.78 & 0.78 & 0.78 & 0.84 & 0.80 & 0.81 & 0.79 & 0.78 & 0.80 & 0.84 & 0.81 & 0.81 & 0.80 & 0.78 & 0.80\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.16 & 0.19 & 0.18 & 0.16 & 0.17 & 0.19 & 0.20 & 0.20 & 0.16 & 0.08 & 0.02 & 0.02 & 0.04 & 0.05 & 0.16 & 0.06 & 0.03 & 0.04 & 0.04 & 0.07 & 0.17 & 0.06 & 0.03 & 0.04 & 0.04 & 0.07\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.95 & 1.42 & 0.76 & 0.94 & 1.48 & >10.0 & 0.69 & 0.92 & 1.15 & 0.71 & 1.24 & 1.96 & 0.80 & 0.21 & 0.64 & 0.28 & 0.40 & >10.0 & 0.71 & 0.19 & 0.55 & 0.24 & 0.31 & 1.86 & 0.66 & 0.18 & 0.52 & 0.22 & 0.27 & 1.68\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.09 & 0.64 & 0.14 & 0.12 & 0.20 & 0.22 & 0.13 & 0.17 & 0.26 & 0.13 & 0.21 & 0.21 & 0.10 & 0.04 & 0.14 & 0.02 & 0.05 & 0.13 & 0.09 & 0.03 & 0.08 & 0.02 & 0.04 & 0.12 & 0.09 & 0.03 & 0.07 & 0.02 & 0.03 & 0.11\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 7 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.85 & 0.85 & 0.83 & 0.84 & 0.83 & 0.85 & 0.86 & 0.86 & 0.85 & 0.85 & 0.84 & 0.83 & 0.85 & 0.86 & 0.84 & 0.85 & 0.84 & 0.85 & 0.84 & 0.85 & 0.84 & 0.83 & 0.85 & 0.86 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.16 & 0.17 & 0.19 & 0.16 & 0.16 & 0.16 & 0.17 & 0.17 & 0.18 & 0.16 & 0.15 & 0.15 & 0.16 & 0.16 & 0.17 & 0.19 & 0.17 & 0.16 & 0.16 & 0.17 & 0.16 & 0.16 & 0.17 & 0.16 & 0.17 & 0.19 & 0.16 & 0.15 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.96 & 0.96 & 1.58 & >10.0 & 0.94 & 0.90 & 1.20 & 0.62 & 1.40 & >10.0 & 0.95 & 0.96 & 0.95 & 1.19 & 0.95 & 1.57 & >10.0 & 0.58 & 0.57 & 0.73 & 0.53 & 0.86 & 1.21 & 1.61 & 0.96 & 1.59 & >10.0 & 0.95 & 0.96 & 1.22\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.08 & 0.10 & 0.13 & 0.13 & 0.09 & 0.08 & 0.14 & 0.11 & 0.13 & 0.13 & 0.08 & 0.08 & 0.08 & 0.13 & 0.10 & 0.13 & 0.13 & 0.16 & 0.16 & 0.22 & 0.18 & 0.30 & 0.14 & 0.33 & 0.10 & 0.13 & 0.14 & 0.08 & 0.08 & 0.14\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 8 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.83 & 0.83 & 0.81 & 0.84 & 0.84 & 0.84 & 0.81 & 0.82 & 0.82 & 0.84 & 0.83 & 0.84 & 0.83 & 0.82 & 0.82 & 0.82 & 0.84 & 0.84 & 0.83 & 0.83 & 0.82 & 0.83 & 0.83 & 0.84 & 0.84 & 0.83 & 0.84 & 0.85 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.12 & 0.13 & 0.12 & 0.12 & 0.12 & 0.15 & 0.12 & 0.13 & 0.12 & 0.12 & 0.13 & 0.12 & 0.14 & 0.13 & 0.13 & 0.12 & 0.13 & 0.12 & 0.14 & 0.13 & 0.12 & 0.12 & 0.12 & 0.12 & 0.13 & 0.12 & 0.11 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.79 & 1.33 & >10.0 & 0.85 & 0.66 & 1.12 & 0.34 & 0.95 & 1.92 & 0.79 & 0.96 & 0.59 & 0.85 & 0.43 & 0.86 & 1.83 & 0.62 & 0.46 & 0.66 & 0.34 & 0.63 & 1.28 & 1.54 & 0.91 & 1.52 & >10.0 & 0.80 & 0.95 & 1.22\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.11 & 0.13 & 0.20 & 0.20 & 0.11 & 0.08 & 0.16 & 0.04 & 0.11 & 0.14 & 0.10 & 0.19 & 0.07 & 0.10 & 0.07 & 0.10 & 0.13 & 0.09 & 0.06 & 0.11 & 0.06 & 0.09 & 0.15 & 0.13 & 0.12 & 0.18 & 0.20 & 0.13 & 0.15 & 0.23\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 9 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.85 & 0.82 & 0.82 & 0.81 & 0.84 & 0.80 & 0.82 & 0.78 & 0.78 & 0.78 & 0.84 & 0.72 & 0.80 & 0.81 & 0.79 & 0.78 & 0.80 & 0.84 & 0.81 & 0.81 & 0.80 & 0.78 & 0.79 & 0.80 & 0.84 & 0.84 & 0.83 & 0.83 & 0.85 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.06 & 0.02 & 0.02 & 0.02 & 0.01 & 0.03 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.72 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 1.24 & <0.01 & <0.01 & 1.02 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.95 & 0.71 & 1.24 & 1.96 & 0.80 & 0.21 & 0.64 & 0.28 & 0.40 & >10.0 & 0.71 & 1.42 & 0.19 & 0.55 & 0.24 & 0.31 & 1.86 & 0.66 & 0.18 & 0.52 & 0.22 & 0.27 & 0.76 & 1.68 & 0.94 & 1.48 & >10.0 & 0.69 & 0.92 & 1.15\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.09 & 0.13 & 0.21 & 0.21 & 0.10 & 0.05 & 0.12 & 0.02 & 0.05 & 0.13 & 0.09 & 0.64 & 0.03 & 0.08 & 0.02 & 0.04 & 0.12 & 0.09 & 0.03 & 0.07 & 0.02 & 0.03 & 0.14 & 0.11 & 0.12 & 0.20 & 0.22 & 0.13 & 0.17 & 0.26\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{3} Scenario 7: 8 predictors, double the required sample size (2N), class balanced data (event fraction = 0.5)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{4} Scenario 8: 8 predictors, double the required sample size (2N), moderately imbalanced data (event fraction = 0.2)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{5} Scenario 9: 8 predictors, double the required sample size (2N), strongly imbalanced data (event fraction = 0.02)}\\
+\end{tabular}}
+\end{sidewaystable}
+
+\begin{sidewaystable}
+\renewcommand\thetable{S8} 
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 10-12.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 10}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.82 & 0.86 & 0.84 & 0.82 & 0.85 & 0.83 & 0.82 & 0.86 & 0.83 & 0.82 & 0.85 & 0.82 & 0.81 & 0.86 & 0.83 & 0.81 & 0.84 & 0.82 & 0.82 & 0.86 & 0.83 & 0.82 & 0.84 & 0.83 & 0.82 & 0.86 & 0.83 & 0.82 & 0.84 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.19 & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.19 & 0.18 & 0.16 & 0.18 & 0.20 & 0.17 & 0.19 & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.19 & 0.19 & 0.16 & 0.17 & 0.19 & 0.17 & 0.18\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.23 & 0.20 & 0.16 & 0.22 & 0.13 & 0.06 & 0.19 & 0.17 & 0.11 & 0.18 & 0.12 & 0.06 & 0.27 & 0.38 & 0.35 & 0.69 & 0.32 & 0.18 & 0.17 & 0.18 & 0.12 & 0.18 & 0.14 & 0.07 & 0.43 & 0.30 & 0.15 & 0.33 & 0.19 & 0.08\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.71 & 0.98 & 1.47 & 0.81 & 1.27 & >10.0 & 0.69 & 0.98 & 1.47 & 0.80 & 1.28 & >10.0 & 0.61 & 0.84 & 1.40 & 0.49 & 1.12 & >10.0 & 0.69 & 0.95 & 1.41 & 0.78 & 1.23 & >10.0 & 0.44 & 0.66 & 1.13 & 0.52 & 0.93 & >10.0\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.16 & 0.28 & 0.15 & 0.17 & 0.24 & 0.12 & 0.17 & 0.29 & 0.15 & 0.17 & 0.24 & 0.12 & 0.15 & 0.31 & 0.12 & 0.15 & 0.24 & 0.12 & 0.15 & 0.27 & 0.15 & 0.17 & 0.24 & 0.19 & 0.23 & 0.31 & 0.21 & 0.24 & 0.35\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 11}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.82 & 0.85 & 0.81 & 0.82 & 0.85 & 0.82 & 0.80 & 0.85 & 0.82 & 0.79 & 0.83 & 0.80 & 0.82 & 0.85 & 0.83 & 0.80 & 0.83 & 0.81 & 0.82 & 0.86 & 0.82 & 0.81 & 0.84 & 0.82 & 0.82 & 0.86 & 0.82 & 0.82 & 0.84 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.03 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.13 & 0.12 & 0.13 & 0.13 & 0.16 & 0.20 & 0.21 & 0.16 & 0.18 & 0.20 & 0.20 & 0.20 & 0.17 & 0.13 & 0.12 & 0.15 & 0.13 & 0.15 & 0.17 & 0.12 & 0.13 & 0.15 & 0.13 & 0.15 & 0.21 & 0.14 & 0.15 & 0.17 & 0.14 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.03 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.70 & 0.96 & 1.54 & 0.80 & 1.50 & >10.0 & 0.44 & 0.99 & 1.46 & 0.59 & 1.32 & >10.0 & 0.61 & 0.57 & 1.27 & 0.36 & 0.83 & >10.0 & 0.56 & 0.54 & 1.04 & 0.40 & 0.77 & >10.0 & 0.39 & 0.44 & 0.87 & 0.36 & 0.65 & 1.78\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.28 & 0.29 & 0.15 & 0.21 & 0.28 & 0.15 & 0.26 & 0.39 & 0.15 & 0.21 & 0.28 & 0.12 & 0.10 & 0.27 & 0.05 & 0.10 & 0.21 & 0.11 & 0.09 & 0.20 & 0.06 & 0.09 & 0.19 & 0.10 & 0.07 & 0.19 & 0.05 & 0.07 & 0.20\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 12}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.77 & 0.75 & 0.82 & 0.85 & 0.81 & 0.77 & 0.85 & 0.81 & 0.78 & 0.83 & 0.79 & 0.82 & 0.83 & 0.82 & 0.78 & 0.78 & 0.78 & 0.82 & 0.84 & 0.81 & 0.81 & 0.80 & 0.80 & 0.82 & 0.84 & 0.81 & 0.82 & 0.81 & 0.81\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.04 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.15 & 0.20 & 0.24 & 0.16 & 0.19 & 0.22 & 0.22 & 0.21 & 0.16 & 0.03 & 0.02 & 0.02 & 0.02 & 0.04 & 0.15 & 0.03 & 0.02 & 0.03 & 0.02 & 0.05 & 0.16 & 0.03 & 0.02 & 0.03 & 0.03 & 0.05\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & 0.01 & 0.06 & 0.03 & 0.03 & 0.04 & 0.03 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.02 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.80 & 1.22 & 0.86 & 0.85 & 1.51 & >10.0 & 0.28 & 1.01 & 1.45 & 0.48 & 1.37 & >10.0 & 0.60 & 0.12 & 0.69 & 0.28 & 0.48 & 1.93 & 0.51 & 0.19 & 0.74 & 0.26 & 0.39 & 1.84 & 0.45 & 0.19 & 0.68 & 0.25 & 0.38 & 1.70\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.11 & 0.52 & 0.20 & 0.14 & 0.23 & 0.29 & 0.15 & 0.62 & 0.42 & 0.12 & 0.23 & 0.29 & 0.11 & 0.02 & 0.20 & 0.02 & 0.06 & 0.21 & 0.09 & 0.03 & 0.13 & 0.02 & 0.04 & 0.16 & 0.09 & 0.02 & 0.12 & 0.02 & 0.05 & 0.15\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 10 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.82 & 0.82 & 0.85 & 0.82 & 0.81 & 0.86 & 0.83 & 0.81 & 0.84 & 0.82 & 0.82 & 0.86 & 0.86 & 0.83 & 0.82 & 0.84 & 0.83 & 0.82 & 0.86 & 0.83 & 0.82 & 0.84 & 0.84 & 0.83 & 0.82 & 0.85 & 0.83 & 0.82 & 0.86 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.02 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.17 & 0.16 & 0.19 & 0.18 & 0.16 & 0.17 & 0.19 & 0.16 & 0.19 & 0.18 & 0.15 & 0.15 & 0.17 & 0.17 & 0.16 & 0.19 & 0.19 & 0.16 & 0.17 & 0.19 & 0.16 & 0.17 & 0.18 & 0.17 & 0.16 & 0.19 & 0.18 & 0.15 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.71 & 0.80 & 1.28 & >10.0 & 0.61 & 0.84 & 1.40 & 0.49 & 1.12 & >10.0 & 0.69 & 0.98 & 0.95 & 1.41 & 0.78 & 1.23 & >10.0 & 0.44 & 0.66 & 1.13 & 0.52 & 0.93 & 1.47 & >10.0 & 0.81 & 1.27 & >10.0 & 0.69 & 0.98 & 1.47\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.15 & 0.17 & 0.24 & 0.12 & 0.15 & 0.31 & 0.12 & 0.15 & 0.24 & 0.12 & 0.16 & 0.15 & 0.27 & 0.15 & 0.17 & 0.24 & 0.19 & 0.23 & 0.31 & 0.21 & 0.24 & 0.28 & 0.35 & 0.15 & 0.17 & 0.24 & 0.12 & 0.17 & 0.29\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 11 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.82 & 0.79 & 0.83 & 0.80 & 0.82 & 0.85 & 0.83 & 0.80 & 0.83 & 0.81 & 0.82 & 0.85 & 0.86 & 0.82 & 0.81 & 0.84 & 0.82 & 0.82 & 0.86 & 0.82 & 0.82 & 0.84 & 0.81 & 0.83 & 0.82 & 0.85 & 0.82 & 0.80 & 0.85 & 0.82\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.03 & 0.01 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.13 & 0.14 & 0.12 & 0.14 & 0.13 & 0.12 & 0.12 & 0.15 & 0.12 & 0.13 & 0.13 & 0.12 & 0.12 & 0.12 & 0.14 & 0.12 & 0.13 & 0.14 & 0.13 & 0.12 & 0.14 & 0.12 & 0.13 & 0.13 & 0.13 & 0.12 & 0.13 & 0.15 & 0.11 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.02 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.70 & 0.59 & 1.32 & >10.0 & 0.61 & 0.57 & 1.27 & 0.36 & 0.83 & >10.0 & 0.56 & 0.96 & 0.54 & 1.04 & 0.40 & 0.77 & >10.0 & 0.39 & 0.44 & 0.87 & 0.36 & 0.65 & 1.54 & 1.78 & 0.80 & 1.50 & >10.0 & 0.44 & 0.99 & 1.46\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.15 & 0.21 & 0.28 & 0.12 & 0.10 & 0.27 & 0.05 & 0.10 & 0.21 & 0.11 & 0.28 & 0.09 & 0.20 & 0.06 & 0.09 & 0.19 & 0.10 & 0.07 & 0.19 & 0.05 & 0.07 & 0.29 & 0.20 & 0.15 & 0.21 & 0.28 & 0.15 & 0.26 & 0.39\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 12 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.83 & 0.78 & 0.83 & 0.79 & 0.82 & 0.81 & 0.82 & 0.78 & 0.78 & 0.78 & 0.82 & 0.77 & 0.84 & 0.81 & 0.81 & 0.80 & 0.80 & 0.82 & 0.84 & 0.81 & 0.82 & 0.81 & 0.75 & 0.81 & 0.82 & 0.85 & 0.81 & 0.77 & 0.85 & 0.81\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.03 & 0.02 & 0.03 & 0.02 & 0.04 & 0.04 & 0.02 & 0.03 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.09 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.80 & 0.48 & 1.37 & >10.0 & 0.60 & 0.12 & 0.69 & 0.28 & 0.48 & 1.93 & 0.51 & 1.22 & 0.19 & 0.74 & 0.26 & 0.39 & 1.84 & 0.45 & 0.19 & 0.68 & 0.25 & 0.38 & 0.86 & 1.70 & 0.85 & 1.51 & >10.0 & 0.29 & 1.01 & 1.45\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.11 & 0.12 & 0.23 & 0.29 & 0.11 & 0.02 & 0.19 & 0.02 & 0.06 & 0.21 & 0.09 & 0.52 & 0.03 & 0.13 & 0.02 & 0.04 & 0.15 & 0.09 & 0.02 & 0.12 & 0.02 & 0.05 & 0.20 & 0.15 & 0.14 & 0.23 & 0.29 & 0.13 & 0.62 & 0.42\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{3} Scenario 10: 16 predictors, half the required sample size (0.5N), class balanced data (event fraction = 0.5)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{4} Scenario 11: 16 predictors, half the required sample size (0.5N), moderately imbalanced data (event fraction = 0.2)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{5} Scenario 12: 16 predictors, half the required sample size (0.5N), strongly imbalanced data (event fraction = 0.02)}\\
+\end{tabular}}
+\end{sidewaystable}
+
+
+\begin{sidewaystable}
+\renewcommand\thetable{S9} 
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 13-15.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 13}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.84 & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.84 & 0.83 & 0.87 & 0.84 & 0.83 & 0.85 & 0.84 & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.84 & 0.83 & 0.87 & 0.84 & 0.84 & 0.85 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{3} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.15 & 0.16 & 0.16 & 0.16 & 0.18 & 0.17 & 0.15 & 0.16 & 0.16 & 0.16 & 0.18 & 0.17 & 0.15 & 0.17 & 0.18 & 0.16 & 0.19 & 0.17 & 0.15 & 0.16 & 0.16 & 0.16 & 0.18 & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.18\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.15 & 0.15 & 0.11 & 0.14 & 0.09 & 0.04 & 0.12 & 0.12 & 0.08 & 0.11 & 0.09 & 0.04 & 0.15 & 0.28 & 0.33 & 0.57 & 0.28 & 0.17 & 0.11 & 0.12 & 0.08 & 0.11 & 0.10 & 0.05 & 0.25 & 0.24 & 0.12 & 0.26 & 0.18 & 0.06\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.97 & 1.43 & 0.93 & 1.24 & >10.0 & 0.83 & 0.96 & 1.43 & 0.92 & 1.24 & >10.0 & 0.78 & 0.85 & 1.38 & 0.56 & 1.09 & >10.0 & 0.82 & 0.95 & 1.40 & 0.90 & 1.21 & >10.0 & 0.53 & 0.63 & 1.07 & 0.57 & 0.81 & 1.99\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.11 & 0.20 & 0.14 & 0.13 & 0.19 & 0.10 & 0.12 & 0.20 & 0.14 & 0.13 & 0.19 & 0.11 & 0.11 & 0.23 & 0.10 & 0.12 & 0.18 & 0.10 & 0.11 & 0.19 & 0.14 & 0.13 & 0.18 & 0.17 & 0.19 & 0.24 & 0.21 & 0.23 & 0.32\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 14}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.87 & 0.82 & 0.84 & 0.86 & 0.84 & 0.82 & 0.86 & 0.84 & 0.83 & 0.85 & 0.83 & 0.83 & 0.86 & 0.84 & 0.82 & 0.84 & 0.83 & 0.83 & 0.87 & 0.83 & 0.83 & 0.84 & 0.84 & 0.83 & 0.87 & 0.83 & 0.84 & 0.85 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{2} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.11 & 0.12 & 0.12 & 0.16 & 0.19 & 0.18 & 0.15 & 0.17 & 0.18 & 0.19 & 0.19 & 0.17 & 0.13 & 0.12 & 0.14 & 0.13 & 0.14 & 0.17 & 0.12 & 0.12 & 0.14 & 0.13 & 0.15 & 0.20 & 0.14 & 0.14 & 0.17 & 0.14 & 0.15\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.15 & 0.16 & 0.12 & 0.15 & 0.09 & 0.05 & 0.23 & 0.18 & 0.11 & 0.21 & 0.12 & 0.05 & 0.11 & 0.19 & 0.12 & 0.32 & 0.15 & 0.07 & 0.14 & 0.26 & 0.12 & 0.26 & 0.17 & 0.07 & 0.25 & 0.33 & 0.16 & 0.36 & 0.24 & 0.07\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.96 & 1.53 & 0.92 & 1.40 & >10.0 & 0.67 & 0.98 & 1.43 & 0.81 & 1.22 & >10.0 & 0.76 & 0.62 & 1.28 & 0.36 & 0.81 & >10.0 & 0.70 & 0.56 & 1.07 & 0.42 & 0.74 & >10.0 & 0.52 & 0.45 & 0.85 & 0.37 & 0.57 & 1.87\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.15 & 0.23 & 0.15 & 0.15 & 0.21 & 0.11 & 0.16 & 0.27 & 0.15 & 0.16 & 0.21 & 0.10 & 0.08 & 0.19 & 0.04 & 0.08 & 0.16 & 0.09 & 0.07 & 0.14 & 0.06 & 0.08 & 0.15 & 0.08 & 0.06 & 0.14 & 0.06 & 0.06 & 0.15\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 15}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.76 & 0.78 & 0.84 & 0.86 & 0.83 & 0.81 & 0.86 & 0.83 & 0.81 & 0.84 & 0.82 & 0.84 & 0.84 & 0.83 & 0.81 & 0.79 & 0.80 & 0.83 & 0.84 & 0.82 & 0.82 & 0.80 & 0.82 & 0.83 & 0.85 & 0.82 & 0.83 & 0.81 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02 & 0.02 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.15 & 0.19 & 0.19 & 0.16 & 0.18 & 0.19 & 0.21 & 0.20 & 0.16 & 0.03 & 0.02 & 0.02 & 0.02 & 0.05 & 0.15 & 0.03 & 0.02 & 0.03 & 0.03 & 0.06 & 0.17 & 0.03 & 0.02 & 0.03 & 0.03 & 0.06\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.03 & 0.02 & 0.02 & 0.03 & 0.02 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & >10.0 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.89 & 1.28 & 0.98 & 0.92 & 1.38 & >10.0 & 0.53 & 0.98 & 1.41 & 0.71 & 1.19 & >10.0 & 0.72 & 0.13 & 0.79 & 0.30 & 0.42 & >10.0 & 0.62 & 0.20 & 0.80 & 0.26 & 0.34 & >10.0 & 0.56 & 0.19 & 0.73 & 0.25 & 0.33 & 1.99\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.08 & 0.30 & 0.14 & 0.13 & 0.16 & 0.22 & 0.12 & 0.19 & 0.31 & 0.15 & 0.17 & 0.21 & 0.08 & 0.02 & 0.12 & 0.02 & 0.03 & 0.15 & 0.07 & 0.02 & 0.09 & 0.02 & 0.03 & 0.12 & 0.07 & 0.02 & 0.08 & 0.02 & 0.03 & 0.11\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 13 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.84 & 0.85 & 0.84 & 0.83 & 0.87 & 0.84 & 0.83 & 0.85 & 0.84 & 0.84 & 0.87 & 0.87 & 0.85 & 0.84 & 0.85 & 0.84 & 0.83 & 0.87 & 0.84 & 0.84 & 0.85 & 0.85 & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.87 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{1} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.17 & 0.16 & 0.16 & 0.18 & 0.17 & 0.15 & 0.17 & 0.18 & 0.16 & 0.18 & 0.17 & 0.15 & 0.15 & 0.16 & 0.16 & 0.16 & 0.18 & 0.18 & 0.15 & 0.17 & 0.17 & 0.16 & 0.16 & 0.17 & 0.16 & 0.16 & 0.18 & 0.17 & 0.15 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.92 & 1.24 & >10.0 & 0.78 & 0.85 & 1.38 & 0.56 & 1.09 & >10.0 & 0.82 & 0.97 & 0.95 & 1.40 & 0.90 & 1.21 & >10.0 & 0.53 & 0.63 & 1.07 & 0.57 & 0.81 & 1.43 & 1.99 & 0.93 & 1.24 & >10.0 & 0.83 & 0.96 & 1.43\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.14 & 0.13 & 0.19 & 0.11 & 0.11 & 0.23 & 0.10 & 0.12 & 0.18 & 0.10 & 0.11 & 0.11 & 0.19 & 0.14 & 0.13 & 0.18 & 0.17 & 0.19 & 0.24 & 0.21 & 0.23 & 0.20 & 0.32 & 0.14 & 0.13 & 0.19 & 0.10 & 0.12 & 0.20\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 14 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.83 & 0.85 & 0.83 & 0.83 & 0.86 & 0.84 & 0.82 & 0.84 & 0.83 & 0.83 & 0.87 & 0.87 & 0.83 & 0.83 & 0.84 & 0.84 & 0.83 & 0.87 & 0.83 & 0.84 & 0.85 & 0.82 & 0.85 & 0.84 & 0.86 & 0.84 & 0.82 & 0.86 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.12 & 0.13 & 0.12 & 0.12 & 0.12 & 0.14 & 0.12 & 0.13 & 0.12 & 0.11 & 0.12 & 0.12 & 0.13 & 0.12 & 0.13 & 0.13 & 0.12 & 0.12 & 0.13 & 0.12 & 0.12 & 0.12 & 0.12 & 0.11 & 0.13 & 0.13 & 0.11 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.84 & 0.81 & 1.22 & >10.0 & 0.76 & 0.62 & 1.28 & 0.36 & 0.81 & >10.0 & 0.70 & 0.96 & 0.56 & 1.07 & 0.42 & 0.74 & >10.0 & 0.52 & 0.45 & 0.85 & 0.37 & 0.57 & 1.53 & 1.87 & 0.92 & 1.40 & >10.0 & 0.67 & 0.98 & 1.43\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.15 & 0.16 & 0.21 & 0.10 & 0.08 & 0.19 & 0.04 & 0.08 & 0.16 & 0.09 & 0.15 & 0.07 & 0.14 & 0.06 & 0.08 & 0.15 & 0.08 & 0.06 & 0.14 & 0.06 & 0.06 & 0.23 & 0.15 & 0.15 & 0.15 & 0.21 & 0.11 & 0.16 & 0.27\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 15 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.81 & 0.84 & 0.82 & 0.84 & 0.83 & 0.83 & 0.81 & 0.79 & 0.80 & 0.83 & 0.76 & 0.84 & 0.82 & 0.82 & 0.80 & 0.82 & 0.83 & 0.85 & 0.82 & 0.83 & 0.81 & 0.78 & 0.83 & 0.84 & 0.86 & 0.83 & 0.81 & 0.86 & 0.83\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.02 & 0.01 & 0.02 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.02\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.72 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.89 & 0.71 & 1.19 & >10.0 & 0.72 & 0.13 & 0.79 & 0.30 & 0.42 & >10.0 & 0.62 & 1.28 & 0.20 & 0.80 & 0.26 & 0.34 & >10.0 & 0.56 & 0.19 & 0.73 & 0.25 & 0.33 & 0.98 & 1.99 & 0.92 & 1.38 & >10.0 & 0.53 & 0.98 & 1.41\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.08 & 0.15 & 0.17 & 0.21 & 0.08 & 0.02 & 0.12 & 0.02 & 0.03 & 0.15 & 0.07 & 0.30 & 0.02 & 0.09 & 0.02 & 0.03 & 0.12 & 0.07 & 0.02 & 0.08 & 0.02 & 0.03 & 0.14 & 0.11 & 0.13 & 0.16 & 0.22 & 0.12 & 0.19 & 0.31\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{3} Scenario 13: 16 predictors, minimum required sample size (N), class balanced data (event fraction = 0.5)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{4} Scenario 14: 16 predictors, minimum required sample size (N), moderately imbalanced data (event fraction = 0.2)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{5} Scenario 15: 16 predictors, minimum required sample size (N), strongly imbalanced data (event fraction = 0.02)}\\
+\end{tabular}}
+\end{sidewaystable}
+
+
+\begin{sidewaystable}
+\renewcommand\thetable{S10} 
+\caption{Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 16-18.}
+\centering
+\resizebox{\linewidth}{!}{
+\begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{6}{c}{Control} & \multicolumn{6}{c}{RUS} & \multicolumn{6}{c}{ROS} & \multicolumn{6}{c}{SMOTE} & \multicolumn{6}{c}{SENN} \\
+\cmidrule(l{3pt}r{3pt}){2-7} \cmidrule(l{3pt}r{3pt}){8-13} \cmidrule(l{3pt}r{3pt}){14-19} \cmidrule(l{3pt}r{3pt}){20-25} \cmidrule(l{3pt}r{3pt}){26-31}
+  & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE & LR & SVM & RF & XG & RB & EE\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 16}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.88 & 0.86 & 0.86 & 0.86 & 0.85 & 0.84 & 0.88 & 0.86 & 0.86 & 0.86 & 0.85 & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.85 & 0.84 & 0.88 & 0.85 & 0.86 & 0.86 & 0.85 & 0.84 & 0.87 & 0.85 & 0.85 & 0.86 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.14 & 0.16 & 0.15 & 0.15 & 0.18 & 0.16 & 0.14 & 0.16 & 0.15 & 0.15 & 0.18 & 0.16 & 0.15 & 0.17 & 0.17 & 0.16 & 0.18 & 0.16 & 0.14 & 0.16 & 0.15 & 0.15 & 0.18 & 0.17 & 0.15 & 0.16 & 0.16 & 0.16 & 0.17\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{5} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.11 & 0.08 & 0.10 & 0.06 & 0.03 & 0.08 & 0.09 & 0.06 & 0.08 & 0.06 & 0.03 & 0.09 & 0.20 & 0.31 & 0.48 & 0.24 & 0.16 & 0.07 & 0.09 & 0.06 & 0.08 & 0.07 & 0.03 & 0.17 & 0.19 & 0.10 & 0.18 & 0.15 & 0.04\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.96 & 1.41 & 0.98 & 1.27 & >10.0 & 0.91 & 0.96 & 1.41 & 0.98 & 1.27 & >10.0 & 0.88 & 0.87 & 1.38 & 0.62 & 1.11 & >10.0 & 0.91 & 0.95 & 1.39 & 0.95 & 1.25 & >10.0 & 0.58 & 0.61 & 1.02 & 0.60 & 0.76 & 1.98\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.07 & 0.08 & 0.14 & 0.11 & 0.10 & 0.14 & 0.07 & 0.08 & 0.14 & 0.11 & 0.10 & 0.15 & 0.08 & 0.08 & 0.16 & 0.10 & 0.10 & 0.15 & 0.07 & 0.08 & 0.13 & 0.11 & 0.10 & 0.14 & 0.14 & 0.15 & 0.18 & 0.16 & 0.21 & 0.30\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 17}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.87 & 0.83 & 0.85 & 0.87 & 0.85 & 0.84 & 0.87 & 0.85 & 0.84 & 0.86 & 0.84 & 0.84 & 0.87 & 0.85 & 0.84 & 0.84 & 0.85 & 0.84 & 0.87 & 0.84 & 0.85 & 0.85 & 0.85 & 0.84 & 0.87 & 0.84 & 0.85 & 0.85 & 0.86\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{3} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.11 & 0.12 & 0.11 & 0.15 & 0.18 & 0.17 & 0.15 & 0.17 & 0.17 & 0.18 & 0.19 & 0.16 & 0.13 & 0.12 & 0.13 & 0.13 & 0.14 & 0.16 & 0.12 & 0.12 & 0.13 & 0.12 & 0.15 & 0.20 & 0.14 & 0.14 & 0.16 & 0.14 & 0.15\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.12 & 0.09 & 0.10 & 0.06 & 0.03 & 0.13 & 0.13 & 0.08 & 0.13 & 0.10 & 0.04 & 0.07 & 0.12 & 0.08 & 0.21 & 0.10 & 0.04 & 0.10 & 0.16 & 0.09 & 0.18 & 0.11 & 0.04 & 0.17 & 0.22 & 0.12 & 0.27 & 0.17 & 0.05\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.96 & 1.48 & 0.96 & 1.36 & >10.0 & 0.79 & 0.95 & 1.39 & 0.93 & 1.19 & >10.0 & 0.85 & 0.66 & 1.28 & 0.40 & 0.84 & >10.0 & 0.78 & 0.59 & 1.07 & 0.43 & 0.77 & >10.0 & 0.59 & 0.47 & 0.84 & 0.38 & 0.55 & 1.96\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.07 & 0.09 & 0.16 & 0.11 & 0.12 & 0.16 & 0.09 & 0.10 & 0.19 & 0.14 & 0.12 & 0.17 & 0.07 & 0.06 & 0.13 & 0.04 & 0.07 & 0.13 & 0.07 & 0.05 & 0.10 & 0.04 & 0.06 & 0.12 & 0.06 & 0.04 & 0.10 & 0.04 & 0.05 & 0.12\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 18}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.76 & 0.79 & 0.86 & 0.87 & 0.85 & 0.83 & 0.87 & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.84 & 0.84 & 0.83 & 0.80 & 0.82 & 0.84 & 0.84 & 0.84 & 0.84 & 0.81 & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.82 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{2} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.14 & 0.19 & 0.18 & 0.15 & 0.17 & 0.18 & 0.19 & 0.19 & 0.16 & 0.04 & 0.02 & 0.03 & 0.03 & 0.06 & 0.16 & 0.04 & 0.02 & 0.03 & 0.03 & 0.07 & 0.17 & 0.04 & 0.03 & 0.04 & 0.03 & 0.07\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.02 & 0.01 & 0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.10 & 0.09 & 0.09 & 0.10 & 0.06 & 0.04 & 0.28 & 0.19 & 0.11 & 0.23 & 0.14 & 0.04 & 0.07 & 0.42 & 0.10 & 0.26 & 0.19 & 0.06 & 0.09 & 0.35 & 0.11 & 0.22 & 0.14 & 0.06 & 0.12 & 0.38 & 0.12 & 0.24 & 0.18 & 0.06\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.95 & 1.30 & 1.09 & 0.96 & 1.32 & >10.0 & 0.68 & 0.95 & 1.32 & 0.88 & 1.12 & >10.0 & 0.79 & 0.17 & 0.86 & 0.34 & 0.39 & >10.0 & 0.69 & 0.21 & 0.83 & 0.30 & 0.33 & >10.0 & 0.63 & 0.20 & 0.75 & 0.28 & 0.31 & >10.0\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.06 & 0.21 & 0.11 & 0.09 & 0.11 & 0.17 & 0.10 & 0.13 & 0.22 & 0.15 & 0.13 & 0.17 & 0.07 & 0.02 & 0.08 & 0.02 & 0.03 & 0.13 & 0.06 & 0.02 & 0.07 & 0.02 & 0.02 & 0.11 & 0.06 & 0.02 & 0.06 & 0.02 & 0.02 & 0.11\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 16 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.86 & 0.86 & 0.85 & 0.84 & 0.87 & 0.85 & 0.84 & 0.85 & 0.85 & 0.84 & 0.88 & 0.88 & 0.85 & 0.86 & 0.86 & 0.85 & 0.84 & 0.87 & 0.85 & 0.85 & 0.86 & 0.86 & 0.85 & 0.86 & 0.86 & 0.85 & 0.84 & 0.88 & 0.86\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & <0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.16 & 0.15 & 0.15 & 0.18 & 0.16 & 0.14 & 0.16 & 0.17 & 0.16 & 0.18 & 0.16 & 0.14 & 0.14 & 0.16 & 0.15 & 0.15 & 0.18 & 0.17 & 0.15 & 0.16 & 0.16 & 0.15 & 0.16 & 0.17 & 0.15 & 0.15 & 0.18 & 0.16 & 0.14 & 0.16\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & 0.01 & 0.01 & <0.01 & 0.01 & <0.01 & <0.01 & 0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{4} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.98 & 1.27 & >10.0 & 0.88 & 0.87 & 1.38 & 0.62 & 1.11 & >10.0 & 0.91 & 0.96 & 0.95 & 1.39 & 0.95 & 1.25 & >10.0 & 0.58 & 0.61 & 1.02 & 0.60 & 0.76 & 1.41 & 1.98 & 0.98 & 1.27 & >10.0 & 0.91 & 0.96 & 1.41\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.07 & 0.11 & 0.10 & 0.15 & 0.08 & 0.08 & 0.16 & 0.10 & 0.10 & 0.15 & 0.07 & 0.08 & 0.08 & 0.13 & 0.11 & 0.10 & 0.14 & 0.14 & 0.15 & 0.18 & 0.16 & 0.21 & 0.14 & 0.30 & 0.11 & 0.10 & 0.14 & 0.07 & 0.08 & 0.14\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 17 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.84 & 0.86 & 0.84 & 0.84 & 0.87 & 0.85 & 0.84 & 0.84 & 0.85 & 0.84 & 0.87 & 0.87 & 0.84 & 0.85 & 0.85 & 0.85 & 0.84 & 0.87 & 0.84 & 0.85 & 0.85 & 0.83 & 0.86 & 0.85 & 0.87 & 0.85 & 0.84 & 0.87 & 0.85\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & \vphantom{1} 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.12 & 0.12 & 0.11 & 0.13 & 0.12 & 0.11 & 0.11 & 0.13 & 0.12 & 0.13 & 0.12 & 0.11 & 0.11 & 0.11 & 0.13 & 0.12 & 0.13 & 0.13 & 0.12 & 0.12 & 0.13 & 0.12 & 0.12 & 0.12 & 0.11 & 0.11 & 0.13 & 0.12 & 0.11 & 0.12\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{3} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{2} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.92 & 0.93 & 1.19 & >10.0 & 0.85 & 0.66 & 1.28 & 0.40 & 0.84 & >10.0 & 0.78 & 0.96 & 0.59 & 1.07 & 0.43 & 0.77 & >10.0 & 0.59 & 0.47 & 0.84 & 0.38 & 0.55 & 1.48 & 1.96 & 0.96 & 1.36 & >10.0 & 0.79 & 0.95 & 1.39\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.07 & 0.14 & 0.12 & 0.17 & 0.07 & 0.06 & 0.13 & 0.04 & 0.07 & 0.13 & 0.07 & 0.09 & 0.05 & 0.10 & 0.04 & 0.06 & 0.12 & 0.06 & 0.04 & 0.10 & 0.04 & 0.05 & 0.16 & 0.12 & 0.11 & 0.12 & 0.16 & 0.09 & 0.10 & 0.19\\
+\addlinespace \addlinespace[0.3em]
+\multicolumn{31}{l}{\textbf{Scenario 18 Recalibrated}}\\
+\hspace{2em}\hspace{1em}Concordance Statistic & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.84 & 0.84 & 0.83 & 0.80 & 0.82 & 0.84 & 0.76 & 0.84 & 0.84 & 0.84 & 0.81 & 0.84 & 0.84 & 0.85 & 0.84 & 0.84 & 0.82 & 0.79 & 0.84 & 0.86 & 0.87 & 0.85 & 0.83 & 0.87 & 0.84\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01 & 0.01\\
+\hspace{2em}\hspace{1em}Brier Score & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.03 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02 & 0.02\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & \vphantom{1} <0.01\\
+\hspace{2em}\hspace{1em}Calibration Intercept & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}MCMC Error & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01 & <0.01\\
+\hspace{2em}\hspace{1em}Calibration Slope & 0.95 & 0.88 & 1.12 & >10.0 & 0.79 & 0.17 & 0.86 & 0.34 & 0.39 & >10.0 & 0.69 & 1.30 & 0.21 & 0.83 & 0.30 & 0.33 & >10.0 & 0.63 & 0.20 & 0.75 & 0.28 & 0.31 & 1.09 & >10.0 & 0.96 & 1.32 & >10.0 & 0.68 & 0.95 & 1.32\\
+\hspace{2em}\hspace{1em}MCMC Error & 0.06 & 0.15 & 0.13 & 0.17 & 0.07 & 0.03 & 0.08 & 0.02 & 0.03 & 0.13 & 0.06 & 0.21 & 0.02 & 0.07 & 0.02 & 0.02 & 0.11 & 0.06 & 0.02 & 0.06 & 0.02 & 0.02 & 0.11 & 0.11 & 0.09 & 0.11 & 0.17 & 0.10 & 0.13 & 0.22\\
+\bottomrule
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{3} Scenario 16: 16 predictors, double the required sample size (2N), class balanced data (event fraction = 0.5)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{4} Scenario 17: 16 predictors, double the required sample size (2N), moderately imbalanced data (event fraction = 0.2)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{5} Scenario 18: 16 predictors, double the required sample size (2N), strongly imbalanced data (event fraction = 0.02)}\\
+\end{tabular}}
+\end{sidewaystable}
+
+\clearpage
+
+### Calibration Plots (no re-calibration)\
+\
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 1. This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_1}", fig.pos = "h"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc1.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 2. This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_2}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc2.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 3. This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_3}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc3.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 4. This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and class balanced data (event fraction = 0.5). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_4}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc4.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%',fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 5. This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_5}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc5.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%',fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 6. This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_6}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc6.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 7. This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_7}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc7.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 8. This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_8}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc8.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 9. This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_9}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc9.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 10. This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_10}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc10.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 11. This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_11}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc11.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 12. This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_12}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc12.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 13. This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and class balanced data (event fraction = 0.5). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_13}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc13.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%',fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 14. This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_14}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc14.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%',fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 15. This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_15}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc15.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 16. This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_16}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc16.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 17. This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_17}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc17.png")
+```
+\clearpage
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 18. This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:cal_18}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc18.png")
+```
+
+\newpage
+
+### Calibration Plots (after re-calibration)\
+\
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 1. This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:recal_1}", fig.pos = "h"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc1_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 2. This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:recal_2}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc2_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 3. This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:recal_3}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc3_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 4. This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and class balanced data (event fraction = 0.5). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:recal_4}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc4_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%',fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 5. This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_5}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc5_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%',fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 6. This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_6}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc6_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 7. This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_7}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc7_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 8. This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_8}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc8_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 9. This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_9}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc9_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 10. This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_10}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc10_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 11. This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_11}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc11_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 12. This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_12}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc12_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 13. This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and class balanced data (event fraction = 0.5). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_13}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc13_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%',fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 14. This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_14}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc14_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%',fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 15. This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_15}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc15_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 16. This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_16}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc16_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 17. This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_17}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc17_recalibrated.png")
+```
+\clearpage
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 18. This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using re-calibrated predicted risks. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_18}"}
+knitr::include_graphics("./figures/calibration_plot_manuscript_sc18_recalibrated.png")
+```
+
+\newpage
+
+### Violin Plots (no re-calibration)\
+\
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 1.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85.  Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_1}", fig.pos = "h"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc1.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 2.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_2}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc2.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 3.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_3}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc3.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 4.  This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_4}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc4.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 5.  This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:violin_5}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc5.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 6.  This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:violin_6}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc6.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 7.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_7}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc7.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 8.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2).  Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_8}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc8.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 9.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_9}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc9.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 10.  This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).  \\label{fig:violin_10}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc10.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 11.  This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_11}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc11.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 12.  This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_12}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc12.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 13.  This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_13}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc13.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 14.  This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_14}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc14.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 15.  This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02).  Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_15}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc15.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 16.  This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_16}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc16.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 17.  This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:violin_17}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc17.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 18.  This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors).\\label{fig:violin_18}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc18.png")
+```
+\clearpage
+\newpage
+
+### Violin Plots (after re-calibration)
+
+```{r, echo = F, fig.align="center", out.width= '60%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 1.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_1}", fig.pos = "h"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc1_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 2.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). \\label{fig:recal_violin_2}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc2_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 3.  This simulation scenario is characterized by 8 predictors, half the required sample size (0.5N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_3}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc3_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 4.  This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_4}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc4_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 5.  This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_5}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc5_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 6.  This simulation scenario is characterized by 8 predictors, minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_6}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc6_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 7.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_7}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc7_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 8.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot. \\label{fig:recal_violin_8}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc8_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 9.  This simulation scenario is characterized by 8 predictors, double the required sample size (2N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_9}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc9_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 10.  This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_10}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc10_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 11.  This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_11}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc11_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 12.  This simulation scenario is characterized by 16 predictors, half the required sample size (0.5N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_12}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc12_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 13.  This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:rrecal_violin_13}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc13_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 14.  This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_14}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc14_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 15.  This simulation scenario is characterized by 16 predictors, minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_15}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc15_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 16.  This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_16}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc16_recalibrated.png")
+```
+
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 17.  This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with re-calibrated predicted risks.  The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot.  \\label{fig:recal_violin_17}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc17_recalibrated.png")
+```
+\clearpage
+```{r, echo = F, fig.align="center", out.width= '70%', fig.cap = "Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 18.  This simulation scenario is characterized by 16 predictors, double the required sample size (2N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with re-calibrated predicted risks. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbors). Note: after re-calibration, calibration intercepts were essentially zero for every iteration and are therefore not visible on the plot. \\label{fig:recal_violin_18}"}
+knitr::include_graphics("./figures/performance_metrics_manuscript_sc18_recalibrated.png")
+```

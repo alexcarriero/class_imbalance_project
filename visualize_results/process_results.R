@@ -247,7 +247,7 @@ reorder_and_rename <- function(dataframe){
                           "rus"    = "RUS",
                           "ros"    = "ROS",
                           "smo"    = "SMOTE",
-                          "sen"    = "SENN"))
+                          "sen"    = "SMOTE-ENN"))
 }
 
 ready2plot <- function(dataframe){
@@ -346,25 +346,48 @@ pre_plot <- function(df){
   return(df)
 }
 
-plot_from_coords <- function(df, hex = "#101011"){
-  p <-
-    ggplot() +
-    geom_abline(slope = 1, intercept = 0, linewidth = 1) +
-    # geom_smooth(data = df, aes(x = x, y = y, group = iter, color = chance_imbalance), 
-    geom_smooth(data = df, aes(x = x, y = y, group = iter), 
-                method = "loess",
-                formula = y ~ x, 
-                se = F,
-                linewidth = 0.01, 
-                color = hex,
-                alpha = 0.01) + 
-    theme_minimal() +
-    xlim(0,1) + 
-    ylim(0,1) + 
-    facet_grid(algorithm ~ correction) +
-    theme(legend.position = "none") + 
-    xlab("Predicted Risk") + 
-    ylab("Observed Proportion") 
+plot_from_coords <- function(df, hex = "#101011", restricted_range = F){
+  
+  if(restricted_range == F){
+    p <-
+      ggplot() +
+      geom_abline(slope = 1, intercept = 0, linewidth = 1, color = "darkgray") +
+      # geom_smooth(data = df, aes(x = x, y = y, group = iter, color = chance_imbalance), 
+      geom_smooth(data = df, aes(x = x, y = y, group = iter), 
+                  method = "loess",
+                  formula = y ~ x, 
+                  se = F,
+                  linewidth = 0.01, 
+                  color = hex,
+                  alpha = 0.01) + 
+      theme_minimal() +
+      xlim(0,1) + 
+      ylim(0,1) + 
+      facet_grid(algorithm ~ correction) +
+      theme(legend.position = "none") + 
+      xlab("Predicted Risk") + 
+      ylab("Observed Proportion") 
+  }
+  
+  if(restricted_range == T){
+    p <-
+      ggplot() +
+      geom_abline(slope = 1, intercept = 0, linewidth = 1, color = "darkgray") +
+      # geom_smooth(data = df, aes(x = x, y = y, group = iter, color = chance_imbalance), 
+      geom_smooth(data = df, aes(x = x, y = y, group = iter), 
+                  method = "loess",
+                  formula = y ~ x, 
+                  se = F,
+                  linewidth = 0.01, 
+                  color = hex,
+                  alpha = 0.01) + 
+      theme_minimal() +
+      facet_grid(algorithm ~ correction) +
+      theme(legend.position = "none") + 
+      xlab("Predicted Risk") + 
+      ylab("Observed Proportion") + 
+      coord_cartesian(xlim = c(0,0.25), ylim = c(0,0.25))
+  }
   
   return(p) 
 }
@@ -381,7 +404,7 @@ calibration_plot <- function(i, recalibrated = F){
       bind_rows() %>% 
       as.data.frame() %>% 
       drop_na() %>%
-      pre_plot()
+      pre_plot() 
   
     p <- plot_from_coords(df)
   
@@ -398,7 +421,7 @@ calibration_plot <- function(i, recalibrated = F){
       bind_rows() %>% 
       as.data.frame() %>%
       drop_na() %>%
-      pre_plot()
+      pre_plot() 
     
     p <- plot_from_coords(df)
     
@@ -406,6 +429,7 @@ calibration_plot <- function(i, recalibrated = F){
            plot = p,  width = 14, height = 14)
   }
 }
+
 
 # ----------------performance metric plots -------------------------------------
 
@@ -463,7 +487,7 @@ pm_plot <- function(dataframe, method, xmin, xmax){
   dataframe %>% 
     tidy_for_pm_plts() %>%
     ggplot() + 
-    geom_hline(yintercept = ref, color = "black", linewidth = 1) + 
+    geom_hline(yintercept = ref, color = "darkgray", linewidth = 1) + 
     geom_violin(aes_string(x = "correction", y = method),
                 fill  = "#b3cd41", 
                 color = "grey",
@@ -583,10 +607,10 @@ scenario_graph <- function(dataframe, method){
   ggplot(data = df, aes_string(x = "pair_id", y = method , color = "n")) + 
     geom_point(size = 0.6) + 
     geom_line(linewidth = 0.2) + 
-    geom_hline(yintercept = ref, color = "black", linewidth = 1) + 
+    geom_hline(yintercept = ref, color = "darkgray", linewidth = 1) + 
     coord_flip() + 
     facet_nested(npred ~ ef) + 
-    scale_color_manual("Sample Size", values = c("blue", "#40798C", "#161032"))+
+    scale_color_manual("Sample Size", values = c("#7CB4B8", "#7F95D1", "#344055"))+
     theme_minimal() + 
     theme(panel.background = element_rect(
       color="#FEFEFA", fill="#FFFFFF", size=1.5, linetype="solid"
@@ -741,7 +765,7 @@ make_table_corrections <- function(){
   colnames(table) <- c("Scenario", "No. Predictors", "Sample Size", "Event Fraction", 
                      "Control", "RUS", "ROS", "SMOTE", "SENN")
 
-  saveRDS(table, "./../masters_thesis/thesis_manuscript/error_table_corrections.RDS")
+  saveRDS(table, "./../masters_thesis/manuscript/error_table_corrections.RDS")
 }
 
 make_table_algorithm <- function(algorithm){
@@ -765,7 +789,7 @@ make_table_algorithm <- function(algorithm){
                        "Control", "RUS", "ROS", "SMOTE", "SENN")
   
   print(table)
-  saveRDS(table, paste0("./../masters_thesis/thesis_manuscript/error_table_", algorithm, ".RDS"))
+  saveRDS(table, paste0("./../masters_thesis/manuscript/error_table_", algorithm, ".RDS"))
 }
 
 make_table_rb_invalid <- function(){
@@ -789,7 +813,7 @@ make_table_rb_invalid <- function(){
                        "Control", "RUS", "ROS", "SMOTE", "SENN")
   
   print(table)
-  saveRDS(table, paste0("./../masters_thesis/thesis_manuscript/rb_invalid_probs.RDS"))
+  saveRDS(table, paste0("./../masters_thesis/manuscript/rb_invalid_probs.RDS"))
 }
 
 make_table_lg_separation <- function(){
@@ -813,5 +837,5 @@ make_table_lg_separation <- function(){
                        "Control", "RUS", "ROS", "SMOTE", "SENN")
   
   print(table)
-  saveRDS(table, paste0("./../masters_thesis/thesis_manuscript/lg_separation.RDS"))
+  saveRDS(table, paste0("./../masters_thesis/manuscript/lg_separation.RDS"))
 }
