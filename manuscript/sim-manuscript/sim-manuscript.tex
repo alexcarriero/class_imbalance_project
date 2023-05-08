@@ -48,25 +48,25 @@ for model development often exhibit class imbalance (i.e., observations
 with vs.~without the event of interest are not equally represented in
 the data). It is common for researchers to correct for class imbalance
 when building clinical prediction models, yet, the effect of such
-imbalance corrections on the calibration of machine learning methods is
+imbalance corrections on the calibration of machine learning models is
 largely unknown. In our research, we studied the effect of imbalance
 corrections on model calibration for a variety of machine learning
 algorithms (logistic regression, support vector machine, random forest,
 XGBoost, RUSBoost, EasyEnsemble). Using extensive Monte Carlo
-simulations, we compared the predictive performance of models developed
-with imbalance corrected data to that of models trained with uncorrected
-data across 18 unique data-generating scenarios. The imbalance
-corrections studied included: random undersampling, random oversampling,
-synthetic majority oversampling, synthetic majority oversampling with
-Wilson's Edited Nearest Neighbor rule. In all scenarios, data that were
-not corrected for class imbalance produced prediction models with better
-calibration performance than data that were corrected for imbalance. We
-noted one exception: under certain conditions, pre-processing data with
-random oversampling did not diminish model calibration in random forest
-models. If the goal of a clinical prediction model is to produce
-reliable predicted risks on an individual basis (i.e., to achieve good
-calibration), correcting for class imbalance may cause more harm than
-benefit.}
+simulations, we compared the predictive performance of models trained
+with imbalance corrected data to models trained with data that were not
+corrected for imbalance across 18 unique data-generating scenarios.
+Imbalance corrections included: random undersampling, random
+oversampling, synthetic majority oversampling, synthetic majority
+oversampling with Wilson's Edited Nearest Neighbor rule. In all
+scenarios, data that were not corrected for class imbalance produced
+prediction models with better calibration performance than data that
+were corrected for imbalance. We noted one exception: under certain
+conditions, pre-processing data with random oversampling did not
+diminish model calibration in random forest models. If the goal of a
+clinical prediction model is to produce reliable predicted risks on an
+individual basis (i.e., to achieve good calibration), correcting for
+class imbalance may cause more harm than benefit.}
 
 \keywords{Class Imbalance; Machine Learning; Calibration; Prediction
 Modeling;}
@@ -88,13 +88,13 @@ patients with vs.~without the event of interest are not equally
 represented in the data). As the number of observed events decreases,
 relative to a fixed total sample size, prediction model performance is
 known to diminish \citep{maartens_paper}. Specifically, when observed
-events are too few relative to a given sample size and the
-dimensionality of the model (number of predictors), prediction models
-may not estimate risk accurately, and with sufficient precision to guide
-patient treatment decisions \citep{maartens_paper, newpaper}. In machine
-learning literature, imbalance correction methodologies are commonly
-applied to mitigate the effects of class imbalance by artificially
-creating data that are more or perfectly balanced
+events are too few relative to the total sample size and dimensionality
+of the model (number of predictors), prediction models may not estimate
+risk accurately, and with sufficient precision to guide patient
+treatment decisions \citep{maartens_paper, newpaper}. In machine
+learning literature, imbalance correction methods are commonly applied
+to mitigate the effects of class imbalance by artificially creating data
+that are more or perfectly balanced
 \citep{cip, summary_m, lp, summary_h}.\\
 \strut \\
 While an abundance of imbalance correction methods exist
@@ -105,22 +105,22 @@ calibration captures the reliability of individual risk predictions
 model calibration, as when a prediction model is developed for clinical
 use, each patient's predicted risk is the entity that is used to inform
 clinical decisions. If a model is poorly calibrated, it may produce risk
-estimates that do not reflect a patient's true risk well
+estimates that do not approximate a patient's true risk well
 \citep{achilles}. A poorly calibrated model may produce predicted risks
 that consistently over- or under-estimate true risk or that are too
 extreme (too close to 0 or 1) or too modest (too close to event
 prevalence) \citep{achilles}. This can lead to poor treatment decisions
 or to clinicians communicating false assurances to patients
-\citep{achilles, 12days, bens_paper}. In case a clinician uses a poorly
+\citep{achilles, 12days, bens_paper}. If a clinician uses a poorly
 calibrated model to make a highly impactful decision (e.g., to determine
 if a patient should receive a bed in an intensive care unit), the costs
 of miscalibration to patients are real and far-reaching.\\
 \strut \\
-So far only one study has assessed the impact of imbalance corrections
-on model calibration \citep{ruben}. In their study, the authors
-demonstrate that class imbalance corrections do more harm than good;
-implementing imbalance corrections resulted in dramatically deteriorated
-model calibration, to the point that no corrections were recommended
+So far one study has assessed the impact of imbalance corrections on
+model calibration \citep{ruben}. In their study, the authors demonstrate
+that class imbalance corrections do more harm than good; implementing
+imbalance corrections resulted in dramatically deteriorated model
+calibration, to the point that no corrections were recommended
 \citep{ruben}. In this study, prediction models were developed using
 logistic regression or penalized logistic regression \citep{ruben}. In
 practice, prediction models developed for clinical applications
@@ -133,33 +133,33 @@ prediction models developed using these other machine learning
 algorithms.\\
 \strut \\
 Building on the work of van den Goorbergh \emph{et al}. (2022)
-\citep{ruben}, we assess the impact of imbalance corrections on model
+\citep{ruben}, we assessed the impact of imbalance corrections on model
 calibration for prediction models trained with a wide variety of machine
 learning algorithms including: logistic regression, support vector
 machine, random forest, XGBoost, RUSBoost and EasyEnsemble. This paper
 is structured as follows. We present the design of our simulation study
 in section 2 and the results in section 3. A discussion of our findings
 and their implications for researchers developing prediction models in
-the presence of class imbalance is presented in section 4. We present
-our conclusions in section 5.
+the presence of class imbalance is presented in section 4. Finally, our
+conclusions are presented in section 5.
 
 \hypertarget{methods}{%
 \section{Methods}\label{methods}}
 
 In our research, we focused on prediction models designed for
 dichotomous risk prediction. We implemented a simulation study to
-investigate the effects of imbalance correction methodologies across 18
-unique data-generating scenarios (section 2.2). For each scenario, we
-compared the out-of-sample predictive performance (i.e., model
-performance on data not used to train the model) of prediction models
-developed using a two-step procedure (section 2.3). This procedure
-consisted of an imbalance correction step in which the data were
-pre-processed, and a model training step in which the pre-processed data
-were used to train a machine learning model. All code used to implement
-the simulation study, and process the results is made publicly available
-(section 2.6). Ethical approval for this research was granted by the
-Ethical Review Board of the Faculty of Social and Behavioural Sciences
-at Utrecht University and is filed under number 22-1809.
+investigate the effects of imbalance correction methods across 18 unique
+data-generating scenarios (section 2.2). For each scenario, we compared
+the out-of-sample predictive performance (i.e., model performance on
+data not used to train the model) of prediction models developed using a
+two-step procedure (section 2.3). This procedure consisted of an
+imbalance correction step in which the data were pre-processed, and a
+model training step in which the pre-processed data were used to train a
+machine learning model. All code used to implement the simulation study,
+and process the results is made publicly available (section 2.6).
+Ethical approval for this research was granted by the Ethical Review
+Board of the Faculty of Social and Behavioural Sciences at Utrecht
+University and is filed under number 22-1809.
 
 \hypertarget{data-generating-mechanism}{%
 \subsection{Data Generating Mechanism}\label{data-generating-mechanism}}
@@ -198,8 +198,8 @@ vector \(\pmb{\Delta_\mu}\). Finally, in both classes, we allowed
 predictors in each class were set to \(0.2\). To ensure the correlation
 among predictors was not stronger in one class, we fixed the correlation
 matrices of the two classes to be equal. This was accomplished by
-computing the off-diagonal elements of \(\pmb{\Delta_\Sigma}\) such that
-the correlation matrices of the two classes were equivalent (as shown
+computing the off-diagonal elements of \(\pmb{\Sigma_1}\) such that the
+correlation matrices of the two classes were equivalent (as shown
 below).\\
 \strut \\
 For instance, with 8 predictors, the mean and covariance structure for
@@ -239,8 +239,8 @@ z & z & z   & z & z & 1 - \delta_\Sigma & 0 & 0\\
 \end{bmatrix}.
 \end{equation*}\\
 \strut \\
-Here, \(z = (1-\delta_\Sigma)*0.2\), to ensure equivalent correlations
-between the two classes.\\
+Here, \(z = (1-\delta_\Sigma)*0.2\), to ensure equivalent correlation
+matrices between the two classes.\\
 \strut \\
 In this simulation study, 18 unique data-generating scenarios were
 selected (see Section 2.2). Parameter values for the data generating
@@ -344,8 +344,8 @@ We implemented a \(5\) x \(6\) full-factorial design to compare the
 out-of-sample predictive performance of prediction models developed with
 \(5\) imbalance corrections (\(1\) control and \(4\) corrections) and
 \(6\) machine learning algorithms. As a control, data were not corrected
-for imbalance and the uncorrected (imbalanced) data went on to train the
-machine learning algorithms. In total, we compare the performance of 30
+for imbalance and the uncorrected data went on to train the machine
+learning algorithms. In total, we compare the performance of 30
 prediction models, each comprised of a unique combination of imbalance
 correction and machine learning algorithm.
 
@@ -374,22 +374,22 @@ randomly re-sampling from the minority class with replacement until a
 balance is achieved. SMOTE generates artificial observations for the
 minority class by interpolating from the existing minority class
 observations \citep{chawla}. In our implementation, we specified the
-number of nearest neighbors for SMOTE (\(k\)) to be 5 (package default)
-\citep{iric}. In SENN, class balance is achieved by using a combination
-of SMOTE and Wilson's Edited Nearest Neighbor Rule (ENN) \citep{wilson}.
-SMOTE is implemented first, to generate synthetic data for the minority
-class and then ENN is implemented to remove any observation which has a
-different outcome than its nearest neighbors \citep{senn}. This added
-step is implemented to make it easier for a classifier to distinguish
-between the classes, as when synthetic observations are generated for
-the minority class using SMOTE, it may cause an increase in noise near
-the class boundary. In our implementation, we specified the number of
-nearest neighbors in the SMOTE step (\(k_1\)) to be 5, and the number of
-nearest neighbors in ENN step (\(k_2\)) to be 3 (software defaults)
-\citep{iric}. Finally, in the control condition, data were not corrected
-for imbalance and moved directly to the second step of model development
-untouched (i.e., the imbalanced data were used to train prediction
-models).\\
+number of nearest neighbors for SMOTE (\(k\)) to be 5 (R package
+\texttt{IRIC} default) \citep{iric}. In SENN, class balance is achieved
+by using a combination of SMOTE and Wilson's Edited Nearest Neighbor
+Rule (ENN) \citep{wilson}. SMOTE is implemented first, to generate
+synthetic data for the minority class and then ENN is implemented to
+remove any observation which has a different outcome than its nearest
+neighbors \citep{senn}. This added step is implemented to make it easier
+for a classifier to distinguish between the classes, as when synthetic
+observations are generated for the minority class using SMOTE, it may
+cause an increase in noise near the class boundary. In our
+implementation, we specified the number of nearest neighbors in the
+SMOTE step (\(k_1\)) to be 5, and the number of nearest neighbors in ENN
+step (\(k_2\)) to be 3 (R package \texttt{IRIC} defaults) \citep{iric}.
+Finally, in the control condition, data were not corrected for imbalance
+and moved directly to the second step of model development untouched
+(i.e., the imbalanced data were used to train the prediction models).\\
 
 \begin{table}[!h]
 
@@ -426,7 +426,7 @@ logistic regression (LR), support vector machine (SVM), random forest
 common strategies to handle class imbalance \citep{summary_m, lp, kaur},
 we included two ensemble learning algorithms designed specifically to
 handle class imbalance: RUSBoost (RB) and EasyEnsemble (EE). While both
-of these algorithms use random undersampling internally, RUSBoost
+of these algorithms use random undersampling innately, RUSBoost
 \citep{rusboost} is a boosting algorithm while EasyEnsemble \citep{ee}
 uses bagging. The hyperparameters selected for these machine learning
 algorithms, and the R packages used for algorithm implementation are
@@ -437,16 +437,16 @@ Hyperparameter tuning was conducted using the R package \texttt{caret}
 for SVM, RF and XG \citep{caret}. The methods of implementation were
 \texttt{svmRadial}, \texttt{ranger} and \texttt{xgbTree} for SVM, RF and
 XG, respectively. To select the hyperparameters, we implemented 5-fold
-cross-validation optimizing for model deviance on the training data. For
-SVM and XG, caret default tune grids and tune length were used. For RF,
-we specified a custom tuning grid: mtry (the number of candidate
-splitting variables allowed at each node in a tree) was allowed to vary
-from 1 to the total number of predictors, min.node.size (the minimum
-number of observations allowed in a leaf node) was allowed to vary from
-1 to 10 and we specified `gini' as the splitrule (the split which
-minimizes Gini impurity). Finally, in our implementation of RB we
-specified a support vector machine with a radial kernel as the weak
-classifier and an ensemble size of 10 (R \texttt{embc} package defaults)
+cross-validation optimizing for model deviance. For SVM and XG, caret
+default tune grids and tune length were used. For RF, we specified a
+custom tuning grid: mtry (the number of candidate splitting variables
+allowed at each node in a tree) was allowed to vary from 1 to the total
+number of predictors, min.node.size (the minimum number of observations
+allowed in a leaf node) was allowed to vary from 1 to 10 and we
+specified `gini' as the splitrule (the split which minimizes Gini
+impurity). Finally, in our implementation of RUSBoost we specified a
+support vector machine with a radial kernel as the weak classifier and
+an ensemble size of 10 (R \texttt{embc} package defaults)
 \citep{ebmc}.\\
 
 \begin{table}[!h]
@@ -469,7 +469,7 @@ RUSBoost & RB &  & ebmc \cite{ebmc}\\
 \addlinespace
 EasyEnsemmble & EE &  & IRIC \cite{iric}\\
 \bottomrule
-\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{* mtry[1: all predictors]: indicates that number of candidate splitting variables may take on any value from 1 to the total number of predictors.}}\\
+\multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{* mtry[1: all predictors]: indicates that the number of candidate splitting variables may take on any value from 1 to the total number of predictors.}}\\
 \multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{* min.node.size[1: 10]: indicates that the minimum number of observations allowed in a leaf node may take on any integer value from 1 to 10.}}\\
 \multicolumn{4}{l}{\rule{0pt}{1em}\textsuperscript{* splitrule[gini]: indicates that all random forest models select the split which minimizes Gini impurity.}}\\
 \end{tabular}
@@ -494,13 +494,14 @@ trained using the training data. Predictive performance was then
 assessed using the validation data.\\
 \strut \\
 \strut \\
+\strut \\
 Since we expected many machine learning algorithms to exhibit
-miscalibration, especially in scenarios with low event fractions, we
-also conducted logistic (re-)calibration for all prediction models,
-using the following procedure. For each observation in the validation
-set, the predicted risk and corresponding observed outcome (0 or 1) were
-stored. Then, the predicted risks were re-calibrated using the following
-logistic regression model:\\
+miscalibration, especially in scenarios with considerable class
+imbalance, we also conducted logistic (re-)calibration for all
+prediction models, using the following procedure. For each observation
+in the validation set, the predicted risk and corresponding observed
+outcome (0 or 1) were stored. Then, the predicted risks were
+re-calibrated using the following logistic regression model:\\
 \strut \\
 \begin{equation}
 \mathrm{log} \left( \frac{P(Y_i = 1)}{1- P(Y_i = 1)} \right) = \beta_0 + \mathrm{log} \left( \frac{p_i}{1-p_i} \right)
@@ -534,13 +535,13 @@ validation data) and subsequently, using the re-calibrated predictions,
 for each prediction model.\\
 \strut \\
 Model calibration measures the agreement between predicted risks and
-observed proportions in the data \citep{achilles}. Calibration was
-assessed using both visual and empirical metrics. We assessed
-calibration visually by means of flexible calibration curves; one
-flexible calibration curve was generated for each simulation iteration.
-Coordinates for the calibration curves were calculated using loess
-regression; implemented using the R package \texttt{stats} \citep{r}.
-Calibration curves were then generated using \texttt{ggplot2}
+observed proportions of the event in the data \citep{achilles}.
+Calibration was assessed using both visual and empirical metrics. We
+assessed calibration visually by means of flexible calibration curves;
+one flexible calibration curve was generated for each simulation
+iteration. Coordinates for the calibration curves were calculated using
+loess regression; implemented using the R package \texttt{stats}
+\citep{r}. Calibration curves were then generated using \texttt{ggplot2}
 \citep{gg}. Additionally, calibration intercept and slope were
 calculated according to their respective definitions in Steyerberg
 \emph{et al}. (2010) \citep{epi}. In a flexible calibration curve, when
@@ -565,7 +566,10 @@ both model discrimination and calibration and was calculated according
 to its definition in Steyerberg \emph{et al}. (2010) \citep{epi}. In an
 ideal model, predicted risks approximate the observed outcome well for
 all individuals; perfect prediction models produce a Brier score of
-zero.\\
+zero. As event fraction decreases, it is easier for a prediction model
+to achieve a low Brier score \citep{epi}. Comparisons for this
+performance measure should only be made among prediction models
+developed with the same event fraction.\\
 \strut \\
 For empirical measures of model performance (concordance statistic,
 Brier score, calibration intercept and calibration slope), the median
@@ -593,37 +597,37 @@ found on GitHub:
 Any warnings or errors which occurred during the simulation study were
 carefully monitored and saved. In case of an error produced by an
 imbalance correction, uncorrected data were allowed to proceed in the
-model development process (i.e., if an imbalance correction failed, the
-uncorrected data were used to train the machine learning algorithms). In
-case of a fatal error produced by a machine learning algorithm,
-predicted risks were saved as missing (NA). Consequently, empirical
-performance metrics were stored as missing and no flexible calibration
-curve was generated. Please see Supplementary Materials (section B) for
-more details.
+model development process (i.e., the uncorrected data were used to train
+the machine learning algorithms). In case of an error produced by a
+machine learning algorithm, predicted risks were saved as missing (NA).
+Consequently, empirical performance metrics were stored as missing and
+no flexible calibration curve was generated. Please see Supplementary
+Materials (section B) for details.
 
 \hypertarget{results}{%
 \section{Results}\label{results}}
 
-Results were homogeneous for most performance measures across the number
+Results were homogeneous for many performance measures across the number
 of predictors and sample size settings considered. We present the
 medians (over 2000 simulation iterations) for each performance measure,
-in every scenario in Appendix B (Figures B1-B4). Overall, we found
-increasing sample size improved median model discrimination for all
-prediction models (Figure B1), meanwhile median brier score, calibration
-intercept and slope remained relatively unchanged (Figures B2-B4).
-Similarly, increasing the number of predictors from 8 to 16 improved
-median model discrimination slightly for some prediction models (Figure
-B1), while the other performance metrics, again, remained unchanged. For
-this reason, we present our results for three simulation scenarios,
-varying the event fraction, while holding the number of predictors and
-sample size constant. Simulation results for all simulation scenarios
-are included in the Supplementary Materials (section C) and are also
-displayed in an interactive manner via our Shiny App:
+in all 18 data-generating scenarios in Appendix B (Figures B1-B4).
+Overall, we found increasing sample size improved median model
+discrimination for all prediction models (Figure B1), meanwhile median
+brier score, calibration intercept and slope remained relatively
+unchanged (Figures B2-B4). Similarly, increasing the number of
+predictors from 8 to 16 improved median model discrimination slightly
+for some prediction models (Figure B1), while the other performance
+metrics, again, remained unchanged. For this reason, we present results
+for three simulation scenarios, varying the event fraction, while
+holding the number of predictors and sample size constant. Simulation
+results for all simulation scenarios are included in the Supplementary
+Materials (section C) and are also displayed in an interactive manner in
+our Shiny App:
 \url{https://alex-carriero.shinyapps.io/class_imbalance/}.\\
 \strut \\
 In next sections, we focus on the results for simulation scenarios with
 8 predictors, sample size equivalent to the minimum required sample
-sample size (N) and, balanced (event fraction \(= 0.5\)), moderately
+sample size (N) and balanced (event fraction \(= 0.5\)), moderately
 imbalanced (event fraction \(=0.2\)) and strongly imbalanced (event
 fraction \(=0.02\)) data, simulation scenarios 4-6, respectively.
 
@@ -634,7 +638,7 @@ fraction \(=0.02\)) data, simulation scenarios 4-6, respectively.
 For balanced data (event fraction = 0.5) all machine learning
 algorithms, except EE, were well calibrated when training data were
 pre-processed with the control, RUS or SMOTE (Figure \ref{fig:plot1});
-this is reflected by calibration intercepts and slopes very near to 0
+this was reflected by calibration intercepts and slopes very near to 0
 and 1, respectively (Figure \ref{fig:plot4}). Interestingly, when
 training data were pre-processed with ROS, there was separation between
 the calibration curves (Figure \ref{fig:plot1}) for models using
@@ -644,16 +648,19 @@ division among the flexible calibration curves and calibration
 intercepts occurred as a result of chance imbalance in the training data
 (approximately half the observed event fractions were \textgreater{} 0.5
 while the other half were \textless{} 0.5). The top-curves (calibration
-intercepts above 0) underestimated risk on average and were generated
-when chance imbalance favored non-events (i.e., more non-events than
-events). Bottom-curves (calibration intercepts below 0) overestimated
-risk on average and were generated when chance imbalance favored events.
-When SENN was used to pre-process the training data, LR, SVM and XG
-exhibited worse calibration than their controls, meanwhile RF, RB and EE
-remained as well calibrated (RF and RB) or slightly better calibrated
-(EE) than their controls. With respect to EE, regardless of the data
-pre-processing method, the predicted risks were too moderate
-(calibration slopes \textgreater{} 1, Figure \ref{fig:plot4}).\\
+intercepts \textgreater{} 0) underestimated risk on average and were
+generated when chance imbalance favored non-events (i.e., more
+non-events than events). Bottom-curves (calibration intercepts
+\textless{} 0) overestimated risk on average and were generated when
+chance imbalance favored events. When SENN was used to pre-process the
+training data, LR, SVM and XG exhibited worse calibration than their
+controls, meanwhile RF, RB and EE remained as well calibrated (RF and
+RB) or slightly better calibrated (EE) than their controls. In our
+reporting, for a given machine learning algorithm, the control refers to
+a model trained with data that were not corrected for imbalance. With
+respect to EE, regardless of the data pre-processing method, the
+predicted risks were too moderate (calibration slopes \textgreater{} 1,
+Figure \ref{fig:plot4}).\\
 \strut \\
 When data exhibited moderate imbalance (event fraction = 0.2), control
 models for LR, SVM, RF and XG were well calibrated, while control models
@@ -672,32 +679,35 @@ one prediction model, model calibration was preserved (Figure
 \strut \\
 When data were strongly imbalanced (event fraction = 0.02), all
 prediction models exhibited miscalibration (Figure \ref{fig:plot3}).
-Without correcting for imbalance (control models), calibration curves
-for LR, SVM, RF and XG were unstable; there was large variation among
-the calibration curves produced over the simulation iterations.
-Meanwhile, when trained with uncorrected data, RB and EE produced
-predicted risks which exhibited a specific pattern of miscalibration:
-all consistently over-estimated true risk, with very little variation
-among the calibration curves. Similarly, when training data were
-pre-processed with any imbalance correction, prediction models, again,
-produced risk estimates which largely over-estimated true risk. From
-Figure \ref{fig:plot6}, it is clear that in this scenario, only the
+With respect to the control models, calibration curves for LR, SVM, RF
+and XG were unstable; there was large variation among the calibration
+curves produced over the simulation iterations. Meanwhile, the control
+models for RB and EE produced predicted risks which exhibited a specific
+pattern of miscalibration: all consistently over-estimated true risk,
+with very little variation among the calibration curves. Similarly, when
+training data were pre-processed with any imbalance correction,
+prediction models, again, produced risk estimates which largely
+over-estimated true risk. For oversampling corrections (ROS, SMOTE,
+SENN) calibration curves for SVM and XG models were extremely unstable.
+From Figure \ref{fig:plot6}, it is clear that in this scenario, only the
 models which did not attempt to correct for class imbalance (the control
 models for LR, SVM, RF and XG) had calibration intercepts centered
 around 0. With respect to calibration slope, oversampling corrections
 (ROS, SMOTE, SENN) caused a decrease in calibration slope compared to
-controls (Figure \ref{fig:plot6}); this worsened calibration slopes for
-all algorithms except EE. Meanwhile, RUS actually improved calibration
-slopes for SVM and RF compared to controls (Figure \ref{fig:plot6}).\\
+controls (Figure \ref{fig:plot6}); this resulted in worse calibration
+slopes for all algorithms except EE. Meanwhile, the undersampling
+correction (RUS) actually improved calibration slopes for SVM and RF
+compared to controls.\\
 \strut \\
 Overall, as imbalance between the classes was magnified, model
 calibration deteriorated for all prediction models. All imbalance
 corrections affected model calibration in a very similar fashion.
 Correcting for imbalance using pre-processing methods (RUS, ROS, SMOTE,
-SENN) or by using an imbalance correcting algorithm (RB, EE) resulted in
-prediction models which consistently over-estimated risk. For any given
-machine learning algorithm, no model trained with imbalance corrected
-data outperformed the control model, with respect to model calibration.
+SENN) and/or by using an imbalance correcting algorithm (RB, EE)
+resulted in prediction models which consistently over-estimated risk. On
+average, for any given machine learning algorithm, no model trained with
+imbalance corrected data outperformed the control model, with respect to
+model calibration.
 
 \hypertarget{discrimination}{%
 \subsection{Discrimination}\label{discrimination}}
@@ -728,8 +738,8 @@ scenario ranged from {[}0.79, 0.85{]}.\\
 Finally, with strong class imbalance (event fraction = 0.02), the
 effects of the imbalance corrections on discrimination were again,
 highly dependent on the machine learning algorithm (Figure
-\ref{fig:plot6}). For LR, imbalance corrections had no effect on
-discrimination, with the exception of RUS, which decreased
+\ref{fig:plot6}). For LR, imbalance corrections had no noticeable effect
+on discrimination, with the exception of RUS, which decreased
 discrimination (Figure \ref{fig:plot6}). For SVM and RF, all imbalance
 corrections improved discrimination, meanwhile, for XG, RB, and EE, all
 imbalance corrections worsened discrimination (Figure \ref{fig:plot6}).
@@ -737,61 +747,66 @@ Median concordance statistics in this simulation scenario ranged from
 {[}0.71, 0.84{]}.\\
 \strut \\
 Overall, as imbalance between the classes was magnified, discrimination
-worsened for all prediction models except LR-control (Table 4). The
-effect of the data pre-processing corrections on model discrimination
-was highly dependent on the machine learning algorithm. SVM benefited
-from all imbalance corrections, RF also benefited, but to a lesser
-extent. Meanwhile, XG, RB, EE and LR-RUS all suffered. The effects of
-imbalance corrections on model discrimination were most pronounced when
-class imbalance was strong.
+worsened for most prediction models, on average. The effect of the
+(pre-processing) imbalance corrections on model discrimination was
+highly dependent on the machine learning algorithm. SVM benefited from
+all imbalance corrections, RF also benefited, but to a lesser extent.
+Meanwhile, XG, RB, EE and RUS-LR all suffered. Effects were most
+pronounced when class imbalance was strong. Notably, for any event
+fraction, discrimination for the machine learning algorithms which
+innately corrected for imbalance (RB, EE), was worse than the control-LR
+model, even when trained with imbalance corrected data.
 
 \hypertarget{overall-performance}{%
 \subsection{Overall Performance}\label{overall-performance}}
 
 \hfill\break
 As Brier score depends on event fraction, we only compared Brier scores
-for scenarios with the same event fraction. As event fraction decreases,
-it is easier for a prediction model to achieve a low Brier score. For
-instance, a trivial majority classifier (a model which produces the same
-predicted risk, 0, for all individuals) would achieve Brier scores of
-0.50, 0.19 and 0.02 in scenarios 4, 5, and 6, respectfully.\\
+for scenarios with the same event fraction. For reference, we note that
+a trivial majority classifier (a model which produces the same predicted
+risk, 0, for all individuals) would achieve Brier scores of 0.50, 0.19
+and 0.02 in scenarios 4, 5, and 6, respectfully.\\
 \strut \\
 For balanced data (event fraction = 0.5), median Brier scores ranged
-from {[}0.15, 0.19{]}. For models built with LR or RF, class imbalance
+from {[}0.15, 0.19{]}. For models built with LR or RF, imbalance
 corrections had no noticeable effect on median Brier score (Figure
 \ref{fig:plot4}; Table \ref{tab:results}). For models built with SVM,
 XG, RB or EE, imbalance corrections had minimal effects; the largest
 difference in median Brier scores among prediction models built with the
-same algorithm was \(0.1\) (Table \ref{tab:results}).\\
+same machine learning algorithm was \(0.1\) (Table \ref{tab:results}).\\
 \strut \\
 For moderately imbalanced data (event fraction = 0.2), median Brier
-scores ranged from {[}0.12, 0.2{]}. Notably, the models which did not
+scores ranged from {[}0.12, 0.20{]}. Notably, the models which did not
 attempt to correct for imbalance (control models for LR, SVM, RF and XG)
-outperformed all other prediction models, with respect to brier score
+outperformed all other prediction models, with respect to Brier score
 (Brier scores: 0.12). Again, with the exception of RF + ROS, which
 preformed equally as well as the aforementioned models (Brier Score:
 0.12). In this scenario, models built with RUS had particularly poor
 performance relative to the others (Figure \ref{fig:plot5}); all RUS
 models had median brier scores of 0.2, worse than a trivial majority
-classifier, with the exception of RUS + SVM which preformed slightly
+classifier, with the exception of RUS-SVM which preformed slightly
 better (Brier Score: 0.16).\\
 \strut \\
 For data with strong imbalance (event fraction = 0.02), median Brier
 scores ranged from {[}0.02, 0.22{]}. Again, the models which did not
 attempt to correct for imbalance (control models for LR, SVM, RF and XG)
 outperformed all other prediction models (Brier scores: 0.02). In this
-scenario, ROS + RF and ROS + XG preformed just as well as the
-aforementioned control models (Brier scores: 0.02). Models built with
-RUS had substantially worse Brier scores (ranging from {[}0.17, 0.22{]})
-and with very large MCMC errors, compared to all other models (Figure
-\ref{fig:plot6}). Finally, while imbalance corrections worsened median
-Brier score for all algorithms, the effect was most pronounced for LR
-(control: 0.02, RUS: 0.19, ROS: 0.16, SMOTE: 0.15, SENN: 0.16).\\
+scenario, ROS-RF and ROS-XG preformed just as well as the aforementioned
+models (Brier scores: 0.02). Models built with RUS had substantially
+worse Brier scores (ranging from {[}0.17, 0.22{]}) and with very large
+MCMC errors, compared to all other models (Figure \ref{fig:plot6}).
+Finally, while imbalance corrections worsened median Brier score for all
+algorithms, the effect was most pronounced for LR (control: 0.02, RUS:
+0.19, ROS: 0.16, SMOTE: 0.15, SENN: 0.16).\\
 \strut \\
-Overall, imbalance corrections worsened the overall performance for all
-machine learning algorithms. Two models were robust against this effect:
-ROS-RF, ROS-XG. The effects of imbalance corrections on overall
-performance were most pronounced when class imbalance was strong.
+Overall, (pre-processing) imbalance corrections worsened the overall
+performance for all machine learning algorithms, on average. Two models
+were robust against this effect: ROS-RF, ROS-XG. The effects of the
+imbalance corrections on overall performance were most pronounced when
+class imbalance was strong. Notably, the machine learning algorithms
+which innately corrected for class imbalance (RB, EE) conferred no
+noticeable benefit to overall performance compared to all other machine
+learning algorithms.
 
 \hypertarget{re-calibration}{%
 \subsection{Re-calibration}\label{re-calibration}}
@@ -799,12 +814,12 @@ performance were most pronounced when class imbalance was strong.
 \hfill\break
 The effect of re-calibration on model performance was constant across
 all simulation scenarios, and prediction models. Importantly, we
-observed that even after re-calibration, in class imbalanced scenarios,
-there were very few cases where, for a given machine learning algorithm,
-models trained with imbalance corrected data preformed better than when
-trained with uncorrected data, with respect to model calibration. These
-cases were restricted to RUS-(SVM, RF) and ROS-RF models, in scenarios
-with moderate or strong class imbalance.\\
+observed that even after re-calibration, there were very few cases
+where, for a given machine learning algorithm, models trained with
+imbalance corrected data preformed better than when trained with
+uncorrected data, with respect to model calibration. These cases were
+restricted to RUS-(SVM, RF) and ROS-RF models, in scenarios with
+moderate or strong class imbalance.\\
 \strut \\
 The re-calibration procedure adjusted calibration intercepts to be zero
 for all simulation iterations, while calibration slopes were unaffected.
@@ -831,7 +846,7 @@ section C).
 
 }
 
-\caption{Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 4. This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbour rule). \label{fig:plot1}}\label{fig:unnamed-chunk-2}
+\caption{Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 4. This simulation scenario is characterized by 8 predictors, exactly the minimum required sample size (N) and class balanced data (event fraction = 0.5). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbor rule). \label{fig:plot1}}\label{fig:unnamed-chunk-2}
 \end{figure}
 
 \begin{figure}
@@ -840,7 +855,7 @@ section C).
 
 }
 
-\caption{Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 5. This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbour rule). \label{fig:plot2}}\label{fig:unnamed-chunk-3}
+\caption{Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 5. This simulation scenario is characterized by 8 predictors, exactly the minimum required sample size (N) and moderately imbalanced data (event fraction = 0.2). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbor rule). \label{fig:plot2}}\label{fig:unnamed-chunk-3}
 \end{figure}
 
 \begin{figure}
@@ -849,7 +864,7 @@ section C).
 
 }
 
-\caption{Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 6. This simulation scenario is characterized by 8 predictors, adequate sample size (N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbour rule). \label{fig:plot3}}\label{fig:unnamed-chunk-4}
+\caption{Flexible calibration curves for each of 2000 simulation iterations in simulation scenario 6. This simulation scenario is characterized by 8 predictors, exactly the minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02). Flexible curves were generated using raw predicted risks; no re-calibration. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbor rule). \label{fig:plot3}}\label{fig:unnamed-chunk-4}
 \end{figure}
 
 \begin{figure}
@@ -858,7 +873,7 @@ section C).
 
 }
 
-\caption{Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 4.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbour rule). \label{fig:plot4}}\label{fig:unnamed-chunk-5}
+\caption{Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 4.  This simulation scenario is characterized by 8 predictors, exactly the minimum required sample size (N) and class balanced data (event fraction = 0.5). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbor rule). \label{fig:plot4}}\label{fig:unnamed-chunk-5}
 \end{figure}
 
 \begin{figure}
@@ -867,7 +882,7 @@ section C).
 
 }
 
-\caption{Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 5.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbour rule). \label{fig:plot5}}\label{fig:unnamed-chunk-6}
+\caption{Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 5.  This simulation scenario is characterized by 8 predictors, exactly the minimum sample size (N) and moderately imbalanced data (event fraction = 0.2). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbor rule). \label{fig:plot5}}\label{fig:unnamed-chunk-6}
 \end{figure}
 
 \begin{figure}
@@ -876,11 +891,11 @@ section C).
 
 }
 
-\caption{Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 6.  This simulation scenario is characterized by 8 predictors, adequate sample size (N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbour rule). \label{fig:plot6}}\label{fig:unnamed-chunk-7}
+\caption{Empirical performance metrics for each of 2000 simulation iterations in simulation scenario 6.  This simulation scenario is characterized by 8 predictors, exactly the minimum required sample size (N) and strongly imbalanced data (event fraction = 0.02). Empirical performance metrics were computed with raw predicted risks; no re-calibration. The target value highlighted for the concordance statistic reflects the data-generating concordance statstic, 0.85. Imbalance corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbor rule). \label{fig:plot6}}\label{fig:unnamed-chunk-7}
 \end{figure}
 
 \begin{sidewaystable}
-\caption{\label{tab:results} Median performance measures and their Monte Carlo erros across 2000 simulations iterations for simulation scenarios 4-6.}
+\caption{\label{tab:results} Median performance measures and their Monte Carlo errors across 2000 simulations iterations for simulation scenarios 4-6.}
 \centering
 \resizebox{\linewidth}{!}{
 \begin{tabular}[t]{lrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr}
@@ -950,7 +965,7 @@ section C).
 \hspace{2em}\hspace{1em}Calibration Slope & 0.90 & 0.52 & 1.26 & 1.86 & 0.72 & 0.14 & 0.56 & 0.25 & 0.35 & 1.67 & 0.62 & 1.41 & 0.16 & 0.48 & 0.22 & 0.28 & 1.50 & 0.57 & 0.15 & 0.45 & 0.20 & 0.25 & 0.63 & 1.38 & 0.84 & 1.49 & >10.0 & 0.54 & 0.96 & 1.18\\
 \hspace{2em}\hspace{1em}MCMC Error & 0.12 & 0.12 & 0.26 & 0.28 & 0.13 & 0.05 & 0.16 & 0.02 & 0.06 & 0.17 & 0.11 & >10.0 & 0.03 & 0.12 & 0.02 & 0.05 & 0.13 & 0.11 & 0.03 & 0.11 & 0.02 & 0.04 & 0.20 & 0.12 & 0.13 & 0.28 & 0.30 & 0.18 & 0.66 & 0.32\\
 \bottomrule
-\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbour rule)}\\
+\multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{1} Imbalance Corrections: RUS (random undersampling), ROS (random oversampling), SMOTE (synthetic majority oversampling), SENN (synthetic majority oversampling with Wilson's Edited Nearest Neighbor rule)}\\
 \multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{2} Machine Learning Algorithms: LR (logistic regression), SVM (support vector machine), RF (random forest), XG (XGBoost), RB (RUSBoost), EE (EasyEnsemble)}\\
 \multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{3} Scenario 4: 8 predictors, minimum required sample size (N), class balanced data (event fraction = 0.5)}\\
 \multicolumn{31}{l}{\rule{0pt}{1em}\textsuperscript{4} Scenario 5: 8 predictors, minimum required sample size (N), moderately imbalanced data (event fraction = 0.2)}\\
@@ -965,97 +980,103 @@ section C).
 
 In this paper, we studied the impact of class imbalance corrections on
 the out-of-sample predictive performance of clinical prediction models
-developed with a variety of machine learning algorithms. Based on the
-results of our Monte Carlo simulations, we observed that implementing
-imbalance corrections led to deteriorated model calibration and
-(consequently) overall performance. Regardless of the data-generating
-scenario, we found that correcting for class imbalance with a data
-pre-processing technique (RUS, ROS, SMOTE, SENN) and/or an imbalance
-correcting algorithm (RB, EE) resulted in prediction models that
-consistently over-estimated risk. We noted one exception, ROS-RF models
-were often well calibrated. Furthermore, the effect of imbalance
-corrections on model discrimination was often small (or null) and highly
-dependent on the machine learning algorithm. Some algorithms benefited
-(SVM, RF) while others suffered (LR, XG, RB, EE). Subsequent
-re-calibration of predicted risks improved model calibration and overall
-performance, yet, had no effect on discrimination. Even after
-re-calibration, there were very few instances where, for a given machine
-learning algorithm, models trained with imbalance corrected data
-preformed better than when trained with uncorrected data. These cases
-were restricted to RUS-(SVM, RF) and ROS-RF models in scenarios with
-moderate or strong class imbalance.\\
+developed with a variety of machine learning algorithms. We found that
+when data exhibited class imbalance, implementing imbalance corrections
+often led to deteriorated model calibration and (consequently) overall
+performance. For both moderate and strong imbalance scenarios, we found
+that correcting for class imbalance with a data pre-processing technique
+(RUS, ROS, SMOTE, SENN) and/or an imbalance correcting algorithm (RB,
+EE) resulted in prediction models that consistently over-estimated risk.
+We noted one exception, ROS-RF models were often well calibrated.
+Furthermore, the effect of imbalance corrections on model discrimination
+was often small (or null) and highly dependent on the machine learning
+algorithm. Some algorithms benefited (SVM, RF) while others suffered
+(LR, XG, RB, EE). Subsequent re-calibration of predicted risks improved
+model calibration and overall performance, yet, had no effect on
+discrimination. Even after re-calibration, there were very few instances
+where, for a given machine learning algorithm, models trained with
+imbalance corrected data preformed better than when trained with
+uncorrected data. These cases were restricted to RUS-(SVM, RF) and
+ROS-RF models in scenarios with moderate or strong class imbalance.\\
 \strut \\
 Our findings are consistent with those of van den Goorbergh
 \emph{et al}. (2022) \citep{ruben}. In our simulation, pre-processing
 the data to correct for class imbalance had no noticeable benefit for
 model discrimination, and led to worse model calibration for all
-logistic regression models. Therefore, for prediction models developed
-with logistic regression, we concur that imbalance corrections may do
-more harm than good. This finding did not hold, however, for every
-machine learning algorithm. In particular, for models developed with SVM
-or RF, the findings were more nuanced. While imbalance corrections did
-improve discrimination slightly, especially when data exhibited strong
-imbalance (event fraction = 0.02), this often came at the cost of model
+logistic regression models. For prediction models developed with
+logistic regression, we concur that imbalance corrections may do more
+harm than good. This finding does, however, not hold for every machine
+learning algorithm. In particular, for models developed with SVM or RF,
+the findings were more nuanced. While imbalance corrections did improve
+discrimination slightly, especially when data exhibited strong imbalance
+(event fraction = 0.02), this often came at the cost of model
 calibration. Using imbalanced corrected data to train SVM or RF models
-resulted in such deteriorated model calibration that it often could not
-be repaired even after re-calibration. That stated, after
-re-calibration, we noted three models where imbalance corrections
-conferred a slight benefit to both model discrimination and calibration:
-RUS-(SVM, RF) and ROS-RF.\\
+resulted in deteriorated model calibration that was often not able to be
+recovered even after re-calibration. That stated, after re-calibration,
+we noted three models where imbalance corrections conferred a slight
+benefit to both model discrimination and calibration in some simulation
+scenarios: RUS-(SVM, RF) and ROS-RF. Finally, while previous studies
+found that imbalance correcting algorithms improved model discrimination
+\citep{kaur, rusboost, ee}, we found these algorithms (RB, EE), often
+conferred no benefit or worsened both model discrimination and
+calibration in the 8 predictor scenarios. With 16 predictors, RB and EE
+did show improved discrimination compared to the algorithms which did
+not innately correct for imbalance, often at the cost of model
+calibration.\\
 \strut \\
 Our study had three limitations which warrant discussion. Firstly, hyper
 parameter tuning for SVM and XG was not as extensive as it was for RF.
 More extensive tuning could perhaps improve model performance in
 general, but would be unlikely to alter the effects seen as a
 consequence of the imbalance corrections. Extensive tuning was
-implemented for RF based on guidance from Probst \emph{et al}
-\citep{probst}, no such guidance was available for the other models.
-Secondly, the data generating mechanism employed was idealistic; no
-interaction effects were included in our data-generating mechanism.
-Tree-based methods are particularly adept at modeling interaction
-effects; if interaction effects were included, tree-based methods may
-have had improved performance relative to the other algorithms. Finally,
-our work focused on low dimensional settings (8 or 16 predictors) which
-are typical for clinical prediction model development. Future research
-may asses the impact of imbalance corrections on machine learning models
-in higher dimensional settings.\\
+implemented for RF based on guidance from Probst \emph{et al}. (2019)
+\citep{probst}, no such guidance was available for SVM and XG. Secondly,
+the data-generating mechanism employed was idealistic; no interaction
+effects were included in our data-generating mechanism. Tree-based
+methods are particularly adept at modeling interaction effects; if
+interaction effects were included, tree-based methods may have had
+improved performance relative to the other algorithms. Finally, our work
+focused on low dimensional settings (8 or 16 predictors) which are
+typical for clinical prediction model development. Future research may
+assess the impact of imbalance corrections on machine learning models in
+higher dimensional settings.\\
 \strut \\
 Based on our findings we offer four considerations for researchers
 developing prediction models in the presence of class imbalance. (1) In
 low-dimensional settings, we found that correcting for class imbalance
-with a data pre-processing technique or imbalance correcting algorithm
-compromised model calibration, resulting in prediction models which
-over-estimated risk so severely that good calibration often could not be
-restored even after re-calibration. (2) We noted one exception: models
-developed with random oversampling and random forest were often
-well-calibrated. In particular, if a random forest model is found to
-underestimate predicted risks when trained using uncorrected data,
-random oversampling could be considered to improve calibration. (3)
-After re-calibration, we found that using random undersampling to
-pre-process training data for support vector machine and random forest
-models also conferred slight benefit to predictive performance. In this
-case, we encourage researchers to consider the ethical implications of
-discarding (a potentially large proportion) of available data for what
-may be a subtle gain in predictive performance. (4) We wish to highlight
-that machine learning algorithms which did not innately correct for
-class imbalance (logistic regression, support vector machine, random
-forest and xgboost) models were well-calibrated when trained with class
-imbalanced data, in scenarios with moderate imbalance (event fraction =
-0.2).
+(with a data pre-processing technique and/or an imbalance correcting
+algorithm) compromised model calibration, resulting in prediction models
+which over-estimated risk. Notably, the miscalibration conferred by
+these corrections was often not restored by re-calibration. (2) We noted
+one exception: models developed with random oversampling and random
+forest were often well-calibrated. In particular, if a random forest
+model is found to underestimate predicted risks when trained using
+uncorrected data, random oversampling could be considered to improve
+calibration. (3) After re-calibration, we found that using random
+undersampling to pre-process training data for support vector machine
+and random forest models also conferred slight benefit to predictive
+performance. In this case, we encourage researchers to consider the
+ethical implications of discarding a (potentially large) proportion of
+available data for what may be a small gain in predictive performance.
+(4) Finally, we wish to highlight that the machine learning algorithms
+which did not innately correct for class imbalance (logistic regression,
+support vector machine, random forest and xgboost), were often
+well-calibrated when trained with class imbalanced data in scenarios
+with moderate imbalance (event fraction = 0.2).
 
 \hypertarget{conclusion}{%
 \section{Conclusion}\label{conclusion}}
 
 Data exhibiting class imbalance are common in medical settings when the
-modeled outcome is rare. When observed events are too few, relative to
+modeled outcome is rare. When observed events are too few relative to
 the total sample size and the dimensionality of the model, prediction
 models may not estimate risk accurately, and with sufficient precision
 to be clinical useful. If the goal of a clinical prediction model is to
 produce reliable predicted risks on an individual basis (i.e., to
 achieve good calibration), correcting for class imbalance with a data
-pre-processing technique and/or imbalance correcting algorithm may cause
-more harm than benefit, in low dimensional settings. Further research
-may focus on the effect of such imbalance correction in higher
+pre-processing technique and/or an imbalance correcting algorithm may
+cause more harm than benefit, in low dimensional settings. Further
+research may focus on the effect of such imbalance corrections in higher
 dimensional settings.
 
 \newpage
@@ -1067,7 +1088,7 @@ dimensional settings.
 \hfill\break
 Under the assumption of normality for all predictors (in each class),
 the concordance statistic (\(C\)) of the data can be calculated
-directly, using equation (\(A1\)). This equation is suitable when the
+directly, using equation (A1). This equation is suitable when the
 covariance matrices of each class are \emph{not} equivalent. For \(p\)
 predictors, \(\pmb{\Delta_\mu}\) is a \(p\) x \(1\) vector housing the
 differences in predictor means between class 0 and class 1.
@@ -1084,12 +1105,12 @@ In our research, the differences in predictor means between the classes
 were equivalent. In other words, the elements of \(\pmb{\Delta_\mu}\)
 were equivalent; denoted by \(\delta_\mu\). The differences in predictor
 variances between the classes were also equivalent. The diagonal
-elements of \(\pmb{\Sigma_0}\) were all zero, and the diagonal elements
-of \(\pmb{\Sigma_1}\) were all equal to (\(1- \delta_\Sigma\)) as shown
-in section 2.1. To ensure a unique solution, \(\delta_\Sigma\) was fixed
-to \(0.3\). Then, equation (\(A1\)) was solved to determine the value of
-\(\delta_\mu\) that yields a concordance statistic (\(C\)) of
-\(0.85\).\\
+elements of \(\pmb{\Sigma_0}\) were all equal to one, and the diagonal
+elements of \(\pmb{\Sigma_1}\) were all equal to (\(1- \delta_\Sigma\))
+as shown in section 2.1. To ensure a unique solution, \(\delta_\Sigma\)
+was fixed to \(0.3\). Then, equation (\(A1\)) was solved to determine
+the value of \(\delta_\mu\) that yields a concordance statistic (\(C\))
+of \(0.85\).\\
 \strut \\
 Let \(\pmb{A} = (\pmb{\Sigma_0} + \pmb{\Sigma_1})^{-1}\),
 
@@ -1116,19 +1137,24 @@ Based on a desired \(C\) of \(0.85\),\\
 \end{equation}\\
 \strut \\
 \strut \\
-Equation (\(A2\)) was used to derive the appropriate \(\delta_\mu\) for
-each simulation scenario. The R code used for implementation of this
-formula can be found on GitHub, in the directory
-\texttt{simulation\_code}, sub-directory
+Equation (A2) was used to derive the appropriate \(\delta_\mu\) for each
+simulation scenario. The R code used to execute this procedure can be
+found on GitHub, in the directory \texttt{simulation\_code},
+sub-directory
 \texttt{own\_device\ \textgreater{}\ data-generating-mechanism}:
-\url{https://github.com/alexcarriero/class_imbalance_project}
+\url{https://github.com/alexcarriero/class_imbalance_project}.
 
 \newpage
 
-\section{:  Median Performance Measures Across 18/18 Simulation Scenarios.}
+\section{:  Median Performance Measures Across 18/18 Simulation Scenarios}
 
-\hfill\break
-\hfill\break
+In the following Figures (B1-B4) we present the median performance
+measures (over 2000 simulation iterations) for all prediction models
+across the 18 data-generating scenarios. The purpose of these figures is
+to demonstrate how the data-generating scenarios influenced the pattern
+of results for each performance measure. All results from one simulation
+scenario are therefore joined with a line to ease the comparison between
+simulation scenarios.
 
 \begin{figure}[h]
 
