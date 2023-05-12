@@ -1,0 +1,282 @@
+---
+title: "Results"
+output: html_document
+---
+
+# set up
+```{r, warning = F, message = F}
+# libraries
+library(tidyverse)
+library(ggh4x)
+library(patchwork)
+library(pROC)
+library(simsalapar)
+library(stats)
+
+# helpers
+source("./../simulation_code/own_device/functions.R")
+# source("./../simulation_code/own_device/functions.R")
+source("process_results.R")
+
+# simulation iterations
+scenarios  <- c(1:18)
+iterations <- c(1:2000)
+```
+
+# add brier score 
+```{r}
+# in our simulation study, scaled brier score was computed. 
+# this metric has proven to be difficult to interpret in the presence of extreme class imbalance (producing large negative numbers)
+# there is also discrepancy in the literature about how it is defined. 
+
+# for this reason, we also compute brier score. 
+
+map(scenarios, function(x) save_brier_scores(x))
+```
+
+# retrieve summaries 
+```{r}
+map(scenarios, function(x) get_summary(x))
+```
+
+# calibration plots 
+
+```{r, warning = F, message = F, fig.height = 14, fig.width = 14}
+
+# NOTE : this can be run on own device for simulation scenarios 1,2,4,5,7,10,11,13,14
+#        else, high performance computing is recommended.
+
+# choose a scenario 
+i = 1 
+
+# save flexible calibration curve coordinates for each simulation iteration
+scN <- paste0("sc", i)
+map(iterations, function(x) save_plot_coords(x, scN))
+```
+
+```{r, warning = F, message = F, fig.height = 14, fig.width = 14}
+# generate calibration plots
+
+map(scenarios, function(x) calibration_plot(x))  
+```
+
+```{r}
+# limited range calibration plots 
+
+extreme_imbalance <- c(3,6,9,12,15,18)
+
+for(i in scenarios){
+  
+    scN <- paste0("sc", i)
+
+    df <- 
+      list.files(path = paste0("./processed_results/plot_coords/raw_results/", scN, "/"), pattern = ".rds") %>%
+      paste0("./processed_results/plot_coords/raw_results/", scN, "/", .) %>%
+      map(readRDS) %>% 
+      bind_rows() %>% 
+      as.data.frame() %>% 
+      drop_na() %>%
+      pre_plot() 
+  
+    p <- plot_from_coords(df, restricted_range = T)
+  
+    ggsave(paste0("./../visualize_results/results/small_calibration_plot_", scN, ".png"), 
+           plot = p,  width = 14, height = 14)
+    
+}    
+```
+
+
+# recalibrate results
+```{r}
+# re-calibrate raw predictions 
+
+for(i in scenarios){
+  
+  scN <- paste0("sc", i)
+  map(iterations, function(x) recalibrate_everything(x))
+}
+
+# re-calibrated summaries
+map(scenarios, function(x) get_summary(x, recalibrated = T))
+```
+
+
+# recalibrate calibration plots 
+
+```{r, warning = F, message = F, fig.height = 14, fig.width = 14}
+
+# NOTE : this can be run on your own device for simulation scenarios 1,2,4,5,7,10,11,13,14
+#        else, high performance computing is recommended.
+
+# choose a scenario 
+i = 1 
+
+# save flexible calibration curve coordinates for each simulation iteration
+
+scN <- paste0("sc", i)
+map(iterations, save_plot_coords(x, scN, recalibrated = TRUE))
+```
+
+```{r, warning = F, message = F, fig.height = 14, fig.width = 14}
+# generate re-calibration plots
+
+map(scenarios, function(x) calibration_plot(x, recalibrated = T))  
+```
+
+# manuscript figures
+
+```{r}
+# calibration plots (without calibration)
+for(i in 1:18){
+  
+  scN <- paste0("sc", i)
+
+  df <- 
+    list.files(path = paste0("./processed_results/plot_coords/raw_results/", scN, "/"), pattern = ".rds") %>%
+    paste0("./processed_results/plot_coords/raw_results/", scN, "/", .) %>%
+    map(readRDS) %>% 
+    bind_rows() %>% 
+    as.data.frame() %>% 
+    drop_na() %>%
+    pre_plot()
+
+  p <- plot_from_coords(df)
+
+  ggsave(paste0("./../manuscript/results/calibration_plot_manuscript_", scN, ".png"), 
+         plot = p,  width = 12, height = 15)
+}
+```
+
+```{r}
+# calibration plots (after re-calibration)
+for(i in 1:18){
+  
+  scN <- paste0("sc", i)
+
+  df <- 
+    list.files(path = paste0("./processed_results/plot_coords/recalibrated_results/", scN, "/"), pattern = ".rds") %>%
+    paste0("./processed_results/plot_coords/recalibrated_results/", scN, "/", .) %>%
+    map(readRDS) %>% 
+    bind_rows() %>% 
+    as.data.frame() %>% 
+    drop_na() %>%
+    pre_plot()
+
+  p <- plot_from_coords(df)
+
+  ggsave(paste0("./../manuscript/results/calibration_plot_manuscript_", scN, "_recalibrated.png"), 
+         plot = p,  width = 12, height = 15)
+}
+```
+
+```{r}
+# performance metric plots (without calibration)
+
+for(i in 1:18){
+  
+  scN <- paste0("sc", i)
+
+  df <- readRDS(paste0("./../visualize_results/results/results_", scN, ".RData"))
+  df <- df$overall_dataframe
+  
+  a <- pm_plot(df, method = "auc", 0.6, 1)
+
+  b <- pm_plot(df, method = "bri", 0, 0.30)
+
+  c <- pm_plot(df, method = "int", -5.5, 2)
+
+  d <- pm_plot(df, method = "slp", -0.5, 3.5)
+
+  P <- 
+    a + b + c + d + 
+    # labs(caption = "Target values for each performance metric: concordance statistic = 0.85 (the data-generating concordance statistic), Brier score = 0, calibration intercept = 0, calibration slope = 1.") +
+    # theme(plot.caption = element_text(hjust=0)) + 
+    plot_layout(ncol = 1)
+
+  ggsave(paste0("./../manuscript/results/performance_metrics_manuscript_", scN, ".png"), 
+         plot = P,  width = 12, height = 15)
+
+}
+```
+
+```{r}
+# performance metric plots (after calibration)
+
+for(i in 1:18){
+  
+  scN <- paste0("sc", i)
+
+  df <- readRDS(paste0("./../visualize_results/results/results_", scN, "_recalibrated.RData"))
+  df <- df$overall_dataframe
+  
+  a <- pm_plot(df, method = "auc", 0.6, 1)
+
+  b <- pm_plot(df, method = "bri", 0, 0.30)
+
+  c <- pm_plot(df, method = "int", -5.5, 2)
+
+  d <- pm_plot(df, method = "slp", -0.5, 3.5)
+
+  P <- 
+    a + b + c + d + 
+    # labs(caption = "Target values for each performance metric: concordance statistic = 0.85 (the data-generating concordance statistic), Brier score = 0, calibration intercept = 0, calibration slope = 1.") +
+    # theme(plot.caption = element_text(hjust=0)) + 
+    plot_layout(ncol = 1)
+
+  ggsave(paste0("./../manuscript/results/performance_metrics_manuscript_", scN, "_recalibrated.png"),
+         plot = P,  width = 12, height = 15)
+
+}
+```
+
+# manuscript .csv tables
+
+```{r}
+# make tables to display errors 
+
+make_table_algorithm("logistic_regression")
+make_table_algorithm("support_vector_machine")
+make_table_algorithm("random_forest")
+make_table_algorithm("xgboost")
+make_table_algorithm("rusboost")
+make_table_algorithm("easy_ensemble")
+
+make_table_corrections()
+make_table_rb_invalid()
+make_table_lg_separation()
+```
+
+
+# Appendix Figures
+```{r}
+# visualization across all scenarios plots
+
+all <- all_summaries()
+
+p <- scenario_graph(all, method = "auc_med")
+ggsave("./../manuscript/results/auc_across_scenarios.png", plot = p, width = 20, height = 20)
+
+p <- scenario_graph(all, method = "bri_med")
+ggsave("./../manuscript/results/bri_across_scenarios.png", plot = p, width = 20, height = 20)
+
+p <- scenario_graph(all, method = "int_med")
+ggsave("./../manuscript/results/int_across_scenarios.png", plot = p, width = 20, height = 20)
+
+p <- scenario_graph(all, method = "slp_med")
+ggsave("./../manuscript/results/slp_across_scenarios.png", plot = p, width = 20, height = 20)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
