@@ -4,37 +4,53 @@ author: "Alex Carriero"
 output: html_document
 ---
 
-# Functions, Libraries
+Please find our data-generating mechanism detailed below: 
+
+# 1. Set Up
 ```{r, warning = F, message = F}
+
+# load libraries
 library(tidyverse)
 library(MASS)
 library(matlib)
 library(tableone)
 library(pmsampsize)
 library(pROC)
+
 ```
 
+# 2. Define functions necessary for data-generating function 
 ```{r}
 sample_size <- function(npred, ev, n.level){
-  # this function calculates minimum sample size for a prediction model 
   
-  # n.level represents the value the minimum sample size should be multiplied by
-  # to achieve the desired sample size scenario. 
+  # this function calculates and returns the minimum required sample size (N) for a prediction model 
+  #
+  # npred   : number of predictors 
+  # ev      : event fraction 
+  # n.level : the value the minimum sample size should be multiplied by
+  #           to achieve the desired sample size setting (i.e., 0.5N, N, 2N)
   
   a = pmsampsize(type = "b", prevalence = ev, cstatistic = 0.85, parameters=npred)$sample_size
   n = ceiling(a*n.level)
 
   set.seed(NULL)
   return(n)
+  
 }
 ```
 
 ```{r}
 scenario <- function(npred, ev = 0.5 , n.level = 1, dmu = 0.5){
+  
   # this function takes each factor to be varied in simulation as input
   # and generates the mean and covariance matrices for each class.
-  
-  # it returns all information required for the data generating function: 
+  #
+  # npred   : number of predictors 
+  # ev      : event fraction 
+  # n.level : the value the minimum sample size should be multiplied by
+  #           to achieve the desired sample size scenario (i.e., 0.5N, N, 2N)
+  #
+  # it returns a list of all information required data generation in a given scenario: 
   # number of predictors, event fraction, n.level, sample size, 
   # and the mean and covariance matrices of each class. 
 
@@ -42,7 +58,7 @@ scenario <- function(npred, ev = 0.5 , n.level = 1, dmu = 0.5){
   x      <- dmu                              # delta mu
   y      <- 0.3                              # delta sigma 
   z      <- 0.2                              # z 
-  p      <- 0.8                              # proportion of correlated predictors
+  p      <- 0.75                             # proportion of correlated predictors
   npred  <- npred                            # number of predictors
   n      <- sample_size(npred, ev, n.level)  # sample size calculation
 
@@ -73,20 +89,34 @@ scenario <- function(npred, ev = 0.5 , n.level = 1, dmu = 0.5){
               "mu1"         = mu1, 
               "sigma0"      = sigma0, 
               "sigma1"      = sigma1))
+  
 }
 ```
 
+# 3. The data-generating function
 ```{r}
 generate_data <- function(inn, test = FALSE){
   
-  npred   = inn[[1]]
-  ev      = inn[[2]]
-  n.level = inn[[3]]
-  n       = inn[[4]]
-  mu0     = inn[[5]]
-  mu1     = inn[[6]]
-  sigma0  = inn[[7]]
-  sigma1  = inn[[8]]
+  # this functions takes a list of data-generating parameters as input
+  # and outputs one data set with class data.frame
+  # 
+  # when test = FALSE the function generates training data 
+  # 
+  # when test = TRUE the function generates validation data
+  #
+  # the data generating mechanism for training vs. test data is identical
+  # these data sets only differ in sample size: 
+  # validation data has 10x the sample size of training data
+  
+  
+  npred   = inn[[1]]  # number of predictors
+  ev      = inn[[2]]  # event fraction
+  n.level = inn[[3]]  # 0.5, 1, 2 (to adjust sample size)
+  n       = inn[[4]]  # minimum required sample size for the prediction model (N)
+  mu0     = inn[[5]]  # mean structure for class 0 as vector
+  mu1     = inn[[6]]  # mean structure for class 1 as vector
+  sigma0  = inn[[7]]  # covariance structure for class 0 as matrix
+  sigma1  = inn[[8]]  # covariance structure for class 1 as matrix
   
   # test set
   if (test == TRUE){n  = n*10}
@@ -115,9 +145,10 @@ generate_data <- function(inn, test = FALSE){
 ```
 
 
-# Functions to View Simulated Data 
+# 4. A test example -- interact with simulated data!
 ```{r, warning = F, message = F}
-# view summary statistics
+# function to return summary statistics for each class 
+
 summ <- function(df){
   a <- CreateTableOne(data = df, strat = "outcome")
   return(a)
@@ -125,7 +156,8 @@ summ <- function(df){
 ```
 
 ```{r, warning = F, message = F}
-# visualization
+# function to return gg scatter plot displaying data portrayed by 2-dimensions
+
 visualize <- function(df){
   df <- df 
   df %>%
@@ -141,7 +173,8 @@ visualize <- function(df){
 ```
 
 ```{r}
-# discrimination (auc using logistic regression)
+# check discrimination (concordance statistic calculated using logistic regression)
+
 get_auc <- function(df){
   
 mod  <- glm(outcome~., family = "binomial", data = df)
@@ -154,7 +187,7 @@ return(auc)
 
 ## Test Example 
 ```{r}
-# generate data
+# generate data as example
 df  <- generate_data(scenario(npred = 8, ev = 0.2, n.level = 1, 0.604))
 df
 ```
@@ -166,10 +199,10 @@ get_auc(df)
 visualize(df)
 ```
 
-# Get Parameter Values Necessary to Produce Desired AUC = 0.85
+# 5. Get Parameter Values Necessary to Produce Desired AUC = 0.85
 ```{r}
 get_delta_mu <- function(npred, auc = 0.85){
-  # based equation 2 in Appendix A 
+  # based equation A2 in Appendix A 
   
   inn = scenario(npred)      # get covariance matrices
   s0  = inn[[7]]              
@@ -186,26 +219,35 @@ get_delta_mu <- function(npred, auc = 0.85){
 ```{r}
 get_delta_mu(npred = 8)   # 0.6043
 get_delta_mu(npred = 16)  # 0.4854
-get_delta_mu(npred = 28)  # 0.4225
 ```
 
-# Store simulation scenario settings -- 27 scenarios 
+# 6. Store simulation scenario settings: generate file sim_settings.csv
 ```{r}
 # store scenario settings in a data frame
+# i.e., create a data frame with 18 rows and 4 columns
+#
+# rows: one simulation scenario
+# cols: number of predictors (8, 16), 
+#       event fraction (0.5, 0.2, 0.02)
+#       sample size (0.5N, N, 2N)
+#       dmu (0.6042, 0.4854)
+#       where, dmu represent delta_mu
+#       ... the mean structure of class 1 that result in a concordance statistic of 0.85
+
 ef  <- c(0.5, 0.2, 0.02)
-p   <- c(8, 16, 28)
+p   <- c(8, 16)
 n   <- c(0.5, 1, 2)
 
 grid <- expand.grid(ef, n, p)
 grid <- 
   grid %>% 
-  mutate(dmu = c(rep(0.6043, 9), rep(0.4854, 9), rep(0.4225, 9))) %>% 
+  mutate(dmu = c(rep(0.6043, 9), rep(0.4854, 9))) %>% 
   rename("ef"      = Var1, 
          "n"       = Var2, 
          "npred"   = Var3)%>% 
   dplyr::select(npred, ef, n, dmu)
 
-# ... and in a matrix 
+# ... and store in a matrix 
 gridmat <- data.matrix(grid)
 ```
 
@@ -219,8 +261,14 @@ grid
 write.csv(grid,"sim_settings.csv")
 ```
 
+# 7. Store data-generating parameters for each simulation scenario: generate file set.RData
 ```{r}
-# store data generating parameters for each scenario in data frame 
+
+# This code creates a list with 18 objects .. one for each simulation scenario 
+#
+# each of the 18 objects represent the output of the function scenario()
+# defined in step 2. 
+
 set <- list()  
 
 for(i in 1:nrow(gridmat)){
@@ -235,13 +283,16 @@ saveRDS(set, file="set.RData")
 ```
 
 ```{r}
-# View data generating parameters for one scenario 
-set[[17]]
+# view data generating parameters for one scenario 
+set[[18]]
 ```
 
-# Checks
+# 8. Checks
+
 ```{r, message = F}
-# simulation to see mean and sd in auc for each scenario -- using logistic regression
+# a small simulation to see mean and sd in concordance statistic for each scenario -- using logistic regression
+# to test that on average the concordance statistic is 0.85
+
 set.seed(1111)
 
 mean_auc <- c()

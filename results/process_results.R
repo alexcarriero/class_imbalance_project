@@ -1,5 +1,16 @@
 # ------------------------ set up-----------------------------------------------
 
+# Create a data frame which serves as a key for each prediction model 
+# This data frame has 30 rows and 3 columns 
+#
+# Each row represents a unique prediction model 
+# Columns are: 
+#
+# algorithm - character specifying the algorithm name 
+# correction - character specifying the correction name 
+# pair_id - an integer between 1 and 30 that is unique for each prediction model
+
+
 algorithm   <- c("logistic_regression", 
                   "support_vector_machine", 
                   "random_forest", 
@@ -21,12 +32,32 @@ pairs <-
 # ------------------ get summary -----------------------------------------------
 
 get_brier_score <- function(dataframe){
+  
+  # input : a dataframe
+  # it is necessary for the dataframe to have the columns "pred" and "class"
+  #
+  # pred  : predicted risks for observations in one data set
+  # class : true observed class for observations in one data set
+  #
+  # it returns the brier score, as a single integer saved in a tibble. 
+  
   tibble(
     brier_score = brier_score(dataframe$pred, dataframe$class)
   )
 }
 
 save_brier_scores <- function(i){
+  
+  # input: a single integer (i) 
+  # this integer represents the simulation scenario 
+  # 
+  # for each iteration in scenario i 
+  # the function imports the raw predicted risks from the appropriate folder, 
+  # computes the Brier score based on the raw_predicted risks and 
+  # saves the value of the Brier score for all prediction models in the iteration
+  # 
+  # Results are then merged, for all models in all iterations into one dataframe 
+  # and saved in a new file called scX_brier_scores.rds. 
   
   scN <- paste0("sc", i)
   
@@ -60,6 +91,36 @@ save_brier_scores <- function(i){
 
 get_summary <- function(i, recalibrated = F){
   
+  # input: 
+  # i - integer representing the simulation scenario 
+  # recalibrated - boolean representing specification of raw results (F) or 
+  #                recalibrated results (T)
+  # 
+  # 
+  # For simulation scenario i
+  # this function returns a list with 3 objects: 
+  #
+  # overall_dataframe: 
+  # 60,000 rows, one for every iteration (2000) x prediction model (30)
+  # this is equivalent to binding the rows of all files in  per_iter_results for scenario i 
+  #
+  # rows_per_pair: 
+  # 30 rows, one for each prediction model
+  # a column indicating how many observations there are for each model 
+  # this is a check to ensure there are 2000 
+  #
+  # summary: 
+  # 30 rows, one for each prediction model 
+  # summary statistics as columns representing the median value of each 
+  # empirical performance metrics over the 2000 simulation iterations 
+  # and the corresponding MCMC errors. 
+  #
+  # auc = concordance statistic 
+  # bri = Brier score 
+  # int = calibration intercept 
+  # slp = calibration slope
+  
+  
   scN <- paste0("sc", i)
   print(scN)
   if(recalibrated == F){
@@ -75,8 +136,6 @@ get_summary <- function(i, recalibrated = F){
              "s_bri" =  "bri") %>%
       merge(brier_scores, by = c("pair_id", "iter")) %>%
       rename("bri" = "brier_score")
-    
-    saveRDS(df, paste0("./../visualize_results/results/results_", scN ,"_new.RData"))
   }
   
   if(recalibrated == T){
@@ -126,6 +185,22 @@ get_summary <- function(i, recalibrated = F){
 
 recalibrate_everything <- function(i, scN){
   
+  # input: 
+  # i - an integer between 1 and 2000 
+  # this integer represents the simulation iteration
+  #
+  # scN - a character specifying the simulation scenario 
+  # here N can take on values between 1 and 18 (e.g., sc3)
+  # 
+  # for a given iteration i in scenario N
+  # the function imports the raw predicted risks from the appropriate folder, 
+  # implements logistic re-calibration for each prediction model 
+  # and 
+  # 1. stores the re-calibrated predicted risks in a new file 
+  # 2. calculates and stores all empirical performance metrics 
+  #    based on the re-calibrated predicted risks in a new file
+  
+  
   #  import probabilities from simulation
   df <- 
     i %>% 
@@ -151,6 +226,22 @@ recalibrate_everything <- function(i, scN){
 }
 
 recalibrate_one_iteration <- function(dataframe){
+  
+  # input: data frame 
+  #
+  # it is necessary for this data frame to have columns: 
+  #
+  # pair_id - a unique indicator of the prediction model (integer between 1-30)
+  # pred  - the predicted risks for observations from one iteration
+  # class - the true class values for observations from one iteration
+  #
+  # The function turns pair_id into a factor 
+  # such that a re-calibration procedure can occur for each prediction model.
+  #
+  # It returns a dataframe identical to the dataframe that was input
+  # except in the output dataframe, pred houses the recalibrated predicted risks
+  # instead of the raw predicted risks
+  
   
   # group data frame by pair_id and re-calibrate
   dataframe %>% 
@@ -221,6 +312,12 @@ recalibrate_one_dataset <- function(probs, class){
 # ------------------- calibration plots ----------------------------------------
 
 reorder_and_rename <- function(dataframe){
+  
+  # this function takes a dataframe as input and re-orders and renames
+  # the factors correction and algorithm 
+  # such that the names are suitable for calibration plots
+  
+  
   dataframe %>% 
   mutate(
       algorithm  = factor(algorithm,
@@ -251,6 +348,11 @@ reorder_and_rename <- function(dataframe){
 }
 
 ready2plot <- function(dataframe){
+  
+  # this function takes a data frame as input and ensures that 
+  # all variables are in the correct form to generate calibration plots, 
+  # any NAs are dropped, as specified in Supplementary Material section B
+  
   dataframe %>% 
   drop_na() %>% 
   mutate(
@@ -260,6 +362,15 @@ ready2plot <- function(dataframe){
 }
 
 loess_regression<- function(dataframe){
+  
+  # input: dataframe 
+  # 
+  # it is necessary for this data frame to have columns:
+  # pred  - predicted risks for one data set 
+  # class - true observed class for for one data set
+  #
+  # this function conducts loess regression with class ~ pred for one data set
+  # and saves 200 coordinates of the resulting loess curve in a new file
   
   x <- c(seq(0, 1, length.out = 200))
   iter <- as.numeric(dataframe$iter[1])
@@ -287,6 +398,18 @@ loess_regression<- function(dataframe){
 }
 
 save_plot_coords <- function(i, scN, recalibrated = F){
+  
+  # input: 
+  #
+  # i - integer between 1 and 2000 indicating the iteration 
+  # scN - a indicator of the simulation scenario (e.g., "sc3")
+  # recalibrated - a boolean indicating if processing raw or recalibrated results
+  #
+  # for iteration i in scenario N  this function 
+  # imports the relevant raw or recalibrated predictions
+  # computes loess regression / saves plot coordinates for each prediction model 
+  # stores resulting coordinates for the iteration in a new file. 
+  
   
   if(recalibrated == T){
     df <- 
@@ -324,6 +447,19 @@ save_plot_coords <- function(i, scN, recalibrated = F){
 
 pre_plot <- function(df){
   
+  # input: a data frame 
+  # it is necessary for the data frame to have columns 
+  #
+  # iter - indicating the iteration 
+  # y - indicating the y coordinate for a given flexible calibration curve
+  # 
+  # this function prevents errors in the calibration_plot() function. 
+  # if there are too few valid coordinates for a given flexible calibration curve
+  # it cannot be represented in a ggplot 
+  #
+  # this function counts the number of coordinates for each flexible calibration curve
+  # and removes coordinates for curves with fewer than 4 coordinates l
+  
   # filter for appropriate values 
   df <- df %>% filter(y < 1 & y > 0) 
   
@@ -347,6 +483,24 @@ pre_plot <- function(df){
 }
 
 plot_from_coords <- function(df, hex = "#101011", restricted_range = F){
+  
+  # input: 
+  # 
+  # df - a dataframe
+  # it is necessary that this data frame be generated by merging all files
+  # in the plot_coords folder for a given scenario 
+  #
+  # hex - a hex code indicating the color of the calibration curves 
+  #
+  # restricted_range - a boolean specifying if the calibration plot 
+  # should have a restricted range on the x-axis. 
+  #
+  # restricted_range = F: the x-axis ranges from 0 to 1 
+  # restricted_range = T: the x-axis ranges from 0 to 0.25
+  #
+  # 
+  # This function generates the plot object of a calibration plot for a given scenario 
+  
   
   if(restricted_range == F){
     p <-
@@ -394,6 +548,16 @@ plot_from_coords <- function(df, hex = "#101011", restricted_range = F){
 
 calibration_plot <- function(i, recalibrated = F){
   
+  # input 
+  # 
+  # i - a single integer representing the simulation scenario 
+  # recalibrated - boolean representing if processing raw or re-calibrated results
+  #
+  # this function generates and saves a calibration plot, 
+  # with flexible calibration curves for all prediction models 
+  # and all simulation iterations for a given simulation scenario. 
+  
+  
   scN <- paste0("sc", i)
   
   if (recalibrated == F){
@@ -434,6 +598,10 @@ calibration_plot <- function(i, recalibrated = F){
 # ----------------performance metric plots -------------------------------------
 
 tidy_for_pm_plts <- function(dataframe){
+  
+  # this function takes a dataframe as input and tidies it such that the 
+  # the variables are in the appropriate form to generate violin plots
+  
   dataframe %>% 
     mutate(
       algorithm  = factor(algorithm,
@@ -466,6 +634,17 @@ tidy_for_pm_plts <- function(dataframe){
 }
 
 pm_plot <- function(dataframe, method, xmin, xmax){
+  
+  # input: 
+  # 
+  # dataframe - a data frame 
+  # method - the empirical performance metric for visualization 
+  # xmin - the minimum value for the range on the x-axis 
+  # xmax - the maximum value for the range on the x-axis 
+  #
+  # this function generates violin plots visualizing the results across 
+  # 2000 simulation iterations for a given empirical performance metric 
+  # for all 30 prediction models in a given scenario
   
   if(method == "auc"){
     title <- "Concordance Statistic:"
@@ -507,6 +686,11 @@ pm_plot <- function(dataframe, method, xmin, xmax){
 # ------------------- scenario plots -------------------------------------------
 
 reorder_and_rename2 <- function(dataframe){
+  
+  # this function takes a data frame as input 
+  # and tidies it such that the variables algorithm and correction 
+  # have the appropriate names for the plots displayed in Appendix A
+  
   dataframe %>% 
     mutate(
       algorithm  = factor(algorithm,
@@ -538,6 +722,13 @@ reorder_and_rename2 <- function(dataframe){
 
 all_summaries <- function(recalibrated = F){
   
+  # this function imports all the results (summaries) for all simulation scenarios 
+  # and merges them into one data frame 
+  #
+  # the result is a data frame which stores the median value of each empirical 
+  # performance metric, for all prediction models, in all simulation scenarios
+  
+  
   tutto <- data.frame()
   
   if(recalibrated == F){
@@ -566,6 +757,15 @@ all_summaries <- function(recalibrated = F){
 }
 
 scenario_graph <- function(dataframe, method){
+  
+  # this function produces the figures displayed in Appendix A 
+  # 
+  # input: 
+  # dataframe - must be the ouput from the function all_summaries()
+  # method - must specify the performance metric desired for visualization
+  #
+  # output: 
+  # figures displayed in Appendix A
   
   if(method == "auc_med"){
     title <- "Concordance Statistic"
@@ -634,7 +834,22 @@ scenario_graph <- function(dataframe, method){
       "SENN-LR", "SENN-SVM", "SENN-RF", "SENN-XG", "SENN-RB", "SENN-EE"))
 }
 
+# please note: the figures displayed in Appendix A have a slightly different 
+# y-axis label appearance.  The graph is identical, but y-axis labels were edited
+# in power point to improve readability. 
+
+
 #-------------------- error handling -------------------------------------------
+
+# create a data frame which functions as a key for the simulation scenario 
+#
+# rows: 18, one for each simulation scenario 
+# columns: 
+#
+# npred: number of predictors 
+# ef   : event fraction 
+# n    : the setting for sample size 
+# sc   : an indicator of the simulation scenario
 
 npred <- c(8,16)
 ef    <- c(0.5,0.2,0.02)
@@ -644,8 +859,13 @@ sets  <- expand.grid("ef" = ef, "n" = n, "npred" = npred)
 sim_sets <- sets %>% mutate(sc = c(1:18))
 sim_sets <- sim_sets[1:18,]
 
+#-------------------------------------------------------------------------------
+# error handling continued
 
 non_zeros <- function(x){
+  
+  # a function which counts all non-zero entries in a column
+  # and returns the total sum in a dataframe with a single value
   
   count <- sum(x!="0")
   return(as.data.frame(count))
