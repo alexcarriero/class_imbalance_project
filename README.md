@@ -120,7 +120,7 @@ To reproduce the entire project follow the procedure below:
 	
 	
 
-4.  Go to the folder  visualize_results and open the file App.Rmd.  Click "Run Document" to view a Shiny App displaying all results. 
+4.  Go to the folder  visualize_results and open the file app.Rmd.  Click "Run Document" to view a Shiny App displaying all results. 
 
 
 
