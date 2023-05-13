@@ -13,6 +13,9 @@ Should you have any questions, please feel free to contact me (Alex Carriero) th
 
 Email: alexjcarriero@gmail.com
 
+NOTE: this repository contains all information necessary to reproduce the simulation study.  If you would like a link to 
+      download this repository populated with the results (and processed results) from our simulation study, please contact me.
+
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
 This Repository Includes The Following: 
