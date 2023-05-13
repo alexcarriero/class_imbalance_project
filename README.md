@@ -40,8 +40,8 @@ This Repository Includes The Following:
 
 3.  results
 
-   In this folder, you will find all output from the simulation and code used to process the results.  
-   The folder contains a README with further details. 
+     In this folder, you will find all output from the simulation and code used to process the results.  
+     The folder contains a README with further details. 
    
    
 
