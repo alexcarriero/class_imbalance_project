@@ -27,7 +27,7 @@ This Repository Includes The Following:
 
      In this folder, you will find two sub-folders: own_device and send_to_hpc
      
-     	own_device:     contains all files necessary to run the simulation on a personal computer 
+     	own_device:    contains all files necessary to run the simulation on a personal computer 
      	send_to_hpc:   contains all files necessary to run the simulation on a high performance computer 
      
      README files are contained in each sub-folder for further orientation within each directory. 
@@ -35,7 +35,7 @@ This Repository Includes The Following:
      QUICK REFERENCES:  
      
      	- details regarding the data-generating mechanism are found in:  simulation_code > own_device > data-generating-mechanism > dgm.Rmd
-	- details regarding the output from the simulation study are found in:  simulation_code > own_device > sim_results > OUTPUT.txt
+     	- details regarding the output from the simulation study are found in:  simulation_code > own_device > sim_results > OUTPUT.txt
      
 
 3.  results
