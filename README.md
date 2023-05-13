@@ -1,4 +1,4 @@
-Class Imbalance Project:  
+**Class Imbalance Project:** 
 
 This repository houses all necessary information to re-create the simulation study presented in the paper: 
 The harms of imbalance corrections for calibration in machine learning: a simulation study. 
