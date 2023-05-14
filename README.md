@@ -13,7 +13,9 @@ Should you have any questions, please feel free to contact me (Alex Carriero) th
 
 Email: alexjcarriero@gmail.com
 
-NOTE: this repository does not contain all output from our simulation study (only the processed results that are necessary to generate our manuscript and shiny app are included). Instead, we demonstrate the file structure necessary to exactly replicate the simulation study by including all simulation output and processed results for one iteration from simulation scenario 1 (more details below).  If you would like a link to download this repository populated with all from output and processed results from our simulation study, please contact me (Alex Carriero).
+NOTE: this repository does not contain all output from our simulation study (only the processed results that are necessary to generate our manuscript and shiny app are included). Instead, we demonstrate the file structure necessary to exactly replicate the simulation study by including all simulation output and processed results for one iteration from simulation scenario 1 as well as full instructions for how these folders may be populated with simulation results (more details below).  If you would like a link to download this repository populated with all from output and processed results from our simulation study, please contact me (Alex Carriero).
+
+Thank you !
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
