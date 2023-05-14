@@ -16,7 +16,7 @@ Email: alexjcarriero@gmail.com
 NOTE: this repository does not contain all output from our simulation study (only the processed results that were necessary to generate our manuscript and shiny app are included). Instead, we demonstrate the file structure necessary to exactly replicate the simulation study by including all simulation output and processed results for one iteration from simulation scenario 1 as well as full instructions for how to populate this file structure with simulation results after replicating our simulation study (more details below).  If you would like a link to download this repository populated with all output and processed results from our simulation study, please contact me (Alex Carriero).
 
 
-## This Repository Includes The Following: 
+### This Repository Includes The Following: 
 
 1.  LICENSE 
 
@@ -60,7 +60,7 @@ NOTE: this repository does not contain all output from our simulation study (onl
    
  
     
-## To reproduce the entire project please follow the procedure below: 
+### To reproduce the entire project please follow the procedure below 
 
 1.  Go to simulation_code > own_device 
 
@@ -123,7 +123,7 @@ NOTE: this repository does not contain all output from our simulation study (onl
     
    
  
- ## Technical Requirements: 
+ ### Technical Requirements 
  
 The simulation was run on University Medical Center Utrecht's High Performance Computer and results were processed on a personal device.  Technical specifications for both of these devices, and
 details regarding R package versions are available in Supplementary Materials section A. 
@@ -132,7 +132,7 @@ Supplementary Materials can be found in this repository: manuscript > supplement
  
  
  
- ## Privacy / Ethics / Security:
+ ### Privacy / Ethics / Security
  
  
 Ethical Approval for the simulation study was granted by the Utrecht University Ethics committee and filed under number 22-1809.
