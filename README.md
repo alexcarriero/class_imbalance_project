@@ -7,7 +7,7 @@ In this project, we investigated the effect of imbalance corrections on the pred
 
 Please note, due to size constraints, this repository does not contain all output from our simulation, only the processed results necessary for the creation of our shiny app and project manuscript are present. Instead, we include complete simulation output (and processed results) for one iteration of simulation scenario one to demonstrate the file structure necessary to replicate the simulation study.  This is accompanied by full instructions for how to populate the repository with all simulation results after replicating our simulation study (more details below).
 
-To download this repository populated with all simulation output and processed results from our simulation study, please contact me (Alex Carriero) the owner and maintainer of this Github repository. 
+To download this repository populated with all simulation output and processed results, please contact me (Alex Carriero) the owner and maintainer of this Github repository. 
 
 Email: a.j.carriero@students.uu.nl
 
@@ -88,10 +88,9 @@ Email: a.j.carriero@students.uu.nl
  
  ## Technical Requirements 
  
-The simulation was run on University Medical Center Utrecht's High Performance Computer and results were processed on a personal device.  Technical specifications for both of these devices, are available in [`Supplementary Materials`](./manuscript/supplementary_mat.pdf) section A. 
+The simulation was run on University Medical Center Utrecht's High Performance Computer and results were processed on a personal device.  Technical specifications for both of these devices, are available in [`Supplementary Materials`](./manuscript/supplementary_mat.pdf) section A. Here you will also find an important note regarding the reproducibility of our study. 
 
-All code for the simulation study and processing of results was conducted using the statistical programming language `R`. Session Info for the High Performance Computer used to run the simulation and the personal device used to process the results is available in [`Supplementary Materials`](./manuscript/supplementary_mat.pdf) section A. 
- 
+All code for the simulation study and processing of results was run using the statistical software `R`. R Session Info for both the High Performance Computer used to run the simulation and the personal device used to process the results is available in [`Supplementary Materials`](./manuscript/supplementary_mat.pdf) section A.  All dependencies, and package versions are included in the Session Info. 
  
  
  ## Privacy / Ethics / Security
