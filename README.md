@@ -126,7 +126,7 @@ NOTE: this repository does not contain all output from our simulation study (onl
  ### Technical Requirements 
  
 The simulation was run on University Medical Center Utrecht's High Performance Computer and results were processed on a personal device.  Technical specifications for both of these devices, and
-details regarding R package versions are available in Supplementary Materials section A. 
+details regarding R package versions are available in Supplementary Materials section A.  
 
 Supplementary Materials can be found in this repository: manuscript > supplementary_mat.pdf
  
@@ -137,7 +137,7 @@ Supplementary Materials can be found in this repository: manuscript > supplement
  
 Ethical Approval for the simulation study was granted by the Utrecht University Ethics committee and filed under number 22-1809.
 
-All data are simulated, and not based on any empirical data.  Consequently, there are no privacy or security restrictions. 
+All data are simulated, and not based on any empirical data.  Consequently, there are no privacy or security restrictions. This repository is accessible to the public on GitHub under the license type of `GNU General Public License v3.0`.
 
 
  ## Contact 
