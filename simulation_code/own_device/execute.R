@@ -4,7 +4,7 @@ library(MASS)
 library(caret)
 library(pROC)
 
-# setwd("/Users/alexcarriero/Desktop/thesis github/masters_thesis/simulation_series/")
+# setwd("PLEASE SET YOUR WORKING DIRECTORY")
 
 # Manual Override Package Installation
 # ROSE 

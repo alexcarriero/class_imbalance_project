@@ -1,6 +1,6 @@
 
 This file contains all code used to re-generate the results of the simulation study on a personal device. Please follow the steps below to run the simulation 
-on a personal device, we recommend only running the simulation on a personal device for a few iteration of scenarios which are not overly computationally intensive 
+on a personal device, we recommend only running the simulation on a personal device for a few iterations of scenarios which are not overly computationally intensive 
 (Scenarios: 1,2,10,11) to test the code before sending to a high performance computer. 
 
 Please note, our simulation study was conducted using high performance computing and we do not recommend running the full simulation on a personal device. 
@@ -84,7 +84,7 @@ TO RUN ON PERSONAL DEVICE:
 
 1. Run the Script execute.R, recall this requires manual specification of the simulation scenario and the desired iterations. 
    Also, it requires manual specification of a working directory (the path where execute.R lives on your computer). 
-   Ensure all 2000 iterations are complete and produced the desired appropriate output (see OUTPUT.txt) in sim_results. 
+   Ensure all 2000 iterations are complete and that the output is stored appropriately (see OUTPUT.txt) in sim_results. 
 2. Copy and paste the folder sim_results to the directory: results > simulation_results > raw_results > HERE 
 3. Rename the file scX, where X is the integer representing the scenario number. 
 4. Repeat for all 18 simulation scenarios. 
