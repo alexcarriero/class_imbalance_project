@@ -66,9 +66,9 @@ NOTE: this repository does not contain all output from our simulation study (onl
 
      a. Open the README for details regarding running the simulation on a personal computer and a detailed overview of the contents of the folder.  If run on a personal device (not recommended) after step 1 please skip to step 3.
      
-	 NOTE:
-	 - High performance computing is highly recommended, as the simulation is incredibly computationally intensive. 
-	 - The entire simulation run on a personal device would take approximately 1 calendar year to run. 
+     NOTE:
+     - High performance computing is highly recommended, as the simulation is incredibly computationally intensive. 
+     - The entire simulation run on a personal device would take approximately 1 calendar year to run. 
         
      b. Our simulation requires the file "set.RData".  To regenerate this file, run all code in the R Markdown file: 
       	 simulation_code > own_device > data-generating-mechanism > dgm.Rmd
@@ -85,13 +85,12 @@ NOTE: this repository does not contain all output from our simulation study (onl
     a. Open the README  for instructions regarding how to run the simulation on a high performance computer and how to store the results.
      
      NOTE:
-	- This requires manual specification of scenario number and iterations. 
-	- The output of these simulation scenarios ranges heavily (from 947.9 MB to 33.71GB)
-	- Depending on the HPC storage available to you, it is very likely that some simulation scenarios will need to be conducted in batches 
-		i.e., by running iterations 1-200, 201-400 .... 1801-2000 in independent batches, with results downloaded and cleared from the HPC before
-		      subsequent batches are run. 
+     - This requires manual specification of scenario number and iterations. 
+     - The output of these simulation scenarios ranges heavily (from 947.9 MB to 33.71GB)
+     - Depending on the HPC storage available to you, it is very likely that some simulation scenarios will need to be conducted in batches 
+       i.e., by running iterations 1-200, 201-400 .... 1801-2000 in independent batches, with results downloaded and cleared from the HPC before
+	     subsequent batches are run. 
 		          
-        
      b. Run the simulation for all 18 simulation scenarios on a High Performance Computer and store results appropriately. 
 
      
