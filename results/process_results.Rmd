@@ -8,7 +8,7 @@ Please find all code used to process the simulation results below.
 # 1. Set up.
 ```{r, warning = F, message = F}
 
-# load libraries
+# DEPENDENCIES -- please install these R packages if not present on your device
 library(tidyverse)
 library(patchwork)
 library(pROC)

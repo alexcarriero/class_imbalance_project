@@ -24,13 +24,13 @@ In this folder you will find all files necessary to re-generate our manuscript a
 
 4. tables 
 
-  A folder containing the neccessary files to generate all tables included in both the manuscript and supplementary materials. 
+  A folder containing the necessary files to generate all tables included in both the manuscript and supplementary materials. 
   
   - all_tables.Rmd : includes the code used to generate all tables.
   - all_table.tex  : includes the LaTeX file resulting from knitting the file all_tables.Rmd 
   
   To produce the tables seen in the manuscript and supplementary materials, the LaTeX code for each table in the file all_tables.tex
-  was copy and pasted into the appropriate file (sim-manuscript.Rmd or supplemtary_mat.Rmd) and table captions are added once
+  was copy and pasted into the appropriate file (sim-manuscript.Rmd or supplemtary_mat.Rmd) and table captions were added once
   pasted into the appropriate document. 
   
 

@@ -3,7 +3,7 @@
 Results from the Simulation Study. 
 
 
-Please find an outline of the contents of this folder below: 
+Please find an outline of the contents of this folder introduced below: 
 
  
 1. simulation_results:
@@ -28,7 +28,8 @@ Please find an outline of the contents of this folder below:
                           for each simulation iteration.
       
        rep_check        : one file per iteration, storing test values from simulated data so reproducibility may be assessed. 
-        
+    
+       NOTE: the content of each of these four folders is detailed in file OUTPUT.txt: simulation_code > own_device > sim_results < OUTPUT.txt.    
         
 
    simulation_results > recalibrated_results
@@ -78,6 +79,8 @@ Please find an outline of the contents of this folder below:
 3. process_results.Rmd 
 
    Instructions and all code used to process the simulation results are included in this file. 
+
+   TO REGENERATE THE RESULTS -- SEE INSTRUCTIONS IN THIS R MARKDOWN FILE.
 
 
 
