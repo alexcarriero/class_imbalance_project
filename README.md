@@ -1,6 +1,6 @@
 # Class Imbalance Project: 
 
-This repository houses all necessary information to replicate the simulation study presented in our paper: 
+This repository houses all necessary information to replicate the simulation study presented in our paper: <br>
 [`The harms of imbalance corrections for calibration in machine learning: a simulation study`](./manuscript/sim-manuscript/sim-manuscript.pdf). 
 
 In this project, we investigated the effect of imbalance corrections on the predictive performance of machine learning models developed for dichotomous risk prediction. 
