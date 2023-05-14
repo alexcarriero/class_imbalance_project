@@ -13,8 +13,7 @@ Should you have any questions, please feel free to contact me (Alex Carriero) th
 
 Email: alexjcarriero@gmail.com
 
-NOTE: this repository does not contain the raw simulation results.  Rather, this repository demonstrates the file structure necessary to reproduce the simulation study,  one iteration from scenario 1 is presented as a placeholder to demonstrate this file structure.  
-If you would like a link to download this repository populated with the results (and processed results) from our simulation study, please contact me.
+NOTE: this repository does not contain the raw simulation results.  Rather, in this repository we demonstrate the file structure necessary to reproduce the simulation study by including all raw (and processed) results for one iteration from scenario 1 as a placeholder to demonstrate this file structure.  If you would like a link to download this repository populated with the results (and processed results) from our simulation study, please contact me.
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
