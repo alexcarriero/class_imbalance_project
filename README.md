@@ -129,7 +129,7 @@ To reproduce the entire project please follow the procedure below:
  Technical Requirements: 
  
 The simulation was run on University Medical Center Utrecht's High Performance Computer and results were processed on a personal device.  Technical specifications for both of these devices, and
-details regarding R package versions is available in Supplementary Materials section A. 
+details regarding R package versions are available in Supplementary Materials section A. 
 
 Supplementary Materials can be found in this repository: manuscript > supplementary_mat.pdf
  
