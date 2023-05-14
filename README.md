@@ -15,7 +15,6 @@ Email: alexjcarriero@gmail.com
 
 NOTE: this repository does not contain all output from our simulation study (only the processed results that were necessary to generate our manuscript and shiny app are included). Instead, we demonstrate the file structure necessary to exactly replicate the simulation study by including all simulation output and processed results for one iteration from simulation scenario 1 as well as full instructions for how to populate this file structure with simulation results after replicating our simulation study (more details below).  If you would like a link to download this repository populated with all output and processed results from our simulation study, please contact me (Alex Carriero).
 
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
 ## This Repository Includes The Following: 
 
@@ -59,7 +58,7 @@ NOTE: this repository does not contain all output from our simulation study (onl
     In this folder, you will find all files necessary to generate our Shiny App. 
     This folder contains a README with further details. 
    
----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+ 
     
 ## To reproduce the entire project please follow the procedure below: 
 
@@ -122,9 +121,7 @@ NOTE: this repository does not contain all output from our simulation study (onl
 5.  Finally go to the folder manuscript and open the README for details regarding the manuscript and 
     supplementary materials for this project. 
     
-    
- 
- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
+   
  
  ## Technical Requirements: 
  
@@ -134,7 +131,6 @@ details regarding R package versions are available in Supplementary Materials se
 Supplementary Materials can be found in this repository: manuscript > supplementary_mat.pdf
  
  
- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  
  ## Privacy / Ethics / Security:
  
@@ -143,10 +139,7 @@ Ethical Approval for the simulation study was granted by the Utrecht University 
 
 All data are simulated, and not based on any empirical data.  Consequently, there are no privacy or security restrictions. 
 
- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- 
- 
- THE END 
+END
  
      
      
