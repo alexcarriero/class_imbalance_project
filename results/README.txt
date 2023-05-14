@@ -20,14 +20,14 @@ Please find an outline of the contents of this folder introduced below:
     - contains 18 sub-directories, one for each simulation scenario
     - each sub-directories has four folders: 
     
-       iteration_info   : one file per iteration, storing warnings/errors for each simulation iteration.
+       iteration_info   : one file per iteration (2000 total), storing warnings/errors for each simulation iteration. 
       
-       per_iter_results : one file per iteration, storing empirical performance metrics for each simulation iteration. 
+       per_iter_results : one file per iteration (2000 total), storing empirical performance metrics for each simulation iteration. 
       
-       predictions      : one file per iteration, storing the predicted probabilities and true class of the validation data 
+       predictions      : one file per iteration (2000 total), storing the predicted probabilities and true class of the validation data 
                           for each simulation iteration.
       
-       rep_check        : one file per iteration, storing test values from simulated data so reproducibility may be assessed. 
+       rep_check        : one file per iteration (2000 total), storing test values from simulated data so reproducibility may be assessed. 
     
        NOTE: the content of each of these four folders is detailed in file OUTPUT.txt: simulation_code > own_device > sim_results < OUTPUT.txt.    
         
@@ -39,12 +39,12 @@ Please find an outline of the contents of this folder introduced below:
       
        per_iter_results : once results are processed it will store
         
-                         one file per iteration, storing empirical performance metrics for each simulation iteration. 
+                         one file per iteration (2000 total), storing empirical performance metrics for each simulation iteration. 
                          (after re-calibration)
       
        predictions      : once results are processed it will store
         
-                         one file per iteration, storing the predicted probabilities and true class of the validation data 
+                         one file per iteration (2000 total), storing the predicted probabilities and true class of the validation data 
                          for each simulation iteration (after re-calibration)
                      
                      
