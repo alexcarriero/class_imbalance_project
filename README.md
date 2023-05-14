@@ -1,4 +1,4 @@
-**Class Imbalance Project:** 
+# Class Imbalance Project: 
 
 This repository houses all necessary information to replicate the simulation study presented in our paper: 
 The harms of imbalance corrections for calibration in machine learning: a simulation study. 
@@ -17,7 +17,7 @@ NOTE: this repository does not contain all output from our simulation study (onl
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
-This Repository Includes The Following: 
+## This Repository Includes The Following: 
 
 1.  LICENSE 
 
@@ -61,7 +61,7 @@ This Repository Includes The Following:
    
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
     
-To reproduce the entire project please follow the procedure below: 
+## To reproduce the entire project please follow the procedure below: 
 
 1.  Go to simulation_code > own_device 
 
@@ -126,7 +126,7 @@ To reproduce the entire project please follow the procedure below:
  
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
  
- Technical Requirements: 
+ ## Technical Requirements: 
  
 The simulation was run on University Medical Center Utrecht's High Performance Computer and results were processed on a personal device.  Technical specifications for both of these devices, and
 details regarding R package versions are available in Supplementary Materials section A. 
@@ -136,7 +136,7 @@ Supplementary Materials can be found in this repository: manuscript > supplement
  
  ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  
- Privacy / Ethics / Security:
+ ## Privacy / Ethics / Security:
  
  
 Ethical Approval for the simulation study was granted by the Utrecht University Ethics committee and filed under number 22-1809.
