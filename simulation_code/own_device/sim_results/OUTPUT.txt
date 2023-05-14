@@ -6,7 +6,7 @@ iteration_info, per_iter_results, predictions, and rep_checks.
 
 
 All four files bare the same name, for scenario X iteration Y, the four files are named scX_Y.rds.  
-Thus after iteration Y of the simulation scenario X the result is, 
+Thus after iteration Y of simulation scenario X the result is, 
 
 
 sim_results > iteration_info   > scX_Y.rds
