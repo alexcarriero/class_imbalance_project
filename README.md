@@ -1,7 +1,7 @@
 # Class Imbalance Project: 
 
 This repository houses all necessary information to replicate the simulation study presented in the paper: <br>
-[`The harms of imbalance corrections for calibration in machine learning: a simulation study`](./manuscript/sim-manuscript/sim-manuscript.pdf). 
+[`The harms of class imbalance corrections for calibration in machine learning: a simulation study`](./manuscript/sim-manuscript/sim-manuscript.pdf). 
 
 In this project, we investigated the effect of imbalance corrections on the predictive performance of machine learning models developed for dichotomous risk prediction. Here in this repository, you will find all code used in our project and full instructions for how to replicate the simulation study, project manuscript and associated shiny app.  
 
