@@ -65,8 +65,7 @@ To reproduce the entire project please follow the procedure below:
 
 1.  Go to simulation_code > own_device 
 
-     a. Open the README for details regarding running the simulation on a personal computer and a detailed overview of the contents of the folder.   
-          If run on a personal device (not recommended) after step 1 please skip to step 3.
+     a. Open the README for details regarding running the simulation on a personal computer and a detailed overview of the contents of the folder.  If run on a personal device (not recommended) after step 1 please skip to step 3.
 	  
 	  NOTE:
 	 - High performance computing is highly recommended, as the simulation is incredibly computationally intensive. 
