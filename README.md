@@ -73,11 +73,11 @@ Email: a.j.carriero@students.uu.nl
 	
 	
 
-4.  Go to the folder  visualize_results and open the R Markdown file app.Rmd.  Click "Run Document" to view a Shiny App displaying all results. 
+4.  Go to the folder  visualize_results and open the R Markdown file [`app.Rmd`](./visualize_results/app.Rmd).  Click "Run Document" to view a Shiny App displaying all results. 
 
 
 
-5.  Finally go to the folder manuscript and open the README for details regarding the manuscript and 
+5.  Finally go to the folder manuscript and open the [`README`](./manuscript/README.txt) for details regarding the manuscript and 
     supplementary materials for this project. 
     
    
