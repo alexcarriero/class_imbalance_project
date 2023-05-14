@@ -65,7 +65,7 @@ Email: a.j.carriero@students.uu.nl
 	   - we recommend running Steps 4 and 6 on a high performance computer for the simulation scenarios mentioned above
 		      
 	
-	b.  To generate the calibration plots on a high performance computer go to results > hpc_calibration_plots and open the [`README`](./results/hpc_calibration_plots/README.txt)
+	b.  To generate the calibration plots on a high performance computer go to [`results > hpc_calibration_plots`](./results/hpc_calibration_plots) and open the [`README`](./results/hpc_calibration_plots/README.txt)
             for full instructions. 
               
               
