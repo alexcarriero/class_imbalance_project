@@ -34,10 +34,10 @@ Email: a.j.carriero@students.uu.nl
      - High performance computing is highly recommended, as the simulation is incredibly computationally intensive. 
      - The entire simulation run on a personal device would take approximately 1 calendar year to run. 
         
-     b. Our simulation requires the file "set.RData".  To regenerate this file, run all code in the R Markdown file: 
+     b. Our simulation requires the file `set.RData`.  To regenerate this file, run all code in the R Markdown file: 
       	 [`dgm.Rmd`](./simulation_code/own_device/data-generating-mechanism/dgm.Rmd)
 	 
-     c. Our simulation requires the file "seedfarm.RData".  To regenerate this file, run all code in the R script: 
+     c. Our simulation requires the file `seedfarm.RData`.  To regenerate this file, run all code in the R script: 
      	[`generate_seeds.R`](./simulation_code/own_device/seeds/generate_seeds.R)
      
      d. Paste the files from (b) and (c) to replace their equivalent files in the folder simulation_code > send_to_hpc
