@@ -21,17 +21,16 @@ NOTE: this repository does not contain all output from our simulation study (onl
 | File / Folder                              | Contents                                                         |
 | :----------------------------------------- | :--------------------------------------------------------------- |
 | [`LICENSE`](./LICENSE)                     | The contents of this repository are made publicly available unter a `GNU General Public License v3.0`|
-| [`simulation_code`](./simulation_code)     | In this folder, you will find two sub-folders: own_device and send_to_hpc  \\ \\
+| [`simulation_code`](./simulation_code)     | In this folder, you will find two sub-folders: own_device and send_to_hpc \\ \\
      	
-	own_device:    contains all files necessary to run the simulation on a personal computer\ 
-     	send_to_hpc:   contains all files necessary to run the simulation on a high performance computer\ 
-	\     
+	own_device:    contains all files necessary to run the simulation on a personal computer
+     	send_to_hpc:   contains all files necessary to run the simulation on a high performance computer
+	
         README files are contained in each sub-folder for further orientation within each directory. 
 	
 	Hightlights:  
      	- details regarding the data-generating mechanism are found in:  simulation_code > own_device > data-generating-mechanism > dgm.Rmd
      	- details regarding the output from the simulation study are found in:  simulation_code > own_device > sim_results > OUTPUT.txt |
-	
 | [`results`](./results)            |      This folder stores all output from the simulation and code used to process the results.  The folder contains a README with further details. |
 | [`manuscript`](./manuscript)     |  In this folder, you will find all necessary files to generate both our manuscript and supplementary materials. This folder contains a README file with further details. |           
 | [`visualize_results`](./visualize_results)               | In this folder, you will find all files necessary to generate our Shiny App. This folder contains a README with further details. |
