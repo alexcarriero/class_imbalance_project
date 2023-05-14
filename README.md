@@ -48,7 +48,7 @@ Email: a.j.carriero@students.uu.nl
     a. Open the [`README`](./simulation_code/send_to_hpc/README.txt) for instructions regarding how to run the simulation on a high performance computer and how to store the results. Please note: 
   
      - This requires manual specification of the simulation scenario and desired iterations. 
-     - The output of from the simulation scenarios ranges heavily (from 947.9 MB to 33.71GB)
+     - The output from the simulation scenarios ranges heavily (from 947.9 MB to 33.71GB)
      - Depending on the HPC storage available to you, it is very likely that some simulation scenarios will need to be conducted in batches 
        i.e., by running iterations 1-200, 201-400 .... 1801-2000 in independent batches, with results downloaded and cleared from the HPC before
 	     subsequent batches are run. 
