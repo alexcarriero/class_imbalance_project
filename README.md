@@ -80,7 +80,8 @@ Email: a.j.carriero@students.uu.nl
 
 
 5.  Finally, go to [`manuscript`](./manuscript).  In this step, we generate all figures, tables, and supplementary materials as well as a manuscript in the style of the journal Statistics in Medicine. 
-	a.  Open the [`README`](./manuscript/README.txt) for and follow the procedure outlined. 
+
+	a.  Open the [`README`](./manuscript/README.txt) for details. 
     
    
    
