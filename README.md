@@ -27,7 +27,7 @@ Email: a.j.carriero@students.uu.nl
     
 ## To reproduce the entire project please follow the procedure below:
 
-1.  Go to [`simulation_code > own_device`](./simulation_code/own_device).
+1.  Go to [`simulation_code > own_device`](./simulation_code/own_device). In this step, we generate all files necessary for the simulation study. 
 
      a. Open the [`README`](./simulation_code/own_device/README.txt) for details regarding running the simulation on a personal computer and a detailed overview of the contents of the folder.  If run on a personal device (not recommended) after step 1 please skip to step 3. Please note: 
    
@@ -43,7 +43,7 @@ Email: a.j.carriero@students.uu.nl
      d. Paste the files from (b) and (c) to replace their equivalent files in the folder simulation_code > send_to_hpc
   
      
-2.  Go to [`simulation_code > send_to_hpc`](./simulation_code/send_to_hpc).
+2.  Go to [`simulation_code > send_to_hpc`](./simulation_code/send_to_hpc). In this step, we conduct the full simulation study using a High Performance Computer. 
 
     a. Open the [`README`](./simulation_code/send_to_hpc/README.txt) for instructions regarding how to run the simulation on a high performance computer and how to store the results. Please note: 
   
@@ -57,7 +57,7 @@ Email: a.j.carriero@students.uu.nl
 
      
      
-3.  Go to [`results`](./results) 
+3.  Go to [`results`](./results). In this step, all simulation results are processed and ready for the generation of the project manuscript and Shiny App. 
 
  	a. Open [`process_results.Rmd`](./results/process_results.Rmd) and follow the procedure outlined to process all results. Please note: 
 
@@ -73,12 +73,14 @@ Email: a.j.carriero@students.uu.nl
 	
 	
 
-4.  Go to [`visualize_results`](./visualize_results) and open the R Markdown file [`app.Rmd`](./visualize_results/app.Rmd).  Click "Run Document" to view a Shiny App displaying all results. 
+4.  Go to [`visualize_results`](./visualize_results). In this step, we generate our Shiny App and view the results in an interactive manner. 
+
+	a. Open the R Markdown file [`app.Rmd`](./visualize_results/app.Rmd).  Click "Run Document" to view a Shiny App displaying all results. 
 
 
 
-5.  Finally go to [`manuscript`](./manuscript) and open the [`README`](./manuscript/README.txt) for details regarding the manuscript and 
-    supplementary materials for this project. 
+5.  Finally, go to [`manuscript`](./manuscript).  In this step, we generate all figures, tables, and supplementary materials as well as a manuscript in the style of the journal Statistics in Medicine. 
+	a.  Open the [`README`](./manuscript/README.txt) for and follow the procedure outlined. 
     
    
    
