@@ -69,7 +69,7 @@ Email: a.j.carriero@students.uu.nl
             for full instructions. 
               
               
-	c. Ensure all steps in [`process_results.Rmd`](./results/process_results.Rmd) are complete. 
+	c. Ensure all steps in the file [`process_results.Rmd`](./results/process_results.Rmd) are complete. 
 	
 	
 
