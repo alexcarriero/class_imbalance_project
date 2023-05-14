@@ -1,19 +1,19 @@
 **Class Imbalance Project:** 
 
-This repository houses all necessary information to recreate the simulation study presented in our paper: 
+This repository houses all necessary information to replicate the simulation study presented in our paper: 
 The harms of imbalance corrections for calibration in machine learning: a simulation study. 
 
 In this project, we investigated the effect of imbalance corrections on the predictive performance of machine learning models developed for dichotomous risk prediction. 
 We considered 18 data-generating scenarios, each with 2000 iterations.  For each iteration we compared 30 prediction models.  Each prediction model was
 developed using a unique combination of a class imbalance correction (used to pre-process data) and a machine learning algorithm (used to train the prediction model). 
 
-Please consult the project manuscript for details, found here: manuscript > sim-manuscript > sim-manuscript.pdf
+Please consult the project manuscript for details, found here: manuscript > sim-manuscript > sim-manuscript.pdf.
 
 Should you have any questions, please feel free to contact me (Alex Carriero) the owner of this GitHub repository. 
 
 Email: alexjcarriero@gmail.com
 
-NOTE: this repository does not contain the raw simulation results.  Rather, in this repository we demonstrate the file structure necessary to reproduce the simulation study by including all raw (and processed) results for one iteration from scenario 1 as a placeholder to demonstrate this file structure.  If you would like a link to download this repository populated with the results (and processed results) from our simulation study, please contact me.
+NOTE: this repository does not contain all output from our simulation study (only the processed results that are necessary to generate our manuscript and shiny app are included). In this repository we demonstrate the file structure necessary to exactly replicate the simulation study by including all simulation output and processed results for one iteration from simulation scenario 1 (more details below).  If you would like a link to download this repository populated with all from output and processed results from our simulation study, please contact me (Alex Carriero).
 
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
 
