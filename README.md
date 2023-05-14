@@ -63,8 +63,6 @@ This Repository Includes The Following:
     
 To reproduce the entire project please follow the procedure below: 
 
-     PREFACE :  read the manuscript  (manuscript > sim-manuscript > sim-manuscript.pdf) for a detailed presentation of the simulation study
-
 1.  Go to simulation_code > own_device 
 
      a. Open the README for details regarding running the simulation on a personal computer and a detailed overview of the contents of the folder.   
