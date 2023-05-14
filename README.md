@@ -63,7 +63,7 @@ This Repository Includes The Following:
     
 To reproduce the entire project please follow the procedure below: 
 
- PREFACE :  read the manuscript  (manuscript > sim-manuscript > sim-manuscript.pdf) for a detailed presentation of the simulation study
+ 	PREFACE :  read the manuscript  (manuscript > sim-manuscript > sim-manuscript.pdf) for a detailed presentation of the simulation study
 
 1.  Go to simulation_code > own_device 
 
