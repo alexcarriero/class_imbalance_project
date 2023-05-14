@@ -101,7 +101,7 @@ All data are simulated, and not based on any empirical data.  Consequently, ther
 
  ## Contact 
  
- The maintenance and public accessibility of the project repository are managed by Alex Carriero. If you have any questions please feel free to contact me via email: a.j.carriero@students.uu.nl .
+ The maintenance and public accessibility of this repository are managed by Alex Carriero. If you have any questions please feel free to contact me via email: a.j.carriero@students.uu.nl .
      
      
      
