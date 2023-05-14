@@ -63,15 +63,14 @@ This Repository Includes The Following:
     
 To reproduce the entire project please follow the procedure below: 
 
- 	PREFACE :  read the manuscript  (manuscript > sim-manuscript > sim-manuscript.pdf) for a detailed presentation of the simulation study
+     PREFACE :  read the manuscript  (manuscript > sim-manuscript > sim-manuscript.pdf) for a detailed presentation of the simulation study
 
 1.  Go to simulation_code > own_device 
 
      a. Open the README for details regarding running the simulation on a personal computer and a detailed overview of the contents of the folder.   
           If run on a personal device (not recommended) after step 1 please skip to step 3.
-     
-     	 NOTE: 
-	 	
+
+        NOTE:  	
 	 - High performance computing is highly recommended, as the simulation is incredibly computationally intensive. 
 	 - The entire simulation run on a personal device would take approximately 1 calendar year to run. 
         
@@ -89,8 +88,7 @@ To reproduce the entire project please follow the procedure below:
 
     a. Open the README  for instructions regarding how to run the simulation on a high performance computer and how to store the results.  
     
-        NOTE: 
-        	
+        NOTE:
 	- This requires manual specification of scenario number and iterations. 
 	- The output of these simulation scenarios ranges heavily (from 947.9 MB to 33.71GB)
 	- Depending on the HPC storage available to you, it is very likely that some simulation scenarios will need to be conducted in batches 
@@ -106,11 +104,9 @@ To reproduce the entire project please follow the procedure below:
 
  	a. Open process_results.Rmd and follow the procedure outlined to process all results. 
 	
-	   NOTE: 
-	   
+	   NOTE:
 	   - generating calibration plots on a personal device is computationally intensive and can take up to a week for scenarios
-	   	      3, 6, 9, 12, 15, and 18
-		  
+	   	      3, 6, 9, 12, 15, and 18 
 	   - we recommend running Steps 4 and 6 on a high performance computer for the simulation scenarios mentioned above
 		      
 	
