@@ -60,7 +60,7 @@ NOTE: this repository does not contain all output from our simulation study (onl
    
  
     
-## To reproduce the entire project please follow the procedure below 
+## To reproduce the entire project please follow the procedure below:
 
 1.  Go to simulation_code > own_device 
 
