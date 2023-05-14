@@ -72,8 +72,8 @@ To reproduce the entire project please follow the procedure below:
      
      	 NOTE: 
 	 	
-	 	- High performance computing is highly recommended, as the simulation is incredibly computationally intensive. 
-		- The entire simulation run on a personal device would take approximately 1 calendar year to run. 
+	 - High performance computing is highly recommended, as the simulation is incredibly computationally intensive. 
+	 - The entire simulation run on a personal device would take approximately 1 calendar year to run. 
         
      b. Our simulation requires the file "set.RData".  To regenerate this file, run all code in the file: 
       	 simulation_code > own_device > data-generating-mechanism > dgm.Rmd
@@ -91,11 +91,11 @@ To reproduce the entire project please follow the procedure below:
     
         NOTE: 
         	
-		- This requires manual specification of scenario number and iterations. 
-		- The output of these simulation scenarios ranges heavily (from 947.9 MB to 33.71GB)
-		- Depending on the HPC storage available to you, it is very likely that some simulation scenarios will need to be conducted in batches 
-		   i.e., by running iterations 1-200, 201-400 .... 1801-2000 in independent batches, with results downloaded and cleared from the HPC before
-		          subsequent batches are run. 
+	- This requires manual specification of scenario number and iterations. 
+	- The output of these simulation scenarios ranges heavily (from 947.9 MB to 33.71GB)
+	- Depending on the HPC storage available to you, it is very likely that some simulation scenarios will need to be conducted in batches 
+		i.e., by running iterations 1-200, 201-400 .... 1801-2000 in independent batches, with results downloaded and cleared from the HPC before
+		      subsequent batches are run. 
 		          
         
      b. Run the simulation for all 18 simulation scenarios on a High Performance Computer and store results appropriately. 
@@ -108,10 +108,10 @@ To reproduce the entire project please follow the procedure below:
 	
 	   NOTE: 
 	   
-	   	- generating calibration plots on a personal device is computationally intensive and can take up to a week for scenarios
+	   - generating calibration plots on a personal device is computationally intensive and can take up to a week for scenarios
 	   	      3, 6, 9, 12, 15, and 18
 		  
-		- we recommend running Steps 4 and 6 on a high performance computer for the simulation scenarios mentioned above
+	   - we recommend running Steps 4 and 6 on a high performance computer for the simulation scenarios mentioned above
 		      
 	
 	b.  To generate the calibration plots on a high performance computer go to results > hpc_calibration_plots and open the README 
