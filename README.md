@@ -1,19 +1,13 @@
 # Class Imbalance Project: 
 
-This repository houses all necessary information to replicate the simulation study presented in our paper: <br>
+This repository houses all necessary information to replicate the simulation study presented in the paper: <br>
 [`The harms of imbalance corrections for calibration in machine learning: a simulation study`](./manuscript/sim-manuscript/sim-manuscript.pdf). 
 
-In this project, we investigated the effect of imbalance corrections on the predictive performance of machine learning models developed for dichotomous risk prediction. 
-We considered 18 data-generating scenarios, each with 2000 iterations.  For each iteration we compared the predictive performance of 30 prediction models.  Each prediction model was
-developed using a unique combination of a class imbalance correction (used to pre-process data) and a machine learning algorithm (used to train the prediction model). 
+In this project, we investigated the effect of imbalance corrections on the predictive performance of machine learning models developed for dichotomous risk prediction. In this repository you will find all simumlation code used and full instructions for how to replicate our simulation study.  Please note, this repository does not contain all output from our simulation, only the processed results necessary for the creation of our [`Shiny App`](https://alex-carriero.shinyapps.io/class_imbalance/) and [`manuscript`](./manuscript/sim-manuscript/sim-manuscript.pdf) are present. Instead, we demonstrate the file structure necessary to exactly replicate the simulation study by including complete simulation output and processed results for one iteration from simulation scenario one.  This is accompanied by full instructions for how to populate this file structure with simulation results after replicating our simulation study (more details below).
 
-Please consult the project manuscript for details, found here: manuscript > sim-manuscript > sim-manuscript.pdf.
-
-Thank you for taking an interest in this project, should you have any questions, please feel free to contact me (Alex Carriero) the owner of this GitHub repository. 
+If you would like a link to download this repository populated with all output and processed results from our simulation study, please contact me (Alex Carriero) the owner of this Github repository. 
 
 Email: a.j.carriero@students.uu.nl
-
-NOTE: this repository does not contain all output from our simulation study (only the processed results that were necessary to generate our manuscript and shiny app are included). Instead, we demonstrate the file structure necessary to exactly replicate the simulation study by including all simulation output and processed results for one iteration from simulation scenario 1 as well as full instructions for how to populate this file structure with simulation results after replicating our simulation study (more details below).  If you would like a link to download this repository populated with all output and processed results from our simulation study, please contact me (Alex Carriero).
 
 
 ## This Repository Includes The Following: 
