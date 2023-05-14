@@ -3,7 +3,7 @@
 This repository houses all necessary information to recreate the simulation study presented in our paper: 
 The harms of imbalance corrections for calibration in machine learning: a simulation study. 
 
-In this project, we investigated the effect of imbalance corrections on the predictive performance of prediction models developed for dichotomous risk prediction. 
+In this project, we investigated the effect of imbalance corrections on the predictive performance of machine learning models developed for dichotomous risk prediction. 
 We considered 18 data-generating scenarios, each with 2000 iterations.  For each iteration we compared 30 prediction models.  Each prediction model was
 developed using a unique combination of a class imbalance correction (used to pre-process data) and a machine learning algorithm (used to train the prediction model). 
 
