@@ -7,7 +7,7 @@ In this project, we investigated the effect of imbalance corrections on the pred
 
 Please note, due to size contstraints, this repository does not contain all output from our simulation, only the processed results necessary for the creation of our Shiny App and project manuscript are present. Instead, we include complete simulation output (and processed results) for one iteration of simulation scenario to demsontrate the file structure necessary to replicate the simulation study.  This is accompanied by full instructions for how to populate the repository with all simulation results after replicating our simulation study (more details below).
 
-If you would like a link to download this repository populated with all simulation output and processed results from our simulation study, please contact me (Alex Carriero) the owner and maintainer of this Github repository. 
+To download this repository populated with all simulation output and processed results from our simulation study, please contact me (Alex Carriero) the owner and maintainer of this Github repository. 
 
 Email: a.j.carriero@students.uu.nl
 
