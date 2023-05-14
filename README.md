@@ -29,7 +29,7 @@ Email: a.j.carriero@students.uu.nl
 
 1.  Go to simulation_code > own_device 
 
-     a. Open the README for details regarding running the simulation on a personal computer and a detailed overview of the contents of the folder.  If run on a personal device (not recommended) after step 1 please skip to step 3. Please note: 
+     a. Open the [`README`](./simulation_code/own_device/README.txt) for details regarding running the simulation on a personal computer and a detailed overview of the contents of the folder.  If run on a personal device (not recommended) after step 1 please skip to step 3. Please note: 
    
      - High performance computing is highly recommended, as the simulation is incredibly computationally intensive. 
      - The entire simulation run on a personal device would take approximately 1 calendar year to run. 
@@ -45,9 +45,8 @@ Email: a.j.carriero@students.uu.nl
      
 2.  Go to simulation_code > send_to_hpc 
 
-    a. Open the README  for instructions regarding how to run the simulation on a high performance computer and how to store the results.
-     
-     NOTE:
+    a. Open the [`README`](./simulation_code/send_to_hpc/README.txt) for instructions regarding how to run the simulation on a high performance computer and how to store the results. Please note: 
+  
      - This requires manual specification of scenario number and iterations. 
      - The output of these simulation scenarios ranges heavily (from 947.9 MB to 33.71GB)
      - Depending on the HPC storage available to you, it is very likely that some simulation scenarios will need to be conducted in batches 
@@ -60,19 +59,17 @@ Email: a.j.carriero@students.uu.nl
      
 3.  Go to results 
 
- 	a. Open process_results.Rmd and follow the procedure outlined to process all results. 
-	
-	   NOTE:
-	   - generating calibration plots on a personal device is computationally intensive and can take up to a week for scenarios
-	   	      3, 6, 9, 12, 15, and 18 
+ 	a. Open [`process_results.Rmd`](./results/process_results.Rmd) and follow the procedure outlined to process all results. Please note: 
+
+	   - generating calibration plots on a personal device is computationally intensive and can take up to a week for scenarios 3, 6, 9, 12, 15, and 18 
 	   - we recommend running Steps 4 and 6 on a high performance computer for the simulation scenarios mentioned above
 		      
 	
-	b.  To generate the calibration plots on a high performance computer go to results > hpc_calibration_plots and open the README 
-              for full instructions. 
+	b.  To generate the calibration plots on a high performance computer go to results > hpc_calibration_plots and open the [`README`](./results/hpc_calibration_plots/README.txt)
+            for full instructions. 
               
               
-	c. Ensure all steps in process_results.Rmd are complete. 
+	c. Ensure all steps in [`process_results.Rmd`](./results/process_results.Rmd) are complete. 
 	
 	
 
