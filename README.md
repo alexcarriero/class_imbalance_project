@@ -69,8 +69,8 @@ To reproduce the entire project please follow the procedure below:
 
      a. Open the README for details regarding running the simulation on a personal computer and a detailed overview of the contents of the folder.   
           If run on a personal device (not recommended) after step 1 please skip to step 3.
-
-        NOTE:  	
+	  
+	  NOTE:
 	 - High performance computing is highly recommended, as the simulation is incredibly computationally intensive. 
 	 - The entire simulation run on a personal device would take approximately 1 calendar year to run. 
         
@@ -86,9 +86,9 @@ To reproduce the entire project please follow the procedure below:
      
 2.  Go to simulation_code > send_to_hpc 
 
-    a. Open the README  for instructions regarding how to run the simulation on a high performance computer and how to store the results.  
+    a. Open the README  for instructions regarding how to run the simulation on a high performance computer and how to store the results.
     
-        NOTE:
+    NOTE:
 	- This requires manual specification of scenario number and iterations. 
 	- The output of these simulation scenarios ranges heavily (from 947.9 MB to 33.71GB)
 	- Depending on the HPC storage available to you, it is very likely that some simulation scenarios will need to be conducted in batches 
