@@ -124,8 +124,7 @@ NOTE: this repository does not contain all output from our simulation study (onl
  
  ### Technical Requirements 
  
-The simulation was run on University Medical Center Utrecht's High Performance Computer and results were processed on a personal device.  Technical specifications for both of these devices, and
-details regarding R package versions are available in Supplementary Materials section A.  
+The simulation was run on University Medical Center Utrecht's High Performance Computer and results were processed on a personal device.  Technical specifications for both of these devices, are available in Supplementary Materials section A.  All code for the simulation study and processing of results was conducted using the statistical programming language `R`. Session Info for the High Performance Computer used to run the simulation and the personal device used to process the results is available in Supplementary Materials section A. 
 
 Supplementary Materials can be found in this repository: manuscript > supplementary_mat.pdf
  
