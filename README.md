@@ -61,7 +61,7 @@ This Repository Includes The Following:
    
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------    
     
-To reproduce the entire project follow the procedure below: 
+To reproduce the entire project please follow the procedure below: 
 
  PREFACE :  read the manuscript  (manuscript > sim-manuscript > sim-manuscript.pdf) for a detailed presentation of the simulation study
 
