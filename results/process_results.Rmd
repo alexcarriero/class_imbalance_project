@@ -34,7 +34,7 @@ In our simulation study, scaled Brier score was computed. This metric has proven
 For this reason, we add to our results by computing the Brier score from the raw simulation results.  
 NOTE: the scaled Brier scores were not removed and remain in the stored results.  
 
-For a given scenario X (where X is an integer between 1 and 18), this function generates one file called scX_brier_scores.rds and stores it in the directory:  data_archive > results > simulation_results > raw_results > scX > HERE
+For a given scenario X (where X is an integer between 1 and 18), this function generates one file called scX_brier_scores.rds and stores it in the directory:   results > simulation_results > raw_results > scX > HERE
 
 The contents of this file include: a data frame with 60,000 rows (one for each iteration (2000) for each pair_id (30)) and three columns, 
 iter (an integer between 1 and 2000 indicating the iteration), 
@@ -71,7 +71,7 @@ map(scenarios, function(x) save_brier_scores(x))
 # For a given scenario X:
 
 # This function generates one file called results_scX.RData and stores it in the directory: 
-# data_archive > visualize_results > results > HERE 
+# visualize_results > results > HERE 
 
 # The following code will generate summaries for all 18 simulation scenarios: 
 
@@ -90,7 +90,7 @@ map(scenarios, function(x) get_summary(x))
 # and implements loess regression to generate a flexible calibration curve for each prediction model. 
 #
 # The coordinates of the flexible calibration curves for iteration Y are saved in a file called scX_Y_plot_coords.rds 
-# and stored it in the directory:  data_archive > results > processed_results > plot_coords > raw_results > scX > HERE 
+# and stored it in the directory:  results > processed_results > plot_coords > raw_results > scX > HERE 
 #
 # For a given scenario X, this will result in 2000 data files populating the specified directory (one for each iteration). 
 #
@@ -112,7 +112,7 @@ map(iterations, function(x) save_plot_coords(x, scN))
 
 # For a given scenario X, the function calibration_plot() generates a calibration plot and 
 # stores it as an image called "calibration_plot_scX.png" in the following directory: 
-# data_archive > visualize_results > results > HERE 
+# visualize_results > results > HERE 
 
 # The following code will generate calibration plots for all 18 simulation scenarios: 
 
@@ -141,10 +141,10 @@ calibration_plot(sc)
 # appropriate results folder, implements re-calibration and 
 #
 # 1. saves the new predicted probabilities in a file called "scX_Y.rds" 
-#    in the directory: data_archive > results > simulation_results > recalibrated_results > scX > predictions > HERE 
+#    in the directory:  results > simulation_results > recalibrated_results > scX > predictions > HERE 
 #
 # 2. computes and saves the new empirical performance metrics in a file called "scX_Y.rds" 
-#    in the directory: data_archive > results > simulation_results > recalibrated_results > scX > per_iter_results > HERE 
+#    in the directory:  results > simulation_results > recalibrated_results > scX > per_iter_results > HERE 
 #
 # The following code will conduct re-calibration for all 18 simulation scenarios: 
 
@@ -165,7 +165,7 @@ for(i in scenarios){
 # For a given scenario X 
 #
 # This function generates one file called results_scX_recalibrated.RData and stores it in the directory: 
-# data_archive > visualize_results > results > HERE 
+# visualize_results > results > HERE 
 
 map(scenarios, function(x) get_summary(x, recalibrated = T))
 
@@ -183,7 +183,7 @@ map(scenarios, function(x) get_summary(x, recalibrated = T))
 # and implements loess regression to generate a flexible calibration curve for each prediction model. 
 #
 # The coordinates of the flexible calibration curves are saved in a file called scX_Y_plot_coords.rds 
-# and stored it in the directory:  data_archive > results > processed_results > plot_coords > recalibrated_results > scX > HERE 
+# and stored it in the directory:  results > processed_results > plot_coords > recalibrated_results > scX > HERE 
 #
 # For a given scenario X, this will result in 2000 data files populating the specified directory. 
 #
@@ -326,7 +326,7 @@ for(i in 1:18){
 #
 # They import iteration_info for all iterations in every scenario, count the frequency of a specific type of error, and 
 # save the number of errors per simulation scenario. The errors are saved in a data frame as .rds files in the directory: 
-# data_archive > manuscript > tables > HERE
+# manuscript > tables > HERE
 
 make_table_algorithm("logistic_regression")
 make_table_algorithm("support_vector_machine")
