@@ -1,0 +1,31 @@
+The version 0-0.2 completed on September 13 2013 incorporates the following changes
+
+	ovun.sample
+			- whenever method is used, p is the probability of a minority example;
+			- returns an object of class "ovun.sample" and a print and summary 
+			  method are associated.
+	ROSE
+			- the output includes method="ROSE";
+			- returns an object of class "ROSE" and a print and summary 
+			  method are associated.
+			- corrected typo in which(cls=="numeric" | cls=="interger")
+	ROSE.eval
+			- the option "L1OCV" of argument method.access is now "LKOCV", i.e. it 
+			  is possible ro perform a leave K out cross validation;
+			- in argument learner it is possible to specify R functions to fit a 
+			  classifier that are not endowed with a predict method through a 
+			  suitable wrapper.
+			- when acc.measure="auc" by default the plot of the ROC curve is not
+			  displayed.
+	sefihy
+			- sefihy has been changed to hacide. Sefihy was 10 dimensional, whereas
+			  hacide is 2 dimensional.
+
+The version 0-0.3 completed on January 30 2014 incorporates the following internal 
+change that do not affects the usability of the package by users
+
+	ovun.sample and ROSE
+			- these functions are now simple wrappers calling an internal function
+			  'omnibus.balancing' that performs the balancing strategies formerly
+			  implemented in package ROSE.
+

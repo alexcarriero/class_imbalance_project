@@ -1,0 +1,11 @@
+30994cbdc59a713709509cabaac23a37 *DESCRIPTION
+e393755e7b11451c7582efea49be4ff8 *NAMESPACE
+5274bf8dcc5f6f6e9badbdfb2d0a453b *R/ebmc.R
+8948b10d7e8b325b8e3c8cd8e250887c *man/adam2.Rd
+483e20b8edaf043d672e0ce17a2f8183 *man/measure.Rd
+e30c88dd0f3036b06c71fc42175c049a *man/predict.modelBag.Rd
+fb8ef22b96cf9cb0128ae0530a2e9502 *man/predict.modelBst.Rd
+1d4e5fcde79423a8afdb7effa9dcdce8 *man/rus.Rd
+b110ab1796091ab6d6f682ab6215e8a9 *man/sbag.Rd
+279e16c26ffb49e144b7ca4db9302df7 *man/sbo.Rd
+65308ab1e09f617934069d384c1bc1fe *man/ub.Rd

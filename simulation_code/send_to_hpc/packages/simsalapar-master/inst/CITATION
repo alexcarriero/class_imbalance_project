@@ -1,0 +1,23 @@
+bibentry(bibtype = "Article",
+  title        = "Parallel and Other Simulations in {R} Made Easy: An End-to-End Study",
+  author       = c(person(given = "Marius",
+                          family = "Hofert",
+                          email = "mhofert@uw.edu"),
+                   person(given = "Martin",
+                          family = "M\\\"achler",
+                          email = "maechler@stat.math.ethz.ch")),
+  journal      = "Journal of Statistical Software",
+  year         = "2016",
+  volume       = "69",
+  number       = "4",
+  pages        = "1--44",
+  doi          = "10.18637/jss.v069.i04",
+
+  header       = "To cite simsalapar in publications use:",
+  textVersion  =
+  paste("Marius Hofert, Martin Maechler (2016).",
+        "Parallel and Other Simulations in R Made Easy: An End-to-End Study.",
+        "Journal of Statistical Software, 69(4), 1-44.",
+        "doi:10.18637/jss.v069.i04")
+)
+

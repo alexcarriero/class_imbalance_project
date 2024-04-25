@@ -1,0 +1,6 @@
+robust.mean	Simple example using (robust) means on contaminated data
+TGforecasts	GARCH forecast simulation from Gneiting (2011)
+latex.tables	Examples for our toLatex(), expr2latex() etc.
+rSeed-ex	Showing how 'seed' "works" [TODO: 1) show all cases; 2) call from tests/]
+robcovMCD	covMcd() finite-sample behavior, as in Pison et al (2002)
+VaRsuperadd     Superadditivity of VaR_alpha as a function in alpha

@@ -1,0 +1,357 @@
+---
+title: "mimic_iii"
+output: html_document
+---
+
+# Libraries and Functions
+
+```{r, warning = F, message = F}
+library(tidyverse)
+library(mice)
+library(pmsampsize)
+
+
+# Libraries --------------------------------------------------------------------
+library(caret)
+library(pROC)
+
+# Manual Override Package Installation
+# ROSE 
+source("packages/ROSE-master/R/data_balancing_funcs.R")
+source("packages/ROSE-master/R/estimation_funcs.R")
+source("packages/ROSE-master/R/ROSE_eval.R")
+
+# IRIC 
+library(RANN)
+library(foreach)
+source("packages/IRIC-master/R/Ensemble-based level/EasyEnsemble.R")
+source("packages/IRIC-master/R/Data level/SmoteENN.R")
+source("packages/IRIC-master/R/Data level/SMOTE.R")
+
+# ebmc 
+source("packages/ebmc-master/R/ebmc.R")
+
+# simsalapar
+source("packages/simsalapar-master/R/tryCatchWE.R")
+
+# functions 
+source("helpers.R")
+```
+
+# Load and Clean Data
+
+```{r}
+
+ad <- read.csv("data/admission.csv") # admission info
+gc <- read.csv("data/gcs_1.csv")     # Glasgow coma score day first 24h
+lb <- read.csv("data/labs_1.csv")    # lab info first 24h 
+vt <- read.csv("data/vitals_1.csv")  # vital info first 24h 
+pt <- read.csv("data/patients.csv")  # patient info
+
+```
+
+```{r}
+
+people_dfs <- 
+  merge(ad, pt, by="subject_id", all = T) %>% 
+  rename(hadm_id = HADM_ID)
+
+info_dfs <- 
+  merge(gc, lb, by = c("subject_id", "hadm_id", "icustay_id"), all = T) %>% 
+  merge(vt, by = c("subject_id", "hadm_id", "icustay_id"), all = T) 
+
+data <- merge(people_dfs, info_dfs, by = c("subject_id", "hadm_id"), all = T)
+```
+
+```{r}
+
+clean_data <- 
+  data %>% 
+  #
+  # calculate age: 
+  mutate(age = difftime(ADMITTIME, DOB, unit = "weeks") %>% as.integer() / 52) %>% 
+  filter(age >= 18) %>% 
+  #
+  # adjust date format: 
+  mutate(DOD = ifelse(DOD == "", NA, DOD)) %>% 
+  mutate(DOD = gsub("T", " ", DOD), 
+         DOB = gsub("T", " ", DOB), 
+         ADMITTIME = gsub("T", " ", ADMITTIME), 
+         DEATHTIME = gsub("T", " ", DEATHTIME)) %>% 
+  #
+  # calculate outcome: 
+  mutate(t_until_d = difftime(DOD, ADMITTIME, unit = "days") %>% as.integer()) %>% 
+  mutate(y = ifelse(t_until_d < 90, 1, 0)) %>% 
+  mutate(y = ifelse(is.na(y) == TRUE, 0, y)) %>% 
+  #
+  # remove duplicates: 
+  group_by(subject_id) %>% 
+  filter(ADMITTIME == min(ADMITTIME)) %>% 
+  filter(icustay_id == max(icustay_id)) %>%
+  ungroup() %>%
+  # 
+  # select covariates: 
+  select(-hadm_id, -ADMITTIME, -DEATHTIME, -DOB, -DOD, -icustay_id, -gcsmotor, -gcsverbal, -gcseyes, -endotrachflag, -ends_with("min"), -ends_with("mean"))  %>%
+  # 
+  # remove death before admission 
+  filter(!subject_id %in% c("10518", "14288")) %>%
+  #
+  # remove people with error in age 
+  filter(age <= 100)
+
+clean_data
+```
+
+```{r}
+# missing data gone 
+clean_data <- clean_data[complete.cases(clean_data[,1:14]), ]
+
+# event fraction 
+sum(clean_data$y) / nrow(clean_data)
+```
+
+```{r}
+# summary 
+summary(clean_data)
+```
+
+```{r}
+# explore weird values 
+
+clean_data %>% 
+  filter(t_until_d < 0)        # fixed 
+
+clean_data %>% 
+  filter(age > 100)            # there are 1890 people with an age of 300 ? 
+
+# min(clean_data %>% filter (age > 100) %>% pull(age))
+```
+
+# Prepare for Model Developement
+
+```{r}
+# sample size calculation 
+
+pmsampsize(type = "b", parameters = 13, prevalence = 0.17, cstatistic = 0.75)
+set.seed(NULL)
+
+# SAMPLE SIZE: 1000 (976)
+# EVENTS: 166
+```
+
+```{r}
+# ^ used for sample size calculation 
+population <- clean_data %>% select(-subject_id, -t_until_d)
+
+mod  <- glm(y ~., family = "binomial", data = population)
+pred <- predict(mod,  newdata = population, type = "response")
+auc  <- roc(population$y, pred, quiet = TRUE)$auc
+auc
+```
+
+```{r}
+# determine development vs. validation data
+set.seed(119)
+
+# separate events 
+events     <- clean_data %>% filter(y == 1) %>% select(-t_until_d)
+non_events <- clean_data %>% filter(y == 0) %>% select(-t_until_d)
+
+# development set 
+train <- 
+  rbind(
+    sample_n(events, 166),
+    sample_n(non_events, 810)
+  )
+
+subjects_in_train <- train %>% pull(subject_id)
+
+# validation set
+test <- 
+  rbind(
+    events %>% filter(!subject_id %in% subjects_in_train), 
+    non_events %>% filter(!subject_id %in% subjects_in_train)
+  )
+
+# remove subject_id 
+train <- train %>% select(-subject_id) %>% mutate(y = as.factor(y)) %>% as.data.frame()
+test  <- test  %>% select(-subject_id) %>% mutate(y = as.factor(y)) %>% as.data.frame()
+```
+
+```{r}
+# event fraction train 
+mean(as.numeric(train$y))-1
+
+# event fraction test 
+mean(as.numeric(test$y))-1
+```
+
+# Develop and Validate Models
+
+```{r}
+algorithms   <- c("logistic_regression", "support_vector_machine", "random_forest", "xgboost","rusboost", "easy_ensemble")
+corrections  <- c("control", "rus", "ros", "smo", "sen")
+
+pairs <- 
+  expand_grid(corrections, algorithms) %>% 
+  mutate(pair_id = c(1:30)) %>% 
+  relocate(pair_id)
+```
+
+```{r}
+# develop and validate models 
+out <- c()
+
+for (p in 1:30){
+
+      ef <- mean(as.numeric(train$y))-1
+      
+      # pair set up
+      pair_id    <- as.character(pairs[p,1])
+      correction <- as.character(pairs[p,2])
+      algorithm  <- as.character(pairs[p,3])
+      
+      # calculate percent over sample needed to balance
+      if (ef < 0.5){
+        percO <- (1/ef - 1/0.5)*100
+      } else{
+        temp_ef <- 1-ef
+        percO <- (1/temp_ef - 1/0.5)*100
+      }
+      
+      # imbalance correction 
+      if (correction != "control"){
+        if(correction == "rus"){ crr <- do_rus(train) }
+        if(correction == "ros"){ crr <- do_ros(train) }
+        if(correction == "smo"){ crr <- do_smo(train, percO) }
+        if(correction == "sen"){ crr <- do_sen(train, percO) }
+        
+        # save corrected data
+        train <- crr$c_dataframe
+      }     
+      
+      # algorithm 
+      if(algorithm == "logistic_regression")   { alg <- do_lrg(train, test) }
+      if(algorithm == "support_vector_machine"){ alg <- do_svm(train, test) }
+      if(algorithm == "random_forest")         { alg <- do_rnf(train, test) }
+      if(algorithm == "xgboost")               { alg <- do_xgb(train, test) }
+      if(algorithm == "rusboost")              { alg <- do_rub(train, test) }
+      if(algorithm == "easy_ensemble")         { alg <- do_eas(train, test) }
+
+      iter <- cbind(alg, "algorithm" = algorithm, "correction" = correction, "unique" = pair_id)
+      out <- rbind(out, iter)
+}
+
+write.csv(out, "./results_predictions.csv")
+```
+
+```{r, fig.height = 10, fig.width = 10}
+# calibration plot 
+df <- read.csv("results_predictions.csv")
+
+p <-  df %>% 
+      reorder_and_rename() %>%
+      ggplot() +
+      geom_abline(slope = 1, intercept = 0, linewidth = 1, color = "darkgray") +
+      geom_smooth(aes(x = pred, y = class), 
+                  method = "loess",
+                  formula = y ~ x, 
+                  se = F,
+                  linewidth = 0.6, 
+                  alpha = 1, 
+                  color = "#101011") + 
+      geom_histogram(aes(x = pred, y=- stat(density)/20), binwidth = 0.03, fill= "#d3d3d3", color = "#d3d3d3", alpha= 0.5) + 
+      theme_minimal() +
+      xlim(0,1) + 
+      scale_y_continuous(limits = c(-0.75, 1), breaks = seq(0, 1, by = 0.2)) +
+      theme(legend.position = "none") + 
+      facet_grid(algorithm ~ correction) +
+      xlab("Predicted Risk") + 
+      ylab("Observed Proportion") 
+
+p
+
+ggsave("./illustrative_example_calibration_plot.png", width = 12, height = 15)
+```
+
+```{r}
+# performance metrics 
+
+df %>% 
+  mutate(unique = as.factor(unique), 
+         class  = as.factor(class), 
+         pred   = as.numeric(pred)) %>% 
+  group_by(unique) %>% 
+  group_modify(~performance_statistics(pred =.x$pred, .x$class)) %>% 
+  write.csv("./results_performance_metrics.csv")
+
+res <- read.csv("./results_performance_metrics.csv")
+```
+
+```{r}
+# fix variable names in results and re-save
+pm <- merge(res %>% select(-X) %>% rename("pair_id" = "unique"), pairs)
+pm
+
+write.csv(pm, "./illustrative_example_performance_measures.csv")
+```
+
+```{r}
+# Make table for performance metrics 
+
+library(kableExtra)
+
+pm %>% 
+  select(pair_id, corrections, algorithms, auc, bri, int, slp) %>% 
+  mutate(pair_id = pair_id %>% as.numeric()) %>% 
+  arrange(pair_id) %>% 
+  select(-pair_id) %>% 
+  mutate(auc = format(auc, digits = 2, nsmall = 2) %>% as.numeric(), 
+         bri = format(bri, digits = 2, nsmall = 2) %>% as.numeric(),
+         int = format(int, digits = 2, nsmall = 2) %>% as.numeric() %>% round(digits = 2),
+         slp = format(slp, digits = 2, nsmall = 2) %>% as.numeric()) %>% 
+  mutate(
+      algorithms  = factor(algorithms,
+                          levels = c(
+                            'logistic_regression',
+                            'support_vector_machine',
+                            'random_forest',
+                            'xgboost',
+                            'rusboost',
+                            'easy_ensemble')),
+      corrections = factor(corrections,
+                          levels = c(
+                            'control', 'rus', 'ros', 'smo', 'sen'))) %>%
+    mutate(
+      algorithms = recode(algorithms,
+                         "logistic_regression"    = "Logistic Regression",
+                         "support_vector_machine" = "Support Vector Machine",
+                         "random_forest"          = "Random Forest",
+                         "xgboost"                = "XGBoost" ,
+                         "rusboost"               = "RUSBoost",
+                         "easy_ensemble"          = "EasyEnsemble"),
+      corrections = recode(corrections,
+                          "control" = "Control",
+                          "rus"     = "RUS",
+                          "ros"     = "ROS",
+                          "smo"     = "SMOTE",
+                          "sen"     = "SENN")) %>% 
+   rename(
+     "Corrections" = "corrections", 
+     "Concordance Statistic" = "auc", 
+     "Brier Score" = "bri", 
+     "Calibration Intercept" = "int", 
+     "Calibration Slope" = "slp") %>% 
+  arrange(algorithms) %>% 
+  relocate(algorithms) %>% 
+  select(-algorithms) %>% 
+  kable() %>% 
+  pack_rows("Logistic Regression", 1,5) %>% 
+  pack_rows("Support Vector Machine", 6, 10) %>% 
+  pack_rows("Random Forest", 11, 15) %>% 
+  pack_rows("XGBoost", 16, 20) %>% 
+  pack_rows("RUSBoost", 21, 25) %>% 
+  pack_rows("EasyEnsemble", 26, 30)
+  
+ 
+```

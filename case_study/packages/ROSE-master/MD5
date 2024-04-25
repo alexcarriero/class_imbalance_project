@@ -1,0 +1,15 @@
+c39d8f1eb5e0d7bbb3e0c57502a8b68d *DESCRIPTION
+8497c6b8fe481b6385edb7a257a5c4fc *NAMESPACE
+daf79ce1bd7ceb08cad1ea3521368b03 *R/ROSE_eval.R
+1fe07b00fbb38cfd6d9a178081433bf9 *R/data_balancing_funcs.R
+0a5c42458f7452313068b202f94ffcea *R/estimation_funcs.R
+93e15cd837be1938847cc551904e6277 *data/hacide.rda
+460e040863eb80490d63825c3af54133 *inst/CITATION
+46bb55904599bf8a107d7de0f64545c7 *inst/ChangeLog
+6c144902be99dc3bf8c1814881d5c60b *man/ROSE-package.Rd
+e765a9333a21809ba2bd358dc4ca0a58 *man/ROSE.Rd
+a2770e21651a6fb63ad7ead6d962a924 *man/ROSE.eval.Rd
+8da5ec4b1bc2e72a5c1368e513747f02 *man/accuracy.meas.Rd
+41ee84e25e6519500164f151798cda73 *man/hacide.Rd
+3e9ede1e3959ce47952bb623e6a62b0b *man/ovun.sample.Rd
+33f0810df92b444f1bfc20e31f49f885 *man/roc.ROSE.Rd

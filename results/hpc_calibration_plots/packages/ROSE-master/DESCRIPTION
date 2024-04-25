@@ -1,0 +1,19 @@
+Package: ROSE
+Type: Package
+Title: Random Over-Sampling Examples
+Version: 0.0-4
+Date: 2021-06-14
+Author: Nicola Lunardon, Giovanna Menardi, Nicola Torelli
+Maintainer: Nicola Lunardon <nicola.lunardon@unimib.it>
+Suggests: MASS, nnet, rpart, tree
+Description: Functions to deal with binary classification
+  problems in the presence of imbalanced classes. Synthetic balanced samples are  
+  generated according to ROSE (Menardi and Torelli, 2013).  
+  Functions that implement more traditional remedies to the class imbalance
+  are also provided, as well as different metrics to evaluate a learner accuracy.
+  These are estimated by holdout, bootstrap or cross-validation methods. 
+License: GPL-2
+Packaged: 2021-06-14 07:29:48 UTC; nicola
+NeedsCompilation: no
+Repository: CRAN
+Date/Publication: 2021-06-14 08:10:09 UTC

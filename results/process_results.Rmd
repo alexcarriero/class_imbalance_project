@@ -1,0 +1,379 @@
+---
+title: "Results"
+output: html_document
+---
+
+Please find all code used to process the simulation results below. 
+
+# 1. Set up.
+```{r, warning = F, message = F}
+
+# DEPENDENCIES -- please install these R packages if not present on your device
+library(tidyverse)
+library(patchwork)
+library(pROC)
+library(simsalapar)
+library(stats)
+
+
+# load helper functions
+source("./../simulation_code/own_device/functions.R")
+source("process_results.R")
+
+
+# vectors containing scenario and iteration indicators
+scenarios  <- c(1:18)    # 18 simulation scenarios 
+iterations <- c(1:2000)  # 2000 iterations per scenario
+
+```
+
+# 2. Add Brier score. 
+
+In our simulation study, scaled Brier score was computed. This metric has proven to be difficult to interpret in the presence of extreme class imbalance (producing large negative numbers), there is also discrepancy in the literature about how it is defined. 
+
+For this reason, we add to our results by computing the Brier score from the raw simulation results.  
+NOTE: the scaled Brier scores were not removed and remain in the stored results.  
+
+For a given scenario X (where X is an integer between 1 and 18), this function generates one file called scX_brier_scores.rds and stores it in the directory:   results > simulation_results > raw_results > scX > HERE
+
+The contents of this file include: a data frame with 60,000 rows (one for each iteration (2000) for each pair_id (30)) and three columns, 
+iter (an integer between 1 and 2000 indicating the iteration), 
+pair_id (an integer between 1 and 30 indicating the unique pair of imbalance correction and machine learning algorithm), and 
+brier_score (the Brier score computed using the predicted risks resulting from the validation data).
+
+```{r}
+# compute and save Brier score for all 18 simulation scenarios 
+
+map(scenarios, function(x) save_brier_scores(x))
+```
+
+
+# 3. Summarize empirical performance metrics
+```{r}
+
+# This function processes simulation results into a form much easier to interact with for analysis. 
+# For every scenario, we use the function get_summary() to generate a list with 3 objects: 
+#
+# 1. "overall_dataframe" A data frame with 60,000 (2000 x 30) rows, one for each simulation iteration (2000) and prediction model (30). 
+#                        In this data frame, we present all warning/error messages and empirical performance metrics 
+#                        for each simulation iteration. It is computed by binding all files in the 
+#                        per_iter_results folder for a given scenario. 
+#
+# 2. "rows_per_pair"     A data frame with 30 rows, one for each prediction model (imbalance correction - machine learning algorithm pair).
+#                        In this data frame, we present an indicator of how many simulation iterations there are per pair, 
+#                        We check that there are 2000 observations per pair. 
+#
+# 3. "summary"           A data frame with 30 rows, one for each prediction model (imbalance correction - machine learning algorithm pair). 
+#                        In this data frame, median performance metrics across the 2000 simulation iterations and their 
+#                        corresponding Monte Carlo errors are presented. 
+
+
+# For a given scenario X:
+
+# This function generates one file called results_scX.RData and stores it in the directory: 
+# visualize_results > results > HERE 
+
+# The following code will generate summaries for all 18 simulation scenarios: 
+
+map(scenarios, function(x) get_summary(x))
+
+```
+
+
+# 4. Generate Calibration Plots 
+```{r}
+
+# Here we generate and save coordinates for flexible calibration curves. 
+# For each scenario, coordinates must be saved for all models in each of 2000 simulation iterations. 
+#
+# For a given scenario X and iteration Y, the function save_plot_coords() imports the appropriate results file
+# and implements loess regression to generate a flexible calibration curve for each prediction model. 
+#
+# The coordinates of the flexible calibration curves for iteration Y are saved in a file called scX_Y_plot_coords.rds 
+# and stored it in the directory:  results > processed_results > plot_coords > raw_results > scX > HERE 
+#
+# For a given scenario X, this will result in 2000 data files populating the specified directory (one for each iteration). 
+#
+# NOTE : this can be run on a personal device for simulation scenarios 1,2,4,5,7,10,11,13,14
+#        else, high performance computing is recommended.
+#
+# manually select scenario from 1:18
+
+# choose a scenario 
+i = 1 
+
+# save flexible calibration curve coordinates for all 2000 simulation iterations
+scN <- paste0("sc", i)
+map(iterations, function(x) save_plot_coords(x, scN))
+```
+
+```{r, warning = F, message = F, fig.height = 14, fig.width = 14}
+# Now that flexible calibration curve coordinates have been saved for all iterations:
+
+# For a given scenario X, the function calibration_plot() generates a calibration plot and 
+# stores it as an image called "calibration_plot_scX.png" in the following directory: 
+# visualize_results > results > HERE 
+
+# The following code will generate calibration plots for all 18 simulation scenarios: 
+
+map(scenarios, function(x) calibration_plot(x))
+```
+
+```{r, warning = F, message = F, fig.height = 14, fig.width = 14}
+# To generate the plot for one scenario: 
+
+# choose scenario 
+sc = 1
+
+# generate calibration plot 
+calibration_plot(sc)
+```
+
+
+# 5. Implement Logistic Re-calibration Procedure 
+```{r}
+
+# Using the following code we implement logistic re-calibration.
+# For each scenario, we implement re-calibration using the raw predictions for each simulation iteration. 
+#
+# For a given scenario X and iteration Y, 
+# the function recalibrate_everything() imports the predicted probabilities and true class values from the 
+# appropriate results folder, implements re-calibration and 
+#
+# 1. saves the new predicted probabilities in a file called "scX_Y.rds" 
+#    in the directory:  results > simulation_results > recalibrated_results > scX > predictions > HERE 
+#
+# 2. computes and saves the new empirical performance metrics in a file called "scX_Y.rds" 
+#    in the directory:  results > simulation_results > recalibrated_results > scX > per_iter_results > HERE 
+#
+# The following code will conduct re-calibration for all 18 simulation scenarios: 
+
+
+for(i in scenarios){
+  
+  scN <- paste0("sc", i)
+  map(iterations, function(x) recalibrate_everything(x))
+}
+
+```
+
+```{r}
+
+# Exactly as in Step 3, we use the get_summary() function to process the re-calibrated results 
+# into the same form as the raw_results ( a list with the same three objects as in step 3 )
+#
+# For a given scenario X 
+#
+# This function generates one file called results_scX_recalibrated.RData and stores it in the directory: 
+# visualize_results > results > HERE 
+
+map(scenarios, function(x) get_summary(x, recalibrated = T))
+
+```
+
+
+# 6. Re-calibrated Calibration Plots 
+
+```{r, warning = F, message = F, fig.height = 14, fig.width = 14}
+
+# Using the following code, we generate and save coordinates for all flexible calibration curves based on the re-calibrated results. 
+# For each scenario, coordinates are saved for each of 2000 simulation iterations. 
+#
+# For a given scenario X and iteration Y, this function imports the appropriate results file
+# and implements loess regression to generate a flexible calibration curve for each prediction model. 
+#
+# The coordinates of the flexible calibration curves are saved in a file called scX_Y_plot_coords.rds 
+# and stored it in the directory:  results > processed_results > plot_coords > recalibrated_results > scX > HERE 
+#
+# For a given scenario X, this will result in 2000 data files populating the specified directory. 
+#
+# NOTE : this can be run on a personal device for simulation scenarios 1,2,4,5,7,10,11,13,14
+#        else, high performance computing is recommended.
+#
+# manually select scenarios 1:18
+
+# choose a scenario 
+i = 1 
+
+# save flexible calibration curve coordinates for each simulation iteration
+scN <- paste0("sc", i)
+map(iterations, save_plot_coords(x, scN, recalibrated = TRUE))
+```
+
+```{r, warning = F, message = F, fig.height = 14, fig.width = 14}
+# Now that calibration curve coordinates have been saved for the re-calibrated results, 
+# we generate calibration plots for all 18 scenarios using the following code. 
+
+map(scenarios, function(x) calibration_plot(x, recalibrated = T))
+```
+
+```{r, warning = F, message = F, fig.height = 14, fig.width = 14}
+# To generate the plot for one scenario: 
+
+# choose scenario 
+sc = 1
+
+# generate calibration plot 
+calibration_plot(sc)
+```
+
+
+
+# 7. Generate Figures for Manuscipt / Supplementary Materials 
+```{r}
+# all calibration plots (without calibration)
+
+for(i in 1:18){
+  
+  scN <- paste0("sc", i)
+
+  df <- 
+    list.files(path = paste0("./processed_results/plot_coords/raw_results/", scN, "/"), pattern = ".rds") %>%
+    paste0("./processed_results/plot_coords/raw_results/", scN, "/", .) %>%
+    map(readRDS) %>% 
+    bind_rows() %>% 
+    as.data.frame() %>% 
+    drop_na() %>%
+    pre_plot()
+
+  p <- plot_from_coords(df)
+
+  ggsave(paste0("./../manuscript/results/calibration_plot_manuscript_", scN, ".png"), 
+         plot = p,  width = 12, height = 15)
+}
+```
+
+```{r}
+# all calibration plots (after re-calibration)
+
+for(i in 1:18){
+  
+  scN <- paste0("sc", i)
+
+  df <- 
+    list.files(path = paste0("./processed_results/plot_coords/recalibrated_results/", scN, "/"), pattern = ".rds") %>%
+    paste0("./processed_results/plot_coords/recalibrated_results/", scN, "/", .) %>%
+    map(readRDS) %>% 
+    bind_rows() %>% 
+    as.data.frame() %>% 
+    drop_na() %>%
+    pre_plot()
+
+  p <- plot_from_coords(df)
+
+  ggsave(paste0("./../manuscript/results/calibration_plot_manuscript_", scN, "_recalibrated.png"), 
+         plot = p,  width = 12, height = 15)
+}
+```
+
+```{r}
+# all performance metric plots (without calibration)
+
+for(i in 1:18){
+  
+  scN <- paste0("sc", i)
+
+  df <- readRDS(paste0("./../visualize_results/results/results_", scN, ".RData"))
+  df <- df$overall_dataframe
+  
+  a <- pm_plot(df, method = "auc", 0.6, 1)
+
+  b <- pm_plot(df, method = "bri", 0, 0.30)
+
+  c <- pm_plot(df, method = "int", -5.5, 2)
+
+  d <- pm_plot(df, method = "slp", -0.5, 3.5)
+
+  P <- 
+    a + b + c + d + plot_layout(ncol = 1)
+
+  ggsave(paste0("./../manuscript/results/performance_metrics_manuscript_", scN, ".png"), 
+         plot = P,  width = 12, height = 15)
+
+}
+```
+
+```{r}
+# all performance metric plots (after calibration)
+
+for(i in 1:18){
+  
+  scN <- paste0("sc", i)
+
+  df <- readRDS(paste0("./../visualize_results/results/results_", scN, "_recalibrated.RData"))
+  df <- df$overall_dataframe
+  
+  a <- pm_plot(df, method = "auc", 0.6, 1)
+
+  b <- pm_plot(df, method = "bri", 0, 0.30)
+
+  c <- pm_plot(df, method = "int", -5.5, 2)
+
+  d <- pm_plot(df, method = "slp", -0.5, 3.5)
+
+  P <- 
+    a + b + c + d + plot_layout(ncol = 1)
+
+  ggsave(paste0("./../manuscript/results/performance_metrics_manuscript_", scN, "_recalibrated.png"),
+         plot = P,  width = 12, height = 15)
+
+}
+```
+
+# 8. Generate .rds files summarizing warning/error messages for Tables in Supplementary Materials Section B. 
+```{r}
+# These functions all conduct similar functionality:
+#
+# They import iteration_info for all iterations in every scenario, count the frequency of a specific type of error, and 
+# save the number of errors per simulation scenario. The errors are saved in a data frame as .rds files in the directory: 
+# manuscript > tables > HERE
+
+make_table_algorithm("logistic_regression")
+make_table_algorithm("support_vector_machine")
+make_table_algorithm("random_forest")
+make_table_algorithm("xgboost")
+make_table_algorithm("rusboost")
+make_table_algorithm("easy_ensemble")
+
+make_table_corrections()
+make_table_rb_invalid()
+make_table_lg_separation()
+```
+
+
+# 9. Generate Figures for Appendix B
+```{r}
+# visualization across all scenarios plots
+
+all <- all_summaries()
+
+# concordance statistic plot 
+p <- scenario_graph(all, method = "auc_med")
+ggsave("./../manuscript/results/auc_across_scenarios.png", plot = p, width = 20, height = 20)
+
+# Brier score plot 
+p <- scenario_graph(all, method = "bri_med")
+ggsave("./../manuscript/results/bri_across_scenarios.png", plot = p, width = 20, height = 20)
+
+# calibration intercept plot
+p <- scenario_graph(all, method = "int_med")
+ggsave("./../manuscript/results/int_across_scenarios.png", plot = p, width = 20, height = 20)
+
+# calibration slope plot
+p <- scenario_graph(all, method = "slp_med")
+ggsave("./../manuscript/results/slp_across_scenarios.png", plot = p, width = 20, height = 20)
+```
+
+
+THE END ~ this concludes the processing of results for our simulation study. 
+
+
+
+
+
+
+
+
+
+
+

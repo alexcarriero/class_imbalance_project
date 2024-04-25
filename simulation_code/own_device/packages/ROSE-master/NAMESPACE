@@ -1,0 +1,29 @@
+#exportPattern("^[[:alpha:]]+")
+
+export(
+			"roc.curve",
+			"ROSE.eval",
+			"ROSE",
+			"ovun.sample",
+			"accuracy.meas"
+		)
+
+
+
+S3method(print, accuracy.meas)
+S3method(print, roc.curve)
+S3method(summary, roc.curve)
+S3method(print, summary.roc.curve)
+S3method(print, ovun.sample)
+S3method(summary, ovun.sample)
+S3method(print, summary.ovun.sample)
+S3method(print, ROSE)
+S3method(summary, ROSE)
+S3method(print, summary.ROSE)
+S3method(print, ROSE.eval)
+S3method(summary, ROSE.eval)
+S3method(print, summary.ROSE.eval)
+importFrom(utils, head, tail, packageDescription, methods)
+importFrom(graphics, abline, lines, plot)
+importFrom(stats, as.formula, model.frame, predict, rbinom, rnorm, sd, terms)
+

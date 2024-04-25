@@ -1,0 +1,213 @@
+---
+title: "Simulation Results"
+output:
+  flexdashboard::flex_dashboard:
+    orientation: rows
+    vertical_layout: scroll
+runtime: shiny
+resource_files:
+- results/calibration_plot_sc1_recalibrated.png
+- results/calibration_plot_sc1.png
+- results/calibration_plot_sc2_recalibrated.png
+- results/calibration_plot_sc3_recalibrated.png
+- results/calibration_plot_sc2.png
+- results/calibration_plot_sc3.png
+- results/results_sc1_recalibrated.RData
+- results/results_sc1.RData
+- results/results_sc3_recalibrated.RData
+- results/results_sc2_recalibrated.RData
+- results/results_sc2.RData
+- results/results_sc3.RData
+---
+
+<style> 
+
+.navbar {
+  background-color: #F5F5DC;
+  border-color: #F5F5DC;
+}
+
+.navbar-brand {
+  color: #101011!important;
+}
+
+.section.sidebar {
+  background-color: #e1e2e5;
+}
+
+.nav-tabs-custom > .nav-tabs > li.active {
+  border-top-color: #e1e2e5
+}
+
+body{
+  background-color: #f5f5f5;
+}
+
+.shiny-input-panel{
+  background-color: #f5f5f5;
+}
+
+</style>
+
+Inputs {.sidebar}
+-------------------------------------------------------------------------------
+
+```{r eruptions, echo=FALSE}
+inputPanel(
+  
+  selectInput("npred", label = "No. of Predictors", 
+              choices = list("8" = 8, "16" = 16), selected = 8),
+  
+  selectInput("samplesize", label = "Sample Size", 
+              choices = list("1/2N" = 0.5, "N" = 1, "2N"= 2), selected = 1), 
+  
+  selectInput("eventfrac", label = "Event Fraction",
+              choices = list("0.5" = 0.5, "0.2" = 0.2, "0.02" = 0.02), selected = 0.5),
+  
+  checkboxInput("recal", label = "Recalibrated Results")
+  
+)
+```
+
+```{r setup, include=F}
+library(flexdashboard)
+library(tidyverse)
+library(patchwork)
+library(shiny)
+library(DT)
+
+source("./process_results.R")
+
+algorithm   <- c("logistic_regression", 
+                  "support_vector_machine", 
+                  "random_forest", 
+                  "xgboost", 
+                  "rusboost", 
+                  "easy_ensemble")
+
+correction  <- c("control", 
+                  "rus", 
+                  "ros", 
+                  "smo", 
+                  "sen")
+
+pairs <- 
+  expand_grid(correction, algorithm) %>% 
+  mutate(pair_id = c(1:30)) %>% 
+  relocate(pair_id)
+
+```
+
+```{r, include = F}
+np <- c(8,16)
+sz <- c(0.5, 1, 2)
+ef <- c(0.5, 0.2, 0.02)
+
+grid <- expand.grid("ef" = ef, "sz" = sz, "np" = np) %>% cbind("sc" = c(1:18)) %>% as.data.frame()
+```
+
+
+
+
+
+Row {.tabset .tabset-fade  data-height=1000}
+--------------------------------------------------------------------------------
+
+```{r, echo = F}
+# n <- reactive(as.character(input$scenario))
+
+npred      <- reactive(as.numeric(input$npred))
+samplesize <- reactive(as.numeric(input$samplesize))
+eventfrac  <- reactive(as.numeric(input$eventfrac))
+
+n <-
+  reactive(
+
+    scenario_number <-
+      grid %>%
+      filter(np == npred()) %>%
+      filter(sz == samplesize()) %>%
+      filter(ef == eventfrac()) %>% 
+      select("sc") %>% 
+      as.character() 
+
+  )
+
+recal <- reactive(input$recal)
+
+df <- 
+  reactive({
+    if(recal() == F){df <- readRDS(paste0("./results/results_sc", n() , ".RData"))} 
+    if(recal() == T){df <- readRDS(paste0("./results/results_sc", n() , "_recalibrated.RData"))}
+    return(df)
+  })
+```
+
+### Calibration Plots
+```{r, echo = F}
+renderImage({    
+    
+    # Store path to image
+    if(recal() == F){filename <- normalizePath(paste0("./results/calibration_plot_sc", n(),".png"))} 
+    if(recal() == T){filename <- normalizePath(paste0("./results/calibration_plot_sc", n(),"_recalibrated.png"))}
+
+    # Return a list containing the filename
+    list(src = filename, width = 700, height = 700)}, deleteFile = FALSE)
+```
+
+### Performance Metrics 
+```{r}
+renderPlot({
+  
+  df <- df()$overall_dataframe
+  
+  a <- pm_plot(df, method = "auc", 0.6, 1)
+
+  b <- pm_plot(df, method = "bri", 0, 0.3)
+
+  c <- pm_plot(df, method = "int", -5, 1)
+
+  d <- pm_plot(df, method = "slp", -1, 3)
+
+  a + b + c + d + plot_layout(ncol = 1)
+    
+})
+```
+
+### Summary Statistics 
+
+```{r}
+renderDT({
+  
+  df <- df()$summary %>% 
+    mutate(across(where(is.numeric), round, 2)) %>%
+    mutate(pair_id = as.numeric(pair_id)) %>% 
+    arrange(pair_id, decending = F) %>% 
+    merge(pairs, by = "pair_id") %>%
+    mutate(
+      auc_med = paste0(format(round(auc_med, 2), nsmall = 2), " (", format(round(auc_sd, 2), nsmall = 2), ")"),
+      bri_med = paste0(format(round(bri_med, 2), nsmall = 2), " (", format(round(bri_sd, 2), nsmall = 2), ")"),
+      int_med = paste0(format(round(int_med, 2), nsmall = 2), " (", format(round(int_sd, 2), nsmall = 2), ")"),
+      slp_med = paste0(format(round(slp_med, 2), nsmall = 2), " (", format(round(slp_sd, 2), nsmall = 2), ")")) %>%
+    reorder_and_rename() %>%
+    relocate(c(pair_id, correction, algorithm)) %>%
+    select(-pair_id, -auc_sd, -bri_sd, -int_sd, -slp_sd) 
+  
+  colnames(df) <- c("Imbalance Correction", 
+                    "Classification Algorithm", 
+                    "Concordance Statistic",
+                    "Brier Score", 
+                    "Calibration Intercept",
+                    "Calibration Slope")
+
+  df %>% DT::datatable(
+    rownames = FALSE, 
+    caption = htmltools::tags$caption(
+      style = 'caption-side: top; text-align: center;',
+      'Summary Statistics: Median (MCMC Error) of performance metrics across 2000 simulation iterations.'))
+  
+})
+```
+
+
+

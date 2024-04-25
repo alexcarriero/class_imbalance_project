@@ -1,0 +1,133 @@
+OUTPUT FOR ONE ITERATION: 
+
+
+Each iteration of the simulation produces four files, each file is saved in a distinct folder: 
+iteration_info, per_iter_results, predictions, and rep_checks. 
+
+
+All four files bare the same name, for scenario X iteration Y, the four files are named scX_Y.rds.  
+Thus after iteration Y of simulation scenario X the result is, 
+
+
+sim_results > iteration_info   > scX_Y.rds
+sim_results > per_iter_results > scX_Y.rds
+sim_results > predictions      > scX_Y.rds 
+sim_results > rep_checks       > scX_Y.rds 
+
+
+where each of the files contain distinct information. 
+
+
+ITERATION INFO
+
+
+A 30 x 15 data frame where each row corresponds to a distinct class imbalance correction - machine learning algorithm pair (30 prediction models were developed for each iteration in our simulation). Columns are as follows. 
+
+scenario  : an integer between 1 and 18 recording the simulation scenario 
+
+pair_id   :  an integer between 1 and 30 reporting the pair_id 
+	  (a number which encodes a unique combination of imbalance correction and machine learning algorithm)
+
+correction: character specifying the imbalance correction 
+
+algorithm : character specifying the algorithm 
+
+iter      : integer between 1 and 2000 specifying the iteration 
+
+seed      : the seed used for this iteration 
+
+sc_ef     : scenario event fraction, one of the following 3 values (0.5, 0.2, 0.02) 
+
+obs_ef    : observed event fraction, the event fraction observed in the training data 
+
+new_ef    : the event fraction as calculated after the implementation of the imbalance correction 
+
+c_problem : a binary indicator indicating if there was a problem with the imbalance correction 
+
+c_warn    : a character reporting any warning message generated as a result of the imbalance correction 
+
+c_err     : a character reporting any error message generated as a results of the imbalance correction 
+
+a_problem : a binary indicator indicating if there was a problem with the machine learning algorithm 
+
+a_warn    : a character reporting any warning message generated as a result of the machine learning algorithm 
+
+a_err     : a character reporting any error message generated as a result of the machine learning algorithm 
+
+
+
+PER_ITER_RESULTS 
+
+
+A 30 x 28 data frame where each row corresponds to a distinct class imbalance correction - machine learning algorithm pair (30 prediction models were developed for each iteration in our simulation).  In this data frame, the first 15 columns are redundant to ITERATION INFO.  The remaining columns are as follows: 
+
+min       : the smallest value for a predicted risk in the validation set 
+
+max       : the largest value for a predicted risk in the validation set 
+
+var       : the variance of the predicted risks from the validation set 
+
+auc       : the concordance statistic, calculated using the predicted risks from the validation set 
+
+bri       : the scaled brier score, calculated using the predicted risks from the validation set 
+
+int       : the calibration intercept, calculated using the predicted risks form the validation set 
+
+slp       : the calibration slope, calculated using the predicted risks from the validation set 
+
+int_warn  : character displaying any warning generated when calculating the calibration intercept 
+
+int_count : binary indicator indicating the presence of a warning when calculating calibration intercept 
+
+slp_warn  : character displaying any warning generated when calculating the calibration slope 
+
+slp_count : binary indicator indicating the presence of a warning when calculating calibration slope 
+
+invalid_0 : binary indicator indicating if any predicted risks were below 0 
+
+invalid_1 : binary indicator indicating if any predicted risks were above 1
+
+
+
+PREDICTIONS 
+
+A (30 * n) x 8 data frame where n is the size of the validation set for the iteration. Each row corresponds to one observation in the validation data set.  Thus, there are 30*N rows since there are 30 prediction models per iteration and we store the predicted risks for the entire validation set for all models. Columns are as follows: 
+
+
+pred      : the predicted risk for a given observation in the validation set 
+
+iter      : and integer between 1 and 2000 representing the iteration 
+
+class     : the true observed class for a given observation in the validation set 
+
+problem   : an indicator if there was a problem producing predicted risks 
+           (i.e., a problem when making predictions based on a given machine learning algorithm. 
+
+scenario  : an integer between 1 and 18 representing the simulation scenario 
+
+pair_id   : an integer between 1 and 30 repressing the unique combination of imbalance correction and machine learning algorithm 
+
+correction: a character specifying the imbalance correction 
+
+algorithm : a character specifying the machine learning algorithm 
+
+
+
+REP_CHECKS 
+
+A 30 x 6 data frame where each row corresponds to a distinct class imbalance correction - machine learning algorithm pair (30 prediction models were developed for each iteration in our simulation).  Columns are as follows: 
+
+dataframe   : the last value of the first predictor in the training set 
+
+testframe   : the last value of the first predictor in the validation set 
+
+c_dataframe : the last value of the first predictor in the class-imbalance corrected training set 
+
+iter        : an integer between 1 and 2000 representing the iteration 
+
+pair_id     : an integer between 1 and 30 identifying the unique combination of imbalance correction and machine learning algorithm 
+
+scenario    : an integer between 1 and 18 identifying the simulation scenario 
+
+
+     
