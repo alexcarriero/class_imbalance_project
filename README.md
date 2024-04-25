@@ -1,6 +1,6 @@
 # Class Imbalance Project: 
 
-This repository houses all necessary information to replicate the simulation study presented in the paper: <strong>The harms of class imbalance corrections for machine learning based prediction models: a simulation study </strong>. 
+This repository is a supplement to the paper: <strong>The harms of class imbalance corrections for machine learning based prediction models: a simulation study </strong>. 
 
 In this project, we investigated the effect of imbalance corrections on the predictive performance of various machine learning models. In this repository, you will find all code used in our project and full instructions for how to replicate the simulation study, case study, and the associated shiny app.  
 
