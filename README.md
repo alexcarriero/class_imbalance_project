@@ -1,6 +1,6 @@
 # Class Imbalance Project: 
 
-This repository is a supplement to the paper: <strong>The harms of class imbalance corrections for machine learning based prediction models: a simulation study </strong>. 
+This repository is a supplement to the paper: [The harms of class imbalance corrections for machine learning based prediction models: a simulation study](https://arxiv.org/abs/2404.19494). 
 
 In this project, we investigated the effect of imbalance corrections on the predictive performance of various machine learning models. In this repository, you will find all code used in our project and full instructions for how to replicate the simulation study, case study, and the associated shiny app.  
 
@@ -20,6 +20,7 @@ Email: a.j.carriero@umcutrecht.nl
 | [`results`](./results)            |      This folder stores all output from the simulation and code used to process the results. |  
 | [`case_study`](./case_study)            |      This folder contains the code for our case study based on MIMIC-III data. For privacy reasons the data are not included in our repository. |  
 | [`visualize_results`](./visualize_results)               | In this folder, you will find all files necessary to generate our [`Shiny App`](https://alex-carriero.shinyapps.io/class_imbalance/). |
+| [`supplementary_materials`]() | In this folder you will find the appendix and supplementary materials. |
 
    
  
