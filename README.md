@@ -20,7 +20,7 @@ Email: a.j.carriero@umcutrecht.nl
 | [`results`](./results)            |      This folder stores all output from the simulation and code used to process the results. |  
 | [`case_study`](./case_study)            |      This folder contains the code for our case study based on MIMIC-III data. For privacy reasons the data are not included in our repository. |  
 | [`visualize_results`](./visualize_results)               | In this folder, you will find all files necessary to generate our [`Shiny App`](https://alex-carriero.shinyapps.io/class_imbalance/). |
-| [`supplementary_materials`]() | In this folder you will find the appendix and supplementary materials. |
+| [`supplementary_materials`](./supplementary_materials) | In this folder you will find the appendix and supplementary materials. |
 
    
  
