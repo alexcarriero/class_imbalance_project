@@ -4,7 +4,7 @@ This repository is a supplement to the paper: [The harms of class imbalance corr
 
 In this project, we investigated the effect of imbalance corrections on the predictive performance of various machine learning models. In this repository, you will find all code used in our project and full instructions for how to replicate the simulation study, case study, and the associated shiny app.  
 
-Please note, due to size constraints, this repository does not contain all output from our simulation, only the processed results necessary for the creation of our shiny app. Instead, we include complete simulation output (and processed results) for one iteration of simulation scenario 1 to demonstrate the file structure necessary to replicate the simulation study.  This is accompanied by full instructions for how to populate the repository with all simulation results after replicating our simulation study (more details below).
+Please note, due to size constraints, this repository does not contain the raw output from our simulation, only the processed results necessary for the creation of our shiny app. Instead, we include complete simulation output (and processed results) for one iteration of simulation scenario 1 to demonstrate the file structure necessary to replicate the simulation study.  This is accompanied by full instructions for how to populate the repository with all simulation results after replicating our simulation study (more details below).
 
 If you would like a copy of this repository populated with all results, please contact me (Alex Carriero).
 
