@@ -1,0 +1,303 @@
+---
+title: "Sensitivity Analysis"
+author: "Alex Carriero"
+output: html_document
+---
+
+The following sensitivity analysis is conducted to assess the effect of class imbalance corrections under various c-statistic scenarios (C < 0.85). 
+
+# 1. Data Generating Mechanism
+```{r, warning = F, message = F}
+
+# load libraries
+library(tidyverse)
+library(MASS)
+library(tableone)
+library(pmsampsize)
+library(pROC)
+
+Sys.setenv(RGL_USE_NULL=TRUE)
+library(matlib)
+```
+
+## re-define data generating functions to allow auc to vary
+```{r}
+sample_size <- function(npred, ev, n.level, c){
+  
+  # this function calculates and returns the minimum required sample size (N) for a prediction model 
+  #
+  # npred   : number of predictors 
+  # ev      : event fraction 
+  # n.level : the value the minimum sample size should be multiplied by
+  #           to achieve the desired sample size setting (i.e., 0.5N, N, 2N)
+  # c       : the c-statistic of the data
+  
+  a = pmsampsize(type = "b", prevalence = ev, cstatistic = c, parameters=npred)$sample_size
+  n = ceiling(a*n.level)
+
+  set.seed(NULL)
+  return(n)
+  
+}
+```
+
+```{r}
+scenario <- function(npred, ev = 0.5 , n.level = 1, dmu = 0.5, c = 0.85){
+  
+  # this function takes each factor to be varied in simulation as input
+  # and generates the mean and covariance matrices for each class.
+  #
+  # npred   : number of predictors 
+  # ev      : event fraction 
+  # n.level : the value the minimum sample size should be multiplied by
+  #           to achieve the desired sample size scenario (i.e., 0.5N, N, 2N)
+  #
+  # it returns a list of all information required data generation in a given scenario: 
+  # number of predictors, event fraction, n.level, sample size, 
+  # and the mean and covariance matrices of each class. 
+
+  # set up
+  x      <- dmu                                 # delta mu
+  y      <- 0.3                                 # delta sigma 
+  z      <- 0.2                                 # z 
+  p      <- 0.75                                # proportion of correlated predictors
+  npred  <- npred                               # number of predictors
+  n      <- sample_size(npred, ev, n.level, c)  # sample size calculation
+
+  # set up correlations
+  corr0  <-  matrix(0, npred, npred)         # matrix: set up for cov matrix, 0 on diagonals
+  corr0[1:npred*p, 1:npred*p] = z            # class 0 
+  diag(corr0) = 0
+
+  corr1  <-  matrix(0, npred, npred)         # matrix: set up for cov matrix, 0 on diagonals
+  corr1[1:npred*p, 1:npred*p] = (1-y)*z      # class 1
+  diag(corr1) = 0
+
+  # mean structures
+  mu0    <-  c(rep(0,npred))                 # vector: class 0 means
+  dmu    <-  c(rep(x,npred))                 # vector: difference in means between classes 
+  mu1    <-  mu0 + dmu                       # vector: class 1 means 
+
+  # covariance structures
+  sigma0 <-  diag(npred)  + corr0            # matrix: cov matrix of class 0 
+  dsig   <-  diag(c(rep(y, npred)))          # matrix: difference in variances between classes 
+  sigma1 <-  diag(npred) - dsig + corr1      # matrix: cov matrix of class 1
+
+  return(list("npred"       = npred, 
+              "event_frac"  = ev, 
+              "n_level"     = n.level, 
+              "sample_size" = n, 
+              "mu0"         = mu0, 
+              "mu1"         = mu1, 
+              "sigma0"      = sigma0, 
+              "sigma1"      = sigma1, 
+              "c"           = c))
+  
+}
+
+# testing
+scenario(8, 0.2, 1, c = 0.65)
+```
+
+```{r}
+get_delta_mu <- function(npred, auc = 0.85){
+  # this function calculates delta mu given auc and number of predictors 
+  # based equation A2 in Appendix A 
+  # i.e., it computes the dmu which gives a desired auc in the development data
+
+  inn = scenario(npred)      # get covariance matrices
+  s0  = inn[[7]]              
+  s1  = inn[[8]]                       
+  
+  A   = inv(s0 + s1)         # calculate matrix A
+  Y   = sum(colSums(A))                  
+  
+  dmu = qnorm(auc) / sqrt(Y)
+  return(dmu)
+}
+```
+
+```{r}
+# testing 
+get_delta_mu(npred = 8, auc = 0.75)  # 0.3932917
+get_delta_mu(npred = 8, auc = 0.70)  # 0.3057754
+get_delta_mu(npred = 8, auc = 0.65)  # 0.2246785
+```
+
+```{r}
+# saving dmu for each auc setting 
+
+dmu_s <- c()
+auc_s <- c(0.60, 0.65, 0.70, 0.75, 0.80, 0.85, 0.90)
+
+for (i in 1:length(auc_s)){
+  dmu_s[i] <- get_delta_mu(npred = 8, auc = auc_s[i])
+}
+
+dmu_index <- tibble(
+  auc = auc_s, 
+  dmu = dmu_s
+)
+
+# function
+get_dmu <- function(c){
+  dmu_index$dmu[dmu_index$auc == c]
+}
+
+dmu_index
+```
+
+```{r}
+# testing
+c = 0.85
+scenario(npred = 8, ev = 0.2, n.level = 1, dmu = get_dmu(c), c = c)
+```
+
+```{r}
+generate_data <- function(inn, test = FALSE){
+  
+  # this functions takes a list of data-generating parameters as input
+  # and outputs one data set with class data.frame
+  # 
+  # when test = FALSE the function generates training data 
+  # 
+  # when test = TRUE the function generates validation data
+  #
+  # the data generating mechanism for training vs. test data is identical
+  # these data sets only differ in sample size: 
+  # validation data has 10x the sample size of training data
+  
+  
+  npred   = inn[[1]]  # number of predictors
+  ev      = inn[[2]]  # event fraction
+  n.level = inn[[3]]  # 0.5, 1, 2 (to adjust sample size)
+  n       = inn[[4]]  # minimum required sample size for the prediction model (N)
+  mu0     = inn[[5]]  # mean structure for class 0 as vector
+  mu1     = inn[[6]]  # mean structure for class 1 as vector
+  sigma0  = inn[[7]]  # covariance structure for class 0 as matrix
+  sigma1  = inn[[8]]  # covariance structure for class 1 as matrix
+
+  # test set
+  if (test == TRUE){n  = n*10}
+  
+  # positive class
+  n1      <- rbinom(1, n, ev)
+  class_1 <- mvrnorm(n1, mu1, sigma1)
+  
+  # negative class
+  n0      <- n - n1
+  class_0 <- mvrnorm(n0, mu0, sigma0)
+  
+  outcome <- c(rep(1, n1), rep(0, n0))
+  
+  # format data frame
+  df <- cbind(outcome, rbind(class_1, class_0)) %>% 
+    as.data.frame() %>% 
+    mutate(outcome = as.factor(outcome))
+  
+  # names
+  colnames(df) <- c("outcome", paste0("x", 1:npred))
+  
+  return(df)
+}
+
+c = 0.65
+df <- generate_data(scenario(npred = 8, ev = 0.2, n.level = 1, dmu = get_dmu(c), c = c))
+
+df
+```
+
+
+## test out the data generating functions 
+```{r, warning = F, message = F}
+# function to return summary statistics for each class 
+
+summ <- function(df){
+  a <- CreateTableOne(data = df, strat = "outcome")
+  return(a)
+}
+
+summ(df)
+```
+
+```{r, warning = F, message = F}
+# function to return gg scatter plot displaying data portrayed by 2-dimensions
+
+visualize <- function(df){
+  df <- df 
+  df %>%
+  arrange(outcome)%>%
+  ggplot(aes(x = x1, y = x2, col = outcome)) + 
+  geom_point(alpha = 0.7) + 
+  theme_minimal() + 
+  ggtitle("Simulated Data:") + 
+  scale_color_manual("Class", values = c("goldenrod1", "darkblue")) + 
+  xlab("Predictor 1") +
+  ylab("Predictor 2")
+}
+
+visualize(df)
+```
+
+```{r}
+# check discrimination (concordance statistic calculated using logistic regression)
+
+get_auc <- function(df){
+  
+mod  <- glm(outcome~., family = "binomial", data = df)
+pred <- predict(mod, type="response")
+auc  <- roc(df$outcome, pred, quiet = TRUE)$auc
+
+return(auc)
+}
+
+get_auc(df)
+```
+
+
+## store the sensitivity analysis simulation settings 
+```{r}
+# In this sensitivity analysis we focus on simulation scenario 11, npred = 16, ev = 0.2, n.level = 1 
+# then, we allow auc to vary across 7 levels
+
+grid <- tibble(
+  npred   = 16,
+  ef      = 0.2,  
+  n.level = 1, 
+  dmu     = dmu_index$dmu, 
+  c       = dmu_index$auc, 
+)
+grid
+```
+
+```{r}
+# store the data-generating parameters for these scenarios 
+
+# as matrix
+gridmat <- as.matrix(grid) 
+colnames(gridmat) <- NULL
+
+# store each scenario as an item in a list
+auc_scenario <- list()  
+
+for(i in 1:nrow(gridmat)){
+  colnames <-NULL
+  auc_scenario[[i]] <- scenario(npred   = gridmat[i,1], 
+                       ev      = gridmat[i,2], 
+                       n.level = gridmat[i,3], 
+                       dmu     = gridmat[i,4],
+                       c       = gridmat[i,5])
+}
+```
+
+# 2. Sensitivity Analysis Simulation 
+
+```{r}
+input <- auc_scenario[[4]]
+generate_data(input)
+```
+
+```{r}
+
+```
+
